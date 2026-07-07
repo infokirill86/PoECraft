@@ -1,13 +1,16 @@
 # P2C ACTIVE TASK
 
-status: ready_for_claude
-next_actor: claude
+status: claude_audit_complete
+next_actor: chatgpt_user
 active_task_id: M32_A1_A2_BASELINE_HYGIENE
 active_task_file: work/active/M32_A1_A2_Baseline_Hygiene_Task.md
 result_path: packages/proposed/P2C_M32_A1_A2_Baseline_Hygiene_Result_Codex_v1/
 expected_output_dir: packages/proposed/P2C_M32_A1_A2_Baseline_Hygiene_Result_Codex_v1/
-review_output_hint: reviews/M32_A1_A2_Baseline_Hygiene_Audit_Claude_v1.md
+review_path: reviews/M32_A1_A2_Baseline_Hygiene_Audit_Claude_v1.md
 base_commit: e981202
+claude_verdict: GO (advisory; acceptance stays with ChatGPT/User)
+claude_verdict_detail: A (A1/A2 baseline hygiene) = GO, verified by execution — deps declared, restored kernel tests cover the M32 load-bearing imports, 86/86 tests pass on a clean run, ledgers untouched, baseline pin re-established as honest traceability. B (supervised auto-run protocol metadata) = GO — documentation only; mode manual / enabled false / max_handoffs 0 / human_gate_required true; no GitHub Actions/watcher/automation; cannot accept truth, update ledgers, or start M33; plain-language summary requirement present.
+claude_forward_notes: (1) Layer A is now traceable but not byte-verified in-repo against the prior accepted package; a separate SOURCE_BUNDLE / byte comparison is the remaining step before accepting Layer A as truth. (2) Minor: a bare pytest hit a Windows temp-dir permission error; passes with a writable --basetemp — worth a one-line run-doc note.
 builder_summary: A1/A2 baseline-hygiene result prepared only for the proposed GitHub baseline import. Dependencies are declared in repo config; restored kernel tests cover the imported load-bearing layers used by M32; prior accepted baseline package SHA/pin is documented for audit traceability. Layer A remains proposed and is not accepted truth.
 
 ## Gate decision recorded (2026-07-07, User)
@@ -28,22 +31,16 @@ builder_summary: A1/A2 baseline-hygiene result prepared only for the proposed Gi
 - M33: not open.
 - M26-M30 operation mechanics blueprint: open/context only, not accepted.
 
-## Claude audit target
+## Claude audit — DONE
+Audit complete at repo HEAD `85b0236`. Verdict: **GO** (advisory). Full audit in
+`reviews/M32_A1_A2_Baseline_Hygiene_Audit_Claude_v1.md`. A1/A2 verified by execution (86/86 tests pass,
+integrity clean, ledgers untouched); auto-run protocol metadata is safe docs-only. See forward notes above.
 
-Audit the A1/A2 baseline-hygiene result at:
-
-`packages/proposed/P2C_M32_A1_A2_Baseline_Hygiene_Result_Codex_v1/`
-
-Claude should verify:
-
-1. A1 dependency declaration clears clean-clone reproducibility for the imported runtime and test suite.
-2. A2 restored tests cover the load-bearing imported kernel that M32 depends on.
-3. The prior accepted baseline package SHA/pin is re-established for audit traceability without accepting imported baseline truth.
-4. No M33, new mechanics, optimizer/advice/ranking, public numeric release, source/provenance closure, MML closure, PD-013 closure, or accepted-ledger truth update was introduced.
-
-Return audit under:
-
-`reviews/M32_A1_A2_Baseline_Hygiene_Audit_Claude_v1.md`
+## What ChatGPT/User should do next (gate decision — nothing auto-accepts)
+1. Decide whether the GitHub baseline import (Layer A) is now accepted as project truth, or held pending
+   the byte-level SOURCE_BUNDLE (forward note 1).
+2. If byte-level assurance is wanted first, route a SOURCE_BUNDLE / FULL_REPRODUCIBILITY_BUNDLE task to Codex.
+3. M33 (oracle convergence) remains closed until Layer A acceptance is decided.
 
 ## Optional automation control (inactive)
 
