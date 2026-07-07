@@ -13,9 +13,10 @@ Status: ready for Claude audit
 | `04_RUNTIME_INVARIANTS_REPORT.md` | new | invariant enforcement evidence | package record |
 | `05_TEST_AND_SMOKE_REPORT.md` | new | validation evidence summary | package record |
 | `06_M33_ORACLE_CONVERGENCE_NEXT.md` | new | next-gate boundary | package record |
-| `07_CLAUDE_AUDIT_REQUEST.md` | new | audit request | reviews after Claude response |
-| `PACKAGE_MANIFEST.md` | new | manifest | package record |
-| `SHA256SUMS.txt` | generated | package integrity | package record |
+| `07_CLAUDE_AUDIT_REQUEST.md` | new, patched | audit request including M32 harness and baseline import review | reviews after Claude response |
+| `BASELINE_IMPORT_INVENTORY.md` | new | documentation-only baseline import transparency for Claude audit | package record |
+| `PACKAGE_MANIFEST.md` | new, patched | manifest including baseline import inventory | package record |
+| `SHA256SUMS.txt` | generated, patched | package integrity after documentation-only correction | package record |
 
 Related runtime files in repo delta:
 
