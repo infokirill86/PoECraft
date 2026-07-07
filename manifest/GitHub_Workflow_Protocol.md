@@ -10,6 +10,33 @@ Status: bootstrap v1. This document follows the compact convergence rule: GitHub
 - Large/offloaded artifacts may be indexed later, but only after real need appears.
 - No auto-merge. Accepted truth changes only after Kirill/ChatGPT gate acceptance.
 
+## Supervised auto-run metadata
+
+`work/active/ACTIVE_TASK.md` may include an optional `automation` block. The block is descriptive control metadata, not automation by itself.
+
+- `mode: manual` means Kirill still sends each `Go`.
+- `mode: supervised_auto_run` means agents may pass the turn for a limited number of handoffs only when explicitly enabled.
+- `enabled: false` means no automated handoff is authorized.
+- `max_handoffs` and `current_handoff_count` limit how far a supervised run may continue before stopping for a human.
+- `human_gate_required: true` is mandatory. No auto-run may mark anything as accepted, update accepted truth, update accepted ledgers, start a new milestone, or bypass ChatGPT/User authority.
+- Any stop trigger in the `automation.stop_on` list must stop the run, set `status: blocked_for_human`, and set `next_actor: chatgpt_user`.
+
+This protocol extension prepares the repo for future controlled short auto-runs. It does not implement GitHub Actions, Codex automation, Claude automation, or any watcher.
+
+## Plain-language summary requirement
+
+Every Codex result package and every Claude audit must include a short human-readable summary section or file. It must explain, in plain language:
+
+- what was done;
+- why it matters;
+- what changed;
+- what was tested;
+- what remains proposed or not accepted;
+- who is next;
+- whether a human decision is required.
+
+This is required because the project is now technical enough that raw paths, hashes, and PASS/FAIL lines are not enough for project control. Technical evidence stays in the package, but each handoff must also explain the meaning of the work for a non-programmer project owner.
+
 ## Minimal structure
 See repository tree in README and ledger files.
 

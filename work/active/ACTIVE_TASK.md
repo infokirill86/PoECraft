@@ -45,6 +45,38 @@ Return audit under:
 
 `reviews/M32_A1_A2_Baseline_Hygiene_Audit_Claude_v1.md`
 
+## Optional automation control (inactive)
+
+This block is metadata only. It does not enable automation by itself.
+
+```yaml
+automation:
+  mode: manual
+  enabled: false
+  max_handoffs: 0
+  current_handoff_count: 0
+  human_gate_required: true
+  allowed_next_actors:
+    - codex
+    - claude
+  stop_on:
+    - NO_GO
+    - GO_WITH_CHANGES_REQUIRES_DESIGN_DECISION
+    - scope_expansion
+    - missing_required_bytes
+    - sha_mismatch
+    - test_failure
+    - dependency_or_provenance_uncertainty
+    - builder_auditor_conflict
+    - accepted_truth_update_needed
+    - milestone_transition
+    - max_handoffs_reached
+```
+
+Manual mode means Kirill still sends each `Go`.
+
+Future `supervised_auto_run` mode, if explicitly enabled later, means agents may pass the turn for a limited number of handoffs. It still cannot accept project truth, start a new milestone, update accepted ledgers, or bypass ChatGPT/User authority. Any listed stop trigger must set `status: blocked_for_human` and `next_actor: chatgpt_user`.
+
 ## Stop conditions still active
 
 STOP_OR_ESCALATION if:
