@@ -1,0 +1,63 @@
+schema_version: 2
+root_action: BUY_INITIAL_STATE
+restart_action: ABANDON_AND_RESTART
+states:
+- initial_state_id: empty_normal_quarterstaff_2s
+  enabled: false
+  state:
+    item_class: quarterstaff
+    rarity: normal
+    item_level: 82
+    modifiers: []
+    unrevealed_desecrated: null
+    augment_socket_capacity: 2
+    augment_socket_used: 0
+    astrid_installed: false
+  purchase_cost_resource_id: initial_empty_normal_quarterstaff_2s
+  role: reference_only_out_of_scope
+- initial_state_id: fractured_crit_quarterstaff
+  enabled: true
+  state_template:
+    item_class: quarterstaff
+    rarity: rare
+    item_level: 82
+    required_modifier_family: value_to_critical_hit_chance
+    required_flag:
+      fractured: true
+    augment_socket_capacity: 2
+    augment_socket_used: 0
+    astrid_installed: false
+    required_modifier_tier:
+      mode: configured_at_run_time
+      allowed_tiers:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+    required_side: suffix
+  purchase_cost_resource_id: initial_fractured_crit_quarterstaff
+  status: ACTIVE_FIXED_START_PRICE_PENDING
+  role: sole_active_start
+active_start_policy:
+  primary: fractured_crit_quarterstaff
+  allow_alternative_starts_in_solver: false
+  model_fracturing_process: false
+  economic_fields_pending:
+  - exact fractured crit tier
+  - starting item market price
+  - market timestamp and league
+canonical_materialization_contract:
+  installed_modifier_shape:
+  - mod_id
+  - crafted
+  - desecrated
+  - fractured
+  static_lookup: tools/modifier_index.py::build_modifier_index
+  fractured_crit_mod_id_pattern: value_to_critical_hit_chance_t{tier}
+  instance_flags:
+    crafted: false
+    desecrated: false
+    fractured: true
+  unknown_or_disallowed_tier: MATERIALIZATION_ERROR

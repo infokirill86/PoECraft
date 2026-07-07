@@ -1,0 +1,64 @@
+schema_version: 1
+checked_at: '2026-06-25'
+sources:
+- source_id: poe2db_quarterstaves
+  type: game_database
+  url: https://poe2db.tw/Quarterstaves
+  use_for:
+  - quarterstaff applicability
+  - modifier levels
+  - tier/value display
+  - base item class facts
+  status: checked
+- source_id: craft_of_exile_poe2
+  type: crafting_database_and_simulator
+  url: https://www.craftofexile.com/?game=poe2
+  use_for:
+  - independent pool comparison
+  - generation weights
+  - mechanical regression testing
+  status: checked
+  note: The site states that current PoE2 weights are extrapolated using a special method.
+- source_id: repoe_poe2
+  type: datamined_structural_export
+  url: https://repoe-fork.github.io/poe2/
+  use_for:
+  - internal mod IDs
+  - item tags
+  - spawn eligibility
+  - stat structure
+  status: checked
+  note: RePoE exposes mods.json and mods_by_base.json, but project weights remain sourced from accepted crafting databases.
+- source_id: poe2db_desecrated
+  type: game_database
+  url: https://poe2db.tw/Desecrated_Modifiers
+  use_for:
+  - Desecrated modifiers and tags
+  status: checked
+- source_id: official_patch_0_5
+  type: official_patch_notes
+  url: https://www.pathofexile.com/forum/view-thread/3932540
+  use_for:
+  - current crafting additions and changed outputs
+  status: checked
+model_postulate: When PoE2DB and Craft of Exile agree, their pool, tier, modifier-level, family/group and weight data are
+  accepted as model truth. RePoE is structural support, not the primary weight source.
+research_source_order:
+- official_path_of_exile
+- poe2db
+- craft_of_exile
+- poe_ninja
+- repoe
+- github_and_community
+- user_in_game_or_emulator_tests
+conflict_resolution:
+  automatic_overwrite_forbidden: true
+  steps:
+  - detect conflicting evidence or patch change
+  - record all sources and dates
+  - present the conflict to the user
+  - apply only the user-approved resolution
+  runtime_authority_after_approval: approved_project_contract
+patch_update_policy:
+  new_external_data_status: PROPOSED_CHANGE
+  requires_user_approval_before_runtime_change: true

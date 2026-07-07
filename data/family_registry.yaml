@@ -1,0 +1,214 @@
+schema_version: 2
+item_class: quarterstaff
+families:
+- family_id: adds_value_to_value_physical_damage
+  generation_group: 1PhysicalDamage
+  display_name: 'Adds # to # Physical Damage'
+  side: prefix
+  tier_count: 9
+  roles:
+  - physical_top
+  - acceptable_third_prefix
+- family_id: adds_value_to_value_fire_damage
+  generation_group: 1FireDamage
+  display_name: 'Adds # to # Fire Damage'
+  side: prefix
+  tier_count: 10
+  roles:
+  - elemental_flat
+  - acceptable_third_prefix
+- family_id: adds_value_to_value_cold_damage
+  generation_group: 1ColdDamage
+  display_name: 'Adds # to # Cold Damage'
+  side: prefix
+  tier_count: 10
+  roles:
+  - elemental_flat
+  - acceptable_third_prefix
+- family_id: adds_value_to_value_lightning_damage
+  generation_group: 1LightningDamage
+  display_name: 'Adds # to # Lightning Damage'
+  side: prefix
+  tier_count: 10
+  roles:
+  - elemental_flat
+  - acceptable_third_prefix
+- family_id: value_increased_physical_damage
+  generation_group: 1LocalPhysicalDamagePercent
+  display_name: '#% increased Physical Damage'
+  side: prefix
+  tier_count: 8
+  roles:
+  - physical_top
+  - acceptable_third_prefix
+- family_id: value_increased_physical_damage_value_to_accuracy_rating
+  generation_group: 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  display_name: '#% increased Physical Damage, # to Accuracy Rating'
+  side: prefix
+  tier_count: 8
+  roles:
+  - physical_top
+  - acceptable_third_prefix
+- family_id: value_to_accuracy_rating
+  generation_group: 1IncreasedAccuracy
+  display_name: '# to Accuracy Rating'
+  side: prefix
+  tier_count: 9
+  roles: []
+- family_id: value_increased_elemental_damage_with_attacks
+  generation_group: 1IncreasedWeaponElementalDamagePercent
+  display_name: '#% increased Elemental Damage with Attacks'
+  side: prefix
+  tier_count: 6
+  roles: []
+- family_id: value_to_dexterity
+  generation_group: 2Dexterity
+  display_name: '# to Dexterity'
+  side: suffix
+  tier_count: 8
+  roles: []
+- family_id: value_to_intelligence
+  generation_group: 2Intelligence
+  display_name: '# to Intelligence'
+  side: suffix
+  tier_count: 8
+  roles: []
+- family_id: value_reduced_attribute_requirements
+  generation_group: 2LocalAttributeRequirements
+  display_name: '#% reduced Attribute Requirements'
+  side: suffix
+  tier_count: 5
+  roles: []
+- family_id: value_to_level_of_all_melee_skills
+  generation_group: 2IncreaseSocketedGemLevel
+  display_name: '# to Level of all Melee Skills'
+  side: suffix
+  tier_count: 4
+  roles:
+  - required_melee_skills
+- family_id: leeches_value_of_physical_damage_as_life
+  generation_group: 2LifeLeech
+  display_name: 'Leeches #% of Physical Damage as Life'
+  side: suffix
+  tier_count: 4
+  roles: []
+- family_id: leeches_value_of_physical_damage_as_mana
+  generation_group: 2ManaLeech
+  display_name: 'Leeches #% of Physical Damage as Mana'
+  side: suffix
+  tier_count: 4
+  roles: []
+- family_id: gain_value_life_per_enemy_killed
+  generation_group: 2LifeGainedFromEnemyDeath
+  display_name: 'Gain # Life per Enemy Killed'
+  side: suffix
+  tier_count: 8
+  roles: []
+- family_id: gain_value_mana_per_enemy_killed
+  generation_group: 2ManaGainedFromEnemyDeath
+  display_name: 'Gain # Mana per Enemy Killed'
+  side: suffix
+  tier_count: 8
+  roles: []
+- family_id: grants_value_life_per_enemy_hit
+  generation_group: 2LifeGainPerTarget
+  display_name: 'Grants # Life per Enemy Hit'
+  side: suffix
+  tier_count: 4
+  roles: []
+- family_id: value_increased_attack_speed
+  generation_group: 2IncreasedAttackSpeed
+  display_name: '#% increased Attack Speed'
+  side: suffix
+  tier_count: 8
+  roles:
+  - top_final_suffix
+- family_id: value_to_critical_hit_chance
+  generation_group: 2CriticalStrikeChanceIncrease
+  display_name: '#% to Critical Hit Chance'
+  side: suffix
+  tier_count: 6
+  roles:
+  - required_crit
+- family_id: value_to_critical_damage_bonus
+  generation_group: 2CriticalStrikeMultiplier
+  display_name: '#% to Critical Damage Bonus'
+  side: suffix
+  tier_count: 6
+  roles:
+  - top_final_suffix
+- family_id: value_to_accuracy_rating_value_increased_light_radius
+  generation_group: 2LightRadiusAndAccuracy
+  display_name: '# to Accuracy Rating, #% increased Light Radius'
+  side: suffix
+  tier_count: 3
+  roles: []
+- family_id: value_increased_stun_duration
+  generation_group: 2StunDurationIncreasePercent
+  display_name: '#% increased Stun Duration'
+  side: suffix
+  tier_count: 6
+  roles: []
+- family_id: causes_value_increased_stun_buildup
+  generation_group: 2StunDamageIncrease
+  display_name: 'Causes #% increased Stun Buildup'
+  side: suffix
+  tier_count: 6
+  roles: []
+- family_id: prefix_extra_physical
+  generation_group: crafted_extra_physical_damage
+  display_name: Gain (25–33)% of Damage as Extra Physical Damage
+  side: prefix
+  tier_count: 1
+  roles: []
+  origin: perfect_essence_crafted
+  counts_for_success: false
+- family_id: prefix_extra_fire
+  generation_group: crafted_extra_fire_damage
+  display_name: Gain (25–33)% of Damage as Extra Fire Damage
+  side: prefix
+  tier_count: 1
+  roles: []
+  origin: perfect_essence_crafted
+  counts_for_success: false
+- family_id: prefix_extra_cold
+  generation_group: crafted_extra_cold_damage
+  display_name: Gain (25–33)% of Damage as Extra Cold Damage
+  side: prefix
+  tier_count: 1
+  roles: []
+  origin: perfect_essence_crafted
+  counts_for_success: false
+- family_id: prefix_extra_lightning
+  generation_group: crafted_extra_lightning_damage
+  display_name: Gain (25–33)% of Damage as Extra Lightning Damage
+  side: prefix
+  tier_count: 1
+  roles: []
+  origin: perfect_essence_crafted
+  counts_for_success: false
+- family_id: suffix_all_attack_skills
+  generation_group: crafted_all_attack_skills
+  display_name: +3 to Level of all Attack Skills
+  side: suffix
+  tier_count: 1
+  roles: []
+  origin: perfect_essence_crafted
+  counts_for_success: false
+- family_id: suffix_onslaught_on_kill
+  generation_group: crafted_onslaught_on_kill
+  display_name: (20–25)% chance to gain Onslaught on Killing Hits with this Weapon
+  side: suffix
+  tier_count: 1
+  roles: []
+  origin: perfect_essence_crafted
+  counts_for_success: false
+- family_id: value_to_attribute_choice
+  generation_group: crafted_attribute_choice
+  display_name: +# to Strength, Dexterity or Intelligence
+  side: suffix
+  tier_count: 1
+  roles: []
+  origin: greater_essence_crafted
+  counts_for_success: false
+registry_scope: ordinary plus crafted essence families used by active operations

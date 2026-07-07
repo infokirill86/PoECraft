@@ -1,0 +1,18 @@
+schema_version: 1
+rules:
+  - operation_group: "*"
+    failure_stage: compile
+    failure_code: invalid_request
+    outcome_kind: no_transition
+    state_unchanged: true
+    consumed_resources: []
+    contract_source: P2C_archdec_team_final_v8.md
+  - operation_group: "*"
+    failure_stage: precondition
+    failure_code: invalid_action
+    outcome_kind: no_transition
+    state_unchanged: true
+    consumed_resources: []
+    contract_source: P2C_archdec_team_final_v8.md
+notes:
+  - CraftingFailed consumption is operation-specific and must be added only from an approved mechanics contract.

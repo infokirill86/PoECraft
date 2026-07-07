@@ -1,0 +1,53 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: poe2-quarterstaff-static-mod
+type: object
+required:
+- mod_id
+- family_id
+- group_ids
+- side
+- tier
+- modifier_level
+- generation_weight
+- description
+properties:
+  mod_id:
+    type: string
+    minLength: 1
+  family_id:
+    type: string
+    minLength: 1
+  source_mod_id:
+    type:
+    - string
+    - 'null'
+  group_ids:
+    type: array
+    items:
+      type: string
+  side:
+    enum:
+    - prefix
+    - suffix
+  tier:
+    type: integer
+    minimum: 1
+  modifier_level:
+    type: integer
+    minimum: 1
+  generation_weight:
+    type: number
+    exclusiveMinimum: 0
+  description:
+    type: string
+  tags:
+    type: array
+    items:
+      type: string
+  lich_tag:
+    enum:
+    - amanamu
+    - kurgal
+    - ulaman
+    - null
+additionalProperties: true

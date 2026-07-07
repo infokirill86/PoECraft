@@ -1,0 +1,1040 @@
+schema_version: 2
+item_class: quarterstaff
+handler_declarations:
+  exalted: exalted_handler
+  annulment: annulment_handler
+  chaos: chaos_handler
+  support_augment: support_augment_handler
+  perfect_essence: perfect_essence_handler
+  jawbone: jawbone_handler
+  reveal: reveal_handler
+global_contracts:
+  composite_operations_are_atomic: true
+  invalid_actions_generate_no_transition: true
+  ordinary_add_pool_rebuilt_before_each_elementary_add: true
+  fractured_modifiers_are_never_removable_or_mutable: true
+  ordinary_add_pool_pipeline:
+    ordered_steps:
+    - select pool-build rarity and item class
+    - apply explicit side_filter from the legal Omen bundle, if present
+    - remove sides without sufficient remaining capacity for the complete requested add count
+    - block every installed family_id
+    - block every candidate whose group_ids intersect installed group_ids
+    - apply MML inside each remaining family using the adopted family fallback policy
+    - remove non-positive-weight rows
+    - weighted-sample one tier row
+    - after each sequential draw, block the selected family and conflicting groups before rebuilding the next draw pool
+    block_installed_families: true
+    block_installed_groups: true
+    respect_rarity_side_capacities: true
+    draw_unit: tier_row
+  modified_operation_prevalidation: Compile currency plus the complete legal Omen bundle first. Validate the fully modified
+    operation before consuming any component or mutating the item.
+  partial_multi_add_forbidden: true
+  failed_precondition_consumes_nothing: true
+operations:
+- operation_id: transmutation
+  group: transmutation
+  input_rarity:
+  - normal
+  cost_resource_id: transmutation
+  transition:
+    atomic: true
+    output_rarity: magic
+    remove:
+      kind: none
+    add:
+      kind: ordinary_weighted
+      count: 1
+      side_filter: null
+      mml: null
+  active_in_current_simulation: false
+- operation_id: greater_transmutation
+  group: transmutation
+  input_rarity:
+  - normal
+  cost_resource_id: greater_transmutation
+  transition:
+    atomic: true
+    output_rarity: magic
+    remove:
+      kind: none
+    add:
+      kind: ordinary_weighted
+      count: 1
+      side_filter: null
+      mml: 44
+  active_in_current_simulation: false
+- operation_id: perfect_transmutation
+  group: transmutation
+  input_rarity:
+  - normal
+  cost_resource_id: perfect_transmutation
+  transition:
+    atomic: true
+    output_rarity: magic
+    remove:
+      kind: none
+    add:
+      kind: ordinary_weighted
+      count: 1
+      side_filter: null
+      mml: 70
+  active_in_current_simulation: false
+- operation_id: augmentation
+  group: augmentation
+  input_rarity:
+  - magic
+  cost_resource_id: augmentation
+  transition:
+    atomic: true
+    output_rarity: magic
+    preconditions:
+    - type: occupied_explicit_slots
+      operator: <
+      value: 2
+    remove:
+      kind: none
+    add:
+      kind: ordinary_weighted
+      count: 1
+      side_filter: null
+      mml: null
+      side_resolution: On Magic items, only a side below its 1-mod capacity is eligible. If one prefix is installed, the addition
+        must be a suffix; if one suffix is installed, it must be a prefix.
+  active_in_current_simulation: false
+- operation_id: greater_augmentation
+  group: augmentation
+  input_rarity:
+  - magic
+  cost_resource_id: greater_augmentation
+  transition:
+    atomic: true
+    output_rarity: magic
+    preconditions:
+    - type: occupied_explicit_slots
+      operator: <
+      value: 2
+    remove:
+      kind: none
+    add:
+      kind: ordinary_weighted
+      count: 1
+      side_filter: null
+      mml: 44
+      side_resolution: On Magic items, only a side below its 1-mod capacity is eligible. If one prefix is installed, the addition
+        must be a suffix; if one suffix is installed, it must be a prefix.
+  active_in_current_simulation: false
+- operation_id: perfect_augmentation
+  group: augmentation
+  input_rarity:
+  - magic
+  cost_resource_id: perfect_augmentation
+  transition:
+    atomic: true
+    output_rarity: magic
+    preconditions:
+    - type: occupied_explicit_slots
+      operator: <
+      value: 2
+    remove:
+      kind: none
+    add:
+      kind: ordinary_weighted
+      count: 1
+      side_filter: null
+      mml: 70
+      side_resolution: On Magic items, only a side below its 1-mod capacity is eligible. If one prefix is installed, the addition
+        must be a suffix; if one suffix is installed, it must be a prefix.
+  active_in_current_simulation: false
+- operation_id: regal
+  group: regal
+  input_rarity:
+  - magic
+  cost_resource_id: regal
+  transition:
+    atomic: true
+    pool_build_rarity: rare
+    output_rarity: rare
+    remove:
+      kind: none
+    add:
+      kind: ordinary_weighted
+      count: 1
+      side_filter: null
+      mml: null
+  active_in_current_simulation: false
+- operation_id: greater_regal
+  group: regal
+  input_rarity:
+  - magic
+  cost_resource_id: greater_regal
+  transition:
+    atomic: true
+    pool_build_rarity: rare
+    output_rarity: rare
+    remove:
+      kind: none
+    add:
+      kind: ordinary_weighted
+      count: 1
+      side_filter: null
+      mml: 35
+  active_in_current_simulation: false
+- operation_id: perfect_regal
+  group: regal
+  input_rarity:
+  - magic
+  cost_resource_id: perfect_regal
+  transition:
+    atomic: true
+    pool_build_rarity: rare
+    output_rarity: rare
+    remove:
+      kind: none
+    add:
+      kind: ordinary_weighted
+      count: 1
+      side_filter: null
+      mml: 50
+  active_in_current_simulation: false
+- operation_id: exalted
+  group: exalted
+  input_rarity:
+  - rare
+  cost_resource_id: exalted
+  transition:
+    atomic: true
+    output_rarity: rare
+    remove:
+      kind: none
+    add:
+      kind: ordinary_weighted
+      count: 1
+      mml: null
+      base_count: 1
+    omen_parameters:
+      side_filter:
+      - prefix
+      - suffix
+      - null
+      add_count_override:
+      - 1
+      - 2
+    preconditions:
+    - type: free_explicit_slots_after_side_filter
+      operator: '>='
+      value: resolved_add_count
+    omen_resolution:
+      greater_exaltation:
+        resolved_add_count: 2
+        requires_two_free_legal_slots: true
+        partial_execution: false
+        on_insufficient_slots: NO_TRANSITION_NO_CONSUMPTION
+      sinistral_or_dextral_exaltation:
+        side_filter_applies_before_capacity_check: true
+      combined_bundle: When side and double-add Omens are combined, the chosen side must have capacity for both additions.
+  active_in_current_simulation: true
+- operation_id: greater_exalted
+  group: exalted
+  input_rarity:
+  - rare
+  cost_resource_id: greater_exalted
+  transition:
+    atomic: true
+    output_rarity: rare
+    remove:
+      kind: none
+    add:
+      kind: ordinary_weighted
+      count: 1
+      mml: 35
+      base_count: 1
+    omen_parameters:
+      side_filter:
+      - prefix
+      - suffix
+      - null
+      add_count_override:
+      - 1
+      - 2
+    preconditions:
+    - type: free_explicit_slots_after_side_filter
+      operator: '>='
+      value: resolved_add_count
+    omen_resolution:
+      greater_exaltation:
+        resolved_add_count: 2
+        requires_two_free_legal_slots: true
+        partial_execution: false
+        on_insufficient_slots: NO_TRANSITION_NO_CONSUMPTION
+      sinistral_or_dextral_exaltation:
+        side_filter_applies_before_capacity_check: true
+      combined_bundle: When side and double-add Omens are combined, the chosen side must have capacity for both additions.
+  active_in_current_simulation: true
+- operation_id: perfect_exalted
+  group: exalted
+  input_rarity:
+  - rare
+  cost_resource_id: perfect_exalted
+  transition:
+    atomic: true
+    output_rarity: rare
+    remove:
+      kind: none
+    add:
+      kind: ordinary_weighted
+      count: 1
+      mml: 50
+      base_count: 1
+    omen_parameters:
+      side_filter:
+      - prefix
+      - suffix
+      - null
+      add_count_override:
+      - 1
+      - 2
+    preconditions:
+    - type: free_explicit_slots_after_side_filter
+      operator: '>='
+      value: resolved_add_count
+    omen_resolution:
+      greater_exaltation:
+        resolved_add_count: 2
+        requires_two_free_legal_slots: true
+        partial_execution: false
+        on_insufficient_slots: NO_TRANSITION_NO_CONSUMPTION
+      sinistral_or_dextral_exaltation:
+        side_filter_applies_before_capacity_check: true
+      combined_bundle: When side and double-add Omens are combined, the chosen side must have capacity for both additions.
+  active_in_current_simulation: true
+- operation_id: annulment
+  group: annulment
+  input_rarity:
+  - magic
+  - rare
+  cost_resource_id: annulment
+  transition:
+    atomic: true
+    output_rarity: same
+    remove:
+      kind: uniform_installed_instance
+      count: 1
+      exclude_flags:
+      - fractured
+      omen_filters:
+      - side_filter
+      - desecrated_only
+    add:
+      kind: none
+    preconditions:
+    - type: filtered_removal_pool_nonempty
+      filters:
+      - exclude fractured
+      - apply side Omen
+      - apply desecrated-only Omen
+    on_empty_removal_pool: NO_TRANSITION_NO_CONSUMPTION
+  active_in_current_simulation: true
+- operation_id: chaos
+  group: chaos
+  input_rarity:
+  - rare
+  cost_resource_id: chaos
+  transition:
+    atomic: true
+    output_rarity: rare
+    sequence:
+    - build_removal_pool
+    - remove_on_branch_copy
+    - rebuild_add_pool
+    - add
+    - commit
+    remove:
+      kind: uniform_installed_instance
+      count: 1
+      exclude_flags:
+      - fractured
+      omen_filters:
+      - side_filter
+      - minimum_modifier_level_selection
+    add:
+      kind: ordinary_weighted
+      count: 1
+      mml: null
+    preconditions:
+    - type: filtered_removal_pool_nonempty
+      filters:
+      - exclude fractured
+      - apply side Omen
+      - apply Whittling selection if active
+    - type: post_removal_add_pool_nonempty
+      rule: rebuild ordinary add pool on the branch-copy after removal
+    on_failed_precondition: NO_TRANSITION_NO_CONSUMPTION
+  active_in_current_simulation: true
+- operation_id: greater_chaos
+  group: chaos
+  input_rarity:
+  - rare
+  cost_resource_id: greater_chaos
+  transition:
+    atomic: true
+    output_rarity: rare
+    sequence:
+    - build_removal_pool
+    - remove_on_branch_copy
+    - rebuild_add_pool
+    - add
+    - commit
+    remove:
+      kind: uniform_installed_instance
+      count: 1
+      exclude_flags:
+      - fractured
+      omen_filters:
+      - side_filter
+      - minimum_modifier_level_selection
+    add:
+      kind: ordinary_weighted
+      count: 1
+      mml: 35
+    preconditions:
+    - type: filtered_removal_pool_nonempty
+      filters:
+      - exclude fractured
+      - apply side Omen
+      - apply Whittling selection if active
+    - type: post_removal_add_pool_nonempty
+      rule: rebuild ordinary add pool on the branch-copy after removal
+    on_failed_precondition: NO_TRANSITION_NO_CONSUMPTION
+  active_in_current_simulation: true
+- operation_id: perfect_chaos
+  group: chaos
+  input_rarity:
+  - rare
+  cost_resource_id: perfect_chaos
+  transition:
+    atomic: true
+    output_rarity: rare
+    sequence:
+    - build_removal_pool
+    - remove_on_branch_copy
+    - rebuild_add_pool
+    - add
+    - commit
+    remove:
+      kind: uniform_installed_instance
+      count: 1
+      exclude_flags:
+      - fractured
+      omen_filters:
+      - side_filter
+      - minimum_modifier_level_selection
+    add:
+      kind: ordinary_weighted
+      count: 1
+      mml: 50
+    preconditions:
+    - type: filtered_removal_pool_nonempty
+      filters:
+      - exclude fractured
+      - apply side Omen
+      - apply Whittling selection if active
+    - type: post_removal_add_pool_nonempty
+      rule: rebuild ordinary add pool on the branch-copy after removal
+    on_failed_precondition: NO_TRANSITION_NO_CONSUMPTION
+  active_in_current_simulation: true
+- operation_id: alchemy
+  group: alchemy
+  input_rarity:
+  - normal
+  - magic
+  cost_resource_id: alchemy
+  transition:
+    atomic: true
+    output_rarity: rare
+    sequence:
+    - discard_all_explicit
+    - create_empty_rare_shell
+    - add_ordinary_x4
+    - commit
+    remove:
+      kind: all_explicit
+    add:
+      kind: ordinary_weighted_sequential
+      count: 4
+      mml: null
+  active_in_current_simulation: false
+- operation_id: fracturing_orb
+  group: fracture
+  input_rarity:
+  - rare
+  cost_resource_id: fracturing_orb
+  transition:
+    atomic: true
+    output_rarity: rare
+    preconditions:
+    - type: occupied_explicit_slots
+      operator: '>='
+      value: 4
+    - type: fractured_modifier_count
+      operator: ==
+      value: 0
+    target:
+      kind: uniform_installed_instance
+      exclude_flags:
+      - fractured
+      exclude_instance_kinds:
+      - unrevealed_desecrated_placeholder
+    mutation:
+      set_flag:
+        fractured: true
+    preserve_flags:
+    - crafted
+    - desecrated
+    revealed_desecrated_target_rule:
+      status: DISPUTED_AND_OUT_OF_ACTIVE_SCOPE
+      craft_of_exile_emulator_observation: eligible target
+      external_documentation_claim: ineligible target
+      in_game_verification: not performed
+      runtime_behavior_for_current_simulation: operation disabled; rule cannot affect active probabilities
+  active_in_current_simulation: false
+- operation_id: install_astrid
+  group: support_augment
+  input_rarity:
+  - normal
+  - magic
+  - rare
+  cost_resource_id: astrids_creativity
+  transition:
+    atomic: true
+    output_rarity: same
+    preconditions:
+    - type: astrid_installed
+      operator: ==
+      value: false
+    - type: free_augment_sockets
+      operator: '>='
+      value: 1
+    mutation:
+      astrid_installed: true
+      augment_socket_used_delta: 1
+    derived_effect:
+      crafted_modifier_limit_delta: 1
+      base_limit: 1
+      resulting_limit: 2
+    failure_atomicity: No augment socket is consumed if Astrid is already installed or no free augment socket exists.
+  active_in_current_simulation: true
+- operation_id: greater_essence_abrasion
+  group: greater_essence
+  input_rarity:
+  - magic
+  cost_resource_id: greater_essence_abrasion
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_greater_abrasion_flat_physical
+    guaranteed_family_id: adds_value_to_value_physical_damage
+    guaranteed_side: prefix
+    crafted: true
+    remove:
+      kind: none
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - result_side_capacity_free
+  active_in_current_simulation: false
+- operation_id: greater_essence_flames
+  group: greater_essence
+  input_rarity:
+  - magic
+  cost_resource_id: greater_essence_flames
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_greater_flames_flat_fire
+    guaranteed_family_id: adds_value_to_value_fire_damage
+    guaranteed_side: prefix
+    crafted: true
+    remove:
+      kind: none
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - result_side_capacity_free
+  active_in_current_simulation: false
+- operation_id: greater_essence_ice
+  group: greater_essence
+  input_rarity:
+  - magic
+  cost_resource_id: greater_essence_ice
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_greater_ice_flat_cold
+    guaranteed_family_id: adds_value_to_value_cold_damage
+    guaranteed_side: prefix
+    crafted: true
+    remove:
+      kind: none
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - result_side_capacity_free
+  active_in_current_simulation: false
+- operation_id: greater_essence_electricity
+  group: greater_essence
+  input_rarity:
+  - magic
+  cost_resource_id: greater_essence_electricity
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_greater_electricity_flat_lightning
+    guaranteed_family_id: adds_value_to_value_lightning_damage
+    guaranteed_side: prefix
+    crafted: true
+    remove:
+      kind: none
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - result_side_capacity_free
+  active_in_current_simulation: false
+- operation_id: greater_essence_battle
+  group: greater_essence
+  input_rarity:
+  - magic
+  cost_resource_id: greater_essence_battle
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_greater_battle_accuracy
+    guaranteed_family_id: value_to_accuracy_rating
+    guaranteed_side: prefix
+    crafted: true
+    remove:
+      kind: none
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - result_side_capacity_free
+  active_in_current_simulation: false
+- operation_id: greater_essence_haste
+  group: greater_essence
+  input_rarity:
+  - magic
+  cost_resource_id: greater_essence_haste
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_greater_haste_attack_speed
+    guaranteed_family_id: value_increased_attack_speed
+    guaranteed_side: suffix
+    crafted: true
+    remove:
+      kind: none
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - result_side_capacity_free
+  active_in_current_simulation: false
+- operation_id: greater_essence_seeking
+  group: greater_essence
+  input_rarity:
+  - magic
+  cost_resource_id: greater_essence_seeking
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_greater_seeking_critical_hit_chance
+    guaranteed_family_id: value_to_critical_hit_chance
+    guaranteed_side: suffix
+    crafted: true
+    remove:
+      kind: none
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - result_side_capacity_free
+  active_in_current_simulation: false
+- operation_id: greater_essence_infinite
+  group: greater_essence
+  input_rarity:
+  - magic
+  cost_resource_id: greater_essence_infinite
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_greater_infinite_attribute
+    guaranteed_family_id: value_to_attribute_choice
+    guaranteed_side: suffix
+    crafted: true
+    remove:
+      kind: none
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - result_side_capacity_free
+  active_in_current_simulation: false
+- operation_id: perfect_essence_abrasion
+  group: perfect_essence
+  input_rarity:
+  - rare
+  cost_resource_id: perfect_essence_abrasion
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_perfect_abrasion_extra_physical
+    guaranteed_family_id: prefix_extra_physical
+    guaranteed_side: prefix
+    crafted: true
+    remove:
+      kind: uniform_installed_instance
+      count: 1
+      exclude_flags:
+      - fractured
+      omen_filters:
+      - side_filter
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - filtered_removal_pool_nonempty
+  active_in_current_simulation: true
+- operation_id: perfect_essence_flames
+  group: perfect_essence
+  input_rarity:
+  - rare
+  cost_resource_id: perfect_essence_flames
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_perfect_flames_extra_fire
+    guaranteed_family_id: prefix_extra_fire
+    guaranteed_side: prefix
+    crafted: true
+    remove:
+      kind: uniform_installed_instance
+      count: 1
+      exclude_flags:
+      - fractured
+      omen_filters:
+      - side_filter
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - filtered_removal_pool_nonempty
+  active_in_current_simulation: true
+- operation_id: perfect_essence_ice
+  group: perfect_essence
+  input_rarity:
+  - rare
+  cost_resource_id: perfect_essence_ice
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_perfect_ice_extra_cold
+    guaranteed_family_id: prefix_extra_cold
+    guaranteed_side: prefix
+    crafted: true
+    remove:
+      kind: uniform_installed_instance
+      count: 1
+      exclude_flags:
+      - fractured
+      omen_filters:
+      - side_filter
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - filtered_removal_pool_nonempty
+  active_in_current_simulation: true
+- operation_id: perfect_essence_electricity
+  group: perfect_essence
+  input_rarity:
+  - rare
+  cost_resource_id: perfect_essence_electricity
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_perfect_electricity_extra_lightning
+    guaranteed_family_id: prefix_extra_lightning
+    guaranteed_side: prefix
+    crafted: true
+    remove:
+      kind: uniform_installed_instance
+      count: 1
+      exclude_flags:
+      - fractured
+      omen_filters:
+      - side_filter
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - filtered_removal_pool_nonempty
+  active_in_current_simulation: true
+- operation_id: perfect_essence_battle
+  group: perfect_essence
+  input_rarity:
+  - rare
+  cost_resource_id: perfect_essence_battle
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_perfect_battle_attack_skills
+    guaranteed_family_id: suffix_all_attack_skills
+    guaranteed_side: suffix
+    crafted: true
+    remove:
+      kind: uniform_installed_instance
+      count: 1
+      exclude_flags:
+      - fractured
+      omen_filters:
+      - side_filter
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - filtered_removal_pool_nonempty
+  active_in_current_simulation: true
+- operation_id: perfect_essence_haste
+  group: perfect_essence
+  input_rarity:
+  - rare
+  cost_resource_id: perfect_essence_haste
+  transition:
+    atomic: true
+    output_rarity: rare
+    guaranteed_mod_id: crafted_perfect_haste_onslaught
+    guaranteed_family_id: suffix_onslaught_on_kill
+    guaranteed_side: suffix
+    crafted: true
+    remove:
+      kind: uniform_installed_instance
+      count: 1
+      exclude_flags:
+      - fractured
+      omen_filters:
+      - side_filter
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - filtered_removal_pool_nonempty
+  active_in_current_simulation: true
+- operation_id: gnawed_jawbone
+  group: jawbone
+  input_rarity:
+  - rare
+  cost_resource_id: gnawed_jawbone
+  transition:
+    atomic: true
+    output_rarity: rare
+    preconditions:
+    - type: desecrated_modifier_count
+      operator: ==
+      value: 0
+    item_level_max: 64
+    reveal_mml: null
+    side_selection:
+      forced_by_omen:
+        rule: use forced side only
+        failure: NO_TRANSITION if forced side is neither free nor replaceable
+      without_omen:
+        legal_sides: all free or replaceable sides
+        selection: uniform_random_over_legal_sides
+        failure: NO_TRANSITION if legal_sides is empty
+    replacement:
+      when_selected_side_full: true
+      target:
+        kind: uniform_installed_instance
+        side: selected_side
+        exclude_flags:
+        - fractured
+      failure: NO_TRANSITION if selected side is full and filtered removable target pool is empty
+    install:
+      kind: unrevealed_desecrated_placeholder
+      stored_context:
+      - side
+      - jawbone_id
+      - reveal_mml
+      - lich_tag_constraint
+    legal_side_definition:
+      free_side: current side count is below side capacity
+      replaceable_full_side: current side count equals side capacity and at least one installed instance on that side is removable
+        after excluding fractured instances
+    failure_atomicity: Jawbone and all paired Omens remain unconsumed when no legal transition exists.
+    prevalidate:
+    - item is Rare
+    - item has no existing Desecrated modifier or placeholder
+    - item level satisfies Jawbone maximum
+    - at least one legal side exists after Omen constraints
+    - if selected side is full, at least one non-fractured removable instance exists on that side
+  active_in_current_simulation: true
+- operation_id: preserved_jawbone
+  group: jawbone
+  input_rarity:
+  - rare
+  cost_resource_id: preserved_jawbone
+  transition:
+    atomic: true
+    output_rarity: rare
+    preconditions:
+    - type: desecrated_modifier_count
+      operator: ==
+      value: 0
+    item_level_max: null
+    reveal_mml: null
+    side_selection:
+      forced_by_omen:
+        rule: use forced side only
+        failure: NO_TRANSITION if forced side is neither free nor replaceable
+      without_omen:
+        legal_sides: all free or replaceable sides
+        selection: uniform_random_over_legal_sides
+        failure: NO_TRANSITION if legal_sides is empty
+    replacement:
+      when_selected_side_full: true
+      target:
+        kind: uniform_installed_instance
+        side: selected_side
+        exclude_flags:
+        - fractured
+      failure: NO_TRANSITION if selected side is full and filtered removable target pool is empty
+    install:
+      kind: unrevealed_desecrated_placeholder
+      stored_context:
+      - side
+      - jawbone_id
+      - reveal_mml
+      - lich_tag_constraint
+    legal_side_definition:
+      free_side: current side count is below side capacity
+      replaceable_full_side: current side count equals side capacity and at least one installed instance on that side is removable
+        after excluding fractured instances
+    failure_atomicity: Jawbone and all paired Omens remain unconsumed when no legal transition exists.
+    prevalidate:
+    - item is Rare
+    - item has no existing Desecrated modifier or placeholder
+    - item level satisfies Jawbone maximum
+    - at least one legal side exists after Omen constraints
+    - if selected side is full, at least one non-fractured removable instance exists on that side
+  active_in_current_simulation: true
+- operation_id: ancient_jawbone
+  group: jawbone
+  input_rarity:
+  - rare
+  cost_resource_id: ancient_jawbone
+  transition:
+    atomic: true
+    output_rarity: rare
+    preconditions:
+    - type: desecrated_modifier_count
+      operator: ==
+      value: 0
+    item_level_max: null
+    reveal_mml: 40
+    side_selection:
+      forced_by_omen:
+        rule: use forced side only
+        failure: NO_TRANSITION if forced side is neither free nor replaceable
+      without_omen:
+        legal_sides: all free or replaceable sides
+        selection: uniform_random_over_legal_sides
+        failure: NO_TRANSITION if legal_sides is empty
+    replacement:
+      when_selected_side_full: true
+      target:
+        kind: uniform_installed_instance
+        side: selected_side
+        exclude_flags:
+        - fractured
+      failure: NO_TRANSITION if selected side is full and filtered removable target pool is empty
+    install:
+      kind: unrevealed_desecrated_placeholder
+      stored_context:
+      - side
+      - jawbone_id
+      - reveal_mml
+      - lich_tag_constraint
+    legal_side_definition:
+      free_side: current side count is below side capacity
+      replaceable_full_side: current side count equals side capacity and at least one installed instance on that side is removable
+        after excluding fractured instances
+    failure_atomicity: Jawbone and all paired Omens remain unconsumed when no legal transition exists.
+    prevalidate:
+    - item is Rare
+    - item has no existing Desecrated modifier or placeholder
+    - item level satisfies Jawbone maximum
+    - at least one legal side exists after Omen constraints
+    - if selected side is full, at least one non-fractured removable instance exists on that side
+  active_in_current_simulation: true
+- operation_id: reveal_desecrated
+  group: reveal
+  input_rarity:
+  - rare
+  cost_resource_id: reveal_desecrated
+  transition:
+    atomic: true
+    output_rarity: rare
+    preconditions:
+    - type: unrevealed_desecrated_count
+      operator: ==
+      value: 1
+    pool:
+      sources:
+      - ordinary_quarterstaff
+      - exclusive_desecrated_quarterstaff
+      side: placeholder.side
+      mml: placeholder.reveal_mml
+      block_installed_families_and_groups: true
+    offers:
+      count: 3
+      unit_of_sampling: eligible_tier_row
+      algorithm: sequential_probability_proportional_to_weight_without_replacement
+      steps:
+      - Build the eligible tier-row pool from ordinary and exclusive Desecrated sources.
+      - Apply fixed side, item/base eligibility, installed family/group blocking, and Jawbone MML.
+      - Apply Lich guarantee-one when a stored Lich tag constraint exists: draw exactly one compatible tagged offer if possible.
+      - After each selected row, remove every remaining row sharing a blocked family or exclusive group with the selected
+        row.
+      - Fill the remaining offer slots sequentially from the remaining pool, each time proportional to current row weight.
+      - Randomly permute the final three displayed positions; display order has no mechanical meaning.
+      distinctness:
+        same_mod_id: false
+        same_family_id: false
+        conflicting_group_ids: false
+      insufficient_pool_behavior:
+        condition: fewer than three mutually compatible eligible outcomes after all constraints
+        result: CRAFTING_FAILED_COULD_NOT_GENERATE_MOD
+      lich_guarantee:
+        mode: guarantee_one
+        selected_model: Option A
+        source_label: PROJECT_POLICY / source-aligned project model
+        algorithm:
+        - Build compatible eligible outcomes carrying the stored Lich tag through the M5 Reveal pool with required_tag.
+        - If no compatible tagged outcome exists, return CRAFTING_FAILED without consumption.
+        - Draw exactly one tagged offer through M4 choose_one.
+        - Block the guaranteed offer family/groups and fill the remaining two offer slots from the general eligible pool.
+        guaranteed_tagged_offers: 1
+        remaining_general_offers: 2
+        persists_through_abyssal_echoes_reroll: true
+      verification_status: PROJECT_POLICY_SOURCE_ALIGNED_MODEL
+      verification_basis:
+      - Current Omen wording guarantees a random modifier of the named Lich.
+      - M7h project decision adopts guarantee-one as the source-aligned model.
+      - Exact server probability remains deferred pending in-game/source verification.
+    decision:
+      kind: policy_choice_after_observation
+      initial_set_actions:
+      - CHOOSE_ONE_OF_THREE
+      - REROLL_IF_ABYSSAL_ECHOES_AVAILABLE
+      reroll:
+        maximum: 1
+        generation: independent_complete_set_from_same_pre_reveal_state
+        first_set_discarded: true
+        second_set_action: CHOOSE_ONE_OF_THREE
+    commit:
+      replace_placeholder: true
+      set_flags:
+        desecrated: true
+  active_in_current_simulation: true

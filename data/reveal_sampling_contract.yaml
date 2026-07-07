@@ -1,0 +1,45 @@
+schema_version: 1
+contract_id: desecrated_reveal_offer_generation_v1
+status: PROJECT_VERIFIED
+scope: PoE2 Desecrated modifier reveal at the Well of Souls
+sampling:
+  offers: 3
+  draw_unit: tier_row
+  method: sequential PPSWOR
+  weight: generation_weight
+  recompute_weights_after_each_draw: true
+  remove_selected_family_and_conflicting_groups_after_each_draw: true
+mml:
+  apply_before_sampling: true
+  family_fallback: If no tier in a family reaches the threshold, retain the strongest available tier.
+  status: USER_APPROVED_PROJECT_RULE_SUPPORTED_EMPIRICALLY
+lich_omen:
+  mode: guarantee_one
+  selected_model: Option A
+  guarantee: draw exactly one compatible offer carrying the stored Lich tag through M4 choose_one
+  no_compatible_tagged_candidate: CRAFTING_FAILED_COULD_NOT_GENERATE_MOD
+  general_pool_fill: two remaining offers use the normal Reveal pool after blocking the guaranteed offer family/groups
+  applies_again_on_abyssal_echoes_reroll: true
+  source_label: PROJECT_POLICY / source-aligned project model
+  evidence:
+  - 'Omen wording: guarantees a random modifier of the named Lich.'
+  - 'Project decision M7h: use guarantee-one rather than older all-tagged surfacing inference.'
+  runtime_status: USER_APPROVED_PROJECT_RULE
+abyssal_echoes:
+  rerolls_complete_set: true
+  reroll_count: 1
+  second_set_independent_given_same_pre_reveal_state: true
+  first_set_unavailable_after_reroll: true
+  side_mml_and_lich_constraints_persist: true
+failure:
+  minimum_compatible_outcomes: 3
+  otherwise: 'crafting failed: could not generate mod'
+confidence:
+  project_mechanical_model: high
+  server_source_code_visibility: unavailable
+  decision: The project adopts guarantee-one as the active M7h model. Exact server probability remains deferred until
+    separate verification.
+sampling_model_status: USER_APPROVED_RUNTIME_MODEL
+insufficient_pool_behavior:
+  behavior: CRAFTING_FAILED_COULD_NOT_GENERATE_MOD
+  status: USER_APPROVED_PROJECT_RULE_SERVER_UNCONFIRMED

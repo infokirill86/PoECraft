@@ -1,11 +1,13 @@
 # P2C ACTIVE TASK
 
-status: ready_for_codex
-next_actor: codex
+status: ready_for_claude
+next_actor: claude
 active_task_id: M32_SEEDED_MC_HARNESS
 active_task_file: work/active/M32_Seeded_MC_Harness_Task.md
+result_path: packages/proposed/P2C_M32_Seeded_MC_Harness_Result_Codex_v1/
 expected_output_dir: packages/proposed/P2C_M32_Seeded_MC_Harness_Result_Codex_v1/
 review_output_hint: reviews/M32_Audit_Claude_v1.md
+builder_summary: M32 seeded MC harness implemented over accepted ordinary_add only, using the existing ordinary-add pool builder as the shared kernel; deterministic replay, invariants, micro-fixtures, validators, pytest, and real-data smoke checks passed.
 
 ## Current project checkpoint
 - Operating Manifest v4: accepted baseline.
@@ -13,40 +15,18 @@ review_output_hint: reviews/M32_Audit_Claude_v1.md
 - GitHub workflow: active manual loop, no mailbox automation yet.
 - M31 Monte Carlo policy: accepted after folded C-1 correction.
 - M26-M30 operation mechanics blueprint: open/context only, not accepted.
-- Next work: M32 seeded Monte Carlo harness over accepted ordinary_add only.
+- M32 result: ready for Claude audit.
 
-## What Codex should do first
-1. Pull latest repo state.
-2. Read:
-   - START_HERE.md
-   - CURRENT_STATUS.md
-   - manifest/Operating_Manifest_v4.md
-   - manifest/GitHub_Workflow_Protocol.md
-   - manifest/Participant_Voice_Charter.md
-   - this ACTIVE_TASK.md
-   - active_task_file above
-3. Run pre-build critique:
-   - material objections or improvements;
-   - scope risks;
-   - whether task should proceed;
-   - or write: "No material objections; proceeding."
+## What Claude should do next
+1. Audit the result package at `packages/proposed/P2C_M32_Seeded_MC_Harness_Result_Codex_v1/`.
+2. Verify shared-kernel, deterministic replay, invariant, and numeric-public-boundary claims.
+3. Return audit under `reviews/M32_Audit_Claude_v1.md`.
 
-## What Codex should do after completion
-1. Write the result under expected_output_dir.
-2. Do not create a ZIP if unpacked files are practical.
-3. Update this file:
-   - status: ready_for_claude
-   - next_actor: claude
-   - result_path: expected_output_dir
-   - builder_summary: short summary of what was built
-4. Commit and push.
-
-## Stop conditions
+## Stop conditions still active
 STOP_OR_ESCALATION if:
-- required repo files are missing;
-- M31 accepted status is unclear;
-- task would require new executable mechanics;
-- task would require optimizer/advice/ranking;
-- task would require public numeric release;
-- exact and MC cannot share one mechanics/pool/legality/weight kernel;
-- seeded replay cannot be made deterministic.
+- M32 is found to require new executable mechanics;
+- M32 is found to duplicate ordinary-add legality/pool/weight logic for MC;
+- seeded replay is not deterministic;
+- runtime invariants do not fail closed;
+- public output leaks probability values;
+- optimizer/advice/ranking or public numeric release appears.

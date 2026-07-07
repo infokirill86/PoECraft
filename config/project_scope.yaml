@@ -1,0 +1,46 @@
+schema_version: 2
+project_scope_id: physical_quarterstaff_fixed_fractured_start
+active_item_class: quarterstaff
+primary_start: fractured_crit_quarterstaff
+simulation_boundary:
+  start_with_preexisting_item: true
+  compare_alternative_initial_states: false
+  model_process_of_obtaining_fracture: false
+  starting_item_has_required_fractured_crit: true
+active_operation_groups:
+- exalted
+- annulment
+- chaos
+- support_augment
+- perfect_essence
+- jawbone
+- reveal
+reference_only_operation_groups:
+- transmutation
+- augmentation
+- regal
+- alchemy
+- fracture
+- greater_essence
+active_omen_system: true
+active_mechanics:
+- exalted_currency_variants
+- annulment
+- chaos_currency_variants
+- perfect_essences
+- astrids_creativity
+- jawbones
+- desecrated_reveal
+- lich_omens
+- abyssal_echoes
+excluded_from_active_solver:
+- normal_or_magic_start
+- fracturing_route
+- greater_essence_magic_to_rare_route
+- alchemy_route
+- corrupted_crafting
+- bonded_augments
+success_origin_policy:
+  origin_flags_affect_success: false
+  rationale: Critical Hit Chance uses the same family_id as the ordinary modifier. The required starting instance additionally
+    has fractured=true. Terminal quality is evaluated by family and tier, not by origin.

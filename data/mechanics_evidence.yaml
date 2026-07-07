@@ -1,0 +1,39 @@
+schema_version: 1
+mml:
+  policy: family_internal_threshold_with_strongest_family_fallback
+  runtime_status: USER_APPROVED_PROJECT_RULE
+  evidence_level: supported_empirically_server_unconfirmed
+  applies_uniformly_to:
+  - greater/perfect transmutation
+  - greater/perfect augmentation
+  - greater/perfect regal
+  - greater/perfect exalted
+  - greater/perfect chaos addition
+  - Ancient Jawbone reveal
+  sampling_granularity:
+    chosen_model: tier_row_after_family_internal_MML_filter
+    status: USER_APPROVED_RUNTIME_MODEL
+whittling:
+  official_rule: remove the lowest modifier-level removable modifier
+  tie_breaker: uniform_random_among_tied_lowest_level_instances
+  status: PROJECT_ADOPTED_INFERENCE
+  evidence_level: official wording confirms lowest level; tie behavior is not published
+lich_guarantee_one:
+  runtime_status: USER_APPROVED_PROJECT_RULE
+  source_label: PROJECT_POLICY / source-aligned project model
+  selected_model: Option A guarantee-one
+  behavior:
+    guarantee: each constrained OfferSet draws one compatible tagged offer if possible
+    remaining_offers: general Reveal pool with the guaranteed offer family/groups blocked
+    no_compatible_tagged_candidate: CRAFTING_FAILED
+    persists_through_abyssal_echoes_reroll: true
+  verification_todo: Re-check in game before exact probability treats the Lich model as final server truth.
+fracturing_revealed_desecrated:
+  runtime_status: DISPUTED_OUT_OF_ACTIVE_SCOPE
+  unrevealed_placeholder: confirmed ineligible
+  revealed_modifier:
+    craft_of_exile_emulator: eligible
+    external_documentation: ineligible
+    in_game: not tested
+approved_contract_authority:
+  rule: After user review and approval, runtime YAML is authoritative for the simulator until a later approved change.

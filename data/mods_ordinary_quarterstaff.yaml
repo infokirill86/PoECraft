@@ -1,0 +1,3035 @@
+schema_version: 3
+dataset_id: quarterstaff_ordinary_mod_pool_v0_3
+item_class: quarterstaff
+created_from:
+  base_dataset: quarterstaff_mod_pool_draft_v0_1.yaml
+  current_authoritative_snapshot: 1Quarterstaves - PoE2DB, Path of Exile Wiki us.html
+  method: Current PoE2DB ordinary modal rows provide tier, modifier_level, weight, source code, tags and description. The
+    v0.1 family IDs are retained as stable project IDs.
+invariants:
+  family_count: 23
+  tier_entry_count: 158
+  prefix_family_count: 8
+  suffix_family_count: 15
+  prefix_tier_entries: 70
+  suffix_tier_entries: 88
+  tier_one_is_strongest: true
+  weight_mismatch_count_vs_v0_1_survivors: 0
+  side_mismatch_count_vs_v0_1_survivors: 0
+  empty_tag_rows: 0
+removed_since_v0_1:
+- mod_id_v0_1: value_to_level_of_all_melee_skills_t5
+  family_id: value_to_level_of_all_melee_skills
+  tier: 5
+  weight: 1000
+  reason: Absent from current saved PoE2DB ordinary Quarterstaff pool
+- mod_id_v0_1: leeches_value_of_physical_damage_as_life_t5
+  family_id: leeches_value_of_physical_damage_as_life
+  tier: 5
+  weight: 1000
+  reason: Absent from current saved PoE2DB ordinary Quarterstaff pool
+- mod_id_v0_1: leeches_value_of_physical_damage_as_mana_t5
+  family_id: leeches_value_of_physical_damage_as_mana
+  tier: 5
+  weight: 1000
+  reason: Absent from current saved PoE2DB ordinary Quarterstaff pool
+families:
+- family_id: adds_value_to_value_physical_damage
+  generation_group: 1PhysicalDamage
+  display_name: 'Adds # to # Physical Damage'
+  side: prefix
+  tier_count: 9
+- family_id: adds_value_to_value_fire_damage
+  generation_group: 1FireDamage
+  display_name: 'Adds # to # Fire Damage'
+  side: prefix
+  tier_count: 10
+- family_id: adds_value_to_value_cold_damage
+  generation_group: 1ColdDamage
+  display_name: 'Adds # to # Cold Damage'
+  side: prefix
+  tier_count: 10
+- family_id: adds_value_to_value_lightning_damage
+  generation_group: 1LightningDamage
+  display_name: 'Adds # to # Lightning Damage'
+  side: prefix
+  tier_count: 10
+- family_id: value_increased_physical_damage
+  generation_group: 1LocalPhysicalDamagePercent
+  display_name: '#% increased Physical Damage'
+  side: prefix
+  tier_count: 8
+- family_id: value_increased_physical_damage_value_to_accuracy_rating
+  generation_group: 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  display_name: '#% increased Physical Damage, # to Accuracy Rating'
+  side: prefix
+  tier_count: 8
+- family_id: value_to_accuracy_rating
+  generation_group: 1IncreasedAccuracy
+  display_name: '# to Accuracy Rating'
+  side: prefix
+  tier_count: 9
+- family_id: value_increased_elemental_damage_with_attacks
+  generation_group: 1IncreasedWeaponElementalDamagePercent
+  display_name: '#% increased Elemental Damage with Attacks'
+  side: prefix
+  tier_count: 6
+- family_id: value_to_dexterity
+  generation_group: 2Dexterity
+  display_name: '# to Dexterity'
+  side: suffix
+  tier_count: 8
+- family_id: value_to_intelligence
+  generation_group: 2Intelligence
+  display_name: '# to Intelligence'
+  side: suffix
+  tier_count: 8
+- family_id: value_reduced_attribute_requirements
+  generation_group: 2LocalAttributeRequirements
+  display_name: '#% reduced Attribute Requirements'
+  side: suffix
+  tier_count: 5
+- family_id: value_to_level_of_all_melee_skills
+  generation_group: 2IncreaseSocketedGemLevel
+  display_name: '# to Level of all Melee Skills'
+  side: suffix
+  tier_count: 4
+- family_id: leeches_value_of_physical_damage_as_life
+  generation_group: 2LifeLeech
+  display_name: 'Leeches #% of Physical Damage as Life'
+  side: suffix
+  tier_count: 4
+- family_id: leeches_value_of_physical_damage_as_mana
+  generation_group: 2ManaLeech
+  display_name: 'Leeches #% of Physical Damage as Mana'
+  side: suffix
+  tier_count: 4
+- family_id: gain_value_life_per_enemy_killed
+  generation_group: 2LifeGainedFromEnemyDeath
+  display_name: 'Gain # Life per Enemy Killed'
+  side: suffix
+  tier_count: 8
+- family_id: gain_value_mana_per_enemy_killed
+  generation_group: 2ManaGainedFromEnemyDeath
+  display_name: 'Gain # Mana per Enemy Killed'
+  side: suffix
+  tier_count: 8
+- family_id: grants_value_life_per_enemy_hit
+  generation_group: 2LifeGainPerTarget
+  display_name: 'Grants # Life per Enemy Hit'
+  side: suffix
+  tier_count: 4
+- family_id: value_increased_attack_speed
+  generation_group: 2IncreasedAttackSpeed
+  display_name: '#% increased Attack Speed'
+  side: suffix
+  tier_count: 8
+- family_id: value_to_critical_hit_chance
+  generation_group: 2CriticalStrikeChanceIncrease
+  display_name: '#% to Critical Hit Chance'
+  side: suffix
+  tier_count: 6
+- family_id: value_to_critical_damage_bonus
+  generation_group: 2CriticalStrikeMultiplier
+  display_name: '#% to Critical Damage Bonus'
+  side: suffix
+  tier_count: 6
+- family_id: value_to_accuracy_rating_value_increased_light_radius
+  generation_group: 2LightRadiusAndAccuracy
+  display_name: '# to Accuracy Rating, #% increased Light Radius'
+  side: suffix
+  tier_count: 3
+- family_id: value_increased_stun_duration
+  generation_group: 2StunDurationIncreasePercent
+  display_name: '#% increased Stun Duration'
+  side: suffix
+  tier_count: 6
+- family_id: causes_value_increased_stun_buildup
+  generation_group: 2StunDamageIncrease
+  display_name: 'Causes #% increased Stun Buildup'
+  side: suffix
+  tier_count: 6
+modifiers:
+- mod_id: adds_value_to_value_physical_damage_t9
+  family_id: adds_value_to_value_physical_damage
+  source_mod_id: ac31f73cd617514bdf133d78e45c3a5137deef78a497c97205c153a02d52c39c
+  generation_group: 1PhysicalDamage
+  group_ids:
+  - 1PhysicalDamage
+  side: prefix
+  tier: 9
+  modifier_level: 1
+  generation_weight: 1000
+  affix_name: Glinting
+  description: Adds (2 — 3) to (5 — 7) Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_physical_damage_t8
+  family_id: adds_value_to_value_physical_damage
+  source_mod_id: 97abcf66de9824ff276bb1a48b18adc5813331afcd29a240315ab8ffb44ea268
+  generation_group: 1PhysicalDamage
+  group_ids:
+  - 1PhysicalDamage
+  side: prefix
+  tier: 8
+  modifier_level: 8
+  generation_weight: 1000
+  affix_name: Burnished
+  description: Adds (5 — 8) to (10 — 15) Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_physical_damage_t7
+  family_id: adds_value_to_value_physical_damage
+  source_mod_id: c239d25946ffd6c3fd4ca2c26a2f314cba2889e3e7232b2f0952d2a292602565
+  generation_group: 1PhysicalDamage
+  group_ids:
+  - 1PhysicalDamage
+  side: prefix
+  tier: 7
+  modifier_level: 16
+  generation_weight: 1000
+  affix_name: Polished
+  description: Adds (8 — 12) to (15 — 22) Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_physical_damage_t6
+  family_id: adds_value_to_value_physical_damage
+  source_mod_id: 209eafdc93ce90fc6d9580fc3ef219fab580113f2d3cae4b3b8ab7394d654a10
+  generation_group: 1PhysicalDamage
+  group_ids:
+  - 1PhysicalDamage
+  side: prefix
+  tier: 6
+  modifier_level: 33
+  generation_weight: 1000
+  affix_name: Honed
+  description: Adds (11 — 17) to (20 — 30) Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_physical_damage_t5
+  family_id: adds_value_to_value_physical_damage
+  source_mod_id: cf76852d37b3ce023a8ceae1fb7c45bf9b62b6dfd2e146e4414b9b5198920b8d
+  generation_group: 1PhysicalDamage
+  group_ids:
+  - 1PhysicalDamage
+  side: prefix
+  tier: 5
+  modifier_level: 46
+  generation_weight: 1000
+  affix_name: Gleaming
+  description: Adds (14 — 21) to (25 — 37) Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_physical_damage_t4
+  family_id: adds_value_to_value_physical_damage
+  source_mod_id: c45fdcc412c635b9d692bd1ee73f3616f60e2d109eca79f73fa08ab2f0edfc31
+  generation_group: 1PhysicalDamage
+  group_ids:
+  - 1PhysicalDamage
+  side: prefix
+  tier: 4
+  modifier_level: 54
+  generation_weight: 600
+  affix_name: Annealed
+  description: Adds (19 — 29) to (33 — 49) Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_physical_damage_t3
+  family_id: adds_value_to_value_physical_damage
+  source_mod_id: 5cb1efb588ccb8422d31c6c659cbb28f62101281c33cd52ba15c908cd720e0fd
+  generation_group: 1PhysicalDamage
+  group_ids:
+  - 1PhysicalDamage
+  side: prefix
+  tier: 3
+  modifier_level: 60
+  generation_weight: 400
+  affix_name: Razor-sharp
+  description: Adds (23 — 35) to (39 — 59) Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_physical_damage_t2
+  family_id: adds_value_to_value_physical_damage
+  source_mod_id: b4ddd99590d5701bd0573b29d9876bdc200891668a1b2609939aaf7faeefe0a3
+  generation_group: 1PhysicalDamage
+  group_ids:
+  - 1PhysicalDamage
+  side: prefix
+  tier: 2
+  modifier_level: 65
+  generation_weight: 200
+  affix_name: Tempered
+  description: Adds (29 — 44) to (50 — 75) Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_physical_damage_t1
+  family_id: adds_value_to_value_physical_damage
+  source_mod_id: 905e1a75210bf7e5cac29ed149b4d99453fdaea8a4d4eb88b17925e36cd8f790
+  generation_group: 1PhysicalDamage
+  group_ids:
+  - 1PhysicalDamage
+  side: prefix
+  tier: 1
+  modifier_level: 75
+  generation_weight: 100
+  affix_name: Flaring
+  description: Adds (37 — 55) to (63 — 94) Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_fire_damage_t10
+  family_id: adds_value_to_value_fire_damage
+  source_mod_id: 0d2fa01a2f983bec3772967512ed7e671e0310b36880d123b3aff2984c5cb8b4
+  generation_group: 1FireDamage
+  group_ids:
+  - 1FireDamage
+  side: prefix
+  tier: 10
+  modifier_level: 1
+  generation_weight: 800
+  affix_name: Heated
+  description: Adds (2 — 4) to (5 — 7) Fire Damage Damage , Elemental , Fire , Attack
+  tags:
+  - damage
+  - elemental
+  - fire
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_fire_damage_t9
+  family_id: adds_value_to_value_fire_damage
+  source_mod_id: 695ce71d4af5b834b1ca96c8ca717bf65d8c75d2c7dd900533d7ffc2b3fa3ff9
+  generation_group: 1FireDamage
+  group_ids:
+  - 1FireDamage
+  side: prefix
+  tier: 9
+  modifier_level: 8
+  generation_weight: 800
+  affix_name: Smouldering
+  description: Adds (6 — 9) to (10 — 16) Fire Damage Damage , Elemental , Fire , Attack
+  tags:
+  - damage
+  - elemental
+  - fire
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_fire_damage_t8
+  family_id: adds_value_to_value_fire_damage
+  source_mod_id: 862379207407ac15dfa4aae7a2bb2fe353d97011547c1f942520d3b9c12091eb
+  generation_group: 1FireDamage
+  group_ids:
+  - 1FireDamage
+  side: prefix
+  tier: 8
+  modifier_level: 16
+  generation_weight: 800
+  affix_name: Smoking
+  description: Adds (11 — 17) to (19 — 28) Fire Damage Damage , Elemental , Fire , Attack
+  tags:
+  - damage
+  - elemental
+  - fire
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_fire_damage_t7
+  family_id: adds_value_to_value_fire_damage
+  source_mod_id: 47e569a4d041247df8484e0468c90d67e6063c212c6e1dc195ecb1a22d9330f3
+  generation_group: 1FireDamage
+  group_ids:
+  - 1FireDamage
+  side: prefix
+  tier: 7
+  modifier_level: 33
+  generation_weight: 800
+  affix_name: Burning
+  description: Adds (19 — 27) to (30 — 42) Fire Damage Damage , Elemental , Fire , Attack
+  tags:
+  - damage
+  - elemental
+  - fire
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_fire_damage_t6
+  family_id: adds_value_to_value_fire_damage
+  source_mod_id: 209e13a99c5ced94e2fa62fb3fe10bcb99fe3d7fd28d887d55665908808881c8
+  generation_group: 1FireDamage
+  group_ids:
+  - 1FireDamage
+  side: prefix
+  tier: 6
+  modifier_level: 46
+  generation_weight: 800
+  affix_name: Flaming
+  description: Adds (30 — 37) to (45 — 56) Fire Damage Damage , Elemental , Fire , Attack
+  tags:
+  - damage
+  - elemental
+  - fire
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_fire_damage_t5
+  family_id: adds_value_to_value_fire_damage
+  source_mod_id: bbd0e444c518e24826056faf381715edec79cc287adfa5c62086349e0ee18d21
+  generation_group: 1FireDamage
+  group_ids:
+  - 1FireDamage
+  side: prefix
+  tier: 5
+  modifier_level: 54
+  generation_weight: 800
+  affix_name: Scorching
+  description: Adds (39 — 53) to (59 — 80) Fire Damage Damage , Elemental , Fire , Attack
+  tags:
+  - damage
+  - elemental
+  - fire
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_fire_damage_t4
+  family_id: adds_value_to_value_fire_damage
+  source_mod_id: d7b0c3740da69b50cb69e03c6380d335c78d3d89dedb316105bdacfbb69241e9
+  generation_group: 1FireDamage
+  group_ids:
+  - 1FireDamage
+  side: prefix
+  tier: 4
+  modifier_level: 60
+  generation_weight: 480
+  affix_name: Incinerating
+  description: Adds (56 — 70) to (84 — 107) Fire Damage Damage , Elemental , Fire , Attack
+  tags:
+  - damage
+  - elemental
+  - fire
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_fire_damage_t3
+  family_id: adds_value_to_value_fire_damage
+  source_mod_id: 9f2af012237327c1ac6efa2cd8c52320668423390070f9ea284b99ff67b588fa
+  generation_group: 1FireDamage
+  group_ids:
+  - 1FireDamage
+  side: prefix
+  tier: 3
+  modifier_level: 65
+  generation_weight: 320
+  affix_name: Blasting
+  description: Adds (73 — 97) to (112 — 149) Fire Damage Damage , Elemental , Fire , Attack
+  tags:
+  - damage
+  - elemental
+  - fire
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_fire_damage_t2
+  family_id: adds_value_to_value_fire_damage
+  source_mod_id: a75a1e7f1dff955d4956b682c8dee3218db74ac3e8c05b2bbfe3e6cf04cc6eef
+  generation_group: 1FireDamage
+  group_ids:
+  - 1FireDamage
+  side: prefix
+  tier: 2
+  modifier_level: 75
+  generation_weight: 200
+  affix_name: Cremating
+  description: Adds (102 — 130) to (155 — 198) Fire Damage Damage , Elemental , Fire , Attack
+  tags:
+  - damage
+  - elemental
+  - fire
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_fire_damage_t1
+  family_id: adds_value_to_value_fire_damage
+  source_mod_id: a1011dfa567e557d67673af7eb24274abb3f4a5849f9d13702da899516daee53
+  generation_group: 1FireDamage
+  group_ids:
+  - 1FireDamage
+  side: prefix
+  tier: 1
+  modifier_level: 81
+  generation_weight: 80
+  affix_name: Carbonising
+  description: Adds (135 — 156) to (205 — 236) Fire Damage Damage , Elemental , Fire , Attack
+  tags:
+  - damage
+  - elemental
+  - fire
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_cold_damage_t10
+  family_id: adds_value_to_value_cold_damage
+  source_mod_id: dfed3c3f06c1c176cb7f3a23aa74849bd252f92c77ead4837a7be2e26a14b885
+  generation_group: 1ColdDamage
+  group_ids:
+  - 1ColdDamage
+  side: prefix
+  tier: 10
+  modifier_level: 1
+  generation_weight: 900
+  affix_name: Frosted
+  description: Adds (2 — 3) to (4 — 6) Cold Damage Damage , Elemental , Cold , Attack
+  tags:
+  - damage
+  - elemental
+  - cold
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_cold_damage_t9
+  family_id: adds_value_to_value_cold_damage
+  source_mod_id: e99385b55470ff8f5f060b598ae1c0be28cf5929b15c79a065ac01a9d7af0831
+  generation_group: 1ColdDamage
+  group_ids:
+  - 1ColdDamage
+  side: prefix
+  tier: 9
+  modifier_level: 8
+  generation_weight: 900
+  affix_name: Chilled
+  description: Adds (5 — 8) to (9 — 14) Cold Damage Damage , Elemental , Cold , Attack
+  tags:
+  - damage
+  - elemental
+  - cold
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_cold_damage_t8
+  family_id: adds_value_to_value_cold_damage
+  source_mod_id: 5e16c633eb8bc652ff061f01acc48dbe89a24d88d34de32a90c4a1bc8d83312c
+  generation_group: 1ColdDamage
+  group_ids:
+  - 1ColdDamage
+  side: prefix
+  tier: 8
+  modifier_level: 16
+  generation_weight: 900
+  affix_name: Icy
+  description: Adds (10 — 14) to (15 — 23) Cold Damage Damage , Elemental , Cold , Attack
+  tags:
+  - damage
+  - elemental
+  - cold
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_cold_damage_t7
+  family_id: adds_value_to_value_cold_damage
+  source_mod_id: 395a086f2d36ca614098f7c7cf55349126ef269868114abc7bde3864e6fcdbb9
+  generation_group: 1ColdDamage
+  group_ids:
+  - 1ColdDamage
+  side: prefix
+  tier: 7
+  modifier_level: 33
+  generation_weight: 900
+  affix_name: Frigid
+  description: Adds (16 — 23) to (25 — 35) Cold Damage Damage , Elemental , Cold , Attack
+  tags:
+  - damage
+  - elemental
+  - cold
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_cold_damage_t6
+  family_id: adds_value_to_value_cold_damage
+  source_mod_id: 31f33b515f047c6c5c617c302bda17d5eacf4cf82ed14b6a2f211254c616a6c9
+  generation_group: 1ColdDamage
+  group_ids:
+  - 1ColdDamage
+  side: prefix
+  tier: 6
+  modifier_level: 46
+  generation_weight: 900
+  affix_name: Freezing
+  description: Adds (25 — 30) to (38 — 46) Cold Damage Damage , Elemental , Cold , Attack
+  tags:
+  - damage
+  - elemental
+  - cold
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_cold_damage_t5
+  family_id: adds_value_to_value_cold_damage
+  source_mod_id: 3152befb28299ac671e0ec01c3558dbdf01af2e705d9e7c6ee48adf2ad2338e4
+  generation_group: 1ColdDamage
+  group_ids:
+  - 1ColdDamage
+  side: prefix
+  tier: 5
+  modifier_level: 54
+  generation_weight: 900
+  affix_name: Frozen
+  description: Adds (32 — 43) to (49 — 66) Cold Damage Damage , Elemental , Cold , Attack
+  tags:
+  - damage
+  - elemental
+  - cold
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_cold_damage_t4
+  family_id: adds_value_to_value_cold_damage
+  source_mod_id: 5c3ecb2a770b11e70fff725af71250c11ac9674f97efee3afa67f7c24bee6a0b
+  generation_group: 1ColdDamage
+  group_ids:
+  - 1ColdDamage
+  side: prefix
+  tier: 4
+  modifier_level: 60
+  generation_weight: 540
+  affix_name: Glaciated
+  description: Adds (46 — 57) to (70 — 88) Cold Damage Damage , Elemental , Cold , Attack
+  tags:
+  - damage
+  - elemental
+  - cold
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_cold_damage_t3
+  family_id: adds_value_to_value_cold_damage
+  source_mod_id: 386e0f69e0de28ea788edb7b98d997ae543a81cc2052350b49aa590ccc48db6c
+  generation_group: 1ColdDamage
+  group_ids:
+  - 1ColdDamage
+  side: prefix
+  tier: 3
+  modifier_level: 65
+  generation_weight: 360
+  affix_name: Polar
+  description: Adds (60 — 80) to (92 — 121) Cold Damage Damage , Elemental , Cold , Attack
+  tags:
+  - damage
+  - elemental
+  - cold
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_cold_damage_t2
+  family_id: adds_value_to_value_cold_damage
+  source_mod_id: 3cd026987dc804c0419299cda077017e0559e8e98fe0fb6538a55e6d2f5ec891
+  generation_group: 1ColdDamage
+  group_ids:
+  - 1ColdDamage
+  side: prefix
+  tier: 2
+  modifier_level: 75
+  generation_weight: 225
+  affix_name: Entombing
+  description: Adds (84 — 107) to (126 — 161) Cold Damage Damage , Elemental , Cold , Attack
+  tags:
+  - damage
+  - elemental
+  - cold
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_cold_damage_t1
+  family_id: adds_value_to_value_cold_damage
+  source_mod_id: c10cb8b5e4dd4ca9c278181c92a05e8147553e0a212550510d283d7d0028bc2e
+  generation_group: 1ColdDamage
+  group_ids:
+  - 1ColdDamage
+  side: prefix
+  tier: 1
+  modifier_level: 81
+  generation_weight: 90
+  affix_name: Crystalising
+  description: Adds (112 — 124) to (168 — 189) Cold Damage Damage , Elemental , Cold , Attack
+  tags:
+  - damage
+  - elemental
+  - cold
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_lightning_damage_t10
+  family_id: adds_value_to_value_lightning_damage
+  source_mod_id: 28a8c2b1339500f0e86219cb10997c99d61dccdd05977fd641763fd0c94ababa
+  generation_group: 1LightningDamage
+  group_ids:
+  - 1LightningDamage
+  side: prefix
+  tier: 10
+  modifier_level: 1
+  generation_weight: 1100
+  affix_name: Humming
+  description: Adds 1 to (7 — 10) Lightning Damage Damage , Elemental , Lightning , Attack
+  tags:
+  - damage
+  - elemental
+  - lightning
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_lightning_damage_t9
+  family_id: adds_value_to_value_lightning_damage
+  source_mod_id: 114c734103cf1e1e67e15cf796ea3ad49f5a9f99f098c6d3efe3477a1e0b8c25
+  generation_group: 1LightningDamage
+  group_ids:
+  - 1LightningDamage
+  side: prefix
+  tier: 9
+  modifier_level: 8
+  generation_weight: 1100
+  affix_name: Buzzing
+  description: Adds (1 — 2) to (19 — 27) Lightning Damage Damage , Elemental , Lightning , Attack
+  tags:
+  - damage
+  - elemental
+  - lightning
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_lightning_damage_t8
+  family_id: adds_value_to_value_lightning_damage
+  source_mod_id: f076463ae786d514d141bb1207bd9b598f8d0f15db8d4ea6db0adee3b4c6a59c
+  generation_group: 1LightningDamage
+  group_ids:
+  - 1LightningDamage
+  side: prefix
+  tier: 8
+  modifier_level: 16
+  generation_weight: 1100
+  affix_name: Snapping
+  description: Adds (1 — 3) to (31 — 43) Lightning Damage Damage , Elemental , Lightning , Attack
+  tags:
+  - damage
+  - elemental
+  - lightning
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_lightning_damage_t7
+  family_id: adds_value_to_value_lightning_damage
+  source_mod_id: e6f906db078e9631520c37970de47c6197e615dc600d30fd6dc658de9c37e891
+  generation_group: 1LightningDamage
+  group_ids:
+  - 1LightningDamage
+  side: prefix
+  tier: 7
+  modifier_level: 33
+  generation_weight: 1100
+  affix_name: Crackling
+  description: Adds (1 — 4) to (53 — 76) Lightning Damage Damage , Elemental , Lightning , Attack
+  tags:
+  - damage
+  - elemental
+  - lightning
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_lightning_damage_t6
+  family_id: adds_value_to_value_lightning_damage
+  source_mod_id: bf54b1223af6ee34e0eab28ebfbbece18e2394ecd66c6e0b6b52d7be385e126f
+  generation_group: 1LightningDamage
+  group_ids:
+  - 1LightningDamage
+  side: prefix
+  tier: 6
+  modifier_level: 46
+  generation_weight: 1100
+  affix_name: Sparking
+  description: Adds (1 — 4) to (80 — 88) Lightning Damage Damage , Elemental , Lightning , Attack
+  tags:
+  - damage
+  - elemental
+  - lightning
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_lightning_damage_t5
+  family_id: adds_value_to_value_lightning_damage
+  source_mod_id: cc91cef6c4dc15216be18cde6e265bd072b39b7ed6af8822a3dc559f46cc81de
+  generation_group: 1LightningDamage
+  group_ids:
+  - 1LightningDamage
+  side: prefix
+  tier: 5
+  modifier_level: 54
+  generation_weight: 1100
+  affix_name: Arcing
+  description: Adds (1 — 6) to (93 — 122) Lightning Damage Damage , Elemental , Lightning , Attack
+  tags:
+  - damage
+  - elemental
+  - lightning
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_lightning_damage_t4
+  family_id: adds_value_to_value_lightning_damage
+  source_mod_id: 06665635860a1fae237de038f0cf46e27032aa4801861f36df162b7d3942b61a
+  generation_group: 1LightningDamage
+  group_ids:
+  - 1LightningDamage
+  side: prefix
+  tier: 4
+  modifier_level: 60
+  generation_weight: 660
+  affix_name: Shocking
+  description: Adds (1 — 8) to (128 — 162) Lightning Damage Damage , Elemental , Lightning , Attack
+  tags:
+  - damage
+  - elemental
+  - lightning
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_lightning_damage_t3
+  family_id: adds_value_to_value_lightning_damage
+  source_mod_id: c50eea238175785c55a6b6ff7a79a362b2c5aa3710c10fa73dfac273552d22ec
+  generation_group: 1LightningDamage
+  group_ids:
+  - 1LightningDamage
+  side: prefix
+  tier: 3
+  modifier_level: 65
+  generation_weight: 440
+  affix_name: Discharging
+  description: Adds (1 — 13) to (168 — 231) Lightning Damage Damage , Elemental , Lightning , Attack
+  tags:
+  - damage
+  - elemental
+  - lightning
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_lightning_damage_t2
+  family_id: adds_value_to_value_lightning_damage
+  source_mod_id: 328f70fc1f8d87a1f3c4e1ad17eb27e1f59192fa70e243505e1b58edce166902
+  generation_group: 1LightningDamage
+  group_ids:
+  - 1LightningDamage
+  side: prefix
+  tier: 2
+  modifier_level: 75
+  generation_weight: 275
+  affix_name: Electrocuting
+  description: Adds (1 — 16) to (239 — 300) Lightning Damage Damage , Elemental , Lightning , Attack
+  tags:
+  - damage
+  - elemental
+  - lightning
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: adds_value_to_value_lightning_damage_t1
+  family_id: adds_value_to_value_lightning_damage
+  source_mod_id: 9bff37663eec3adb5e1c8a3365ee72193191fba7868ac591754adc6ecc338558
+  generation_group: 1LightningDamage
+  group_ids:
+  - 1LightningDamage
+  side: prefix
+  tier: 1
+  modifier_level: 81
+  generation_weight: 110
+  affix_name: Vapourising
+  description: Adds (1 — 19) to (310 — 358) Lightning Damage Damage , Elemental , Lightning , Attack
+  tags:
+  - damage
+  - elemental
+  - lightning
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_t8
+  family_id: value_increased_physical_damage
+  source_mod_id: 4956d652b2fe17af388544ee0ced8556b5a8b80891e8a7f96ae545840f299612
+  generation_group: 1LocalPhysicalDamagePercent
+  group_ids:
+  - 1LocalPhysicalDamagePercent
+  side: prefix
+  tier: 8
+  modifier_level: 1
+  generation_weight: 1000
+  affix_name: Heavy
+  description: (40 — 49) % increased Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_t7
+  family_id: value_increased_physical_damage
+  source_mod_id: 9e884bf396c9a253d11f6c17090dee45e3bb7677d8176208fe6b33d40fb73bc3
+  generation_group: 1LocalPhysicalDamagePercent
+  group_ids:
+  - 1LocalPhysicalDamagePercent
+  side: prefix
+  tier: 7
+  modifier_level: 8
+  generation_weight: 1000
+  affix_name: Serrated
+  description: (50 — 64) % increased Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_t6
+  family_id: value_increased_physical_damage
+  source_mod_id: 923ab94db5d43f4168885c2e9b08fe8c1beca6297aa78498bef1996d10cafd91
+  generation_group: 1LocalPhysicalDamagePercent
+  group_ids:
+  - 1LocalPhysicalDamagePercent
+  side: prefix
+  tier: 6
+  modifier_level: 16
+  generation_weight: 1000
+  affix_name: Wicked
+  description: (65 — 84) % increased Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_t5
+  family_id: value_increased_physical_damage
+  source_mod_id: b25c58ada1e709959ac9da8a3fe0004cd27d174b51e621e9309aeff66265abb6
+  generation_group: 1LocalPhysicalDamagePercent
+  group_ids:
+  - 1LocalPhysicalDamagePercent
+  side: prefix
+  tier: 5
+  modifier_level: 33
+  generation_weight: 400
+  affix_name: Vicious
+  description: (85 — 109) % increased Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_t4
+  family_id: value_increased_physical_damage
+  source_mod_id: e51770cfe1da15cb05ca2bc99ae343e63a015a45952cab6c7906456dfee5e8c5
+  generation_group: 1LocalPhysicalDamagePercent
+  group_ids:
+  - 1LocalPhysicalDamagePercent
+  side: prefix
+  tier: 4
+  modifier_level: 46
+  generation_weight: 200
+  affix_name: Bloodthirsty
+  description: (110 — 134) % increased Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_t3
+  family_id: value_increased_physical_damage
+  source_mod_id: 5da0c69803f0e54a73a24de62b910b10170510e4bb1ab2446202bbd58abf0b9b
+  generation_group: 1LocalPhysicalDamagePercent
+  group_ids:
+  - 1LocalPhysicalDamagePercent
+  side: prefix
+  tier: 3
+  modifier_level: 60
+  generation_weight: 100
+  affix_name: Cruel
+  description: (135 — 154) % increased Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_t2
+  family_id: value_increased_physical_damage
+  source_mod_id: 8f9877c674df0b9e3e19ab9cb027ad4e3ec5964a597096e98a1fdc454b84a6b2
+  generation_group: 1LocalPhysicalDamagePercent
+  group_ids:
+  - 1LocalPhysicalDamagePercent
+  side: prefix
+  tier: 2
+  modifier_level: 75
+  generation_weight: 50
+  affix_name: Tyrannical
+  description: (155 — 169) % increased Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_t1
+  family_id: value_increased_physical_damage
+  source_mod_id: 8876a2ad8f2b60f5ebcb93fa53b6bbe14258adf3f7fe697c852fe0587988b91e
+  generation_group: 1LocalPhysicalDamagePercent
+  group_ids:
+  - 1LocalPhysicalDamagePercent
+  side: prefix
+  tier: 1
+  modifier_level: 82
+  generation_weight: 25
+  affix_name: Merciless
+  description: (170 — 179) % increased Physical Damage Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_value_to_accuracy_rating_t8
+  family_id: value_increased_physical_damage_value_to_accuracy_rating
+  source_mod_id: 867c36bd97cdaefd343efecfd67250f84f692519134e4823b50191b25fe08995
+  generation_group: 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  group_ids:
+  - 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  side: prefix
+  tier: 8
+  modifier_level: 8
+  generation_weight: 1000
+  affix_name: Squire's
+  description: (15 — 19) % increased Physical Damage +(16 — 20) to Accuracy Rating Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_value_to_accuracy_rating_t7
+  family_id: value_increased_physical_damage_value_to_accuracy_rating
+  source_mod_id: 030f65ff0fee9cae26cbb7d4c7bb2873b06390b94552fcc212b125c3f195ae0d
+  generation_group: 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  group_ids:
+  - 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  side: prefix
+  tier: 7
+  modifier_level: 14
+  generation_weight: 1000
+  affix_name: Journeyman's
+  description: (20 — 24) % increased Physical Damage +(21 — 46) to Accuracy Rating Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_value_to_accuracy_rating_t6
+  family_id: value_increased_physical_damage_value_to_accuracy_rating
+  source_mod_id: f67b791411fffcdd2a2fc0e4d0a8af1e1cde736ab34bf5112e13cc9ec97d3233
+  generation_group: 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  group_ids:
+  - 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  side: prefix
+  tier: 6
+  modifier_level: 23
+  generation_weight: 1000
+  affix_name: Reaver's
+  description: (25 — 34) % increased Physical Damage +(47 — 72) to Accuracy Rating Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_value_to_accuracy_rating_t5
+  family_id: value_increased_physical_damage_value_to_accuracy_rating
+  source_mod_id: c95d9600fa2ce174452d6dfb83c9d8cebcb4565557ba96ab1515594615ad56d6
+  generation_group: 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  group_ids:
+  - 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  side: prefix
+  tier: 5
+  modifier_level: 38
+  generation_weight: 1000
+  affix_name: Mercenary's
+  description: (35 — 44) % increased Physical Damage +(73 — 97) to Accuracy Rating Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_value_to_accuracy_rating_t4
+  family_id: value_increased_physical_damage_value_to_accuracy_rating
+  source_mod_id: 67c935eedbc637fca2a07145badb3bb99e96fc05b0ccaf2359983a0aa977e262
+  generation_group: 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  group_ids:
+  - 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  side: prefix
+  tier: 4
+  modifier_level: 54
+  generation_weight: 600
+  affix_name: Champion's
+  description: (45 — 54) % increased Physical Damage +(98 — 123) to Accuracy Rating Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_value_to_accuracy_rating_t3
+  family_id: value_increased_physical_damage_value_to_accuracy_rating
+  source_mod_id: d7d4d5f00ee3a6909cc17f9ca1e82b3a3b2dbe804142008581303ec95a8e3970
+  generation_group: 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  group_ids:
+  - 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  side: prefix
+  tier: 3
+  modifier_level: 65
+  generation_weight: 400
+  affix_name: Conqueror's
+  description: (55 — 64) % increased Physical Damage +(124 — 149) to Accuracy Rating Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_value_to_accuracy_rating_t2
+  family_id: value_increased_physical_damage_value_to_accuracy_rating
+  source_mod_id: c169e38a76cea070094a48b8ff8c40ebf965a3b96578a684d339b89eddb43933
+  generation_group: 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  group_ids:
+  - 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  side: prefix
+  tier: 2
+  modifier_level: 70
+  generation_weight: 200
+  affix_name: Emperor's
+  description: (65 — 74) % increased Physical Damage +(150 — 174) to Accuracy Rating Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_physical_damage_value_to_accuracy_rating_t1
+  family_id: value_increased_physical_damage_value_to_accuracy_rating
+  source_mod_id: 7679684533efc2084790934ce99d578c86763e9987ad4aef5eb0a30605b6f042
+  generation_group: 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  group_ids:
+  - 1LocalIncreasedPhysicalDamagePercentAndAccuracyRating
+  side: prefix
+  tier: 1
+  modifier_level: 81
+  generation_weight: 100
+  affix_name: Dictator's
+  description: (75 — 79) % increased Physical Damage +(175 — 200) to Accuracy Rating Damage , Physical , Attack
+  tags:
+  - damage
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_accuracy_rating_t9
+  family_id: value_to_accuracy_rating
+  source_mod_id: ff16d0fd2a0d139ccc1b7797ec4df42dc9e11f1ab921e18bca87c0dd81689f97
+  generation_group: 1IncreasedAccuracy
+  group_ids:
+  - 1IncreasedAccuracy
+  side: prefix
+  tier: 9
+  modifier_level: 8
+  generation_weight: 800
+  affix_name: Precise
+  description: +(11 — 32) to Accuracy Rating Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_accuracy_rating_t8
+  family_id: value_to_accuracy_rating
+  source_mod_id: aeac37a94f491f8465576b9af75797889db72e4e12013ac1697301af24297c43
+  generation_group: 1IncreasedAccuracy
+  group_ids:
+  - 1IncreasedAccuracy
+  side: prefix
+  tier: 8
+  modifier_level: 13
+  generation_weight: 800
+  affix_name: Reliable
+  description: +(33 — 60) to Accuracy Rating Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_accuracy_rating_t7
+  family_id: value_to_accuracy_rating
+  source_mod_id: 652f1e3fc363c27c2bc76422f78006ca8ad5ed102b2647d9457b88aada7872e3
+  generation_group: 1IncreasedAccuracy
+  group_ids:
+  - 1IncreasedAccuracy
+  side: prefix
+  tier: 7
+  modifier_level: 18
+  generation_weight: 800
+  affix_name: Focused
+  description: +(61 — 84) to Accuracy Rating Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_accuracy_rating_t6
+  family_id: value_to_accuracy_rating
+  source_mod_id: 17bed44fd97d0608640bd954627102b96bf0e20de685154941b14b54d2019e5e
+  generation_group: 1IncreasedAccuracy
+  group_ids:
+  - 1IncreasedAccuracy
+  side: prefix
+  tier: 6
+  modifier_level: 26
+  generation_weight: 800
+  affix_name: Deliberate
+  description: +(85 — 123) to Accuracy Rating Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_accuracy_rating_t5
+  family_id: value_to_accuracy_rating
+  source_mod_id: 64492537d02c8648d3734ebb2a5f4f6729b7d394b04a6633fe2cdde42b7bf180
+  generation_group: 1IncreasedAccuracy
+  group_ids:
+  - 1IncreasedAccuracy
+  side: prefix
+  tier: 5
+  modifier_level: 36
+  generation_weight: 800
+  affix_name: Consistent
+  description: +(124 — 167) to Accuracy Rating Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_accuracy_rating_t4
+  family_id: value_to_accuracy_rating
+  source_mod_id: 11a86a692d8b5ff9471936808b32ae7d15c4b522e58adc618fbb2b48002a030e
+  generation_group: 1IncreasedAccuracy
+  group_ids:
+  - 1IncreasedAccuracy
+  side: prefix
+  tier: 4
+  modifier_level: 48
+  generation_weight: 600
+  affix_name: Steady
+  description: +(168 — 236) to Accuracy Rating Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_accuracy_rating_t3
+  family_id: value_to_accuracy_rating
+  source_mod_id: fa3a0f6eaa566e1114656e07b731bd1619fa91996731b54447b444570ffc2bbb
+  generation_group: 1IncreasedAccuracy
+  group_ids:
+  - 1IncreasedAccuracy
+  side: prefix
+  tier: 3
+  modifier_level: 58
+  generation_weight: 600
+  affix_name: Hunter's
+  description: +(237 — 346) to Accuracy Rating Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_accuracy_rating_t2
+  family_id: value_to_accuracy_rating
+  source_mod_id: 2c2c8647e200938739b3d319a9f79138aa16a9c2e47eecd1e4950ce0de3ce34c
+  generation_group: 1IncreasedAccuracy
+  group_ids:
+  - 1IncreasedAccuracy
+  side: prefix
+  tier: 2
+  modifier_level: 67
+  generation_weight: 300
+  affix_name: Ranger's
+  description: +(347 — 450) to Accuracy Rating Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_accuracy_rating_t1
+  family_id: value_to_accuracy_rating
+  source_mod_id: 2492110845b3d679adf223f14a05d6426840151bd068c520c8bfb302f011676a
+  generation_group: 1IncreasedAccuracy
+  group_ids:
+  - 1IncreasedAccuracy
+  side: prefix
+  tier: 1
+  modifier_level: 76
+  generation_weight: 200
+  affix_name: Amazon's
+  description: +(451 — 550) to Accuracy Rating Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_elemental_damage_with_attacks_t6
+  family_id: value_increased_elemental_damage_with_attacks
+  source_mod_id: ce0c3d3baa60b9892daa21d18c363db41173ebd7f6184b991becee6f3d0b78bc
+  generation_group: 1IncreasedWeaponElementalDamagePercent
+  group_ids:
+  - 1IncreasedWeaponElementalDamagePercent
+  side: prefix
+  tier: 6
+  modifier_level: 4
+  generation_weight: 500
+  affix_name: Catalysing
+  description: (34 — 47) % increased Elemental Damage with Attacks Damage , Elemental , Fire , Cold , Lightning
+  tags:
+  - damage
+  - elemental
+  - fire
+  - cold
+  - lightning
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_elemental_damage_with_attacks_t5
+  family_id: value_increased_elemental_damage_with_attacks
+  source_mod_id: 1b67d2fb8e8107011da77d0554999e50ea7ee61248847ac2650fc972ddc5f066
+  generation_group: 1IncreasedWeaponElementalDamagePercent
+  group_ids:
+  - 1IncreasedWeaponElementalDamagePercent
+  side: prefix
+  tier: 5
+  modifier_level: 16
+  generation_weight: 500
+  affix_name: Infusing
+  description: (48 — 71) % increased Elemental Damage with Attacks Damage , Elemental , Fire , Cold , Lightning
+  tags:
+  - damage
+  - elemental
+  - fire
+  - cold
+  - lightning
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_elemental_damage_with_attacks_t4
+  family_id: value_increased_elemental_damage_with_attacks
+  source_mod_id: bc80c79674e74b406a0a742bcf7aeca818cc6c82646262e353967b28ac27d1aa
+  generation_group: 1IncreasedWeaponElementalDamagePercent
+  group_ids:
+  - 1IncreasedWeaponElementalDamagePercent
+  side: prefix
+  tier: 4
+  modifier_level: 33
+  generation_weight: 500
+  affix_name: Empowering
+  description: (72 — 85) % increased Elemental Damage with Attacks Damage , Elemental , Fire , Cold , Lightning
+  tags:
+  - damage
+  - elemental
+  - fire
+  - cold
+  - lightning
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_elemental_damage_with_attacks_t3
+  family_id: value_increased_elemental_damage_with_attacks
+  source_mod_id: fb1ca1e1f1c8742a11f6ef2e708ca9331bf2ea2deeec352d5799afe33cea1480
+  generation_group: 1IncreasedWeaponElementalDamagePercent
+  group_ids:
+  - 1IncreasedWeaponElementalDamagePercent
+  side: prefix
+  tier: 3
+  modifier_level: 46
+  generation_weight: 500
+  affix_name: Unleashed
+  description: (86 — 99) % increased Elemental Damage with Attacks Damage , Elemental , Fire , Cold , Lightning
+  tags:
+  - damage
+  - elemental
+  - fire
+  - cold
+  - lightning
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_elemental_damage_with_attacks_t2
+  family_id: value_increased_elemental_damage_with_attacks
+  source_mod_id: 57754806970540bb7fcaa961b52d7e718f73869a4b3be4518811d60966c22b52
+  generation_group: 1IncreasedWeaponElementalDamagePercent
+  group_ids:
+  - 1IncreasedWeaponElementalDamagePercent
+  side: prefix
+  tier: 2
+  modifier_level: 60
+  generation_weight: 500
+  affix_name: Overpowering
+  description: (100 — 119) % increased Elemental Damage with Attacks Damage , Elemental , Fire , Cold , Lightning
+  tags:
+  - damage
+  - elemental
+  - fire
+  - cold
+  - lightning
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_elemental_damage_with_attacks_t1
+  family_id: value_increased_elemental_damage_with_attacks
+  source_mod_id: b8bbeb4a17f8516cf9be76b5a58b35250a255559426769ebc9be49bea44ea714
+  generation_group: 1IncreasedWeaponElementalDamagePercent
+  group_ids:
+  - 1IncreasedWeaponElementalDamagePercent
+  side: prefix
+  tier: 1
+  modifier_level: 81
+  generation_weight: 500
+  affix_name: Devastating
+  description: (120 — 139) % increased Elemental Damage with Attacks Damage , Elemental , Fire , Cold , Lightning
+  tags:
+  - damage
+  - elemental
+  - fire
+  - cold
+  - lightning
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_dexterity_t8
+  family_id: value_to_dexterity
+  source_mod_id: 6b134453f1e2676e01b3a516ef07214a35e2d1aac8ba344f6efdfc6461f2ecfa
+  generation_group: 2Dexterity
+  group_ids:
+  - 2Dexterity
+  side: suffix
+  tier: 8
+  modifier_level: 1
+  generation_weight: 750
+  affix_name: of the Mongoose
+  description: +(5 — 8) to Dexterity Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_dexterity_t7
+  family_id: value_to_dexterity
+  source_mod_id: a47ac6b84c88cc4f17b1f6e7e60488f1c68cf348b022d3edb3a8c743cc96fd02
+  generation_group: 2Dexterity
+  group_ids:
+  - 2Dexterity
+  side: suffix
+  tier: 7
+  modifier_level: 11
+  generation_weight: 750
+  affix_name: of the Lynx
+  description: +(9 — 12) to Dexterity Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_dexterity_t6
+  family_id: value_to_dexterity
+  source_mod_id: d8659750a9803e480fac8cd6084337e69b5fbae75520046863a6b309dfc0ab68
+  generation_group: 2Dexterity
+  group_ids:
+  - 2Dexterity
+  side: suffix
+  tier: 6
+  modifier_level: 22
+  generation_weight: 750
+  affix_name: of the Fox
+  description: +(13 — 16) to Dexterity Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_dexterity_t5
+  family_id: value_to_dexterity
+  source_mod_id: cad97a11d630df42055262e064ed9b99fb5c83b22f851daf70ee22afe7a870cf
+  generation_group: 2Dexterity
+  group_ids:
+  - 2Dexterity
+  side: suffix
+  tier: 5
+  modifier_level: 33
+  generation_weight: 750
+  affix_name: of the Falcon
+  description: +(17 — 20) to Dexterity Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_dexterity_t4
+  family_id: value_to_dexterity
+  source_mod_id: 61afc248d54991cf13fe0bd3d9b40f7a9a37dcadd9ae16f4bdcc4cc2b9845138
+  generation_group: 2Dexterity
+  group_ids:
+  - 2Dexterity
+  side: suffix
+  tier: 4
+  modifier_level: 44
+  generation_weight: 750
+  affix_name: of the Panther
+  description: +(21 — 24) to Dexterity Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_dexterity_t3
+  family_id: value_to_dexterity
+  source_mod_id: f964dbb4409468adb2fe706018710f473edaa09dcebb55fabdda8b894b7c4d1a
+  generation_group: 2Dexterity
+  group_ids:
+  - 2Dexterity
+  side: suffix
+  tier: 3
+  modifier_level: 55
+  generation_weight: 750
+  affix_name: of the Leopard
+  description: +(25 — 27) to Dexterity Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_dexterity_t2
+  family_id: value_to_dexterity
+  source_mod_id: 632716ef4d2bbd7558739b80b0f02b005cdf70d8e8dd6d9c55c785f48732c899
+  generation_group: 2Dexterity
+  group_ids:
+  - 2Dexterity
+  side: suffix
+  tier: 2
+  modifier_level: 66
+  generation_weight: 750
+  affix_name: of the Jaguar
+  description: +(28 — 30) to Dexterity Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_dexterity_t1
+  family_id: value_to_dexterity
+  source_mod_id: 855e360c3e9dff043a5e080104fae14554238387890e232324f92128d2092d5d
+  generation_group: 2Dexterity
+  group_ids:
+  - 2Dexterity
+  side: suffix
+  tier: 1
+  modifier_level: 74
+  generation_weight: 750
+  affix_name: of the Phantom
+  description: +(31 — 33) to Dexterity Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_intelligence_t8
+  family_id: value_to_intelligence
+  source_mod_id: 509838be5ea257615ce1c202d010edcb7954028fae3d929017acb2104787dd4e
+  generation_group: 2Intelligence
+  group_ids:
+  - 2Intelligence
+  side: suffix
+  tier: 8
+  modifier_level: 1
+  generation_weight: 250
+  affix_name: of the Pupil
+  description: +(5 — 8) to Intelligence Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_intelligence_t7
+  family_id: value_to_intelligence
+  source_mod_id: 4024652a8d5461cb2a6b9066b0123f1ea3e3e3b8c344ebb921e9343427d97b09
+  generation_group: 2Intelligence
+  group_ids:
+  - 2Intelligence
+  side: suffix
+  tier: 7
+  modifier_level: 11
+  generation_weight: 250
+  affix_name: of the Student
+  description: +(9 — 12) to Intelligence Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_intelligence_t6
+  family_id: value_to_intelligence
+  source_mod_id: 8f48d60152cc2e09c80ed604a7780bea8173b1667150fefe7b1ad55d168756bc
+  generation_group: 2Intelligence
+  group_ids:
+  - 2Intelligence
+  side: suffix
+  tier: 6
+  modifier_level: 22
+  generation_weight: 250
+  affix_name: of the Prodigy
+  description: +(13 — 16) to Intelligence Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_intelligence_t5
+  family_id: value_to_intelligence
+  source_mod_id: 317255105db2fddf2acbb4256154cb459bb1715507da7266a5c0dbae8dd704c0
+  generation_group: 2Intelligence
+  group_ids:
+  - 2Intelligence
+  side: suffix
+  tier: 5
+  modifier_level: 33
+  generation_weight: 250
+  affix_name: of the Augur
+  description: +(17 — 20) to Intelligence Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_intelligence_t4
+  family_id: value_to_intelligence
+  source_mod_id: 65f0b8f6abf720c761afe39988a332b5f4aea07b2f8d111390dde24cc94cba2b
+  generation_group: 2Intelligence
+  group_ids:
+  - 2Intelligence
+  side: suffix
+  tier: 4
+  modifier_level: 44
+  generation_weight: 250
+  affix_name: of the Philosopher
+  description: +(21 — 24) to Intelligence Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_intelligence_t3
+  family_id: value_to_intelligence
+  source_mod_id: 28e9432ee5700f08744a0864a2866627aaa83b081282abade10e0062d9671742
+  generation_group: 2Intelligence
+  group_ids:
+  - 2Intelligence
+  side: suffix
+  tier: 3
+  modifier_level: 55
+  generation_weight: 250
+  affix_name: of the Sage
+  description: +(25 — 27) to Intelligence Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_intelligence_t2
+  family_id: value_to_intelligence
+  source_mod_id: 8207cc119dc5361993b046de450ad722c78c94851aceda3acb4aa796f7ff2f2f
+  generation_group: 2Intelligence
+  group_ids:
+  - 2Intelligence
+  side: suffix
+  tier: 2
+  modifier_level: 66
+  generation_weight: 250
+  affix_name: of the Savant
+  description: +(28 — 30) to Intelligence Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_intelligence_t1
+  family_id: value_to_intelligence
+  source_mod_id: cb957a51f04d119a0d8e42b5fbec0f8b4ecf517686f02154c0dffb9674716b9f
+  generation_group: 2Intelligence
+  group_ids:
+  - 2Intelligence
+  side: suffix
+  tier: 1
+  modifier_level: 74
+  generation_weight: 250
+  affix_name: of the Virtuoso
+  description: +(31 — 33) to Intelligence Attribute
+  tags:
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_reduced_attribute_requirements_t5
+  family_id: value_reduced_attribute_requirements
+  source_mod_id: 50020258945da4087beb1864e4ba9abc544305c5102ebb611e4daf9fcec83fc7
+  generation_group: 2LocalAttributeRequirements
+  group_ids:
+  - 2LocalAttributeRequirements
+  side: suffix
+  tier: 5
+  modifier_level: 24
+  generation_weight: 1000
+  affix_name: of the Worthy
+  description: 15 % reduced Attribute Requirements
+  tags: &id001
+  - attribute
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_reduced_attribute_requirements_t4
+  family_id: value_reduced_attribute_requirements
+  source_mod_id: 6a11443ec94ec54daf2ef06d5a9744883dc1a5cebe64e22cdf0bd86ce651ad28
+  generation_group: 2LocalAttributeRequirements
+  group_ids:
+  - 2LocalAttributeRequirements
+  side: suffix
+  tier: 4
+  modifier_level: 32
+  generation_weight: 1000
+  affix_name: of the Apt
+  description: 20 % reduced Attribute Requirements
+  tags: *id001
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_reduced_attribute_requirements_t3
+  family_id: value_reduced_attribute_requirements
+  source_mod_id: 514b258423f5613f5b7a807591d3eeb9fe88f862493df727b65a1813f2e2b7a1
+  generation_group: 2LocalAttributeRequirements
+  group_ids:
+  - 2LocalAttributeRequirements
+  side: suffix
+  tier: 3
+  modifier_level: 40
+  generation_weight: 1000
+  affix_name: of the Talented
+  description: 25 % reduced Attribute Requirements
+  tags: *id001
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_reduced_attribute_requirements_t2
+  family_id: value_reduced_attribute_requirements
+  source_mod_id: a43410bced22d6ab413a8521efdf06dc6e4030c17dbc2b0dfcd9e1fc84b1d54f
+  generation_group: 2LocalAttributeRequirements
+  group_ids:
+  - 2LocalAttributeRequirements
+  side: suffix
+  tier: 2
+  modifier_level: 52
+  generation_weight: 1000
+  affix_name: of the Skilled
+  description: 30 % reduced Attribute Requirements
+  tags: *id001
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_reduced_attribute_requirements_t1
+  family_id: value_reduced_attribute_requirements
+  source_mod_id: 2bf6d67409bccf97e49e9a71095ecb347be7bb4d5600ec65a9f06d4fe2959692
+  generation_group: 2LocalAttributeRequirements
+  group_ids:
+  - 2LocalAttributeRequirements
+  side: suffix
+  tier: 1
+  modifier_level: 60
+  generation_weight: 1000
+  affix_name: of the Proficient
+  description: 35 % reduced Attribute Requirements
+  tags: *id001
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_level_of_all_melee_skills_t4
+  family_id: value_to_level_of_all_melee_skills
+  source_mod_id: 5391d50c8c4c1d2026723c2ce5fba3a6ceaaf14ead8c2f92c0c6fc405c0ee216
+  generation_group: 2IncreaseSocketedGemLevel
+  group_ids:
+  - 2IncreaseSocketedGemLevel
+  side: suffix
+  tier: 4
+  modifier_level: 18
+  generation_weight: 750
+  affix_name: of Dueling
+  description: +2 to Level of all Melee Skills Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_level_of_all_melee_skills_t3
+  family_id: value_to_level_of_all_melee_skills
+  source_mod_id: 6c294282d9a6462fb8f0a0b8d91b9b6d9f9570d1c5d405130515feb26af22e31
+  generation_group: 2IncreaseSocketedGemLevel
+  group_ids:
+  - 2IncreaseSocketedGemLevel
+  side: suffix
+  tier: 3
+  modifier_level: 36
+  generation_weight: 500
+  affix_name: of Conflict
+  description: +3 to Level of all Melee Skills Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_level_of_all_melee_skills_t2
+  family_id: value_to_level_of_all_melee_skills
+  source_mod_id: c95d45d3b374a0d16042a7eb971095ee7dcb1ccba8a26247eab776d28c140d1b
+  generation_group: 2IncreaseSocketedGemLevel
+  group_ids:
+  - 2IncreaseSocketedGemLevel
+  side: suffix
+  tier: 2
+  modifier_level: 55
+  generation_weight: 250
+  affix_name: of Battle
+  description: +4 to Level of all Melee Skills Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_level_of_all_melee_skills_t1
+  family_id: value_to_level_of_all_melee_skills
+  source_mod_id: 050d45f6192ecdc560e84a6f083e505aa7261b5c5db62f5a0bd7169610ef0b9f
+  generation_group: 2IncreaseSocketedGemLevel
+  group_ids:
+  - 2IncreaseSocketedGemLevel
+  side: suffix
+  tier: 1
+  modifier_level: 81
+  generation_weight: 100
+  affix_name: of War
+  description: +5 to Level of all Melee Skills Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: leeches_value_of_physical_damage_as_life_t4
+  family_id: leeches_value_of_physical_damage_as_life
+  source_mod_id: aa8f3ef909b61815cb0cc651b2f0f87d7cfc027323e141266fc655d4e96e95b5
+  generation_group: 2LifeLeech
+  group_ids:
+  - 2LifeLeech
+  side: suffix
+  tier: 4
+  modifier_level: 21
+  generation_weight: 1000
+  affix_name: of the Locust
+  description: Leeches (6 — 6.9) % of Physical Damage as Life Life , Physical , Attack
+  tags:
+  - life
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: leeches_value_of_physical_damage_as_life_t3
+  family_id: leeches_value_of_physical_damage_as_life
+  source_mod_id: 049260e296be02c2754d7231f86af548c1860b7840ebef20380fd5715124722f
+  generation_group: 2LifeLeech
+  group_ids:
+  - 2LifeLeech
+  side: suffix
+  tier: 3
+  modifier_level: 38
+  generation_weight: 1000
+  affix_name: of the Remora
+  description: Leeches (7 — 7.9) % of Physical Damage as Life Life , Physical , Attack
+  tags:
+  - life
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: leeches_value_of_physical_damage_as_life_t2
+  family_id: leeches_value_of_physical_damage_as_life
+  source_mod_id: 3d99127d2b8edbdf8b489a5b3e49b507e7ae90889fa130db144394ec106197a9
+  generation_group: 2LifeLeech
+  group_ids:
+  - 2LifeLeech
+  side: suffix
+  tier: 2
+  modifier_level: 54
+  generation_weight: 1000
+  affix_name: of the Lamprey
+  description: Leeches (8 — 8.9) % of Physical Damage as Life Life , Physical , Attack
+  tags:
+  - life
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: leeches_value_of_physical_damage_as_life_t1
+  family_id: leeches_value_of_physical_damage_as_life
+  source_mod_id: ce57a6fefa0fad1e111cafbb67654199caef930f9015e0ab38ad36f37d4c0fdf
+  generation_group: 2LifeLeech
+  group_ids:
+  - 2LifeLeech
+  side: suffix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1000
+  affix_name: of the Vampire
+  description: Leeches (9 — 9.9) % of Physical Damage as Life Life , Physical , Attack
+  tags:
+  - life
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: leeches_value_of_physical_damage_as_mana_t4
+  family_id: leeches_value_of_physical_damage_as_mana
+  source_mod_id: cc4ecfedb71472293e086e84cb4661b2f4c0608c38a2d7783d2820577f0954aa
+  generation_group: 2ManaLeech
+  group_ids:
+  - 2ManaLeech
+  side: suffix
+  tier: 4
+  modifier_level: 21
+  generation_weight: 1000
+  affix_name: of the Parched
+  description: Leeches (5 — 5.9) % of Physical Damage as Mana Mana , Physical , Attack
+  tags:
+  - mana
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: leeches_value_of_physical_damage_as_mana_t3
+  family_id: leeches_value_of_physical_damage_as_mana
+  source_mod_id: 91b45078d6c66ddc54a2c5c5119ae8a0066e00a3f808ee9b04297ac6bca6cceb
+  generation_group: 2ManaLeech
+  group_ids:
+  - 2ManaLeech
+  side: suffix
+  tier: 3
+  modifier_level: 38
+  generation_weight: 1000
+  affix_name: of the Arid
+  description: Leeches (6 — 6.9) % of Physical Damage as Mana Mana , Physical , Attack
+  tags:
+  - mana
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: leeches_value_of_physical_damage_as_mana_t2
+  family_id: leeches_value_of_physical_damage_as_mana
+  source_mod_id: fe10a3f908355993857afd7ebb207d4a2f54d239078ef36cea5852c83fbe424f
+  generation_group: 2ManaLeech
+  group_ids:
+  - 2ManaLeech
+  side: suffix
+  tier: 2
+  modifier_level: 54
+  generation_weight: 1000
+  affix_name: of the Drought
+  description: Leeches (7 — 7.9) % of Physical Damage as Mana Mana , Physical , Attack
+  tags:
+  - mana
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: leeches_value_of_physical_damage_as_mana_t1
+  family_id: leeches_value_of_physical_damage_as_mana
+  source_mod_id: 8cae1cf784342ae4255c07b558786e49c0dd1b9c8edd2e9584271d428ff32f0f
+  generation_group: 2ManaLeech
+  group_ids:
+  - 2ManaLeech
+  side: suffix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1000
+  affix_name: of the Desperate
+  description: Leeches (8 — 8.9) % of Physical Damage as Mana Mana , Physical , Attack
+  tags:
+  - mana
+  - physical
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_life_per_enemy_killed_t8
+  family_id: gain_value_life_per_enemy_killed
+  source_mod_id: 1d44e7840d2df4b2bf822e39b1d8e164ea8f69b83f213ef7dcba48bf65cd4b50
+  generation_group: 2LifeGainedFromEnemyDeath
+  group_ids:
+  - 2LifeGainedFromEnemyDeath
+  side: suffix
+  tier: 8
+  modifier_level: 1
+  generation_weight: 750
+  affix_name: of Success
+  description: Gain (4 — 6) Life per enemy killed Life
+  tags:
+  - life
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_life_per_enemy_killed_t7
+  family_id: gain_value_life_per_enemy_killed
+  source_mod_id: c92f361c1284ca0a0809c3e2a6fef38f5f9308ac83df681e24825f114b1e4c7b
+  generation_group: 2LifeGainedFromEnemyDeath
+  group_ids:
+  - 2LifeGainedFromEnemyDeath
+  side: suffix
+  tier: 7
+  modifier_level: 11
+  generation_weight: 750
+  affix_name: of Victory
+  description: Gain (7 — 9) Life per enemy killed Life
+  tags:
+  - life
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_life_per_enemy_killed_t6
+  family_id: gain_value_life_per_enemy_killed
+  source_mod_id: 51a031749c7fb088b0125d0bae3454e63d43e46755735ef9d658721d7f1b1d61
+  generation_group: 2LifeGainedFromEnemyDeath
+  group_ids:
+  - 2LifeGainedFromEnemyDeath
+  side: suffix
+  tier: 6
+  modifier_level: 22
+  generation_weight: 750
+  affix_name: of Triumph
+  description: Gain (10 — 18) Life per enemy killed Life
+  tags:
+  - life
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_life_per_enemy_killed_t5
+  family_id: gain_value_life_per_enemy_killed
+  source_mod_id: b359bfbadbb1d3fceefc4daca2e73a08c8784d32823c10b9ca021f70d4a66be0
+  generation_group: 2LifeGainedFromEnemyDeath
+  group_ids:
+  - 2LifeGainedFromEnemyDeath
+  side: suffix
+  tier: 5
+  modifier_level: 33
+  generation_weight: 750
+  affix_name: of Conquest
+  description: Gain (19 — 28) Life per enemy killed Life
+  tags:
+  - life
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_life_per_enemy_killed_t4
+  family_id: gain_value_life_per_enemy_killed
+  source_mod_id: 3d8f9df5de60165d2d82e1ef1b58a196f59427f60942456207ccd05c4af7356f
+  generation_group: 2LifeGainedFromEnemyDeath
+  group_ids:
+  - 2LifeGainedFromEnemyDeath
+  side: suffix
+  tier: 4
+  modifier_level: 44
+  generation_weight: 750
+  affix_name: of Vanquishing
+  description: Gain (29 — 40) Life per enemy killed Life
+  tags:
+  - life
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_life_per_enemy_killed_t3
+  family_id: gain_value_life_per_enemy_killed
+  source_mod_id: 72d0599a698f3e916efdb217e709e48c332e587baa1a22de91f320ebb7e45f99
+  generation_group: 2LifeGainedFromEnemyDeath
+  group_ids:
+  - 2LifeGainedFromEnemyDeath
+  side: suffix
+  tier: 3
+  modifier_level: 55
+  generation_weight: 750
+  affix_name: of Valour
+  description: Gain (41 — 53) Life per enemy killed Life
+  tags:
+  - life
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_life_per_enemy_killed_t2
+  family_id: gain_value_life_per_enemy_killed
+  source_mod_id: fc7ff2bc5a5bded100af22611f05407d39d20601921171e4ed3ba417d6edd706
+  generation_group: 2LifeGainedFromEnemyDeath
+  group_ids:
+  - 2LifeGainedFromEnemyDeath
+  side: suffix
+  tier: 2
+  modifier_level: 66
+  generation_weight: 750
+  affix_name: of Glory
+  description: Gain (54 — 68) Life per enemy killed Life
+  tags:
+  - life
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_life_per_enemy_killed_t1
+  family_id: gain_value_life_per_enemy_killed
+  source_mod_id: 87c3134e6542addc6ffa43a0ed760a6feb22be9d3f19289bd2819ccc9ea5a2cb
+  generation_group: 2LifeGainedFromEnemyDeath
+  group_ids:
+  - 2LifeGainedFromEnemyDeath
+  side: suffix
+  tier: 1
+  modifier_level: 77
+  generation_weight: 750
+  affix_name: of Legend
+  description: Gain (69 — 84) Life per enemy killed Life
+  tags:
+  - life
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_mana_per_enemy_killed_t8
+  family_id: gain_value_mana_per_enemy_killed
+  source_mod_id: f58dace196b947e24aecefe9b2d716a7042702b9504a5c486224eac0e65461e8
+  generation_group: 2ManaGainedFromEnemyDeath
+  group_ids:
+  - 2ManaGainedFromEnemyDeath
+  side: suffix
+  tier: 8
+  modifier_level: 1
+  generation_weight: 750
+  affix_name: of Absorption
+  description: Gain (2 — 3) Mana per enemy killed Mana
+  tags:
+  - mana
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_mana_per_enemy_killed_t7
+  family_id: gain_value_mana_per_enemy_killed
+  source_mod_id: c16ce5e2ef5fdb3ea0b85ca3da92f21db3a7318730d65fb9f12ec54d1d5c31a7
+  generation_group: 2ManaGainedFromEnemyDeath
+  group_ids:
+  - 2ManaGainedFromEnemyDeath
+  side: suffix
+  tier: 7
+  modifier_level: 12
+  generation_weight: 750
+  affix_name: of Osmosis
+  description: Gain (4 — 5) Mana per enemy killed Mana
+  tags:
+  - mana
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_mana_per_enemy_killed_t6
+  family_id: gain_value_mana_per_enemy_killed
+  source_mod_id: 871240c007521a905ba28ad95e6e4bd6e4ed0adfca302bb3649fba4b52a3bd5e
+  generation_group: 2ManaGainedFromEnemyDeath
+  group_ids:
+  - 2ManaGainedFromEnemyDeath
+  side: suffix
+  tier: 6
+  modifier_level: 23
+  generation_weight: 750
+  affix_name: of Infusion
+  description: Gain (6 — 9) Mana per enemy killed Mana
+  tags:
+  - mana
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_mana_per_enemy_killed_t5
+  family_id: gain_value_mana_per_enemy_killed
+  source_mod_id: a30540e55546bd78db72a1ce93d9b6bdc2f27a5880c97cf8b5dd65005f6e5958
+  generation_group: 2ManaGainedFromEnemyDeath
+  group_ids:
+  - 2ManaGainedFromEnemyDeath
+  side: suffix
+  tier: 5
+  modifier_level: 34
+  generation_weight: 750
+  affix_name: of Enveloping
+  description: Gain (10 — 14) Mana per enemy killed Mana
+  tags:
+  - mana
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_mana_per_enemy_killed_t4
+  family_id: gain_value_mana_per_enemy_killed
+  source_mod_id: b1f8c8b93e353e37ba4795bc38d4b138e86e381d932c773e2f8e411fd5611fec
+  generation_group: 2ManaGainedFromEnemyDeath
+  group_ids:
+  - 2ManaGainedFromEnemyDeath
+  side: suffix
+  tier: 4
+  modifier_level: 45
+  generation_weight: 750
+  affix_name: of Consumption
+  description: Gain (15 — 20) Mana per enemy killed Mana
+  tags:
+  - mana
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_mana_per_enemy_killed_t3
+  family_id: gain_value_mana_per_enemy_killed
+  source_mod_id: bf709d68bb2c0ac672e3c2927c8be0503134a8956dcc81c015076811e38199e3
+  generation_group: 2ManaGainedFromEnemyDeath
+  group_ids:
+  - 2ManaGainedFromEnemyDeath
+  side: suffix
+  tier: 3
+  modifier_level: 56
+  generation_weight: 750
+  affix_name: of Siphoning
+  description: Gain (21 — 27) Mana per enemy killed Mana
+  tags:
+  - mana
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_mana_per_enemy_killed_t2
+  family_id: gain_value_mana_per_enemy_killed
+  source_mod_id: 3085122ac2fcd555b7e0bbaf8a572dd79216759c67bee344f44e2b8c947bf9dd
+  generation_group: 2ManaGainedFromEnemyDeath
+  group_ids:
+  - 2ManaGainedFromEnemyDeath
+  side: suffix
+  tier: 2
+  modifier_level: 67
+  generation_weight: 750
+  affix_name: of Devouring
+  description: Gain (28 — 35) Mana per enemy killed Mana
+  tags:
+  - mana
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: gain_value_mana_per_enemy_killed_t1
+  family_id: gain_value_mana_per_enemy_killed
+  source_mod_id: 83f998438f3c49858e57ed55a9da37ff32f1c4ab28c61d9310cd1e699054fc5d
+  generation_group: 2ManaGainedFromEnemyDeath
+  group_ids:
+  - 2ManaGainedFromEnemyDeath
+  side: suffix
+  tier: 1
+  modifier_level: 78
+  generation_weight: 750
+  affix_name: of Assimilation
+  description: Gain (36 — 45) Mana per enemy killed Mana
+  tags:
+  - mana
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: grants_value_life_per_enemy_hit_t4
+  family_id: grants_value_life_per_enemy_hit
+  source_mod_id: e7f4cf55a0d183467e486cceada851162d82c4ac8fbd6a16b77936a9fdda132a
+  generation_group: 2LifeGainPerTarget
+  group_ids:
+  - 2LifeGainPerTarget
+  side: suffix
+  tier: 4
+  modifier_level: 8
+  generation_weight: 1000
+  affix_name: of Rejuvenation
+  description: Grants 2 Life per Enemy Hit Life , Attack
+  tags:
+  - life
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: grants_value_life_per_enemy_hit_t3
+  family_id: grants_value_life_per_enemy_hit
+  source_mod_id: 9714946c9191bceb00bf3e43b5161e900295c63d42e8dc15a56c8df72c9accbb
+  generation_group: 2LifeGainPerTarget
+  group_ids:
+  - 2LifeGainPerTarget
+  side: suffix
+  tier: 3
+  modifier_level: 20
+  generation_weight: 1000
+  affix_name: of Restoration
+  description: Grants 3 Life per Enemy Hit Life , Attack
+  tags:
+  - life
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: grants_value_life_per_enemy_hit_t2
+  family_id: grants_value_life_per_enemy_hit
+  source_mod_id: 679888a6e4062c9edc1b113bc410a0c9b621d72b0a751ba6992ede8c877d328e
+  generation_group: 2LifeGainPerTarget
+  group_ids:
+  - 2LifeGainPerTarget
+  side: suffix
+  tier: 2
+  modifier_level: 30
+  generation_weight: 1000
+  affix_name: of Regrowth
+  description: Grants 4 Life per Enemy Hit Life , Attack
+  tags:
+  - life
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: grants_value_life_per_enemy_hit_t1
+  family_id: grants_value_life_per_enemy_hit
+  source_mod_id: c1f79461c8357f47a43aac7bd19dbfa3bc12a691e6f8112974209251d77fa1f2
+  generation_group: 2LifeGainPerTarget
+  group_ids:
+  - 2LifeGainPerTarget
+  side: suffix
+  tier: 1
+  modifier_level: 40
+  generation_weight: 1000
+  affix_name: of Nourishment
+  description: Grants 5 Life per Enemy Hit Life , Attack
+  tags:
+  - life
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_attack_speed_t8
+  family_id: value_increased_attack_speed
+  source_mod_id: 5550d8f22646dfa80ee3dedc6ce7ed6759081001fee3f3d642deee8b869e8c0e
+  generation_group: 2IncreasedAttackSpeed
+  group_ids:
+  - 2IncreasedAttackSpeed
+  side: suffix
+  tier: 8
+  modifier_level: 1
+  generation_weight: 1000
+  affix_name: of Skill
+  description: (5 — 7) % increased Attack Speed Attack , Speed
+  tags:
+  - attack
+  - speed
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_attack_speed_t7
+  family_id: value_increased_attack_speed
+  source_mod_id: a44b695ba706bbab5571bd123e2a947695125c2cb321b71246db8a3ad444315d
+  generation_group: 2IncreasedAttackSpeed
+  group_ids:
+  - 2IncreasedAttackSpeed
+  side: suffix
+  tier: 7
+  modifier_level: 11
+  generation_weight: 1000
+  affix_name: of Ease
+  description: (8 — 10) % increased Attack Speed Attack , Speed
+  tags:
+  - attack
+  - speed
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_attack_speed_t6
+  family_id: value_increased_attack_speed
+  source_mod_id: ee62a0f7b66738c56c2718f96a585f077b65e7c1e1a5823a15dd90a74f0c77e0
+  generation_group: 2IncreasedAttackSpeed
+  group_ids:
+  - 2IncreasedAttackSpeed
+  side: suffix
+  tier: 6
+  modifier_level: 22
+  generation_weight: 1000
+  affix_name: of Mastery
+  description: (11 — 13) % increased Attack Speed Attack , Speed
+  tags:
+  - attack
+  - speed
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_attack_speed_t5
+  family_id: value_increased_attack_speed
+  source_mod_id: 1e6fd067a695a2c8ad3292549e66dabb50e67326ba4512a643ef8ef225f82775
+  generation_group: 2IncreasedAttackSpeed
+  group_ids:
+  - 2IncreasedAttackSpeed
+  side: suffix
+  tier: 5
+  modifier_level: 30
+  generation_weight: 1000
+  affix_name: of Renown
+  description: (14 — 16) % increased Attack Speed Attack , Speed
+  tags:
+  - attack
+  - speed
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_attack_speed_t4
+  family_id: value_increased_attack_speed
+  source_mod_id: ddccd2b7005b299b0a28acb90e093c41333d45667a5d94041a8ac89811c66506
+  generation_group: 2IncreasedAttackSpeed
+  group_ids:
+  - 2IncreasedAttackSpeed
+  side: suffix
+  tier: 4
+  modifier_level: 37
+  generation_weight: 500
+  affix_name: of Acclaim
+  description: (17 — 19) % increased Attack Speed Attack , Speed
+  tags:
+  - attack
+  - speed
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_attack_speed_t3
+  family_id: value_increased_attack_speed
+  source_mod_id: 15973da0602f42e62713b5db04856090125283995bd14535821f54cfcc72c829
+  generation_group: 2IncreasedAttackSpeed
+  group_ids:
+  - 2IncreasedAttackSpeed
+  side: suffix
+  tier: 3
+  modifier_level: 45
+  generation_weight: 500
+  affix_name: of Fame
+  description: (20 — 22) % increased Attack Speed Attack , Speed
+  tags:
+  - attack
+  - speed
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_attack_speed_t2
+  family_id: value_increased_attack_speed
+  source_mod_id: 44232d553d872101280e79bed8e785a98892a65985d6883176209e6718581529
+  generation_group: 2IncreasedAttackSpeed
+  group_ids:
+  - 2IncreasedAttackSpeed
+  side: suffix
+  tier: 2
+  modifier_level: 60
+  generation_weight: 200
+  affix_name: of Infamy
+  description: (23 — 25) % increased Attack Speed Attack , Speed
+  tags:
+  - attack
+  - speed
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_attack_speed_t1
+  family_id: value_increased_attack_speed
+  source_mod_id: 788070a2e22706f1bf2599593d222b8218616de7a2d6313c61497bccc45a851f
+  generation_group: 2IncreasedAttackSpeed
+  group_ids:
+  - 2IncreasedAttackSpeed
+  side: suffix
+  tier: 1
+  modifier_level: 77
+  generation_weight: 100
+  affix_name: of Celebration
+  description: (26 — 28) % increased Attack Speed Attack , Speed
+  tags:
+  - attack
+  - speed
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_critical_hit_chance_t6
+  family_id: value_to_critical_hit_chance
+  source_mod_id: 0889840d9b9f302d979010c0115ab1bc1bae7a74441049abc00951a3eebe5b7f
+  generation_group: 2CriticalStrikeChanceIncrease
+  group_ids:
+  - 2CriticalStrikeChanceIncrease
+  side: suffix
+  tier: 6
+  modifier_level: 1
+  generation_weight: 1000
+  affix_name: of Menace
+  description: +(1.01 — 1.5) % to Critical Hit Chance Attack , Critical
+  tags:
+  - attack
+  - critical
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_critical_hit_chance_t5
+  family_id: value_to_critical_hit_chance
+  source_mod_id: f19e9ad1a3fa52b3c05c87145b061bf25ff256f096fef4e88825a5652717ebcf
+  generation_group: 2CriticalStrikeChanceIncrease
+  group_ids:
+  - 2CriticalStrikeChanceIncrease
+  side: suffix
+  tier: 5
+  modifier_level: 20
+  generation_weight: 1000
+  affix_name: of Havoc
+  description: +(1.51 — 2.1) % to Critical Hit Chance Attack , Critical
+  tags:
+  - attack
+  - critical
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_critical_hit_chance_t4
+  family_id: value_to_critical_hit_chance
+  source_mod_id: 3d3a982b25eefa0474bbbdd573ec2ac1a5fc3949e45abb67c8b42b8f5c754973
+  generation_group: 2CriticalStrikeChanceIncrease
+  group_ids:
+  - 2CriticalStrikeChanceIncrease
+  side: suffix
+  tier: 4
+  modifier_level: 30
+  generation_weight: 1000
+  affix_name: of Disaster
+  description: +(2.11 — 2.7) % to Critical Hit Chance Attack , Critical
+  tags:
+  - attack
+  - critical
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_critical_hit_chance_t3
+  family_id: value_to_critical_hit_chance
+  source_mod_id: 8aaebca77a5ca076f426b8049a97aa0d58628dd921c3e77db031a4960223e83b
+  generation_group: 2CriticalStrikeChanceIncrease
+  group_ids:
+  - 2CriticalStrikeChanceIncrease
+  side: suffix
+  tier: 3
+  modifier_level: 44
+  generation_weight: 500
+  affix_name: of Calamity
+  description: +(3.11 — 3.8) % to Critical Hit Chance Attack , Critical
+  tags:
+  - attack
+  - critical
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_critical_hit_chance_t2
+  family_id: value_to_critical_hit_chance
+  source_mod_id: 8be2a22a8a08d4bf1ca2109935752fd11ef6091c707e61d3225a0619bc2449ac
+  generation_group: 2CriticalStrikeChanceIncrease
+  group_ids:
+  - 2CriticalStrikeChanceIncrease
+  side: suffix
+  tier: 2
+  modifier_level: 59
+  generation_weight: 250
+  affix_name: of Ruin
+  description: +(3.81 — 4.4) % to Critical Hit Chance Attack , Critical
+  tags:
+  - attack
+  - critical
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_critical_hit_chance_t1
+  family_id: value_to_critical_hit_chance
+  source_mod_id: 1be336f4a003a9b6a70f9eebd8a70839449d9a793694c1d76fb245295f034010
+  generation_group: 2CriticalStrikeChanceIncrease
+  group_ids:
+  - 2CriticalStrikeChanceIncrease
+  side: suffix
+  tier: 1
+  modifier_level: 73
+  generation_weight: 125
+  affix_name: of Unmaking
+  description: +(4.41 — 5) % to Critical Hit Chance Attack , Critical
+  tags:
+  - attack
+  - critical
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_critical_damage_bonus_t6
+  family_id: value_to_critical_damage_bonus
+  source_mod_id: a4ca81572af4a30a56207b43414842bb395c7affac618acfcb3fc72034edd8ae
+  generation_group: 2CriticalStrikeMultiplier
+  group_ids:
+  - 2CriticalStrikeMultiplier
+  side: suffix
+  tier: 6
+  modifier_level: 8
+  generation_weight: 1000
+  affix_name: of Ire
+  description: +(10 — 11) % to Critical Damage Bonus Damage , Attack , Critical
+  tags:
+  - damage
+  - attack
+  - critical
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_critical_damage_bonus_t5
+  family_id: value_to_critical_damage_bonus
+  source_mod_id: 199f3dbaedfa46be31b9b11cca5fa90e9d35878110d6fac26f54659ff0765bec
+  generation_group: 2CriticalStrikeMultiplier
+  group_ids:
+  - 2CriticalStrikeMultiplier
+  side: suffix
+  tier: 5
+  modifier_level: 21
+  generation_weight: 1000
+  affix_name: of Anger
+  description: +(12 — 13) % to Critical Damage Bonus Damage , Attack , Critical
+  tags:
+  - damage
+  - attack
+  - critical
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_critical_damage_bonus_t4
+  family_id: value_to_critical_damage_bonus
+  source_mod_id: 48ccc9515e6caef5002c2323707ec862505013586c5522e4d76e85c2e011ae56
+  generation_group: 2CriticalStrikeMultiplier
+  group_ids:
+  - 2CriticalStrikeMultiplier
+  side: suffix
+  tier: 4
+  modifier_level: 30
+  generation_weight: 1000
+  affix_name: of Rage
+  description: +(14 — 16) % to Critical Damage Bonus Damage , Attack , Critical
+  tags:
+  - damage
+  - attack
+  - critical
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_critical_damage_bonus_t3
+  family_id: value_to_critical_damage_bonus
+  source_mod_id: 233ad22813a0f3623738b1277210813e3cdf73e084c7311d55d5923f2f78fb4c
+  generation_group: 2CriticalStrikeMultiplier
+  group_ids:
+  - 2CriticalStrikeMultiplier
+  side: suffix
+  tier: 3
+  modifier_level: 44
+  generation_weight: 500
+  affix_name: of Fury
+  description: +(17 — 19) % to Critical Damage Bonus Damage , Attack , Critical
+  tags:
+  - damage
+  - attack
+  - critical
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_critical_damage_bonus_t2
+  family_id: value_to_critical_damage_bonus
+  source_mod_id: 3d82a5f128225bfe72fed9b2e10323dac9ffac1cfa026df7eb1206f57a2a92a7
+  generation_group: 2CriticalStrikeMultiplier
+  group_ids:
+  - 2CriticalStrikeMultiplier
+  side: suffix
+  tier: 2
+  modifier_level: 59
+  generation_weight: 250
+  affix_name: of Ferocity
+  description: +(20 — 22) % to Critical Damage Bonus Damage , Attack , Critical
+  tags:
+  - damage
+  - attack
+  - critical
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_critical_damage_bonus_t1
+  family_id: value_to_critical_damage_bonus
+  source_mod_id: df111cac8908f95fa1b1ca8fe517c220d58f3b0b7bf610d2274955bc23ecdd71
+  generation_group: 2CriticalStrikeMultiplier
+  group_ids:
+  - 2CriticalStrikeMultiplier
+  side: suffix
+  tier: 1
+  modifier_level: 73
+  generation_weight: 125
+  affix_name: of Destruction
+  description: +(23 — 25) % to Critical Damage Bonus Damage , Attack , Critical
+  tags:
+  - damage
+  - attack
+  - critical
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_accuracy_rating_value_increased_light_radius_t3
+  family_id: value_to_accuracy_rating_value_increased_light_radius
+  source_mod_id: ccc658de5592ffd6ebc7ba7236f4cc58a4df7fd56a4b057f279e1fa2c3a1e591
+  generation_group: 2LightRadiusAndAccuracy
+  group_ids:
+  - 2LightRadiusAndAccuracy
+  side: suffix
+  tier: 3
+  modifier_level: 8
+  generation_weight: 1000
+  affix_name: of Shining
+  description: +(10 — 20) to Accuracy Rating 5 % increased Light Radius Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_accuracy_rating_value_increased_light_radius_t2
+  family_id: value_to_accuracy_rating_value_increased_light_radius
+  source_mod_id: 8bc812b189dee6a325a6cf28d129d8a6d74f1f378695107a67608d252a64952a
+  generation_group: 2LightRadiusAndAccuracy
+  group_ids:
+  - 2LightRadiusAndAccuracy
+  side: suffix
+  tier: 2
+  modifier_level: 15
+  generation_weight: 1000
+  affix_name: of Light
+  description: +(21 — 40) to Accuracy Rating 10 % increased Light Radius Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_to_accuracy_rating_value_increased_light_radius_t1
+  family_id: value_to_accuracy_rating_value_increased_light_radius
+  source_mod_id: 435cba721f1009472cf3f83a3ac30931d8c283abdc804447a287b7ba8baa0087
+  generation_group: 2LightRadiusAndAccuracy
+  group_ids:
+  - 2LightRadiusAndAccuracy
+  side: suffix
+  tier: 1
+  modifier_level: 30
+  generation_weight: 1000
+  affix_name: of Radiance
+  description: +(41 — 60) to Accuracy Rating 15 % increased Light Radius Attack
+  tags:
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_stun_duration_t6
+  family_id: value_increased_stun_duration
+  source_mod_id: 3954cf025ce75a228616024aa38fac9d78ee8868bdd41a592e20dad2718cabdf
+  generation_group: 2StunDurationIncreasePercent
+  group_ids:
+  - 2StunDurationIncreasePercent
+  side: suffix
+  tier: 6
+  modifier_level: 5
+  generation_weight: 1000
+  affix_name: of Impact
+  description: (11 — 13) % increased Stun Duration
+  tags: &id002
+  - stun
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_stun_duration_t5
+  family_id: value_increased_stun_duration
+  source_mod_id: e186db2d0ae899dd4f0ca5f20e90a0e099efd5413827ea160585bd4110767f9b
+  generation_group: 2StunDurationIncreasePercent
+  group_ids:
+  - 2StunDurationIncreasePercent
+  side: suffix
+  tier: 5
+  modifier_level: 18
+  generation_weight: 1000
+  affix_name: of Dazing
+  description: (14 — 16) % increased Stun Duration
+  tags: *id002
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_stun_duration_t4
+  family_id: value_increased_stun_duration
+  source_mod_id: e0ea366c35b7cb49cd59b2eded8283e44937035f35cf3ccd65b8f51575ed9c7b
+  generation_group: 2StunDurationIncreasePercent
+  group_ids:
+  - 2StunDurationIncreasePercent
+  side: suffix
+  tier: 4
+  modifier_level: 30
+  generation_weight: 1000
+  affix_name: of Stunning
+  description: (17 — 19) % increased Stun Duration
+  tags: *id002
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_stun_duration_t3
+  family_id: value_increased_stun_duration
+  source_mod_id: 8773149310749fbe6959e5a77f9db09e7fd6224147f2d82c87c8828a4662d817
+  generation_group: 2StunDurationIncreasePercent
+  group_ids:
+  - 2StunDurationIncreasePercent
+  side: suffix
+  tier: 3
+  modifier_level: 44
+  generation_weight: 1000
+  affix_name: of Slamming
+  description: (20 — 22) % increased Stun Duration
+  tags: *id002
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_stun_duration_t2
+  family_id: value_increased_stun_duration
+  source_mod_id: 530e2a8d4789dadd8404374d33126a391f02ff8dcc08c49eaf777b8d80657a7f
+  generation_group: 2StunDurationIncreasePercent
+  group_ids:
+  - 2StunDurationIncreasePercent
+  side: suffix
+  tier: 2
+  modifier_level: 58
+  generation_weight: 1000
+  affix_name: of Staggering
+  description: (23 — 26) % increased Stun Duration
+  tags: *id002
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: value_increased_stun_duration_t1
+  family_id: value_increased_stun_duration
+  source_mod_id: ee2869edef760c36e76515f99bdaf56f77a43a43b98aee5903d8975868d8c649
+  generation_group: 2StunDurationIncreasePercent
+  group_ids:
+  - 2StunDurationIncreasePercent
+  side: suffix
+  tier: 1
+  modifier_level: 71
+  generation_weight: 1000
+  affix_name: of the Concussion
+  description: (27 — 30) % increased Stun Duration
+  tags: *id002
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: causes_value_increased_stun_buildup_t6
+  family_id: causes_value_increased_stun_buildup
+  source_mod_id: 0117b2905c2a536c8cd6c756c9707b6d9291ab799d4fd1185ee3f6f7bdfe1ff0
+  generation_group: 2StunDamageIncrease
+  group_ids:
+  - 2StunDamageIncrease
+  side: suffix
+  tier: 6
+  modifier_level: 5
+  generation_weight: 1000
+  affix_name: of the Pugilist
+  description: Causes (21 — 30) % increased Stun Buildup
+  tags: &id003
+  - stun
+  - attack
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: causes_value_increased_stun_buildup_t5
+  family_id: causes_value_increased_stun_buildup
+  source_mod_id: 6b6a995ad989cb0f9a0823d1e41d49408bf7479dc61c23da7bfc196273dec6a9
+  generation_group: 2StunDamageIncrease
+  group_ids:
+  - 2StunDamageIncrease
+  side: suffix
+  tier: 5
+  modifier_level: 20
+  generation_weight: 1000
+  affix_name: of the Brawler
+  description: Causes (31 — 40) % increased Stun Buildup
+  tags: *id003
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: causes_value_increased_stun_buildup_t4
+  family_id: causes_value_increased_stun_buildup
+  source_mod_id: a9349678a47786d5c50dbbb4519ca4fc48c4be57175ecf9ada924de4f04dc2fe
+  generation_group: 2StunDamageIncrease
+  group_ids:
+  - 2StunDamageIncrease
+  side: suffix
+  tier: 4
+  modifier_level: 30
+  generation_weight: 1000
+  affix_name: of the Boxer
+  description: Causes (41 — 50) % increased Stun Buildup
+  tags: *id003
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: causes_value_increased_stun_buildup_t3
+  family_id: causes_value_increased_stun_buildup
+  source_mod_id: bab07a67e34dd8f8b5bc9adc98b1f80152257e2344c54b44efe298bf21dbb032
+  generation_group: 2StunDamageIncrease
+  group_ids:
+  - 2StunDamageIncrease
+  side: suffix
+  tier: 3
+  modifier_level: 44
+  generation_weight: 1000
+  affix_name: of the Combatant
+  description: Causes (51 — 60) % increased Stun Buildup
+  tags: *id003
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: causes_value_increased_stun_buildup_t2
+  family_id: causes_value_increased_stun_buildup
+  source_mod_id: 530ee376887aa0f14190fdb3cc7a4b0470418a6f829faf3f15001600ed2f160e
+  generation_group: 2StunDamageIncrease
+  group_ids:
+  - 2StunDamageIncrease
+  side: suffix
+  tier: 2
+  modifier_level: 58
+  generation_weight: 1000
+  affix_name: of the Gladiator
+  description: Causes (61 — 70) % increased Stun Buildup
+  tags: *id003
+  item_classes:
+  - quarterstaff
+  ordinary: true
+- mod_id: causes_value_increased_stun_buildup_t1
+  family_id: causes_value_increased_stun_buildup
+  source_mod_id: 17348fb70ce71d9dc2281e44b834122eb9f408aa70442dd8fc068372fa16d452
+  generation_group: 2StunDamageIncrease
+  group_ids:
+  - 2StunDamageIncrease
+  side: suffix
+  tier: 1
+  modifier_level: 74
+  generation_weight: 1000
+  affix_name: of the Champion
+  description: Causes (71 — 80) % increased Stun Buildup
+  tags: *id003
+  item_classes:
+  - quarterstaff
+  ordinary: true

@@ -1,0 +1,141 @@
+schema_version: 2
+omens:
+- omen_id: greater_exaltation
+  operation_groups:
+  - exalted
+  effect:
+    add_count_override: 2
+    requires_free_legal_slots: 2
+    partial_execution: false
+    on_insufficient_slots: NO_TRANSITION_NO_CONSUMPTION
+- omen_id: sinistral_exaltation
+  operation_groups:
+  - exalted
+  effect:
+    side_filter: prefix
+- omen_id: dextral_exaltation
+  operation_groups:
+  - exalted
+  effect:
+    side_filter: suffix
+- omen_id: sinistral_annulment
+  operation_groups:
+  - annulment
+  effect:
+    side_filter: prefix
+- omen_id: dextral_annulment
+  operation_groups:
+  - annulment
+  effect:
+    side_filter: suffix
+- omen_id: light
+  operation_groups:
+  - annulment
+  effect:
+    desecrated_only: true
+- omen_id: sinistral_erasure
+  operation_groups:
+  - chaos
+  effect:
+    removal_side_filter: prefix
+- omen_id: dextral_erasure
+  operation_groups:
+  - chaos
+  effect:
+    removal_side_filter: suffix
+- omen_id: whittling
+  operation_groups:
+  - chaos
+  effect:
+    selection: minimum_modifier_level
+    tie_breaker: uniform
+  confidence: project_adopted_inference
+  evidence:
+    lowest_level_selection: official_wording
+    uniform_tie_breaker: not_published_project_policy
+- omen_id: sinistral_crystallisation
+  operation_groups:
+  - perfect_essence
+  effect:
+    removal_side_filter: prefix
+- omen_id: dextral_crystallisation
+  operation_groups:
+  - perfect_essence
+  effect:
+    removal_side_filter: suffix
+- omen_id: sinistral_necromancy
+  operation_groups:
+  - jawbone
+  effect:
+    force_side: prefix
+- omen_id: dextral_necromancy
+  operation_groups:
+  - jawbone
+  effect:
+    force_side: suffix
+- omen_id: liege
+  operation_groups:
+  - jawbone
+  effect:
+    lich_tag_constraint:
+      tag: amanamu
+      model: guarantee_one
+  official_meaning: Guarantees one random Amanamu modifier.
+  project_interpretation: The Omen stores an Amanamu Lich tag constraint on the Jawbone placeholder. Each constrained Reveal
+    OfferSet guarantees one compatible Amanamu-tagged offer when possible, then fills remaining offers from the general pool.
+  confidence: PROJECT_POLICY_source_aligned_project_model
+  consumption: Consumed with the Jawbone action that stores the named-Lich constraint on the unrevealed placeholder.
+  constraint_persists_to_reveal: true
+  compatible_with_abyssal_echoes: true
+  runtime_status: USER_APPROVED_PROJECT_RULE
+- omen_id: blackblooded
+  operation_groups:
+  - jawbone
+  effect:
+    lich_tag_constraint:
+      tag: kurgal
+      model: guarantee_one
+  official_meaning: Guarantees one random Kurgal modifier.
+  project_interpretation: The Omen stores a Kurgal Lich tag constraint on the Jawbone placeholder. Each constrained Reveal
+    OfferSet guarantees one compatible Kurgal-tagged offer when possible, then fills remaining offers from the general pool.
+  confidence: PROJECT_POLICY_source_aligned_project_model
+  consumption: Consumed with the Jawbone action that stores the named-Lich constraint on the unrevealed placeholder.
+  constraint_persists_to_reveal: true
+  compatible_with_abyssal_echoes: true
+  runtime_status: USER_APPROVED_PROJECT_RULE
+- omen_id: sovereign
+  operation_groups:
+  - jawbone
+  effect:
+    lich_tag_constraint:
+      tag: ulaman
+      model: guarantee_one
+  official_meaning: Guarantees one random Ulaman modifier.
+  project_interpretation: The Omen stores a Ulaman Lich tag constraint on the Jawbone placeholder. Each constrained Reveal
+    OfferSet guarantees one compatible Ulaman-tagged offer when possible, then fills remaining offers from the general pool.
+  confidence: PROJECT_POLICY_source_aligned_project_model
+  consumption: Consumed with the Jawbone action that stores the named-Lich constraint on the unrevealed placeholder.
+  constraint_persists_to_reveal: true
+  compatible_with_abyssal_echoes: true
+  runtime_status: USER_APPROVED_PROJECT_RULE
+- omen_id: abyssal_echoes
+  operation_groups:
+  - reveal
+  effect:
+    complete_offer_set_rerolls: 1
+    reroll_is_independent: true
+    first_set_is_discarded_if_rerolled: true
+    stored_desecration_constraints_persist: true
+  consumption: Consumed when the affected Desecrated reveal is triggered.
+compatibility:
+  same_effect_dimension: mutually_exclusive
+  different_effect_dimensions: may_intersect
+  examples:
+  - - sinistral_necromancy
+    - liege
+  - - dextral_necromancy
+    - sovereign
+  - - abyssal_echoes
+    - blackblooded
+solver_representation: Compile a currency and a legal Omen bundle into one priced action. Do not create zero-item-change activation
+  nodes.

@@ -1,0 +1,269 @@
+schema_version: 2
+item_class: quarterstaff
+crafted_capacity_cost: 1
+greater:
+- operation_id: greater_essence_abrasion
+  guaranteed_mod_id: crafted_greater_abrasion_flat_physical
+  family_id: adds_value_to_value_physical_damage
+  side: prefix
+  modifier_level: 48
+  description: Adds (23–35) to (39–59) Physical Damage
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - adds_value_to_value_physical_damage
+  tags:
+  - damage
+  - physical
+  - attack
+  tier: 1
+- operation_id: greater_essence_flames
+  guaranteed_mod_id: crafted_greater_flames_flat_fire
+  family_id: adds_value_to_value_fire_damage
+  side: prefix
+  modifier_level: 48
+  description: Adds (56–70) to (84–107) Fire Damage
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - adds_value_to_value_fire_damage
+  tags:
+  - damage
+  - fire
+  - attack
+  tier: 1
+- operation_id: greater_essence_ice
+  guaranteed_mod_id: crafted_greater_ice_flat_cold
+  family_id: adds_value_to_value_cold_damage
+  side: prefix
+  modifier_level: 48
+  description: Adds (46–57) to (70–88) Cold Damage
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - adds_value_to_value_cold_damage
+  tags:
+  - damage
+  - cold
+  - attack
+  tier: 1
+- operation_id: greater_essence_electricity
+  guaranteed_mod_id: crafted_greater_electricity_flat_lightning
+  family_id: adds_value_to_value_lightning_damage
+  side: prefix
+  modifier_level: 48
+  description: Adds 1 to (128–162) Lightning Damage
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - adds_value_to_value_lightning_damage
+  tags:
+  - damage
+  - lightning
+  - attack
+  tier: 1
+- operation_id: greater_essence_battle
+  guaranteed_mod_id: crafted_greater_battle_accuracy
+  family_id: value_to_accuracy_rating
+  side: prefix
+  modifier_level: 46
+  description: +(237–346) Accuracy Rating
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - value_to_accuracy_rating
+  tags:
+  - attack
+  tier: 1
+- operation_id: greater_essence_haste
+  guaranteed_mod_id: crafted_greater_haste_attack_speed
+  family_id: value_increased_attack_speed
+  side: suffix
+  modifier_level: 48
+  description: (23–25)% increased Attack Speed
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - value_increased_attack_speed
+  tags:
+  - attack
+  - speed
+  tier: 1
+- operation_id: greater_essence_seeking
+  guaranteed_mod_id: crafted_greater_seeking_critical_hit_chance
+  family_id: value_to_critical_hit_chance
+  side: suffix
+  modifier_level: 35
+  description: +(3.11–3.8)% to Critical Hit Chance
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - value_to_critical_hit_chance
+  tags:
+  - attack
+  - critical
+  tier: 1
+- operation_id: greater_essence_infinite
+  guaranteed_mod_id: crafted_greater_infinite_attribute
+  family_id: value_to_attribute_choice
+  side: suffix
+  modifier_level: 44
+  description: +(25–27) to Strength, Dexterity or Intelligence
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - crafted_attribute_choice
+  tags:
+  - attribute
+  tier: 1
+perfect:
+- operation_id: perfect_essence_abrasion
+  guaranteed_mod_id: crafted_perfect_abrasion_extra_physical
+  family_id: prefix_extra_physical
+  side: prefix
+  modifier_level: 57
+  description: Gain (25–33)% of Damage as Extra Physical Damage
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - crafted_extra_physical_damage
+  tags:
+  - damage
+  - physical
+  - attack
+  tier: 1
+- operation_id: perfect_essence_flames
+  guaranteed_mod_id: crafted_perfect_flames_extra_fire
+  family_id: prefix_extra_fire
+  side: prefix
+  modifier_level: 57
+  description: Gain (25–33)% of Damage as Extra Fire Damage
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - crafted_extra_fire_damage
+  tags:
+  - damage
+  - fire
+  - attack
+  tier: 1
+- operation_id: perfect_essence_ice
+  guaranteed_mod_id: crafted_perfect_ice_extra_cold
+  family_id: prefix_extra_cold
+  side: prefix
+  modifier_level: 57
+  description: Gain (25–33)% of Damage as Extra Cold Damage
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - crafted_extra_cold_damage
+  tags:
+  - damage
+  - cold
+  - attack
+  tier: 1
+- operation_id: perfect_essence_electricity
+  guaranteed_mod_id: crafted_perfect_electricity_extra_lightning
+  family_id: prefix_extra_lightning
+  side: prefix
+  modifier_level: 57
+  description: Gain (25–33)% of Damage as Extra Lightning Damage
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - crafted_extra_lightning_damage
+  tags:
+  - damage
+  - lightning
+  - attack
+  tier: 1
+- operation_id: perfect_essence_battle
+  guaranteed_mod_id: crafted_perfect_battle_attack_skills
+  family_id: suffix_all_attack_skills
+  side: suffix
+  modifier_level: 57
+  description: +3 to Level of all Attack Skills
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - crafted_all_attack_skills
+  tags:
+  - attack
+  - gem
+  tier: 1
+- operation_id: perfect_essence_haste
+  guaranteed_mod_id: crafted_perfect_haste_onslaught
+  family_id: suffix_onslaught_on_kill
+  side: suffix
+  modifier_level: 57
+  description: (20–25)% chance to gain Onslaught on Killing Hits with this Weapon
+  crafted: true
+  counts_for_success: false
+  item_classes:
+  - quarterstaff
+  group_ids:
+  - crafted_onslaught_on_kill
+  tags:
+  - attack
+  - speed
+  tier: 1
+rules:
+  greater:
+    input_rarity:
+    - magic
+    output_rarity: rare
+    retain_existing_modifiers: true
+    remove_count: 0
+    add_count: 1
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - result_side_capacity_free
+  perfect:
+    input_rarity:
+    - rare
+    output_rarity: rare
+    remove_count: 1
+    add_count: 1
+    prevalidate:
+    - family_absent
+    - crafted_capacity_free
+    - filtered_removal_pool_nonempty
+    sequence:
+    - validate_all
+    - remove
+    - rebuild_state
+    - add_guaranteed_crafted_mod
+identity_contract:
+  perfect_essence_families_are_distinct_from_ordinary_families: true
+  perfect_essence_outputs_are_terminal_neutral: true
+  perfect_essence_outputs_consume_affix_slot: true
+  all_essence_outputs_consume_crafted_capacity: true
+  conflict_rule: family_id or intersecting group_ids
+  crafted_single_tier_essence_tier: 1

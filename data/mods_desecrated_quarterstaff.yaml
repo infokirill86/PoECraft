@@ -1,0 +1,443 @@
+schema_version: 2
+dataset_id: quarterstaff_exclusive_desecrated_v1
+item_class: quarterstaff
+expected:
+  families: 16
+  prefix_families: 8
+  suffix_families: 8
+  tier_per_family: 1
+  modifier_level: 65
+  empty_tag_rows: 0
+modifiers:
+- mod_id: desecrated_amanamu_fire_pen
+  family_id: desecrated_amanamu_fire_pen
+  side: prefix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: amanamu
+  description: Attacks with this Weapon Penetrate (15–25)% Fire Resistance
+  tags:
+  - damage
+  - fire
+  - attack
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_amanamu_fire_pen
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_amanamu_damage_broken_armour
+  family_id: desecrated_amanamu_damage_broken_armour
+  side: prefix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: amanamu
+  description: (41–59)% increased Damage against Enemies with Fully Broken Armour
+  tags:
+  - damage
+  - attack
+  - armour
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_amanamu_damage_broken_armour
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_kurgal_cold_pen
+  family_id: desecrated_kurgal_cold_pen
+  side: prefix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: kurgal
+  description: Attacks with this Weapon Penetrate (15–25)% Cold Resistance
+  tags:
+  - damage
+  - cold
+  - attack
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_kurgal_cold_pen
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_kurgal_phys_slow
+  family_id: desecrated_kurgal_phys_slow
+  side: prefix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: kurgal
+  description: (110–154)% increased Physical Damage; 15% reduced Attack Speed
+  tags:
+  - damage
+  - physical
+  - attack
+  - speed
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_kurgal_phys_slow
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_kurgal_empowered_attack_damage
+  family_id: desecrated_kurgal_empowered_attack_damage
+  side: prefix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: kurgal
+  description: Empowered Attacks deal (41–59)% increased Damage
+  tags:
+  - damage
+  - attack
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_kurgal_empowered_attack_damage
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_ulaman_lightning_pen
+  family_id: desecrated_ulaman_lightning_pen
+  side: prefix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: ulaman
+  description: Attacks with this Weapon Penetrate (15–25)% Lightning Resistance
+  tags:
+  - damage
+  - lightning
+  - attack
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_ulaman_lightning_pen
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_ulaman_melee_totem_limit
+  family_id: desecrated_ulaman_melee_totem_limit
+  side: prefix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: ulaman
+  description: Melee Attack Skills have +1 to maximum number of Summoned Totems
+  tags:
+  - attack
+  - melee
+  - totem
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_ulaman_melee_totem_limit
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_ulaman_damage_with_totem
+  family_id: desecrated_ulaman_damage_with_totem
+  side: prefix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: ulaman
+  description: (41–59)% increased Damage while you have a Totem
+  tags:
+  - damage
+  - totem
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_ulaman_damage_with_totem
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_amanamu_spirit_reservation
+  family_id: desecrated_amanamu_spirit_reservation
+  side: suffix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: amanamu
+  description: (5–10)% increased Spirit Reservation Efficiency of Skills
+  tags:
+  - spirit
+  - reservation
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_amanamu_spirit_reservation
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_amanamu_armour_break
+  family_id: desecrated_amanamu_armour_break
+  side: suffix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: amanamu
+  description: Break Armour equal to (2–4)% of Physical Damage dealt
+  tags:
+  - physical
+  - attack
+  - armour
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_amanamu_armour_break
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_amanamu_additional_fissure
+  family_id: desecrated_amanamu_additional_fissure
+  side: suffix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: amanamu
+  description: Skills which create Fissures have a (15–25)% chance to create an additional Fissure
+  tags:
+  - attack
+  - fissure
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_amanamu_additional_fissure
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_amanamu_additional_aftershock
+  family_id: desecrated_amanamu_additional_aftershock
+  side: suffix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: amanamu
+  description: (10–16)% chance for Mace Slam Skills you use yourself to cause an additional Aftershock
+  tags:
+  - attack
+  - melee
+  - slam
+  - aftershock
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_amanamu_additional_aftershock
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_kurgal_attack_cost_efficiency
+  family_id: desecrated_kurgal_attack_cost_efficiency
+  side: suffix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 2
+  lich_tag: kurgal
+  description: (8–15)% increased Cost Efficiency of Attacks
+  tags:
+  - attack
+  - cost
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_kurgal_attack_cost_efficiency
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_kurgal_warcry_cooldown
+  family_id: desecrated_kurgal_warcry_cooldown
+  side: suffix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: kurgal
+  description: (17–25)% increased Warcry Cooldown Recovery Rate
+  tags:
+  - warcry
+  - cooldown
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_kurgal_warcry_cooldown
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_ulaman_mana_to_life_cost
+  family_id: desecrated_ulaman_mana_to_life_cost
+  side: suffix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: ulaman
+  description: (15–20)% of Skill Mana Costs Converted to Life Costs
+  tags:
+  - mana
+  - life
+  - cost
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_ulaman_mana_to_life_cost
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+- mod_id: desecrated_ulaman_totem_placement_speed
+  family_id: desecrated_ulaman_totem_placement_speed
+  side: suffix
+  tier: 1
+  modifier_level: 65
+  generation_weight: 1
+  lich_tag: ulaman
+  description: (17–25)% increased Totem Placement Speed
+  tags:
+  - totem
+  - speed
+  item_classes:
+  - quarterstaff
+  exclusive_desecrated: true
+  group_ids:
+  - desecrated_ulaman_totem_placement_speed
+  source_ids:
+  - poe2db_desecrated
+  - user_quarterstaff_pool_screenshot
+  counts_for_success: false
+  result_flags:
+    desecrated: true
+    revealed: true
+  provenance:
+    runtime_status: approved_project_data
+    checked_at: '2026-06-25'
+weight_contract:
+  runtime_status: APPROVED_PROJECT_DATA
+  interpretation: generation_weight values in this file are authoritative for the simulator
+  provenance_required_for_future_changes: true
+  conflicting_external_values_must_be_user_reviewed: true

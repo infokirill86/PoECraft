@@ -1,0 +1,57 @@
+schema_version: 2
+tier_convention: T1 is strongest; T3+ means tier <= 3.
+family_sets:
+  physical_top_families:
+  - adds_value_to_value_physical_damage
+  - value_increased_physical_damage
+  - value_increased_physical_damage_value_to_accuracy_rating
+  elemental_flat_families:
+  - adds_value_to_value_fire_damage
+  - adds_value_to_value_cold_damage
+  - adds_value_to_value_lightning_damage
+  top_final_suffix_families:
+  - value_increased_attack_speed
+  - value_to_critical_damage_bonus
+single_families:
+  critical_hit_chance: value_to_critical_hit_chance
+  all_melee_skills: value_to_level_of_all_melee_skills
+evaluation_order:
+- TOP
+- ACCEPTABLE
+- NOT_SUCCESS
+TOP:
+  occupied_explicit_slots: 6
+  prefixes:
+    distinct_from_set:
+      set: physical_top_families
+      count: 3
+      all_max_tier: 3
+      at_least_one_max_tier: 2
+  suffixes:
+  - family: critical_hit_chance
+    max_tier: null
+  - family: all_melee_skills
+    max_tier: 3
+  - one_from_set: top_final_suffix_families
+    max_tier: 3
+ACCEPTABLE:
+  occupied_explicit_slots: 6
+  prefixes:
+    physical_top:
+      distinct_count: 2
+      one_max_tier: 2
+      other_max_tier: 3
+    third_prefix:
+      one_from_union:
+      - physical_top_families
+      - elemental_flat_families
+      max_tier: 3
+      distinct_from_selected_physical_families: true
+  suffixes:
+  - family: critical_hit_chance
+    max_tier: null
+  - family: all_melee_skills
+    max_tier: 3
+  - any_third_suffix: true
+origin_flags_affect_success: false
+status: READY

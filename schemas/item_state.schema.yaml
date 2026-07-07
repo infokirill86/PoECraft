@@ -1,0 +1,139 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: poe2-quarterstaff-item-state
+type: object
+required:
+- item_class
+- rarity
+- item_level
+- modifiers
+- augment_socket_capacity
+- augment_socket_used
+- astrid_installed
+properties:
+  item_class:
+    const: quarterstaff
+  rarity:
+    enum:
+    - normal
+    - magic
+    - rare
+  item_level:
+    type: integer
+    minimum: 1
+  modifiers:
+    type: array
+    maxItems: 6
+    items:
+      type: object
+      required:
+      - mod_id
+      - crafted
+      - desecrated
+      - fractured
+      properties:
+        mod_id:
+          type: string
+          description: Stable ID resolvable through the canonical static modifier
+            index.
+        crafted:
+          type: boolean
+        desecrated:
+          type: boolean
+        fractured:
+          type: boolean
+      additionalProperties: false
+      description: Installed modifier instance. Only identity and instance flags are
+        stored; static metadata is resolved from the approved modifier index.
+  unrevealed_desecrated:
+    oneOf:
+    - type: 'null'
+    - type: object
+      required:
+      - side
+      - jawbone_id
+      - reveal_mml
+      - lich_tag_constraint
+      properties:
+        side:
+          enum:
+          - prefix
+          - suffix
+        jawbone_id:
+          enum:
+          - gnawed_jawbone
+          - preserved_jawbone
+          - ancient_jawbone
+        reveal_mml:
+          type:
+          - integer
+          - 'null'
+        lich_tag_constraint:
+          enum:
+          - amanamu
+          - kurgal
+          - ulaman
+          - null
+      additionalProperties: false
+  augment_socket_capacity:
+    type: integer
+    minimum: 0
+  augment_socket_used:
+    type: integer
+    minimum: 0
+  astrid_installed:
+    type: boolean
+additionalProperties: false
+derived:
+  rarity_capacity:
+    normal:
+      prefix: 0
+      suffix: 0
+    magic:
+      prefix: 1
+      suffix: 1
+    rare:
+      prefix: 3
+      suffix: 3
+  crafted_modifier_limit: 1 + int(astrid_installed)
+  desecrated_modifier_limit: 1
+x-runtime-invariants:
+  rarity_capacities:
+    normal:
+      prefix: 0
+      suffix: 0
+      total: 0
+    magic:
+      prefix: 1
+      suffix: 1
+      total: 2
+    rare:
+      prefix: 3
+      suffix: 3
+      total: 6
+  placeholder_counts_as_affix: true
+  prefix_count_includes_prefix_placeholder: true
+  suffix_count_includes_suffix_placeholder: true
+  total_explicit_count_includes_placeholder: true
+  crafted_count_lte: 1 + int(astrid_installed)
+  desecrated_count_including_placeholder_lte: 1
+  duplicate_family_ids_forbidden: true
+  intersecting_installed_group_ids_forbidden: true
+  fractured_instances_immutable_and_not_removable: true
+  astrid_requires_used_augment_socket: true
+title: PoE2 Quarterstaff Canonical ItemState v7.1
+description: Canonical installed modifier representation is mod_id plus instance flags.
+  Static side/family/group/tier/level/tag facts are resolved through tools/modifier_index.py.
+x-static-resolution-contract:
+  canonical_state_shape: mod_id_plus_instance_flags
+  resolver: tools/modifier_index.py::build_modifier_index
+  resolved_fields:
+  - family_id
+  - side
+  - group_ids
+  - tier
+  - modifier_level
+  - tags
+  - lich_tag
+  unknown_mod_id: VALIDATION_ERROR
+  yaml_loader_requirement: must_resolve_standard_anchors_and_aliases
+  crafted_single_tier_essence_tier: 1
