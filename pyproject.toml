@@ -1,4 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "poecraft-p2c"
+version = "0.0.0"
+description = "P2C project-model crafting runtime and audit harness."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "PyYAML>=6.0,<7",
+    "jsonschema>=4.0,<5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<9",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["p2c_engine*"]
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]
-testpaths = ["tests/monte_carlo"]
+testpaths = [
+    "tests/decisions",
+    "tests/domain",
+    "tests/legality",
+    "tests/monte_carlo",
+    "tests/sampling",
+    "tests/static_data",
+]
 addopts = "-ra"
