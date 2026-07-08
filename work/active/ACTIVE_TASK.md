@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "17089680b1149cff8f05d1b84b9b55e247d64452"
-updated_at_utc: "2026-07-08T15:40:23Z"
+repo_head_at_last_update: "be9406d2b5ed9f21ec61f9f357e5af5529c547b5"
+updated_at_utc: "2026-07-08T15:52:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M34B1_IMPLEMENTATION"
 
-allowed_next_action: "claude_audit_m34b1_implementation"
+allowed_next_action: "chatgpt_user_gate_decision_on_m34b1_implementation"
 forbidden_next_actions:
   - "accept_m34b1_without_chatgpt_user_gate"
   - "start_m34c"
@@ -71,10 +71,11 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of proposed M34-B1 implementation.
+Current live task: ChatGPT/User gate decision on the M34-B1 implementation.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M34B1_Result_Codex_v1/`.
+Allowed next action: decide acceptance of M34-B1. Claude audit verdict: GO
+(`reviews/P2C_M34B1_Implementation_Audit_Claude_v1.md`).
 
-M34-B1 is proposed only until Claude audit and ChatGPT/User acceptance.
+M34-B1 is proposed only until ChatGPT/User acceptance.
