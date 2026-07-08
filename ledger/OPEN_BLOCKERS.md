@@ -18,3 +18,17 @@ GitHub Layer A import fidelity is no longer the blocker. The repo baseline impor
 This does not close the broader SOURCE/PROVENANCE blocker. It only closes the GitHub migration/import-fidelity question.
 
 M26-M30 operation-mechanics blueprint is currently context/open, not accepted source.
+
+## Clarification after M33 acceptance
+
+Full M33 oracle-convergence validation is accepted only for the accepted `ordinary_add` scope.
+
+M33 acceptance does not close:
+
+- Source/provenance closure.
+- MML closure.
+- PD-013 closure.
+- Public numeric release.
+- Future multi-seed convergence-rate validation.
+- Future sequence / multi-step validation.
+- Future operation-expansion validation.

@@ -14,15 +14,15 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M32 seeded MC harness (Layer B): accepted.
 - A1/A2 baseline hygiene: accepted.
 - Supervised auto-run protocol metadata: accepted as safe documentation-only metadata.
-- M33-P0 oracle-convergence foundation: accepted as partial only, not full M33.
-- M33-P1 statistical convergence delta: ready for Claude audit; proposed, not accepted.
+- M33-P0 oracle-convergence foundation: accepted.
+- M33-P1 statistical convergence delta: accepted.
+- Full M33 oracle-convergence validation: accepted as completed for accepted `ordinary_add` only.
 
 ## Next gate
 
-- Claude audit of `packages/proposed/P2C_M33_P1_Statistical_Convergence_Result_Codex_v1/`.
-- ChatGPT/User gate decision after Claude audit.
-- M34 remains closed.
+- Explicit ChatGPT/User authorization is required before M34 starts.
+- M34 remains closed in this commit.
 
 ## Not authorized / still open
 
-New executable mechanics; optimizer/advice/ranking; public numeric release; server-truth claims; source/provenance closure; MML closure; PD-013 closure; MC execution of unaccepted operations.
+New executable mechanics beyond accepted scope; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; MML closure; PD-013 closure; MC execution of unaccepted operations.
