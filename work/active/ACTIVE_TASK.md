@@ -1,29 +1,32 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "a12d5819d272422ae29a071775ab15003e6cd88f"
-updated_at_utc: "2026-07-09T08:20:00Z"
+repo_head_at_last_update: "382e53bb54e228bb9f4193ddc2d44c302c257a83"
+updated_at_utc: "2026-07-08T21:43:09Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "REPO_INTEGRITY_SHA_FLOOR"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M36A_HETEROGENEOUS_CHAIN_RUNTIME"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_repo_integrity_sha_floor"
+allowed_next_action: "claude_audit_m36a_heterogeneous_chain_runtime"
 forbidden_next_actions:
-  - "implement_m36a"
-  - "implement_heterogeneous_chain_runtime"
+  - "accept_m36a_without_chatgpt_user_gate"
+  - "implement_chains_longer_than_two"
+  - "implement_route_planner"
+  - "implement_chaos_runtime"
+  - "implement_essence_fracture_desecrate_jawbone_or_reveal_runtime"
   - "implement_new_executable_operation"
-  - "change_mechanics_or_data_semantics"
-  - "enable_github_actions"
-  - "enable_supervised_auto_run_or_watcher_automation"
+  - "implement_annulment_variants_or_omens"
   - "optimizer_advice_ranking_economics_ev"
   - "release_public_numeric_probabilities"
   - "close_source_provenance_mml_or_pd013"
-  - "self_accept_repo_integrity_sha_floor"
+  - "enable_github_actions"
+  - "enable_supervised_auto_run_or_watcher_automation"
+  - "self_accept_m36a"
 
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_Repo_Integrity_SHA_Floor_Codex_v1/"
+current_result_path: "packages/proposed/P2C_M36A_Heterogeneous_Chain_Runtime_Result_Codex_v1/"
 current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
@@ -63,16 +66,16 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if M36-A implementation or heterogeneous-chain runtime would be started."
-  - "Stop if any new executable operation, mechanics/data semantic change, public numeric release, optimizer/economics/advice, automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure appears."
+  - "Stop if M36-A acceptance would be recorded without ChatGPT/User gate."
+  - "Stop if chains longer than two, route planning, a new operation, public numeric release, optimizer/economics/advice, GitHub Actions, watcher automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure appears."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the repo-integrity SHA floor.
+Current live task: Claude audit of M36-A heterogeneous-chain runtime.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: Claude.
 
-Allowed next action: decide. Claude audit verdict: GO WITH CHANGES — updater tool + rule correct, but the floor was delivered with a still-drifted manifest (I regenerated it) and needs a pre-push hook for enforcement (`reviews/P2C_Repo_Integrity_SHA_Floor_Audit_Claude_v1.md`).
+Allowed next action: audit `packages/proposed/P2C_M36A_Heterogeneous_Chain_Runtime_Result_Codex_v1/`.
 
-M36 heterogeneous-chain design is accepted as design-only. M36-A implementation remains closed pending a separate explicit ChatGPT/User gate.
+M36-A is proposed, not accepted. The implementation is limited to fixed two-step chains over accepted `ordinary_add` and accepted base Annulment only.

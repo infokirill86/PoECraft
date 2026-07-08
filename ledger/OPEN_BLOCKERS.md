@@ -89,3 +89,18 @@ This does not close:
 - Additional executable operation admission.
 - Optimizer / advice / ranking / EV-as-decision.
 - Automation / GitHub Actions / supervised auto-run.
+
+## Clarification after Repo Integrity SHA Floor acceptance
+
+The deterministic root `SHA256SUMS.txt` updater and generated-manifest rule are accepted. Local pre-push hook enforcement is authorized as part of the M36-A implementation wave.
+
+This does not close:
+
+- Source/provenance closure.
+- MML closure.
+- PD-013 closure.
+- Public numeric release.
+- M36-A runtime acceptance.
+- Additional executable operation admission.
+- Optimizer / advice / ranking / EV-as-decision.
+- GitHub Actions / watcher automation / supervised auto-run.

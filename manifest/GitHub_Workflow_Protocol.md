@@ -23,6 +23,15 @@ python tools/check_sha256sums.py SHA256SUMS.txt
 
 If either command fails, stop and fix the integrity issue before pushing.
 
+Local hook enforcement is provided by the committed hook at `tools/hooks/pre-push`.
+Enable it in a local clone with:
+
+```bash
+git config core.hooksPath tools/hooks
+```
+
+This is local Git hook enforcement only. It is not GitHub Actions, not a watcher, and not supervised auto-run.
+
 ## Supervised auto-run metadata
 
 `work/active/ACTIVE_TASK.md` may include an optional `automation` block. The block is descriptive control metadata, not automation by itself.

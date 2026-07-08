@@ -1,0 +1,17 @@
+#!/bin/sh
+set -eu
+
+repo_root="$(git rev-parse --show-toplevel)"
+cd "$repo_root"
+
+echo "P2C pre-push: regenerating root SHA256SUMS.txt"
+python tools/update_sha256sums.py
+
+if ! git diff --quiet -- SHA256SUMS.txt || ! git diff --cached --quiet -- SHA256SUMS.txt; then
+  echo "P2C pre-push: SHA256SUMS.txt was changed by tools/update_sha256sums.py."
+  echo "P2C pre-push: stage and commit the regenerated SHA256SUMS.txt, then push again."
+  exit 1
+fi
+
+echo "P2C pre-push: verifying root SHA256SUMS.txt"
+python tools/check_sha256sums.py SHA256SUMS.txt

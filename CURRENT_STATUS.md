@@ -1,6 +1,6 @@
 # P2C - CURRENT STATUS
 
-last_updated: 2026-07-08
+last_updated: 2026-07-09
 
 Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_Manifest_v4.md.
 
@@ -28,11 +28,12 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - Operation Inventory & Admission Reconciliation: accepted after Claude GO audit; active catalog metadata is now explicitly separated from executable runtime admission.
 - Operation Runtime Admission Metadata Correction Floor: accepted after Claude GO WITH CHANGES audit; `runtime_admission_status` is the accepted explicit operation runtime-admission metadata field, and Claude's root `SHA256SUMS.txt` correction is accepted.
 - M36 heterogeneous-chain design: accepted after Claude GO WITH CHANGES audit as design-only; M36-A implementation remains closed pending a separate explicit gate.
-- Repo Integrity SHA Floor: authorized to stop recurring root `SHA256SUMS.txt` drift with a minimal deterministic updater and required pre-push check.
+- Repo Integrity SHA Floor: accepted after Claude GO WITH CHANGES audit; deterministic root `SHA256SUMS.txt` updater and generated-manifest rule are accepted.
+- M36-A heterogeneous-chain runtime: proposed implementation produced for Claude audit; includes local pre-push SHA hook plus fixed two-step chains over accepted `ordinary_add` and base Annulment only.
 
 ## Next gate
 
-- Claude audit is required for the Repo Integrity SHA Floor before opening M36-A.
+- Claude audit is required for M36-A heterogeneous-chain runtime before acceptance.
 - Full M35, Annulment variants/omens, additional operations, heterogeneous operation chains, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
