@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "b085bfca15b312c1f840114cc9133b7c6b2c59e1"
-updated_at_utc: "2026-07-08T17:54:44Z"
+repo_head_at_last_update: "2a2d55be76b798b5c5aa738c1c2c2c920f2eac27"
+updated_at_utc: "2026-07-08T18:02:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M35A_ANNULMENT_RUNTIME"
 
-allowed_next_action: "claude_audit_m35a_annulment_runtime"
+allowed_next_action: "chatgpt_user_gate_decision_on_m35a_annulment_runtime"
 forbidden_next_actions:
   - "accept_annulment_as_executable"
   - "self_accept_m35a"
@@ -72,10 +72,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of M35-A Annulment Runtime Admission implementation.
+Current live task: ChatGPT/User gate decision on the M35-A Annulment runtime.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M35A_Annulment_Runtime_Result_Codex_v1/`.
+Allowed next action: decide acceptance of Annulment runtime. Claude audit verdict: GO (`reviews/P2C_M35A_Annulment_Runtime_Audit_Claude_v1.md`).
 
 Annulment runtime is proposed only and is not accepted until Claude audit and ChatGPT/User gate.
