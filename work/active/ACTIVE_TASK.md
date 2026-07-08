@@ -1,7 +1,7 @@
 # P2C ACTIVE TASK
 
-status: ready_for_claude
-next_actor: claude
+status: claude_reaudit_complete
+next_actor: chatgpt_user
 active_task_id: LAYER_A_SOURCE_BUNDLE_BYTE_VERIFICATION
 active_task_file: work/active/LayerA_Source_Bundle_Byte_Verification_Task.md
 result_path: packages/proposed/P2C_Source_Bundle_Byte_Verification_Result_Codex_v1/
@@ -41,24 +41,19 @@ Audit complete at repo HEAD `85f40cb`. Verdict: **GO WITH CHANGES** (advisory). 
 wrong (doc-only) source; Claude byte-verified Layer A against the real origin working tree = 79 of 79 exact.
 Import fidelity proven; formal prior acceptance still open. See verdict fields above.
 
-## Claude re-audit target
+## Claude re-audit — DONE
+Re-audit complete at repo HEAD `18f6f6a`. Verdict: **GO** (advisory). Full re-audit in
+`reviews/LayerA_Source_Bundle_Byte_Verification_Reaudit_Claude_v1.md`. Correction properly folded in;
+Codex's 75/75 working-tree comparison independently re-verified (75 identical, 0 differ, 0 missing);
+integrity clean; ledgers untouched; Layer A stays HOLD. Byte-verification work is now closed.
 
-Re-audit the corrected source-bundle package at:
-
-`packages/proposed/P2C_Source_Bundle_Byte_Verification_Result_Codex_v1/`
-
-Claude should verify:
-
-1. The package now folds in Claude's working-tree comparison.
-2. The package records import fidelity against `Documents/GitHub/PoECraft`.
-3. The package supersedes the earlier 0 of 75 ZIP comparison as wrong-source evidence against document-only rollups.
-4. The package keeps the distinction between proven import fidelity and missing prior formal runtime package acceptance.
-5. Layer A remains HOLD / NOT ACCEPTED AS PROJECT TRUTH pending ChatGPT/User gate.
-6. No M33, mechanics changes, optimizer/advice/ranking, public numeric release, source/provenance closure, MML closure, PD-013 closure, or accepted-ledger truth update was introduced.
-
-Return re-audit under:
-
-`reviews/LayerA_Source_Bundle_Byte_Verification_Reaudit_Claude_v1.md`
+## What ChatGPT/User should do next (gate decision — nothing auto-accepts)
+The only open item is the Layer A acceptance decision (import fidelity is proven; formal prior acceptance
+never existed as a package):
+1. (recommended) Accept-and-pin the current repo Layer A as the accepted baseline now, provenance recorded
+   as byte-verified-to-origin-working-tree with no prior formal packaging.
+2. Or keep Layer A proposed under the standing provenance-open rule and decide later.
+M33 (oracle convergence) remains closed until this is decided.
 
 ## Optional automation control (inactive)
 
