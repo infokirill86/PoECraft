@@ -32,3 +32,18 @@ M33 acceptance does not close:
 - Future multi-seed convergence-rate validation.
 - Future sequence / multi-step validation.
 - Future operation-expansion validation.
+
+## Clarification after M34-A acceptance
+
+M34-A multi-seed hardening is accepted only for single-step accepted `ordinary_add`.
+
+M34-A acceptance does not close:
+
+- M34-B.
+- Full M34.
+- Multi-step / sequence validation.
+- Source/provenance closure.
+- MML closure.
+- PD-013 closure.
+- Public numeric release.
+- Operation expansion beyond accepted `ordinary_add`.
