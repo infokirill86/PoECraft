@@ -15,6 +15,7 @@ Keep compact. This is not proof by itself; active audits require real bytes.
 | M34 design | MC-hardening design/definition | accepted as plan - User gate 2026-07-08 after Claude GO audit | design-only plan; recommends M34-A before M34-B; does not authorize M34-B or full M34 acceptance | packages/proposed/P2C_M34_MC_Hardening_Design_Definition_Codex_v1 |
 | M34-A | Multi-seed single-step MC hardening | accepted - User gate 2026-07-08 after Claude GO audit | accepted pinned contract: seeds 34001/34002/34003; tiers 512/2048/8192; tolerance multiplier 6; deterministic replay; hard-fail breach diagnostics; negative-control failure proof | packages/proposed/P2C_M34A_Multi_Seed_MC_Hardening_Result_Codex_v1 |
 | Workflow | ACTIVE_TASK_SCHEMA_V2 | accepted as workflow-hygiene dispatcher standard - User gate 2026-07-08 after Claude GO audit | thin YAML/frontmatter dispatcher; one live status/next_actor/allowed_next_action; no history log; standing boundaries referenced from manifest; read receipts required in Codex packages and Claude reviews; automation manual/disabled; validator deferred | packages/proposed/P2C_ACTIVE_TASK_SCHEMA_V2_Result_Codex_v1 + reviews/P2C_ACTIVE_TASK_SCHEMA_V2_Audit_Claude_v1.md |
+| M34-B design | Two-step accepted-ordinary-add sequence hardening plan | accepted as plan - User gate 2026-07-08 after Claude GO audit | design-only plan; authorizes M34-B1 implementation only after separate user gate; exactly two accepted `ordinary_add` steps; no planner/optimizer/economics/public numeric release | packages/proposed/P2C_M34B_Design_Codex_v1 + reviews/P2C_M34B_Design_Audit_Claude_v1.md |
 
 ## Note
 
@@ -27,3 +28,5 @@ M34 design acceptance is plan acceptance only. M34-A/M34-B/full M34 require sepa
 M34-A acceptance does not accept M34-B or full M34 and does not authorize multi-step/sequence validation.
 
 ACTIVE_TASK_SCHEMA_V2 acceptance is workflow hygiene only. It does not accept project truth, does not start M34-B, does not enable automation, and does not implement the deferred validator.
+
+M34-B design acceptance authorizes M34-B1 implementation only. It does not accept the implementation result, full M34, sequences longer than two steps, operation expansion, optimizer/advice/ranking/economics/EV, or public numeric probability release.

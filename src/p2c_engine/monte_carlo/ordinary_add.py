@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections import Counter
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
+from fractions import Fraction
 from typing import Any
 
 from p2c_engine.canonical.hashes import sha256_canonical
@@ -22,6 +23,7 @@ from p2c_engine.static_data.game_data import StaticGameData
 
 
 MC_HARNESS_SCHEMA_VERSION = "p2c.m32.seeded_mc_harness.v1"
+M34B1_SEQUENCE_SCHEMA_VERSION = "p2c.m34b1.two_step_ordinary_add.v1"
 MC_OPERATION_ID = "ordinary_add"
 ORDINARY_ADD_SEMANTICS_VERSION = "p2c.m16.ordinary_add.v1"
 M32_VALUE_POLICY = "public_reports_are_numeric_probability_free_counts_hashes_statuses_only"
@@ -124,6 +126,125 @@ class MonteCarloRunResult:
         return payload
 
 
+@dataclass(frozen=True, slots=True)
+class OrdinaryAddSequenceStepTrace:
+    step_index: int
+    outcome: str
+    pre_state_hash: str
+    post_state_hash: str
+    decision_id: str | None
+    selected_mod_id: str | None
+    candidate_count: int
+    candidate_digest: str | None
+
+    def public_payload(self) -> dict[str, object]:
+        return {
+            "step_index": self.step_index,
+            "outcome": self.outcome,
+            "pre_state_hash": self.pre_state_hash,
+            "post_state_hash": self.post_state_hash,
+            "decision_id": self.decision_id,
+            "selected_mod_id": self.selected_mod_id,
+            "candidate_count": self.candidate_count,
+            "candidate_digest": self.candidate_digest,
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class OrdinaryAddSequenceTrajectory:
+    sample_index: int
+    outcome: str
+    initial_state_hash: str
+    terminal_state_hash: str
+    steps: tuple[OrdinaryAddSequenceStepTrace, ...]
+
+    def public_payload(self) -> dict[str, object]:
+        return {
+            "sample_index": self.sample_index,
+            "outcome": self.outcome,
+            "initial_state_hash": self.initial_state_hash,
+            "terminal_state_hash": self.terminal_state_hash,
+            "steps": [step.public_payload() for step in self.steps],
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class OrdinaryAddSequenceRunResult:
+    schema_version: str
+    run_id: str
+    seed: int
+    sample_count: int
+    operation_sequence_id: str
+    operation_ids: tuple[str, str]
+    rng_stream_version: int
+    sampling_algorithm_id: str
+    source_fingerprint: str
+    semantic_fingerprint: str
+    code_version: str
+    trajectories: tuple[OrdinaryAddSequenceTrajectory, ...]
+    decisions: tuple[DecisionRecord, ...]
+    result_hash: str
+
+    def public_summary(self) -> dict[str, object]:
+        terminal_state_hashes = {
+            trajectory.terminal_state_hash for trajectory in self.trajectories
+        }
+        return {
+            "schema_version": self.schema_version,
+            "status": "PASS",
+            "numeric_probability_free": True,
+            "public_numeric_release": False,
+            "probability_values_printed": False,
+            "value_policy": M32_VALUE_POLICY,
+            "run_id": self.run_id,
+            "seed": self.seed,
+            "sample_count": self.sample_count,
+            "operation_sequence_id": self.operation_sequence_id,
+            "operation_ids": self.operation_ids,
+            "rng_stream_version": self.rng_stream_version,
+            "sampling_algorithm_id": self.sampling_algorithm_id,
+            "source_fingerprint": self.source_fingerprint,
+            "semantic_fingerprint": self.semantic_fingerprint,
+            "code_version": self.code_version,
+            "trajectory_count": len(self.trajectories),
+            "decision_count": len(self.decisions),
+            "terminal_state_hash_count": len(terminal_state_hashes),
+            "result_hash": self.result_hash,
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class ExactSequenceStep:
+    step_index: int
+    outcome: str
+    pre_state_hash: str
+    post_state_hash: str
+    decision_id: str | None
+    selected_mod_id: str | None
+    candidate_count: int
+    candidate_digest: str | None
+    probability_numerator: int
+    probability_denominator: int
+
+
+@dataclass(frozen=True, slots=True)
+class ExactSequencePath:
+    path_key: tuple[str | None, str | None]
+    terminal_state_hash: str
+    steps: tuple[ExactSequenceStep, ExactSequenceStep]
+    probability_numerator: int
+    probability_denominator: int
+
+
+@dataclass(frozen=True, slots=True)
+class ExactTerminalOption:
+    terminal_state_hash: str
+    probability_numerator: int
+    probability_denominator: int
+    path_count: int
+    path_keys: tuple[tuple[str | None, str | None], ...]
+
+
 PoolBuilder = Callable[[OrdinaryAddPoolRequest, StaticGameData], Any]
 
 
@@ -222,6 +343,273 @@ class OrdinaryAddMonteCarloHarness:
             candidate_digest=decision.record.candidate_digest,
         )
 
+    def enumerate_two_step_paths(
+        self,
+        *,
+        initial_state: ItemState,
+        first_operation: OrdinaryAddOperation,
+        second_operation: OrdinaryAddOperation,
+        decision_id_prefix: str,
+        max_exact_paths: int,
+    ) -> tuple[ExactSequencePath, ...]:
+        self._validate_two_step_operations(first_operation, second_operation)
+        if not isinstance(max_exact_paths, int) or max_exact_paths <= 0:
+            raise SamplingContractDefect("max_exact_paths must be a positive integer")
+
+        frontier: tuple[
+            tuple[ItemState, Fraction, tuple[ExactSequenceStep, ...], tuple[str | None, ...]],
+            ...
+        ] = ((initial_state, Fraction(1, 1), (), ()),)
+        for step_index, operation in enumerate((first_operation, second_operation)):
+            next_frontier: list[
+                tuple[ItemState, Fraction, tuple[ExactSequenceStep, ...], tuple[str | None, ...]]
+            ] = []
+            for state, probability, steps, path_key in frontier:
+                pre_hash = state.state_hash()
+                pool = self.build_pool(state, operation)
+                decision_id = (
+                    f"{decision_id_prefix}.step_{step_index}."
+                    f"{operation.operation_id}.{operation.mode_id}"
+                )
+                if not pool.candidates:
+                    step = ExactSequenceStep(
+                        step_index=step_index,
+                        outcome="no_transition",
+                        pre_state_hash=pre_hash,
+                        post_state_hash=pre_hash,
+                        decision_id=None,
+                        selected_mod_id=None,
+                        candidate_count=0,
+                        candidate_digest=None,
+                        probability_numerator=1,
+                        probability_denominator=1,
+                    )
+                    next_frontier.append(
+                        (state, probability, steps + (step,), path_key + (None,))
+                    )
+                    continue
+
+                options = branch_options(decision_id, pool.candidates)
+                for option in options:
+                    post_state = _append_ordinary_modifier(state, option.selected_key)
+                    self._assert_runtime_invariants(
+                        pre_state=state,
+                        post_state=post_state,
+                        expected_mode_id=operation.mode_id,
+                        actual_mode_id=operation.mode_id,
+                        operation_id=operation.operation_id,
+                    )
+                    step_probability = Fraction(
+                        option.probability_numerator,
+                        option.probability_denominator,
+                    )
+                    step = ExactSequenceStep(
+                        step_index=step_index,
+                        outcome="applied",
+                        pre_state_hash=pre_hash,
+                        post_state_hash=post_state.state_hash(),
+                        decision_id=option.decision_id,
+                        selected_mod_id=option.selected_key,
+                        candidate_count=len(pool.candidates),
+                        candidate_digest=option.candidate_digest,
+                        probability_numerator=option.probability_numerator,
+                        probability_denominator=option.probability_denominator,
+                    )
+                    next_frontier.append(
+                        (
+                            post_state,
+                            probability * step_probability,
+                            steps + (step,),
+                            path_key + (option.selected_key,),
+                        )
+                    )
+                    if len(next_frontier) > max_exact_paths:
+                        raise SamplingContractDefect("M34-B1 exact path ceiling exceeded")
+            frontier = tuple(next_frontier)
+
+        paths: list[ExactSequencePath] = []
+        for state, probability, steps, path_key in frontier:
+            if len(steps) != 2 or len(path_key) != 2:
+                raise M32InvariantViolation("M34-B1 path did not contain exactly two steps")
+            paths.append(
+                ExactSequencePath(
+                    path_key=(path_key[0], path_key[1]),
+                    terminal_state_hash=state.state_hash(),
+                    steps=(steps[0], steps[1]),  # type: ignore[misc]
+                    probability_numerator=probability.numerator,
+                    probability_denominator=probability.denominator,
+                )
+            )
+        return tuple(paths)
+
+    def enumerate_two_step_terminal_distribution(
+        self,
+        *,
+        initial_state: ItemState,
+        first_operation: OrdinaryAddOperation,
+        second_operation: OrdinaryAddOperation,
+        decision_id_prefix: str,
+        max_exact_paths: int,
+    ) -> tuple[ExactTerminalOption, ...]:
+        paths = self.enumerate_two_step_paths(
+            initial_state=initial_state,
+            first_operation=first_operation,
+            second_operation=second_operation,
+            decision_id_prefix=decision_id_prefix,
+            max_exact_paths=max_exact_paths,
+        )
+        grouped: dict[str, Fraction] = {}
+        path_keys: dict[str, list[tuple[str | None, str | None]]] = {}
+        for path in paths:
+            grouped[path.terminal_state_hash] = grouped.get(
+                path.terminal_state_hash, Fraction(0, 1)
+            ) + Fraction(path.probability_numerator, path.probability_denominator)
+            path_keys.setdefault(path.terminal_state_hash, []).append(path.path_key)
+        return tuple(
+            ExactTerminalOption(
+                terminal_state_hash=terminal_hash,
+                probability_numerator=probability.numerator,
+                probability_denominator=probability.denominator,
+                path_count=len(path_keys[terminal_hash]),
+                path_keys=tuple(sorted(path_keys[terminal_hash])),
+            )
+            for terminal_hash, probability in sorted(grouped.items())
+        )
+
+    def sample_two_step_sequence_once(
+        self,
+        *,
+        initial_state: ItemState,
+        first_operation: OrdinaryAddOperation,
+        second_operation: OrdinaryAddOperation,
+        decision_source: RecordingDecisionSource,
+        sample_index: int,
+        run_id: str,
+    ) -> OrdinaryAddSequenceTrajectory:
+        self._validate_two_step_operations(first_operation, second_operation)
+        state = initial_state
+        initial_hash = initial_state.state_hash()
+        steps: list[OrdinaryAddSequenceStepTrace] = []
+        for step_index, operation in enumerate((first_operation, second_operation)):
+            pre_hash = state.state_hash()
+            pool = self.build_pool(state, operation)
+            if not pool.candidates:
+                self._assert_runtime_invariants(
+                    pre_state=state,
+                    post_state=state,
+                    expected_mode_id=operation.mode_id,
+                    actual_mode_id=operation.mode_id,
+                    operation_id=operation.operation_id,
+                )
+                steps.append(
+                    OrdinaryAddSequenceStepTrace(
+                        step_index=step_index,
+                        outcome="no_transition",
+                        pre_state_hash=pre_hash,
+                        post_state_hash=pre_hash,
+                        decision_id=None,
+                        selected_mod_id=None,
+                        candidate_count=0,
+                        candidate_digest=None,
+                    )
+                )
+                continue
+
+            decision_id = (
+                f"{run_id}.sample_{sample_index}.step_{step_index}."
+                f"{operation.operation_id}.{operation.mode_id}"
+            )
+            decision = decision_source.choose_one(decision_id, pool.candidates)
+            post_state = _append_ordinary_modifier(state, decision.selected.key)
+            self._assert_runtime_invariants(
+                pre_state=state,
+                post_state=post_state,
+                expected_mode_id=operation.mode_id,
+                actual_mode_id=operation.mode_id,
+                operation_id=operation.operation_id,
+            )
+            steps.append(
+                OrdinaryAddSequenceStepTrace(
+                    step_index=step_index,
+                    outcome="applied",
+                    pre_state_hash=pre_hash,
+                    post_state_hash=post_state.state_hash(),
+                    decision_id=decision.record.decision_id,
+                    selected_mod_id=decision.selected.key,
+                    candidate_count=decision.record.candidate_count,
+                    candidate_digest=decision.record.candidate_digest,
+                )
+            )
+            state = post_state
+        if len(steps) != 2:
+            raise M32InvariantViolation("M34-B1 trajectory did not contain exactly two steps")
+        return OrdinaryAddSequenceTrajectory(
+            sample_index=sample_index,
+            outcome="completed",
+            initial_state_hash=initial_hash,
+            terminal_state_hash=state.state_hash(),
+            steps=(steps[0], steps[1]),
+        )
+
+    def run_two_step_sequence(
+        self,
+        *,
+        initial_state: ItemState,
+        first_operation: OrdinaryAddOperation,
+        second_operation: OrdinaryAddOperation,
+        seed: int,
+        sample_count: int,
+        run_id: str,
+        operation_sequence_id: str = "m34b1_two_step_ordinary_add_sequence",
+    ) -> OrdinaryAddSequenceRunResult:
+        self._validate_two_step_operations(first_operation, second_operation)
+        if not isinstance(sample_count, int) or isinstance(sample_count, bool) or sample_count < 0:
+            raise SamplingContractDefect("sample_count must be a non-negative non-bool integer")
+        decision_source = RecordingDecisionSource(SeededDecisionSource(seed))
+        trajectories = tuple(
+            self.sample_two_step_sequence_once(
+                initial_state=initial_state,
+                first_operation=first_operation,
+                second_operation=second_operation,
+                decision_source=decision_source,
+                sample_index=index,
+                run_id=run_id,
+            )
+            for index in range(sample_count)
+        )
+        payload = {
+            "schema_version": M34B1_SEQUENCE_SCHEMA_VERSION,
+            "run_id": run_id,
+            "seed": seed,
+            "sample_count": sample_count,
+            "operation_sequence_id": operation_sequence_id,
+            "operation_ids": (first_operation.operation_id, second_operation.operation_id),
+            "rng_stream_version": RNG_STREAM_VERSION,
+            "sampling_algorithm_id": SAMPLING_ALGORITHM_ID,
+            "source_fingerprint": self.static.source_fingerprint,
+            "semantic_fingerprint": self.static.semantic_fingerprint,
+            "code_version": self.code_version,
+            "trajectories": [trajectory.public_payload() for trajectory in trajectories],
+            "decisions": [record for record in decision_source.records],
+        }
+        result_hash = sha256_canonical(payload, schema_version=1)
+        return OrdinaryAddSequenceRunResult(
+            schema_version=M34B1_SEQUENCE_SCHEMA_VERSION,
+            run_id=run_id,
+            seed=seed,
+            sample_count=sample_count,
+            operation_sequence_id=operation_sequence_id,
+            operation_ids=(first_operation.operation_id, second_operation.operation_id),
+            rng_stream_version=RNG_STREAM_VERSION,
+            sampling_algorithm_id=SAMPLING_ALGORITHM_ID,
+            source_fingerprint=self.static.source_fingerprint,
+            semantic_fingerprint=self.static.semantic_fingerprint,
+            code_version=self.code_version,
+            trajectories=trajectories,
+            decisions=decision_source.records,
+            result_hash=result_hash,
+        )
+
     def run(
         self,
         *,
@@ -285,6 +673,14 @@ class OrdinaryAddMonteCarloHarness:
             raise M32InvariantViolation(f"unsupported operation_id: {operation.operation_id}")
         if operation.semantics_version != ORDINARY_ADD_SEMANTICS_VERSION:
             raise M32InvariantViolation("ordinary_add semantics version mismatch")
+
+    def _validate_two_step_operations(
+        self,
+        first_operation: OrdinaryAddOperation,
+        second_operation: OrdinaryAddOperation,
+    ) -> None:
+        self._validate_operation(first_operation)
+        self._validate_operation(second_operation)
 
     def _assert_runtime_invariants(
         self,
