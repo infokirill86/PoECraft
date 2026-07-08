@@ -1,0 +1,11 @@
+{
+  "comparison_counts": {
+    "no_source_entry_candidate_found": 75
+  },
+  "package": "P2C_Source_Bundle_Byte_Verification_Result_Codex_v1",
+  "repo_head": "b199bf6",
+  "repo_import_files_compared": 75,
+  "source_files_found": 3,
+  "source_files_missing": 1,
+  "zip_entries_total": 29
+}
