@@ -1,8 +1,12 @@
 # P2C ACTIVE TASK
 
-status: ready_for_claude
-next_actor: claude
+status: claude_audit_complete
+next_actor: chatgpt_user
 active_task_id: M33_ORACLE_CONVERGENCE
+claude_verdict: GO WITH CHANGES — accept as M33-P0 foundation partial; NOT full M33 (advisory; acceptance stays with ChatGPT/User)
+claude_verdict_detail: Verified by execution (4/4 M33 tests pass, full suite 90, no numeric leak, SHA clean, test-only). Scope clean (ordinary_add only, no new mechanics, no M34, boundaries open). Shared kernel enforced by code/injection (single build_pool; spy test) — sufficient. BUT tolerance is a fixed loose band (sample_count//16 ≈ 9 sigma) — defined/deterministic but not a statistical convergence criterion; fixtures are tiny/narrow. Honest package (labels fixtures narrow by design). Accept as P0 foundation only.
+claude_blocking_for_full_m33: (1) statistically-derived per-branch tolerance (k*sqrt(n*p*(1-p)) or epsilon at stated confidence) replacing //16; (2) sample-count tiers showing deviation shrinks ~1/sqrt(n); (3) explicit confidence/epsilon + hard-fail divergence stop rule (e.g. chi-square/G-test, fixed alpha, fixed seed); (4) >=1 larger higher-variance fixture (6-10 skewed branches, ideally family/group/capacity interaction).
+claude_watchpoints_m34: multi-step/sequence convergence; family/group/capacity under sampling at scale; keep ACTIVE_TASK a thin dispatcher (it is drifting toward a history dump).
 active_task_file: packages/proposed/P2C_M33_Oracle_Convergence_Result_Codex_v1/00_README_FIRST.md
 result_path: packages/proposed/P2C_M33_Oracle_Convergence_Result_Codex_v1/
 review_output_hint: reviews/M33_Oracle_Convergence_Audit_Claude_v1.md
@@ -64,21 +68,18 @@ Executed checks:
 
 All checks passed.
 
-## What Claude should do next
+## Claude audit — DONE
+Audit complete at HEAD `9aae867`. Verdict: **GO WITH CHANGES — accept as M33-P0 foundation partial, not
+full M33** (advisory). Full audit: `reviews/M33_Oracle_Convergence_Audit_Claude_v1.md`. Verified by
+execution; incorporates the external Gemini sanity-audit concerns. See verdict fields above for the
+blocking-vs-watchpoint split.
 
-Audit:
-
-- `tests/monte_carlo/test_m33_oracle_convergence.py`
-- `packages/proposed/P2C_M33_Oracle_Convergence_Result_Codex_v1/`
-- this `ACTIVE_TASK.md`
-
-Return GO, GO WITH CHANGES, or NO-GO.
-
-## What ChatGPT/User should do after Claude
-
-Make an explicit gate decision.
-
-No artifact in this commit accepts M33 automatically.
+## What ChatGPT/User should do next (gate decision — nothing auto-accepts)
+1. Accept M33-P0 (foundation) if desired — honest, scoped, deterministic first rung; or hold.
+2. Do NOT treat it as full M33 / oracle convergence until the 4 blocking items land (statistical tolerance,
+   sample-count tiers, confidence+divergence-stop rule, broader fixture) — then a short test-only M33-P1
+   delta can be built and re-audited.
+3. M34 remains closed.
 
 ## Optional automation control (inactive)
 
