@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "d7fb8bdcf3569c85428c492c8dc91d32c18cb5c0"
-updated_at_utc: "2026-07-08T16:34:54Z"
+repo_head_at_last_update: "d8515b644b9d5611520671c93a98c306f3761f3f"
+updated_at_utc: "2026-07-08T16:41:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "PROJECT_NEXT_MOVE_REVIEW"
 
-allowed_next_action: "claude_audit_project_next_move_proposal"
+allowed_next_action: "chatgpt_user_gate_decision_on_project_next_move"
 forbidden_next_actions:
   - "implement_next_move"
   - "implement_new_executable_operation"
@@ -71,10 +71,11 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of project-level next-move proposal.
+Current live task: ChatGPT/User gate decision on the project next-move proposal.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_Project_Next_Move_Proposal_Codex_v1/`.
+Allowed next action: decide the direction. Claude audit verdict: GO — pivot to a design-only M35
+operation-admission framework + Annulment candidate (`reviews/P2C_Project_Next_Move_Proposal_Audit_Claude_v1.md`).
 
 No implementation or new operation admission is authorized by this dispatcher.
