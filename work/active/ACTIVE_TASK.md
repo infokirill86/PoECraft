@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "514a81b7440ef7bc17944e021a570290b68e7a7d"
-updated_at_utc: "2026-07-08T14:18:35Z"
+repo_head_at_last_update: "9e1019ddd0a03745e07db8b38ada10288fe5caf3"
+updated_at_utc: "2026-07-08T14:26:08Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "ACTIVE_TASK_SCHEMA_V2"
 
-allowed_next_action: "claude_audit_active_task_schema_v2_result"
+allowed_next_action: "chatgpt_user_gate_decision_on_active_task_schema_v2"
 forbidden_next_actions:
   - "start_m34b"
   - "design_m34b"
@@ -71,8 +71,9 @@ stop_conditions:
 
 Current live task: `ACTIVE_TASK_SCHEMA_V2` workflow hygiene.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_ACTIVE_TASK_SCHEMA_V2_Result_Codex_v1/`.
+Allowed next action: decide acceptance of the SCHEMA_V2 result. Claude audit verdict: GO
+(`reviews/P2C_ACTIVE_TASK_SCHEMA_V2_Audit_Claude_v1.md`).
 
 This dispatcher is routing/control only. It is not evidence, not a ledger, and not accepted truth.
