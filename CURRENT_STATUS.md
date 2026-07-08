@@ -21,12 +21,12 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M34-A multi-seed single-step MC hardening: accepted as completed.
 - ACTIVE_TASK_SCHEMA_V2: accepted as the workflow-hygiene dispatcher standard; `ACTIVE_TASK.md` is routing/control only, with standing boundaries referenced from `manifest/GitHub_Workflow_Protocol.md`.
 - M34-B design: accepted as the plan after Claude GO audit; M34-B1 implementation was authorized for exactly two accepted `ordinary_add` steps.
-- M34-B1 implementation result: proposed and awaiting Claude audit.
+- M34-B1 two-step accepted-ordinary-add sequence hardening: accepted as completed after Claude GO audit.
 
 ## Next gate
 
-- Claude audit is required for the proposed M34-B1 implementation result.
-- Full M34 and any work beyond M34-B1 remain closed.
+- ChatGPT/User decision is required for the next M34 step or another task.
+- Full M34, M34-C, sequences longer than two steps, route planning, operation expansion, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed.
 
 ## Not authorized / still open
 

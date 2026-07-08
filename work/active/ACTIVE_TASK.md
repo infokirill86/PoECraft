@@ -1,17 +1,16 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "be9406d2b5ed9f21ec61f9f357e5af5529c547b5"
-updated_at_utc: "2026-07-08T15:52:00Z"
+repo_head_at_last_update: "d088e4e386b88706054b1b6c7da47216dcdd2df7"
+updated_at_utc: "2026-07-08T15:58:13Z"
 
-status: "audited_pending_user_gate"
+status: "awaiting_user_gate"
 next_actor: "chatgpt_user"
-active_task_id: "M34B1_IMPLEMENTATION"
+active_task_id: "M34_NEXT_GATE"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m34b1_implementation"
+allowed_next_action: "chatgpt_user_decide_next_m34_step_or_choose_another_task"
 forbidden_next_actions:
-  - "accept_m34b1_without_chatgpt_user_gate"
-  - "start_m34c"
-  - "implement_sequences_longer_than_two_steps"
+  - "start_m34c_without_explicit_later_gate"
+  - "implement_sequences_longer_than_two_steps_without_explicit_later_gate"
   - "add_variable_length_route_planner"
   - "add_new_executable_operations"
   - "expand_beyond_accepted_ordinary_add"
@@ -20,6 +19,7 @@ forbidden_next_actions:
   - "close_source_provenance_mml_or_pd013"
   - "enable_supervised_auto_run"
   - "enable_github_actions"
+  - "self_accept_later_milestone"
 
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
@@ -64,18 +64,17 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if M34-B1 implementation would be self-accepted."
-  - "Stop if M34-C, longer sequences, route planning, operation expansion, or optimizer/economics work appears."
-  - "Stop if public numeric probability release or boundary closure appears."
+  - "Stop if this task would require mechanics, code, tests, data, probability release, or operation-behavior changes."
+  - "Stop if M34-C, longer sequences, route planning, operation expansion, or optimizer/economics work starts without explicit later authorization."
+  - "Stop if public numeric probability release, automation, or boundary closure appears."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the M34-B1 implementation.
+Current state: M34-B1 implementation is accepted after Claude GO audit and ChatGPT/User gate.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: ChatGPT/User.
 
-Allowed next action: decide acceptance of M34-B1. Claude audit verdict: GO
-(`reviews/P2C_M34B1_Implementation_Audit_Claude_v1.md`).
+Allowed next action: decide the next M34 step or choose another task.
 
-M34-B1 is proposed only until ChatGPT/User acceptance.
+Full M34, M34-C, sequences longer than two steps, route planning, operation expansion, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until explicit later authorization.
