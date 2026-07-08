@@ -23,12 +23,13 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M34-B design: accepted as the plan after Claude GO audit; M34-B1 implementation was authorized for exactly two accepted `ordinary_add` steps.
 - M34-B1 two-step accepted-ordinary-add sequence hardening: accepted as completed after Claude GO audit.
 - Project next-move proposal: accepted after Claude GO audit; default work should pivot from more `ordinary_add` hardening toward controlled admission of the first new real operation.
-- M35 Operation Admission Framework + Annulment candidate design: authorized as design-only. Annulment runtime implementation is not authorized.
+- M35 Operation Admission Framework + Annulment candidate design: accepted after Claude GO audit.
+- M35-A Annulment Runtime Admission: implementation authorized and produced for Claude audit. Annulment runtime is not accepted until audit and separate ChatGPT/User gate.
 
 ## Next gate
 
-- Claude audit is required for `packages/proposed/P2C_M35_Operation_Admission_Design_Codex_v1/`.
-- Annulment implementation, M35-A, full M35, operation expansion as executable runtime, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
+- Claude audit is required for `packages/proposed/P2C_M35A_Annulment_Runtime_Result_Codex_v1/`.
+- M35-A acceptance, full M35, additional operations, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
 
