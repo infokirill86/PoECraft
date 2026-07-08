@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "51179b0105655f3bdc4cca499fc4d5e5bb82663f"
-updated_at_utc: "2026-07-08T20:35:05Z"
+repo_head_at_last_update: "7286c2436d8b3d5d94aa56a65aa54c77cd2b2a86"
+updated_at_utc: "2026-07-08T20:46:57Z"
 
-status: "awaiting_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "POST_METADATA_FLOOR_NEXT_GATE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M36_HETEROGENEOUS_CHAIN_DESIGN"
 
-allowed_next_action: "chatgpt_user_decide_m36_heterogeneous_chain_design_or_next_operation_admission"
+allowed_next_action: "claude_audit_m36_heterogeneous_chain_design"
 forbidden_next_actions:
   - "implement_m36"
   - "implement_heterogeneous_operation_chains"
@@ -20,12 +20,13 @@ forbidden_next_actions:
   - "close_source_provenance_mml_or_pd013"
   - "enable_supervised_auto_run"
   - "enable_github_actions"
+  - "self_accept_m36"
 
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_Operation_Runtime_Admission_Metadata_Floor_Codex_v1/"
-current_review_path: "reviews/P2C_Operation_Runtime_Admission_Metadata_Floor_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_M36_Heterogeneous_Chain_Design_Codex_v1/"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -72,10 +73,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate after accepting the Operation Runtime Admission Metadata Correction Floor.
+Current live task: Claude audit of the M36 heterogeneous-chain design package.
 
-Next actor: ChatGPT/User.
+Next actor: Claude.
 
-Allowed next action: decide whether to authorize M36 heterogeneous-chain design or choose the next operation-admission move.
+Allowed next action: audit `packages/proposed/P2C_M36_Heterogeneous_Chain_Design_Codex_v1/`.
 
 No M36 implementation, heterogeneous-chain runtime, new executable operation, public numeric release, optimizer/economics/advice, automation, or boundary closure is authorized by this dispatcher.
