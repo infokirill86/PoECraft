@@ -1,8 +1,11 @@
 # P2C ACTIVE TASK
 
-status: ready_for_claude
-next_actor: claude
+status: claude_audit_complete
+next_actor: chatgpt_user
 active_task_id: M34_MC_HARDENING_DESIGN_DEFINITION
+claude_verdict: GO — accept the M34 design as the plan; authorize M34-A build first (advisory; implementation is a separate gate)
+claude_verdict_detail: Design-only confirmed (no src/tests change; SHA + leak scan clean). Scope/boundaries correct (ordinary_add only; no new mechanics/optimizer/economics/public numbers; SOURCE/PROVENANCE, MML, PD-013 stay open; no auto-run/Actions). Addresses my carried M33 watchpoints (multi-seed, multi-step). Good design: concrete numeric-free pass/fail, required replay/diagnostic fields, a negative-control test that proves the suite can fail, honest risk register, sensible M34-A/M34-B split. Accepting the design does NOT authorize implementation.
+claude_build_note: pin the multi-seed breach rule + seed list before M34-A runs — keep a wide (~6 sigma) per-branch envelope with the hard no-breach rule OR an explicit aggregate/expected-breach-rate rule, to avoid flaky failures on a large seed grid. Build-time parameter, not a design defect.
 active_task_file: packages/proposed/P2C_M34_MC_Hardening_Design_Definition_Codex_v1/00_README_FIRST.md
 result_path: packages/proposed/P2C_M34_MC_Hardening_Design_Definition_Codex_v1/
 review_output_hint: reviews/M34_MC_Hardening_Design_Audit_Claude_v1.md
@@ -48,21 +51,16 @@ The design package covers:
 - human-readable explanation;
 - Claude audit request.
 
-## What Claude should do next
+## Claude audit — DONE
+Audit complete at HEAD `58f12c7`. Verdict: **GO** (advisory). Full audit:
+`reviews/M34_MC_Hardening_Design_Audit_Claude_v1.md`. Design-only, correctly bounded, addresses the M33
+multi-seed/multi-step watchpoints; sensible M34-A/M34-B split. See verdict fields above.
 
-Audit:
-
-- `packages/proposed/P2C_M34_MC_Hardening_Design_Definition_Codex_v1/`
-- this `ACTIVE_TASK.md`
-- `CURRENT_STATUS.md`
-
-Return GO, GO WITH CHANGES, or NO-GO.
-
-## What ChatGPT/User should do after Claude
-
-Make an explicit gate decision.
-
-No artifact in this commit starts M34 implementation.
+## What ChatGPT/User should do next (gate decision — nothing auto-accepts, nothing implements)
+1. Accept the M34 design as the plan if desired.
+2. If accepted, authorize **M34-A** implementation as the next build (separate gate) — pin the multi-seed
+   breach rule + seed list first (see claude_build_note). Then M34-B as a later separate gate.
+3. M34 implementation is NOT authorized by accepting this design.
 
 ## Optional automation control (inactive)
 
