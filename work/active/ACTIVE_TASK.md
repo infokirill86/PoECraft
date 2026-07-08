@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "4e560c6b7a20e9b1cee6d79e52b68b7eaabd9aff"
-updated_at_utc: "2026-07-08T21:06:14Z"
+repo_head_at_last_update: "a12d5819d272422ae29a071775ab15003e6cd88f"
+updated_at_utc: "2026-07-09T08:20:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "REPO_INTEGRITY_SHA_FLOOR"
 
-allowed_next_action: "claude_audit_repo_integrity_sha_floor"
+allowed_next_action: "chatgpt_user_gate_decision_on_repo_integrity_sha_floor"
 forbidden_next_actions:
   - "implement_m36a"
   - "implement_heterogeneous_chain_runtime"
@@ -69,10 +69,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the Repo Integrity SHA Floor.
+Current live task: ChatGPT/User gate decision on the repo-integrity SHA floor.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_Repo_Integrity_SHA_Floor_Codex_v1/`.
+Allowed next action: decide. Claude audit verdict: GO WITH CHANGES — updater tool + rule correct, but the floor was delivered with a still-drifted manifest (I regenerated it) and needs a pre-push hook for enforcement (`reviews/P2C_Repo_Integrity_SHA_Floor_Audit_Claude_v1.md`).
 
 M36 heterogeneous-chain design is accepted as design-only. M36-A implementation remains closed pending a separate explicit ChatGPT/User gate.
