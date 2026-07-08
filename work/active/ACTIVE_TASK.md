@@ -1,19 +1,18 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "6c9d75d2bb930979b0cf229ceb4b2f6e699dca39"
-updated_at_utc: "2026-07-08T20:22:00Z"
+repo_head_at_last_update: "51179b0105655f3bdc4cca499fc4d5e5bb82663f"
+updated_at_utc: "2026-07-08T20:35:05Z"
 
-status: "audited_pending_user_gate"
+status: "awaiting_user_gate"
 next_actor: "chatgpt_user"
-active_task_id: "OPERATION_RUNTIME_ADMISSION_METADATA_FLOOR"
+active_task_id: "POST_METADATA_FLOOR_NEXT_GATE"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_operation_runtime_admission_metadata_floor"
+allowed_next_action: "chatgpt_user_decide_m36_heterogeneous_chain_design_or_next_operation_admission"
 forbidden_next_actions:
-  - "accept_m36_heterogeneous_chains"
+  - "implement_m36"
   - "implement_heterogeneous_operation_chains"
   - "implement_new_executable_operation"
   - "implement_annulment_variants_or_omens"
-  - "implement_additional_operations"
   - "implement_chaos_essence_fracture_desecrate_jawbone_or_reveal"
   - "expand_operation_scope"
   - "optimizer_advice_ranking_economics_ev"
@@ -21,13 +20,12 @@ forbidden_next_actions:
   - "close_source_provenance_mml_or_pd013"
   - "enable_supervised_auto_run"
   - "enable_github_actions"
-  - "self_accept_metadata_floor"
 
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_Operation_Runtime_Admission_Metadata_Floor_Codex_v1/"
-current_review_path: ""
+current_review_path: "reviews/P2C_Operation_Runtime_Admission_Metadata_Floor_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -66,18 +64,18 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if audit would require implementation of a new executable operation."
-  - "Stop if M36 heterogeneous chains, Annulment variants, or additional operations would be accepted or authorized without explicit later gate."
-  - "Stop if a source/provenance conflict requires user decision."
+  - "Stop if M36 implementation or heterogeneous-chain runtime would be started without explicit later gate."
+  - "Stop if any additional operation would be marked accepted executable runtime without explicit later gate."
+  - "Stop if full M35 or full M36 would be marked accepted."
   - "Stop if public numeric release, optimizer/economics/advice, automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure appears."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the operation runtime-admission metadata floor (data change).
+Current live task: ChatGPT/User gate after accepting the Operation Runtime Admission Metadata Correction Floor.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: ChatGPT/User.
 
-Allowed next action: decide the data change. Claude audit verdict: GO WITH CHANGES — classification/validator/fingerprint correct; root SHA256SUMS was inconsistent and has been corrected (`reviews/P2C_Operation_Runtime_Admission_Metadata_Floor_Audit_Claude_v1.md`).
+Allowed next action: decide whether to authorize M36 heterogeneous-chain design or choose the next operation-admission move.
 
-No new executable operation, heterogeneous chain runtime, public numeric release, optimizer/economics/advice, automation, or boundary closure is authorized by this dispatcher.
+No M36 implementation, heterogeneous-chain runtime, new executable operation, public numeric release, optimizer/economics/advice, automation, or boundary closure is authorized by this dispatcher.

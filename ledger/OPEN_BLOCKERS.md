@@ -60,3 +60,17 @@ This does not close:
 - Public numeric release.
 - Additional executable operation admission.
 - Heterogeneous operation chains.
+
+## Clarification after runtime admission metadata floor
+
+`runtime_admission_status` is now the accepted field for separating operation catalog readiness from executable runtime admission. `active_in_current_simulation` must not be treated as executable runtime authorization.
+
+This does not close:
+
+- Source/provenance closure.
+- MML closure.
+- PD-013 closure.
+- Public numeric release.
+- Additional executable operation admission.
+- Heterogeneous operation chains.
+- Annulment variants or omens.
