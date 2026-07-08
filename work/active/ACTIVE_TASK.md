@@ -1,8 +1,11 @@
 # P2C ACTIVE TASK
 
-status: ready_for_claude
-next_actor: claude
+status: claude_audit_complete
+next_actor: chatgpt_user
 active_task_id: M33_P1_STATISTICAL_CONVERGENCE
+claude_verdict: GO — all four M33-P0 blocking items resolved; recommend full M33 acceptance (advisory; acceptance stays with ChatGPT/User)
+claude_verdict_detail: Verified by execution (6/6 M33 tests, full suite 92, test-only, no leak, SHA clean, ledger only records legitimate P0 acceptance — no self-accept). Tolerance is now a true 6-sigma binomial band (den cancels: |X-np|<=6*sigma), integer-exact; sample tiers 1024/4096/16384 assert ~1/sqrt(n) shrinkage (independently reproduced: band 0.081->0.041->0.020; biased p'=0.28 breaches n=16384); breaches hard-fail; broad 8-branch skewed fixture exercises family/group/capacity filtering. Shared kernel still code-enforced.
+claude_watchpoints_m34: sqrt-n check is single-seed/directional (not multi-seed rate estimate); k=6 conservative to tiny biases; still single-step ordinary_add (multi-step is M34+); keep ACTIVE_TASK a thin dispatcher.
 active_task_file: packages/proposed/P2C_M33_P1_Statistical_Convergence_Result_Codex_v1/00_README_FIRST.md
 result_path: packages/proposed/P2C_M33_P1_Statistical_Convergence_Result_Codex_v1/
 review_output_hint: reviews/M33_P1_Statistical_Convergence_Audit_Claude_v1.md
@@ -67,21 +70,16 @@ Executed checks:
 
 All checks passed before rebase onto `f8b8f13`; conflict resolution was documentation/SHA only.
 
-## What Claude should do next
+## Claude audit — DONE
+Audit complete at HEAD `fcde807`. Verdict: **GO — recommend full M33 acceptance** (advisory). Full audit:
+`reviews/M33_P1_Statistical_Convergence_Audit_Claude_v1.md`. All four M33-P0 blocking items resolved and
+verified by execution; statistics now sound (true 6σ band, real 1/√n shrinkage, hard-fail divergence, broad
+legality-filtered fixture). See verdict fields above.
 
-Audit:
-
-- `tests/monte_carlo/test_m33_oracle_convergence.py`
-- `packages/proposed/P2C_M33_P1_Statistical_Convergence_Result_Codex_v1/`
-- this `ACTIVE_TASK.md`
-
-Return GO, GO WITH CHANGES, or NO-GO.
-
-## What ChatGPT/User should do after Claude
-
-Make an explicit gate decision.
-
-No artifact in this commit accepts M33-P1 or full M33 automatically.
+## What ChatGPT/User should do next (gate decision — nothing auto-accepts)
+1. Accept full M33 on this M33-P1 delta if desired.
+2. Watchpoints are non-blocking (M34-era): multi-seed convergence-rate check; multi-step convergence.
+3. M34 remains closed until a separate gate.
 
 ## Optional automation control (inactive)
 
