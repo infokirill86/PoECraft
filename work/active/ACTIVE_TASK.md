@@ -1,8 +1,11 @@
 # P2C ACTIVE TASK
 
-status: ready_for_claude
-next_actor: claude
+status: claude_audit_complete
+next_actor: chatgpt_user
 active_task_id: M34A_MULTI_SEED_MC_HARDENING
+claude_verdict: GO — recommend M34-A acceptance (advisory; acceptance stays with ChatGPT/User)
+claude_verdict_detail: Verified by execution — 4/4 M34-A tests pass, full suite 96, test-only, leak+SHA clean, ledger only carries prior M34-design acceptance (no self-accept). Matches the pinned contract exactly (seeds 34001/34002/34003, tiers 512/2048/8192, sigma 6) with a guard test. Multi-seed x multi-tier grid over the broad skewed fixture reuses the verified 6-sigma binomial tolerance; deterministic replay holds; negative-control forces a breach and asserts the diagnostic carries every replay field. Scope clean (single-step ordinary_add only; no M34-B/sequences).
+claude_watchpoints: small fixed 3-seed set (fine per contract, could widen later); smallest-weight branch at tier 512 is a low-count regime where 6-sigma is weakly sensitive (larger tiers carry the signal); still single-step (M34-B is sequences).
 active_task_file: packages/proposed/P2C_M34A_Multi_Seed_MC_Hardening_Result_Codex_v1/00_README_FIRST.md
 result_path: packages/proposed/P2C_M34A_Multi_Seed_MC_Hardening_Result_Codex_v1/
 review_output_hint: reviews/M34A_Multi_Seed_MC_Hardening_Audit_Claude_v1.md
@@ -75,22 +78,16 @@ Executed checks:
 
 All checks passed.
 
-## What Claude should do next
+## Claude audit — DONE
+Audit complete at HEAD `cd0fefc`. Verdict: **GO** (advisory). Full audit:
+`reviews/M34A_Multi_Seed_MC_Hardening_Audit_Claude_v1.md`. Verified by execution; matches the pinned
+contract; negative-control has teeth; scope clean. See verdict fields above.
 
-Audit:
-
-- `tests/monte_carlo/test_m34a_multi_seed_hardening.py`
-- `packages/proposed/P2C_M34A_Multi_Seed_MC_Hardening_Result_Codex_v1/`
-- this `ACTIVE_TASK.md`
-- `CURRENT_STATUS.md`
-
-Return GO, GO WITH CHANGES, or NO-GO.
-
-## What ChatGPT/User should do after Claude
-
-Make an explicit gate decision.
-
-No artifact in this commit accepts M34-A, starts M34-B, or accepts full M34 automatically.
+## What ChatGPT/User should do next (gate decision — nothing auto-accepts)
+1. Accept M34-A (multi-seed single-step hardening) if desired.
+2. Authorize **M34-B** (short accepted-`ordinary_add` sequences) only as a separate later gate, with its own
+   pinned contract.
+3. M34-B / full M34 remain closed until then.
 
 ## Optional automation control (inactive)
 
