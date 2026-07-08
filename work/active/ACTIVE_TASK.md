@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "2bfc98f9a9042bf331422af94e8e033141019002"
-updated_at_utc: "2026-07-08T14:48:06Z"
+repo_head_at_last_update: "307ee3ae7d90dca2ae48af5f62a3e13b259de575"
+updated_at_utc: "2026-07-08T14:34:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M34B_DESIGN"
 
-allowed_next_action: "claude_audit_m34b_design_package"
+allowed_next_action: "chatgpt_user_gate_decision_on_m34b_design"
 forbidden_next_actions:
   - "implement_m34b"
   - "start_m34b_runtime_or_tests"
@@ -72,10 +72,11 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of proposed M34-B design package.
+Current live task: ChatGPT/User gate decision on the M34-B design package.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M34B_Design_Codex_v1/`.
+Allowed next action: decide acceptance of the M34-B1 design. Claude audit verdict: GO
+(`reviews/P2C_M34B_Design_Audit_Claude_v1.md`).
 
 M34-B implementation remains closed until explicit ChatGPT/User authorization.
