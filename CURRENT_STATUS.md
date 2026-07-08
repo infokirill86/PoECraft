@@ -27,10 +27,12 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M35-A Annulment Runtime Admission: accepted after Claude GO audit as base Annulment runtime only, project-model semantics only.
 - Operation Inventory & Admission Reconciliation: accepted after Claude GO audit; active catalog metadata is now explicitly separated from executable runtime admission.
 - Operation Runtime Admission Metadata Correction Floor: accepted after Claude GO WITH CHANGES audit; `runtime_admission_status` is the accepted explicit operation runtime-admission metadata field, and Claude's root `SHA256SUMS.txt` correction is accepted.
+- M36 heterogeneous-chain design: accepted after Claude GO WITH CHANGES audit as design-only; M36-A implementation remains closed pending a separate explicit gate.
+- Repo Integrity SHA Floor: authorized to stop recurring root `SHA256SUMS.txt` drift with a minimal deterministic updater and required pre-push check.
 
 ## Next gate
 
-- ChatGPT/User decision is required for M36 heterogeneous-chain design or the next operation-admission move.
+- Claude audit is required for the Repo Integrity SHA Floor before opening M36-A.
 - Full M35, Annulment variants/omens, additional operations, heterogeneous operation chains, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open

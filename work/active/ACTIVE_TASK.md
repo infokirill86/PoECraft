@@ -1,31 +1,29 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "473958483ead92624d2a303266f844dbc978a79a"
-updated_at_utc: "2026-07-08T20:55:00Z"
+repo_head_at_last_update: "4e560c6b7a20e9b1cee6d79e52b68b7eaabd9aff"
+updated_at_utc: "2026-07-08T21:06:14Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "M36_HETEROGENEOUS_CHAIN_DESIGN"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "REPO_INTEGRITY_SHA_FLOOR"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m36_heterogeneous_chain_design"
+allowed_next_action: "claude_audit_repo_integrity_sha_floor"
 forbidden_next_actions:
-  - "implement_m36"
-  - "implement_heterogeneous_operation_chains"
+  - "implement_m36a"
+  - "implement_heterogeneous_chain_runtime"
   - "implement_new_executable_operation"
-  - "implement_annulment_variants_or_omens"
-  - "implement_chaos_essence_fracture_desecrate_jawbone_or_reveal"
-  - "expand_operation_scope"
+  - "change_mechanics_or_data_semantics"
+  - "enable_github_actions"
+  - "enable_supervised_auto_run_or_watcher_automation"
   - "optimizer_advice_ranking_economics_ev"
   - "release_public_numeric_probabilities"
   - "close_source_provenance_mml_or_pd013"
-  - "enable_supervised_auto_run"
-  - "enable_github_actions"
-  - "self_accept_m36"
+  - "self_accept_repo_integrity_sha_floor"
 
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M36_Heterogeneous_Chain_Design_Codex_v1/"
+current_result_path: "packages/proposed/P2C_Repo_Integrity_SHA_Floor_Codex_v1/"
 current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
@@ -65,18 +63,16 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if M36 implementation or heterogeneous-chain runtime would be started without explicit later gate."
-  - "Stop if any additional operation would be marked accepted executable runtime without explicit later gate."
-  - "Stop if full M35 or full M36 would be marked accepted."
-  - "Stop if public numeric release, optimizer/economics/advice, automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure appears."
+  - "Stop if M36-A implementation or heterogeneous-chain runtime would be started."
+  - "Stop if any new executable operation, mechanics/data semantic change, public numeric release, optimizer/economics/advice, automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure appears."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the M36 heterogeneous-chain design.
+Current live task: Claude audit of the Repo Integrity SHA Floor.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: Claude.
 
-Allowed next action: decide. Claude audit verdict: GO WITH CHANGES — design correct and grounded on the reconciled registry; root SHA256SUMS drifted again (prior fix reverted) and was re-corrected; recommend enforcing the SHA check pre-push (`reviews/P2C_M36_Heterogeneous_Chain_Design_Audit_Claude_v1.md`).
+Allowed next action: audit `packages/proposed/P2C_Repo_Integrity_SHA_Floor_Codex_v1/`.
 
-No M36 implementation, heterogeneous-chain runtime, new executable operation, public numeric release, optimizer/economics/advice, automation, or boundary closure is authorized by this dispatcher.
+M36 heterogeneous-chain design is accepted as design-only. M36-A implementation remains closed pending a separate explicit ChatGPT/User gate.

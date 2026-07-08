@@ -10,6 +10,19 @@ Status: bootstrap v1. This document follows the compact convergence rule: GitHub
 - Large/offloaded artifacts may be indexed later, but only after real need appears.
 - No auto-merge. Accepted truth changes only after Kirill/ChatGPT gate acceptance.
 
+## Root SHA256SUMS workflow
+
+The root `SHA256SUMS.txt` must be generated mechanically, not edited by hand.
+
+Before every push that changes repository files, run:
+
+```bash
+python tools/update_sha256sums.py
+python tools/check_sha256sums.py SHA256SUMS.txt
+```
+
+If either command fails, stop and fix the integrity issue before pushing.
+
 ## Supervised auto-run metadata
 
 `work/active/ACTIVE_TASK.md` may include an optional `automation` block. The block is descriptive control metadata, not automation by itself.

@@ -74,3 +74,18 @@ This does not close:
 - Additional executable operation admission.
 - Heterogeneous operation chains.
 - Annulment variants or omens.
+
+## Clarification after M36 design acceptance
+
+M36 heterogeneous-chain design is accepted as design-only. It does not open M36-A implementation by itself.
+
+This does not close:
+
+- Source/provenance closure.
+- MML closure.
+- PD-013 closure.
+- Public numeric release.
+- Heterogeneous-chain runtime implementation.
+- Additional executable operation admission.
+- Optimizer / advice / ranking / EV-as-decision.
+- Automation / GitHub Actions / supervised auto-run.
