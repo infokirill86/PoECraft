@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "ec727da0be3860255b9d82212a28ab998c0d9d1d"
-updated_at_utc: "2026-07-08T19:48:22Z"
+repo_head_at_last_update: "b4bd2de4071e0f917e5630a94d462c6009fe353f"
+updated_at_utc: "2026-07-08T19:56:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "OPERATION_INVENTORY_ADMISSION_RECONCILIATION"
 
-allowed_next_action: "claude_audit_operation_inventory_admission_reconciliation"
+allowed_next_action: "chatgpt_user_gate_decision_on_operation_inventory_admission_reconciliation"
 forbidden_next_actions:
   - "accept_m36_heterogeneous_chains"
   - "implement_runtime"
@@ -77,10 +77,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the Operation Inventory & Admission Reconciliation package.
+Current live task: ChatGPT/User gate decision on the operation inventory & admission reconciliation.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_Operation_Inventory_Admission_Reconciliation_Codex_v1/`.
+Allowed next action: decide. Claude audit verdict: GO — accept reconciliation; next a gated metadata-correction floor (add runtime_admission_status to operations.yaml) before M36 chains (`reviews/P2C_Operation_Inventory_Admission_Reconciliation_Audit_Claude_v1.md`).
 
 No runtime implementation, heterogeneous chain runtime, new operation, public numeric release, optimizer/economics/advice, automation, or boundary closure is authorized by this dispatcher.
