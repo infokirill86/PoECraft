@@ -24,13 +24,13 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M34-B1 two-step accepted-ordinary-add sequence hardening: accepted as completed after Claude GO audit.
 - Project next-move proposal: accepted after Claude GO audit; default work should pivot from more `ordinary_add` hardening toward controlled admission of the first new real operation.
 - M35 Operation Admission Framework + Annulment candidate design: accepted after Claude GO audit.
-- M35-A Annulment Runtime Admission: implementation authorized and produced for Claude audit. Annulment runtime is not accepted until audit and separate ChatGPT/User gate.
+- M35-A Annulment Runtime Admission: accepted after Claude GO audit as base Annulment runtime only, project-model semantics only.
 
 ## Next gate
 
-- Claude audit is required for `packages/proposed/P2C_M35A_Annulment_Runtime_Result_Codex_v1/`.
-- M35-A acceptance, full M35, additional operations, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
+- ChatGPT/User decision is required for the next operation or hardening wave.
+- Full M35, Annulment variants/omens, additional operations, heterogeneous operation chains, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
 
-New executable mechanics beyond accepted scope; Annulment runtime; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; MML closure; PD-013 closure; MC execution of unaccepted operations.
+New executable mechanics beyond accepted `ordinary_add` and base Annulment; Annulment variants/omens; heterogeneous operation chains; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; MML closure; PD-013 closure; MC execution of unaccepted operations.
