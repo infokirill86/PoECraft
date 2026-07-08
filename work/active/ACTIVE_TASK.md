@@ -1,31 +1,31 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "d088e4e386b88706054b1b6c7da47216dcdd2df7"
-updated_at_utc: "2026-07-08T15:58:13Z"
+repo_head_at_last_update: "d7fb8bdcf3569c85428c492c8dc91d32c18cb5c0"
+updated_at_utc: "2026-07-08T16:34:54Z"
 
-status: "awaiting_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "M34_NEXT_GATE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "PROJECT_NEXT_MOVE_REVIEW"
 
-allowed_next_action: "chatgpt_user_decide_next_m34_step_or_choose_another_task"
+allowed_next_action: "claude_audit_project_next_move_proposal"
 forbidden_next_actions:
-  - "start_m34c_without_explicit_later_gate"
-  - "implement_sequences_longer_than_two_steps_without_explicit_later_gate"
-  - "add_variable_length_route_planner"
-  - "add_new_executable_operations"
-  - "expand_beyond_accepted_ordinary_add"
+  - "implement_next_move"
+  - "implement_new_executable_operation"
+  - "start_annulment_runtime_or_tests"
+  - "change_mechanics_data_or_source_truth"
+  - "expand_operation_scope"
   - "optimizer_advice_ranking_economics_ev"
   - "release_public_numeric_probabilities"
   - "close_source_provenance_mml_or_pd013"
   - "enable_supervised_auto_run"
   - "enable_github_actions"
-  - "self_accept_later_milestone"
+  - "update_accepted_ledgers_as_accepted"
 
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M34B1_Result_Codex_v1/"
-current_review_path: "reviews/P2C_M34B1_Implementation_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_Project_Next_Move_Proposal_Codex_v1/"
+current_review_path: "reviews/P2C_Project_Next_Move_Proposal_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -64,17 +64,17 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if this task would require mechanics, code, tests, data, probability release, or operation-behavior changes."
-  - "Stop if M34-C, longer sequences, route planning, operation expansion, or optimizer/economics work starts without explicit later authorization."
-  - "Stop if public numeric probability release, automation, or boundary closure appears."
+  - "Stop if this task would require implementation, code, tests, mechanics, data, probabilities, or operation-behavior changes."
+  - "Stop if Annulment or any new operation implementation starts."
+  - "Stop if operation expansion, public numeric release, optimizer/economics/advice, automation, or boundary closure appears."
 ---
 
 # P2C Active Task
 
-Current state: M34-B1 implementation is accepted after Claude GO audit and ChatGPT/User gate.
+Current live task: Claude audit of project-level next-move proposal.
 
-Next actor: ChatGPT/User.
+Next actor: Claude.
 
-Allowed next action: decide the next M34 step or choose another task.
+Allowed next action: audit `packages/proposed/P2C_Project_Next_Move_Proposal_Codex_v1/`.
 
-Full M34, M34-C, sequences longer than two steps, route planning, operation expansion, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until explicit later authorization.
+No implementation or new operation admission is authorized by this dispatcher.
