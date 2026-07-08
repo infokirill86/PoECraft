@@ -41,6 +41,8 @@ _NON_RUNTIME_OPERATION_KEYS = frozenset({
     'verification_status',
 })
 
+_RUNTIME_ADMITTED_STATUS = 'accepted_executable_runtime'
+
 
 def _project_runtime_value(value: Any, *, key: str | None = None) -> Any:
     """Remove narrative-only fields while preserving executable mechanic facts."""
@@ -62,7 +64,11 @@ def _project_runtime_value(value: Any, *, key: str | None = None) -> Any:
 
 
 def normalize_operations(operations: dict[str, Any], active_groups: set[str]) -> dict[str, Any]:
-    """Project only active executable semantics; raw/reference prose stays source-audited."""
+    """Project only executable-admitted runtime semantics.
+
+    active_in_current_simulation is project-scope/catalog metadata. It is not
+    runtime execution authority by itself.
+    """
     result = {k: v for k, v in operations.items() if k not in {'operations', 'handler_declarations'}}
     rows = []
     for row in operations.get('operations') or []:
@@ -70,6 +76,7 @@ def normalize_operations(operations: dict[str, Any], active_groups: set[str]) ->
             not isinstance(row, dict)
             or row.get('group') not in active_groups
             or not row.get('active_in_current_simulation', False)
+            or row.get('runtime_admission_status') != _RUNTIME_ADMITTED_STATUS
         ):
             continue
         normalized = _project_runtime_value(row)
@@ -78,8 +85,9 @@ def normalize_operations(operations: dict[str, Any], active_groups: set[str]) ->
         rows.append(normalized)
     result['operations'] = sorted(rows, key=lambda row: row.get('operation_id', ''))
     declarations = operations.get('handler_declarations') or {}
+    admitted_groups = {row.get('group') for row in rows if isinstance(row.get('group'), str)}
     result['handler_declarations'] = {
-        key: declarations[key] for key in sorted(declarations) if key in active_groups
+        key: declarations[key] for key in sorted(declarations) if key in admitted_groups
     }
     return result
 

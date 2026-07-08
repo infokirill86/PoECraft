@@ -142,6 +142,20 @@ Unless an explicit ChatGPT/User gate overrides them for the current task, standi
 - no GitHub Actions or watcher automation unless explicitly gated;
 - no new mailbox or write-location category unless explicitly gated.
 
+## Operation catalog vs runtime admission
+
+`data/operations.yaml` is both a prepared operation catalog and a source-backed project data surface. Its `active_in_current_simulation` field means the row belongs to the prepared project-scope/catalog data selected by `config/project_scope.yaml`.
+
+`active_in_current_simulation` does not mean the engine is allowed to execute that operation.
+
+Runtime executability must come from explicit admission metadata:
+
+```yaml
+runtime_admission_status: accepted_executable_runtime
+```
+
+Rows with `admission_candidate`, `data_reference_candidate`, `blocked_or_out_of_scope`, or `disputed_or_requires_user_resolution` may remain useful catalog/source data, but they are not executable runtime. The current accepted executable runtime is accepted `ordinary_add` as an engine primitive and base `annulment` as an admitted operation row. Any additional executable operation still requires a separate ChatGPT/User gate after audit.
+
 ## ACTIVE_TASK freshness and fail-closed rules
 
 Agents must stop and report to `chatgpt_user` if:

@@ -25,10 +25,12 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - Project next-move proposal: accepted after Claude GO audit; default work should pivot from more `ordinary_add` hardening toward controlled admission of the first new real operation.
 - M35 Operation Admission Framework + Annulment candidate design: accepted after Claude GO audit.
 - M35-A Annulment Runtime Admission: accepted after Claude GO audit as base Annulment runtime only, project-model semantics only.
+- Operation Inventory & Admission Reconciliation: accepted after Claude GO audit; active catalog metadata is now explicitly separated from executable runtime admission.
+- Operation Runtime Admission Metadata Correction Floor: in progress as a proposed metadata/validator correction; not accepted until Claude audit and ChatGPT/User gate.
 
 ## Next gate
 
-- ChatGPT/User decision is required for the next operation or hardening wave.
+- Claude audit is required for the Operation Runtime Admission Metadata Correction Floor.
 - Full M35, Annulment variants/omens, additional operations, heterogeneous operation chains, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open

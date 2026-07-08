@@ -6,7 +6,7 @@ Standing blockers remain open unless explicitly closed by a separate gate:
 - MML closure.
 - PD-013 closure.
 - Public numeric release.
-- New executable mechanics beyond accepted ordinary_add.
+- New executable mechanics beyond accepted ordinary_add and accepted base Annulment.
 - Fractured-mod invariant changes.
 - Optimizer / advice / ranking / EV-as-decision.
 - Server-truth framing.
@@ -47,3 +47,16 @@ M34-A acceptance does not close:
 - PD-013 closure.
 - Public numeric release.
 - Operation expansion beyond accepted `ordinary_add`.
+
+## Clarification after operation inventory reconciliation
+
+The operation inventory/admission reconciliation is accepted as a foundation finding: `active_in_current_simulation` is catalog/project-scope metadata and must not be treated as runtime execution authority.
+
+This does not close:
+
+- Source/provenance closure.
+- MML closure.
+- PD-013 closure.
+- Public numeric release.
+- Additional executable operation admission.
+- Heterogeneous operation chains.

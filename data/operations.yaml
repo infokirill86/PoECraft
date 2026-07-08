@@ -49,6 +49,7 @@ operations:
       side_filter: null
       mml: null
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: greater_transmutation
   group: transmutation
   input_rarity:
@@ -65,6 +66,7 @@ operations:
       side_filter: null
       mml: 44
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: perfect_transmutation
   group: transmutation
   input_rarity:
@@ -81,6 +83,7 @@ operations:
       side_filter: null
       mml: 70
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: augmentation
   group: augmentation
   input_rarity:
@@ -103,6 +106,7 @@ operations:
       side_resolution: On Magic items, only a side below its 1-mod capacity is eligible. If one prefix is installed, the addition
         must be a suffix; if one suffix is installed, it must be a prefix.
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: greater_augmentation
   group: augmentation
   input_rarity:
@@ -125,6 +129,7 @@ operations:
       side_resolution: On Magic items, only a side below its 1-mod capacity is eligible. If one prefix is installed, the addition
         must be a suffix; if one suffix is installed, it must be a prefix.
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: perfect_augmentation
   group: augmentation
   input_rarity:
@@ -147,6 +152,7 @@ operations:
       side_resolution: On Magic items, only a side below its 1-mod capacity is eligible. If one prefix is installed, the addition
         must be a suffix; if one suffix is installed, it must be a prefix.
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: regal
   group: regal
   input_rarity:
@@ -164,6 +170,7 @@ operations:
       side_filter: null
       mml: null
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: greater_regal
   group: regal
   input_rarity:
@@ -181,6 +188,7 @@ operations:
       side_filter: null
       mml: 35
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: perfect_regal
   group: regal
   input_rarity:
@@ -198,6 +206,7 @@ operations:
       side_filter: null
       mml: 50
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: exalted
   group: exalted
   input_rarity:
@@ -235,6 +244,7 @@ operations:
         side_filter_applies_before_capacity_check: true
       combined_bundle: When side and double-add Omens are combined, the chosen side must have capacity for both additions.
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: greater_exalted
   group: exalted
   input_rarity:
@@ -272,6 +282,7 @@ operations:
         side_filter_applies_before_capacity_check: true
       combined_bundle: When side and double-add Omens are combined, the chosen side must have capacity for both additions.
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: perfect_exalted
   group: exalted
   input_rarity:
@@ -309,6 +320,7 @@ operations:
         side_filter_applies_before_capacity_check: true
       combined_bundle: When side and double-add Omens are combined, the chosen side must have capacity for both additions.
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: annulment
   group: annulment
   input_rarity:
@@ -336,6 +348,7 @@ operations:
       - apply desecrated-only Omen
     on_empty_removal_pool: NO_TRANSITION_NO_CONSUMPTION
   active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: chaos
   group: chaos
   input_rarity:
@@ -372,6 +385,7 @@ operations:
       rule: rebuild ordinary add pool on the branch-copy after removal
     on_failed_precondition: NO_TRANSITION_NO_CONSUMPTION
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: greater_chaos
   group: chaos
   input_rarity:
@@ -408,6 +422,7 @@ operations:
       rule: rebuild ordinary add pool on the branch-copy after removal
     on_failed_precondition: NO_TRANSITION_NO_CONSUMPTION
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: perfect_chaos
   group: chaos
   input_rarity:
@@ -444,6 +459,7 @@ operations:
       rule: rebuild ordinary add pool on the branch-copy after removal
     on_failed_precondition: NO_TRANSITION_NO_CONSUMPTION
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: alchemy
   group: alchemy
   input_rarity:
@@ -465,6 +481,7 @@ operations:
       count: 4
       mml: null
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: fracturing_orb
   group: fracture
   input_rarity:
@@ -499,6 +516,7 @@ operations:
       in_game_verification: not performed
       runtime_behavior_for_current_simulation: operation disabled; rule cannot affect active probabilities
   active_in_current_simulation: false
+  runtime_admission_status: disputed_or_requires_user_resolution
 - operation_id: install_astrid
   group: support_augment
   input_rarity:
@@ -525,6 +543,7 @@ operations:
       resulting_limit: 2
     failure_atomicity: No augment socket is consumed if Astrid is already installed or no free augment socket exists.
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: greater_essence_abrasion
   group: greater_essence
   input_rarity:
@@ -544,6 +563,7 @@ operations:
     - crafted_capacity_free
     - result_side_capacity_free
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: greater_essence_flames
   group: greater_essence
   input_rarity:
@@ -563,6 +583,7 @@ operations:
     - crafted_capacity_free
     - result_side_capacity_free
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: greater_essence_ice
   group: greater_essence
   input_rarity:
@@ -582,6 +603,7 @@ operations:
     - crafted_capacity_free
     - result_side_capacity_free
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: greater_essence_electricity
   group: greater_essence
   input_rarity:
@@ -601,6 +623,7 @@ operations:
     - crafted_capacity_free
     - result_side_capacity_free
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: greater_essence_battle
   group: greater_essence
   input_rarity:
@@ -620,6 +643,7 @@ operations:
     - crafted_capacity_free
     - result_side_capacity_free
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: greater_essence_haste
   group: greater_essence
   input_rarity:
@@ -639,6 +663,7 @@ operations:
     - crafted_capacity_free
     - result_side_capacity_free
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: greater_essence_seeking
   group: greater_essence
   input_rarity:
@@ -658,6 +683,7 @@ operations:
     - crafted_capacity_free
     - result_side_capacity_free
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: greater_essence_infinite
   group: greater_essence
   input_rarity:
@@ -677,6 +703,7 @@ operations:
     - crafted_capacity_free
     - result_side_capacity_free
   active_in_current_simulation: false
+  runtime_admission_status: data_reference_candidate
 - operation_id: perfect_essence_abrasion
   group: perfect_essence
   input_rarity:
@@ -701,6 +728,7 @@ operations:
     - crafted_capacity_free
     - filtered_removal_pool_nonempty
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: perfect_essence_flames
   group: perfect_essence
   input_rarity:
@@ -725,6 +753,7 @@ operations:
     - crafted_capacity_free
     - filtered_removal_pool_nonempty
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: perfect_essence_ice
   group: perfect_essence
   input_rarity:
@@ -749,6 +778,7 @@ operations:
     - crafted_capacity_free
     - filtered_removal_pool_nonempty
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: perfect_essence_electricity
   group: perfect_essence
   input_rarity:
@@ -773,6 +803,7 @@ operations:
     - crafted_capacity_free
     - filtered_removal_pool_nonempty
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: perfect_essence_battle
   group: perfect_essence
   input_rarity:
@@ -797,6 +828,7 @@ operations:
     - crafted_capacity_free
     - filtered_removal_pool_nonempty
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: perfect_essence_haste
   group: perfect_essence
   input_rarity:
@@ -821,6 +853,7 @@ operations:
     - crafted_capacity_free
     - filtered_removal_pool_nonempty
   active_in_current_simulation: true
+  runtime_admission_status: admission_candidate
 - operation_id: gnawed_jawbone
   group: jawbone
   input_rarity:
@@ -870,6 +903,7 @@ operations:
     - at least one legal side exists after Omen constraints
     - if selected side is full, at least one non-fractured removable instance exists on that side
   active_in_current_simulation: true
+  runtime_admission_status: blocked_or_out_of_scope
 - operation_id: preserved_jawbone
   group: jawbone
   input_rarity:
@@ -919,6 +953,7 @@ operations:
     - at least one legal side exists after Omen constraints
     - if selected side is full, at least one non-fractured removable instance exists on that side
   active_in_current_simulation: true
+  runtime_admission_status: blocked_or_out_of_scope
 - operation_id: ancient_jawbone
   group: jawbone
   input_rarity:
@@ -968,6 +1003,7 @@ operations:
     - at least one legal side exists after Omen constraints
     - if selected side is full, at least one non-fractured removable instance exists on that side
   active_in_current_simulation: true
+  runtime_admission_status: blocked_or_out_of_scope
 - operation_id: reveal_desecrated
   group: reveal
   input_rarity:
@@ -1038,3 +1074,4 @@ operations:
       set_flags:
         desecrated: true
   active_in_current_simulation: true
+  runtime_admission_status: blocked_or_out_of_scope

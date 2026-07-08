@@ -3,6 +3,17 @@ from typing import Any, Mapping
 from p2c_engine.domain.defects import StaticDataDefect
 
 
+RUNTIME_ADMISSION_STATUSES = frozenset({
+    'accepted_executable_runtime',
+    'engine_primitive',
+    'data_reference_candidate',
+    'admission_candidate',
+    'blocked_or_out_of_scope',
+    'disputed_or_requires_user_resolution',
+})
+ACCEPTED_EXECUTABLE_RUNTIME = 'accepted_executable_runtime'
+
+
 def _fail(message: str) -> None:
     raise StaticDataDefect(message)
 
@@ -37,6 +48,12 @@ def validate_cross_file_contracts(*, index: Mapping[str, Any], essence: dict[str
         if not isinstance(row, dict) or not isinstance(row.get('operation_id'), str) or not isinstance(row.get('group'), str):
             _fail('every operation requires operation_id and group')
         op_ids.append(row['operation_id']); groups.add(row['group'])
+        runtime_status = row.get('runtime_admission_status')
+        if runtime_status not in RUNTIME_ADMISSION_STATUSES:
+            _fail(
+                f"operation {row['operation_id']} has invalid or missing "
+                f"runtime_admission_status"
+            )
         expected = row['group'] in active_groups
         if bool(row.get('active_in_current_simulation')) != expected:
             _fail(f"operation {row['operation_id']} active flag contradicts project scope")
@@ -44,6 +61,16 @@ def validate_cross_file_contracts(*, index: Mapping[str, Any], essence: dict[str
             _fail(f"active operation {row['operation_id']} has no handler declaration")
         if row['group'] in reference_groups and row.get('active_in_current_simulation'):
             _fail(f"reference-only operation {row['operation_id']} is active-dispatchable")
+        if runtime_status == ACCEPTED_EXECUTABLE_RUNTIME and not row.get('active_in_current_simulation'):
+            _fail(
+                f"operation {row['operation_id']} cannot be executable-admitted "
+                f"while inactive in the project-scope catalog"
+            )
+        if runtime_status == ACCEPTED_EXECUTABLE_RUNTIME and row['group'] not in declarations:
+            _fail(
+                f"operation {row['operation_id']} is executable-admitted but "
+                f"has no handler declaration"
+            )
     if len(op_ids) != len(set(op_ids)):
         _fail('duplicate operation_id')
     essence_by_operation = {
