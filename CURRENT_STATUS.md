@@ -19,6 +19,7 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - Full M33 oracle-convergence validation: accepted as completed for accepted `ordinary_add` only.
 - M34 MC hardening design/definition package: accepted as the plan.
 - M34-A multi-seed single-step MC hardening: accepted as completed.
+- ACTIVE_TASK_SCHEMA_V2: accepted as the workflow-hygiene dispatcher standard; `ACTIVE_TASK.md` is routing/control only, with standing boundaries referenced from `manifest/GitHub_Workflow_Protocol.md`.
 
 ## Next gate
 

@@ -14,6 +14,7 @@ Keep compact. This is not proof by itself; active audits require real bytes.
 | M33 | Oracle-convergence validation | accepted as completed for accepted `ordinary_add` only - User gate 2026-07-08 | validates seeded MC harness convergence against exact/oracle layer for accepted `ordinary_add`; no M34, no optimizer/economics, no public numeric release, no server-truth claim | M33-P0 + M33-P1 + `reviews/M33_P1_Statistical_Convergence_Audit_Claude_v1.md` |
 | M34 design | MC-hardening design/definition | accepted as plan - User gate 2026-07-08 after Claude GO audit | design-only plan; recommends M34-A before M34-B; does not authorize M34-B or full M34 acceptance | packages/proposed/P2C_M34_MC_Hardening_Design_Definition_Codex_v1 |
 | M34-A | Multi-seed single-step MC hardening | accepted - User gate 2026-07-08 after Claude GO audit | accepted pinned contract: seeds 34001/34002/34003; tiers 512/2048/8192; tolerance multiplier 6; deterministic replay; hard-fail breach diagnostics; negative-control failure proof | packages/proposed/P2C_M34A_Multi_Seed_MC_Hardening_Result_Codex_v1 |
+| Workflow | ACTIVE_TASK_SCHEMA_V2 | accepted as workflow-hygiene dispatcher standard - User gate 2026-07-08 after Claude GO audit | thin YAML/frontmatter dispatcher; one live status/next_actor/allowed_next_action; no history log; standing boundaries referenced from manifest; read receipts required in Codex packages and Claude reviews; automation manual/disabled; validator deferred | packages/proposed/P2C_ACTIVE_TASK_SCHEMA_V2_Result_Codex_v1 + reviews/P2C_ACTIVE_TASK_SCHEMA_V2_Audit_Claude_v1.md |
 
 ## Note
 
@@ -24,3 +25,5 @@ M33 acceptance is scoped to accepted `ordinary_add` only. It does not start M34 
 M34 design acceptance is plan acceptance only. M34-A/M34-B/full M34 require separate gates.
 
 M34-A acceptance does not accept M34-B or full M34 and does not authorize multi-step/sequence validation.
+
+ACTIVE_TASK_SCHEMA_V2 acceptance is workflow hygiene only. It does not accept project truth, does not start M34-B, does not enable automation, and does not implement the deferred validator.
