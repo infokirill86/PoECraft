@@ -1,17 +1,18 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "5a85b8ac9a6d1bbd1cecbde203e967ba76209139"
-updated_at_utc: "2026-07-08T19:20:00Z"
+repo_head_at_last_update: "ec727da0be3860255b9d82212a28ab998c0d9d1d"
+updated_at_utc: "2026-07-08T19:48:22Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "POST_M35A_NEXT_WAVE_DESIGN"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "OPERATION_INVENTORY_ADMISSION_RECONCILIATION"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_post_m35a_next_wave"
+allowed_next_action: "claude_audit_operation_inventory_admission_reconciliation"
 forbidden_next_actions:
-  - "accept_full_m35"
-  - "implement_next_wave"
+  - "accept_m36_heterogeneous_chains"
+  - "implement_runtime"
   - "implement_heterogeneous_operation_chains"
+  - "implement_new_executable_operation"
   - "implement_annulment_variants_or_omens"
   - "implement_additional_operations"
   - "implement_chaos_essence_fracture_desecrate_jawbone_or_reveal"
@@ -27,8 +28,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_Post_M35A_Next_Wave_Design_Codex_v1/"
-current_review_path: "reviews/P2C_Post_M35A_Next_Wave_Design_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_Operation_Inventory_Admission_Reconciliation_Codex_v1/"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -68,16 +69,18 @@ stop_conditions:
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
   - "Stop if audit would require implementation, code, tests, mechanics, data, probabilities, or operation-behavior changes."
-  - "Stop if full M35, heterogeneous chains, Annulment variants, or additional operations would be accepted or authorized without explicit later gate."
+  - "Stop if M36 heterogeneous chains, Annulment variants, or additional operations would be accepted or authorized without explicit later gate."
+  - "Stop if operation/source status is too ambiguous to classify safely."
+  - "Stop if a source/provenance conflict requires user decision."
   - "Stop if public numeric release, optimizer/economics/advice, automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure appears."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the post-M35A next-wave design.
+Current live task: Claude audit of the Operation Inventory & Admission Reconciliation package.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: Claude.
 
-Allowed next action: decide direction. Claude audit verdict: GO WITH CHANGES — reconcile the operation/source foundation (operations.yaml active-flag mismatch) before any heterogeneous-chain wave (`reviews/P2C_Post_M35A_Next_Wave_Design_Audit_Claude_v1.md`).
+Allowed next action: audit `packages/proposed/P2C_Operation_Inventory_Admission_Reconciliation_Codex_v1/`.
 
-No implementation, heterogeneous chain runtime, new operation, public numeric release, optimizer/economics/advice, automation, or boundary closure is authorized by this dispatcher.
+No runtime implementation, heterogeneous chain runtime, new operation, public numeric release, optimizer/economics/advice, automation, or boundary closure is authorized by this dispatcher.
