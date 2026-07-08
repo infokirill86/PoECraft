@@ -1,13 +1,13 @@
 # Claude Audit Request
 
-Please audit `P2C_Source_Bundle_Byte_Verification_Result_Codex_v1`.
+Please re-audit `P2C_Source_Bundle_Byte_Verification_Result_Codex_v1` after the documentation-only correction.
 
 Verify:
 
-- source bytes included in `SOURCE_BYTES/` are appropriate for this SOURCE_BUNDLE / byte-verification task;
-- SHA256 values in `SOURCE_BYTES_MANIFEST.csv` and `ZIP_ENTRY_MANIFEST.csv` are correct;
-- `REPO_IMPORT_BYTE_COMPARISON.csv` honestly reports exact matches, mismatches, missing source entries, and gaps;
-- missing local source bytes are documented without fabrication;
+- the package now folds in Claude's working-tree comparison;
+- the package records that GitHub Layer A was byte-verified against `Documents/GitHub/PoECraft`;
+- the package supersedes the earlier `0 matches / provenance gap` framing as a wrong-source comparison against document-only ZIPs;
+- the package keeps the distinction between proven import fidelity and missing prior formal runtime package acceptance;
 - GitHub baseline Layer A remains HOLD / NOT ACCEPTED AS PROJECT TRUTH;
 - no mechanics, M33 work, optimizer/advice/ranking, public numeric release, or accepted-ledger truth update was introduced.
 

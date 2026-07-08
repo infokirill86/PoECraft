@@ -8,6 +8,28 @@ Status: ready for Claude audit
 
 This package checks whether the imported GitHub baseline can be proven byte-for-byte against prior local accepted/source package bytes.
 
+## Correction after Claude audit
+
+Claude returned `GO WITH CHANGES` and found that the original `0 matches / provenance gap` conclusion was a wrong-source comparison: the included rollup ZIPs were document-only bundles, not the runtime origin.
+
+The actual origin for the imported GitHub Layer A runtime/data/config/schema/tool files was the local working tree:
+
+`Documents/GitHub/PoECraft`
+
+Claude's comparison result:
+
+- 79 of 79 source files byte-identical;
+- 0 differ;
+- 0 missing.
+
+Codex's package-surface recalculation in `WORKING_TREE_BYTE_COMPARISON.csv` covers the imported baseline surfaces represented in this package and reports:
+
+- 75 of 75 files byte-identical;
+- 0 differ;
+- 0 missing.
+
+The practical conclusion is the same: import fidelity is proven against the actual local origin working tree. The prior formal runtime package still did not exist, so Layer A acceptance still requires a ChatGPT/User gate.
+
 What happened:
 
 - Found and included available local source package bytes under `SOURCE_BYTES/`.
@@ -19,7 +41,7 @@ Why it matters:
 
 GitHub baseline Layer A is currently traceable and tested, but not accepted as project truth. This byte-level check is the next evidence step before any future acceptance decision.
 
-Current result:
+Original wrong-source ZIP comparison result:
 
 - Source files found and included: 3
 - Source files missing locally: 1

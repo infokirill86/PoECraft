@@ -10,10 +10,12 @@ Status: ready for Claude audit
 | `01_SOURCE_BYTES_MANIFEST.md` | new | source byte manifest explanation | package record |
 | `02_BYTE_COMPARISON_REPORT.md` | new | byte comparison summary | package record |
 | `03_GAPS_AND_LIMITS.md` | new | unresolved byte-verification gaps | package record |
-| `04_CLAUDE_AUDIT_REQUEST.md` | new | audit request | reviews after Claude response |
+| `04_CLAUDE_AUDIT_REQUEST.md` | new, patched | re-audit request after working-tree correction | reviews after Claude response |
+| `05_WORKING_TREE_COMPARISON_CORRECTION.md` | new | folds Claude 79 of 79 working-tree comparison into package record | package record |
 | `SOURCE_BYTES_MANIFEST.csv` | generated | SHA256 of source artifact bytes | package record |
 | `ZIP_ENTRY_MANIFEST.csv` | generated | SHA256 of included ZIP entries | package record |
 | `REPO_IMPORT_BYTE_COMPARISON.csv` | generated | repo import to source-byte comparison | package record |
+| `WORKING_TREE_BYTE_COMPARISON.csv` | generated | repo import to actual origin working-tree comparison | package record |
 | `MACHINE_SUMMARY.json` | generated | machine-readable summary counts | package record |
 | `SOURCE_BYTES/` | included | byte-level source artifacts for audit | source bundle record |
 | `PACKAGE_MANIFEST.md` | new | package manifest | package record |
