@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "c9628dee2cfd4a242f2a27d6550a8afa020631e7"
-updated_at_utc: "2026-07-08T17:27:05Z"
+repo_head_at_last_update: "f9b7b4e71a15ba1ee139dc40a6c442ef1340a485"
+updated_at_utc: "2026-07-08T17:34:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M35_OPERATION_ADMISSION_DESIGN"
 
-allowed_next_action: "claude_audit_m35_operation_admission_design"
+allowed_next_action: "chatgpt_user_gate_decision_on_m35_operation_admission_design"
 forbidden_next_actions:
   - "implement_annulment"
   - "add_annulment_runtime_code_or_tests"
@@ -72,10 +72,11 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the M35 design-only operation-admission package.
+Current live task: ChatGPT/User gate decision on the M35 design-only operation-admission package.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M35_Operation_Admission_Design_Codex_v1/`.
+Allowed next action: decide acceptance of the M35 design. Claude audit verdict: GO
+(`reviews/P2C_M35_Operation_Admission_Design_Audit_Claude_v1.md`).
 
 No Annulment implementation or new executable operation admission is authorized by this dispatcher.
