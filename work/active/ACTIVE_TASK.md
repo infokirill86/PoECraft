@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "7286c2436d8b3d5d94aa56a65aa54c77cd2b2a86"
-updated_at_utc: "2026-07-08T20:46:57Z"
+repo_head_at_last_update: "473958483ead92624d2a303266f844dbc978a79a"
+updated_at_utc: "2026-07-08T20:55:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M36_HETEROGENEOUS_CHAIN_DESIGN"
 
-allowed_next_action: "claude_audit_m36_heterogeneous_chain_design"
+allowed_next_action: "chatgpt_user_gate_decision_on_m36_heterogeneous_chain_design"
 forbidden_next_actions:
   - "implement_m36"
   - "implement_heterogeneous_operation_chains"
@@ -73,10 +73,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the M36 heterogeneous-chain design package.
+Current live task: ChatGPT/User gate decision on the M36 heterogeneous-chain design.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M36_Heterogeneous_Chain_Design_Codex_v1/`.
+Allowed next action: decide. Claude audit verdict: GO WITH CHANGES — design correct and grounded on the reconciled registry; root SHA256SUMS drifted again (prior fix reverted) and was re-corrected; recommend enforcing the SHA check pre-push (`reviews/P2C_M36_Heterogeneous_Chain_Design_Audit_Claude_v1.md`).
 
 No M36 implementation, heterogeneous-chain runtime, new executable operation, public numeric release, optimizer/economics/advice, automation, or boundary closure is authorized by this dispatcher.
