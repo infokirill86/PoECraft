@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "d01cd80c6e21e9f66b001b25e9a4958011c454df"
-updated_at_utc: "2026-07-08T20:13:35Z"
+repo_head_at_last_update: "6c9d75d2bb930979b0cf229ceb4b2f6e699dca39"
+updated_at_utc: "2026-07-08T20:22:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "OPERATION_RUNTIME_ADMISSION_METADATA_FLOOR"
 
-allowed_next_action: "claude_audit_operation_runtime_admission_metadata_floor"
+allowed_next_action: "chatgpt_user_gate_decision_on_operation_runtime_admission_metadata_floor"
 forbidden_next_actions:
   - "accept_m36_heterogeneous_chains"
   - "implement_heterogeneous_operation_chains"
@@ -74,10 +74,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the Operation Runtime Admission Metadata Floor.
+Current live task: ChatGPT/User gate decision on the operation runtime-admission metadata floor (data change).
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_Operation_Runtime_Admission_Metadata_Floor_Codex_v1/`.
+Allowed next action: decide the data change. Claude audit verdict: GO WITH CHANGES — classification/validator/fingerprint correct; root SHA256SUMS was inconsistent and has been corrected (`reviews/P2C_Operation_Runtime_Admission_Metadata_Floor_Audit_Claude_v1.md`).
 
 No new executable operation, heterogeneous chain runtime, public numeric release, optimizer/economics/advice, automation, or boundary closure is authorized by this dispatcher.
