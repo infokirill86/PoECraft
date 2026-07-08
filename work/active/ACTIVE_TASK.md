@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "3bb1c555e367af6c1e9ffda7b0954ae60bba0968"
-updated_at_utc: "2026-07-08T19:12:32Z"
+repo_head_at_last_update: "5a85b8ac9a6d1bbd1cecbde203e967ba76209139"
+updated_at_utc: "2026-07-08T19:20:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "POST_M35A_NEXT_WAVE_DESIGN"
 
-allowed_next_action: "claude_audit_post_m35a_next_wave_design"
+allowed_next_action: "chatgpt_user_gate_decision_on_post_m35a_next_wave"
 forbidden_next_actions:
   - "accept_full_m35"
   - "implement_next_wave"
@@ -74,10 +74,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the post-M35A next-wave design proposal.
+Current live task: ChatGPT/User gate decision on the post-M35A next-wave design.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_Post_M35A_Next_Wave_Design_Codex_v1/`.
+Allowed next action: decide direction. Claude audit verdict: GO WITH CHANGES — reconcile the operation/source foundation (operations.yaml active-flag mismatch) before any heterogeneous-chain wave (`reviews/P2C_Post_M35A_Next_Wave_Design_Audit_Claude_v1.md`).
 
 No implementation, heterogeneous chain runtime, new operation, public numeric release, optimizer/economics/advice, automation, or boundary closure is authorized by this dispatcher.
