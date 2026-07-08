@@ -1,35 +1,23 @@
 # P2C ACTIVE TASK
 
-status: awaiting_user_go_for_m34
-next_actor: chatgpt_user
-active_task_id: M33_ACCEPT_AND_PIN
-result_path: packages/proposed/P2C_M33_P1_Statistical_Convergence_Result_Codex_v1/
-review_path: reviews/M33_P1_Statistical_Convergence_Audit_Claude_v1.md
-base_commit: 0b2b002
-gate_decision: Full M33 oracle-convergence validation accepted by ChatGPT/User on 2026-07-08.
-builder_summary: CURRENT_STATUS and ledgers updated to accept M33-P0, M33-P1, and full M33 oracle-convergence validation for accepted `ordinary_add` only. M34 remains closed pending explicit ChatGPT/User authorization.
+status: ready_for_claude
+next_actor: claude
+active_task_id: M34_MC_HARDENING_DESIGN_DEFINITION
+active_task_file: packages/proposed/P2C_M34_MC_Hardening_Design_Definition_Codex_v1/00_README_FIRST.md
+result_path: packages/proposed/P2C_M34_MC_Hardening_Design_Definition_Codex_v1/
+review_output_hint: reviews/M34_MC_Hardening_Design_Audit_Claude_v1.md
+base_commit: ca4adda
+gate_decision: M33 accepted and pinned; M34 design/definition package authorized by ChatGPT/User on 2026-07-08.
+builder_summary: Created a design-only M34 package defining MC hardening beyond M33 over accepted `ordinary_add` only. No M34 runtime/test implementation was started. Package proposes multi-seed convergence hardening, multi-step/sequence validation, replay/debug diagnostics, failure reporting, pass/fail criteria, and a recommended split into M34-A and M34-B.
 
 ## Gate decision recorded (2026-07-08, User)
 
-- Accept full M33 oracle-convergence validation as completed.
-- Accept M33-P0 oracle-convergence foundation partial.
-- Accept M33-P1 statistical convergence delta.
-- Accept validation that the seeded MC harness converges against the exact/oracle layer for accepted `ordinary_add`.
-- Accepted scope is `ordinary_add` only.
-- No new executable mechanics.
-- No M34 in this commit.
-- No optimizer, advice, ranking, economics, or EV.
-- No public numeric probability release.
-- No server-truth claim.
-
-## Still open
-
-- SOURCE/PROVENANCE.
-- MML.
-- PD-013.
-- Future multi-seed convergence-rate validation.
-- Future sequence / multi-step validation.
-- Future operation-expansion validation.
+- M33 is accepted and pinned.
+- Do not start implementation of M34 yet.
+- Create a small M34 design/definition package.
+- Define M34 as MC hardening beyond M33, still over accepted `ordinary_add` only.
+- Include Claude audit request.
+- Update ACTIVE_TASK to `ready_for_claude`.
 
 ## Current project checkpoint
 
@@ -40,13 +28,41 @@ builder_summary: CURRENT_STATUS and ledgers updated to accept M33-P0, M33-P1, an
 - M31 Monte Carlo policy: accepted after folded C-1 correction.
 - M32 seeded MC harness: accepted.
 - M33 oracle-convergence validation: accepted as completed for accepted `ordinary_add` only.
-- M34: not open.
+- M34 design package: ready for Claude audit.
+- M34 implementation: not open.
+- SOURCE/PROVENANCE, MML, and PD-013 remain open.
 
-## What ChatGPT/User should do next
+## M34 design result summary
 
-Explicitly authorize M34 if the next milestone should start.
+Added:
 
-No agent may start M34 from this status alone.
+- `packages/proposed/P2C_M34_MC_Hardening_Design_Definition_Codex_v1/`
+
+The design package covers:
+
+- what M34 should validate beyond M33;
+- what M34 must not do;
+- proposed pass/fail criteria;
+- proposed tests/checks;
+- split recommendation: M34-A and M34-B;
+- human-readable explanation;
+- Claude audit request.
+
+## What Claude should do next
+
+Audit:
+
+- `packages/proposed/P2C_M34_MC_Hardening_Design_Definition_Codex_v1/`
+- this `ACTIVE_TASK.md`
+- `CURRENT_STATUS.md`
+
+Return GO, GO WITH CHANGES, or NO-GO.
+
+## What ChatGPT/User should do after Claude
+
+Make an explicit gate decision.
+
+No artifact in this commit starts M34 implementation.
 
 ## Optional automation control (inactive)
 
@@ -84,9 +100,9 @@ Future `supervised_auto_run` mode, if explicitly enabled later, means agents may
 
 STOP_OR_ESCALATION if:
 
-- the task starts M34 without explicit ChatGPT/User authorization;
+- the task starts M34 implementation without explicit ChatGPT/User authorization;
 - the task changes executable mechanics;
-- operation expansion beyond accepted `ordinary_add` appears without a new gate;
+- operation expansion beyond accepted `ordinary_add` appears;
 - public output leaks probability values;
 - optimizer/advice/ranking, economics, EV, or expected-attempts work appears;
 - source/provenance, MML, or PD-013 closure is claimed;
