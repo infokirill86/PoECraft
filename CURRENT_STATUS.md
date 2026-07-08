@@ -17,13 +17,14 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M33-P0 oracle-convergence foundation: accepted.
 - M33-P1 statistical convergence delta: accepted.
 - Full M33 oracle-convergence validation: accepted as completed for accepted `ordinary_add` only.
-- M34 MC hardening design/definition package: ready for Claude audit; implementation not started.
+- M34 MC hardening design/definition package: accepted as the plan.
+- M34-A multi-seed single-step MC hardening: ready for Claude audit; proposed, not accepted.
 
 ## Next gate
 
-- Claude audit of `packages/proposed/P2C_M34_MC_Hardening_Design_Definition_Codex_v1/`.
+- Claude audit of `packages/proposed/P2C_M34A_Multi_Seed_MC_Hardening_Result_Codex_v1/`.
 - ChatGPT/User gate decision after Claude audit.
-- M34 implementation remains closed.
+- M34-B and full M34 remain closed.
 
 ## Not authorized / still open
 
