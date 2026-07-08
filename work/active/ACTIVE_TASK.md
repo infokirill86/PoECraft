@@ -1,13 +1,17 @@
 # P2C ACTIVE TASK
 
-status: ready_for_claude
-next_actor: claude
+status: claude_audit_complete
+next_actor: chatgpt_user
 active_task_id: LAYER_A_SOURCE_BUNDLE_BYTE_VERIFICATION
 active_task_file: work/active/LayerA_Source_Bundle_Byte_Verification_Task.md
 result_path: packages/proposed/P2C_Source_Bundle_Byte_Verification_Result_Codex_v1/
 expected_output_dir: packages/proposed/P2C_Source_Bundle_Byte_Verification_Result_Codex_v1/
-review_output_hint: reviews/LayerA_Source_Bundle_Byte_Verification_Audit_Claude_v1.md
+review_path: reviews/LayerA_Source_Bundle_Byte_Verification_Audit_Claude_v1.md
 base_commit: b199bf6
+claude_verdict: GO WITH CHANGES (advisory; acceptance stays with ChatGPT/User)
+claude_verdict_detail: Codex's bundle is honest and integrity-clean but reached the wrong conclusion by comparing against the three doc-only rollup ZIPs (0/75 matches, real but not meaningful). Claude compared the repo's Layer A against the actual origin working tree at Documents/GitHub/PoECraft (named in BASELINE_IMPORT_INVENTORY §5): 79/79 source files byte-identical, 0 differ. Import FIDELITY is proven; formal PRIOR ACCEPTANCE remains open because the runtime only ever existed as a working tree, never a packaged accepted ZIP (same class as the standing open SOURCE/PROVENANCE boundary).
+claude_required_change: fold the working-tree comparison (79/79 exact) into the package record, superseding the wrong-source "provenance gap" framing.
+claude_gate_options: (1 recommended) accept-and-pin the current repo Layer A as the accepted baseline now, provenance recorded as byte-verified-to-working-tree with no prior formal packaging; (2) keep Layer A proposed under the standing provenance-open rule and decide later. Chasing a prior accepted runtime ZIP is not viable — it never existed.
 builder_summary: Source-bundle byte verification result prepared for GitHub baseline Layer A. Available prior local/source package bytes were included, SHA256 values were computed, repo imported baseline files were compared where possible, and gaps were documented. Layer A remains HOLD / NOT ACCEPTED AS PROJECT TRUTH.
 
 ## Gate decision recorded (2026-07-08, User)
@@ -29,23 +33,17 @@ builder_summary: Source-bundle byte verification result prepared for GitHub base
 - GitHub baseline import Layer A: HOLD / NOT ACCEPTED AS PROJECT TRUTH.
 - M33: not open.
 
-## Claude audit target
+## Claude audit — DONE
+Audit complete at repo HEAD `85f40cb`. Verdict: **GO WITH CHANGES** (advisory). Full audit in
+`reviews/LayerA_Source_Bundle_Byte_Verification_Audit_Claude_v1.md`. Codex's bundle is honest but used the
+wrong (doc-only) source; Claude byte-verified Layer A against the real origin working tree = 79/79 exact.
+Import fidelity proven; formal prior acceptance still open. See verdict fields above.
 
-Audit the source-bundle byte verification result at:
-
-`packages/proposed/P2C_Source_Bundle_Byte_Verification_Result_Codex_v1/`
-
-Claude should verify:
-
-1. Source bytes included under `SOURCE_BYTES/` are appropriate and their SHA256 values are correct.
-2. ZIP entry SHA values and repo import comparison rows are accurate.
-3. Missing source bytes and unresolved gaps are honestly documented.
-4. GitHub baseline Layer A remains HOLD / NOT ACCEPTED AS PROJECT TRUTH.
-5. No M33, mechanics changes, optimizer/advice/ranking, public numeric release, source/provenance closure, MML closure, PD-013 closure, or accepted-ledger truth update was introduced.
-
-Return audit under:
-
-`reviews/LayerA_Source_Bundle_Byte_Verification_Audit_Claude_v1.md`
+## What ChatGPT/User should do next (gate decision — nothing auto-accepts)
+1. Choose a Layer A path: (recommended) accept-and-pin the current repo Layer A as the accepted baseline now
+   with byte-verified-to-working-tree provenance; or keep it proposed under the standing provenance-open rule.
+2. Optionally have Codex fold the 79/79 working-tree comparison into the package record (required change).
+3. M33 (oracle convergence) remains closed until the Layer A path is decided.
 
 ## Optional automation control (inactive)
 
