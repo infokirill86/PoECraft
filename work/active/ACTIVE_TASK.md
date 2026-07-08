@@ -1,20 +1,20 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "a3fabef923227cc1eabae719b0b7c4abe6a4eff8"
-updated_at_utc: "2026-07-08T19:07:08Z"
+repo_head_at_last_update: "3bb1c555e367af6c1e9ffda7b0954ae60bba0968"
+updated_at_utc: "2026-07-08T19:12:32Z"
 
-status: "awaiting_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "POST_M35A_NEXT_GATE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "POST_M35A_NEXT_WAVE_DESIGN"
 
-allowed_next_action: "chatgpt_user_decide_next_operation_or_hardening_wave"
+allowed_next_action: "claude_audit_post_m35a_next_wave_design"
 forbidden_next_actions:
-  - "start_next_work_without_explicit_gate"
   - "accept_full_m35"
+  - "implement_next_wave"
+  - "implement_heterogeneous_operation_chains"
   - "implement_annulment_variants_or_omens"
   - "implement_additional_operations"
   - "implement_chaos_essence_fracture_desecrate_jawbone_or_reveal"
-  - "start_heterogeneous_operation_chains"
   - "change_mechanics_data_or_source_truth"
   - "expand_operation_scope"
   - "optimizer_advice_ranking_economics_ev"
@@ -27,8 +27,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: ""
-current_review_path: "reviews/P2C_M35A_Annulment_Runtime_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_Post_M35A_Next_Wave_Design_Codex_v1/"
+current_review_path: "reviews/P2C_Post_M35A_Next_Wave_Design_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -67,17 +67,17 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if any work beyond recording M35-A acceptance would be started."
-  - "Stop if full M35 or any additional operation would be accepted or authorized without explicit later gate."
-  - "Stop if public numeric release, optimizer/economics/advice, automation, or boundary closure appears."
+  - "Stop if audit would require implementation, code, tests, mechanics, data, probabilities, or operation-behavior changes."
+  - "Stop if full M35, heterogeneous chains, Annulment variants, or additional operations would be accepted or authorized without explicit later gate."
+  - "Stop if public numeric release, optimizer/economics/advice, automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure appears."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate after M35-A Annulment Runtime Admission acceptance.
+Current live task: Claude audit of the post-M35A next-wave design proposal.
 
-Next actor: ChatGPT/User.
+Next actor: Claude.
 
-Allowed next action: decide the next operation or hardening wave.
+Allowed next action: audit `packages/proposed/P2C_Post_M35A_Next_Wave_Design_Codex_v1/`.
 
-M35-A base Annulment runtime is accepted. Full M35, Annulment variants, additional operations, heterogeneous chains, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until a later explicit gate.
+No implementation, heterogeneous chain runtime, new operation, public numeric release, optimizer/economics/advice, automation, or boundary closure is authorized by this dispatcher.
