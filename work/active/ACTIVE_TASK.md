@@ -1,46 +1,84 @@
 # P2C ACTIVE TASK
 
-status: awaiting_user_go_for_m33
-next_actor: chatgpt_user
-active_task_id: LAYER_A_ACCEPT_AND_PIN
-active_task_file: work/active/LayerA_Source_Bundle_Byte_Verification_Task.md
-result_path: packages/proposed/P2C_Source_Bundle_Byte_Verification_Result_Codex_v1/
-review_path: reviews/LayerA_Source_Bundle_Byte_Verification_Reaudit_Claude_v1.md
-base_commit: c8722c3
-gate_decision: Layer A GitHub baseline import ACCEPTED AND PINNED by User on 2026-07-08.
-builder_summary: CURRENT_STATUS and ledgers updated to accept/pin GitHub Layer A as the project-model runtime/data/config/schema/tool baseline. Provenance recorded as imported from local origin working tree `Documents/GitHub/PoECraft`, byte-verified exact; no prior formal runtime package existed. M33 remains closed pending explicit ChatGPT/User authorization.
+status: ready_for_claude
+next_actor: claude
+active_task_id: M33_ORACLE_CONVERGENCE
+active_task_file: packages/proposed/P2C_M33_Oracle_Convergence_Result_Codex_v1/00_README_FIRST.md
+result_path: packages/proposed/P2C_M33_Oracle_Convergence_Result_Codex_v1/
+review_output_hint: reviews/M33_Oracle_Convergence_Audit_Claude_v1.md
+base_commit: a27d09a
+gate_decision: M33 authorized by ChatGPT/User on 2026-07-08.
+builder_summary: M33 added test-only oracle-convergence validation for accepted `ordinary_add`. The accepted M32 seeded Monte Carlo harness is compared to exact/oracle branch expectations on small fake known-answer fixtures. No runtime mechanics were changed. No public numeric probability values were released. M34 remains closed.
 
 ## Gate decision recorded (2026-07-08, User)
 
-- Layer A GitHub baseline import: ACCEPT AND PIN.
-- Import fidelity is proven against actual origin working tree `Documents/GitHub/PoECraft`.
-- Claude verified 79 of 79 source files byte-identical, 0 differ, 0 missing.
-- Codex correction folded the working-tree comparison into the package record.
-- A1/A2 baseline hygiene is accepted.
-- Prior formal runtime ZIP did not exist; runtime lived as a working tree.
-- Do not claim server truth.
-- Do not close SOURCE/PROVENANCE, MML, or PD-013.
-- Do not start M33 in this commit.
-- Do not change mechanics.
+- Authorize M33.
+- Use the PoECraft GitHub repo and `ACTIVE_TASK.md`.
+- Validate accepted M32 seeded Monte Carlo harness against exact/oracle layer for accepted `ordinary_add` only.
+- Keep numeric probability evidence internal or quarantined unless existing rules explicitly allow publication.
+- Prepare Claude audit request.
+- Do not enable supervised auto-run.
+- Do not add GitHub Actions.
 
 ## Current project checkpoint
 
 - Operating Manifest v4: accepted baseline.
 - Participant Voice Charter: accepted and active.
 - GitHub workflow: active manual loop, no mailbox automation yet.
+- GitHub baseline import Layer A: accepted and pinned as project-model GitHub baseline.
 - M31 Monte Carlo policy: accepted after folded C-1 correction.
 - M32 seeded MC harness: accepted (Layer B).
 - A1/A2 baseline hygiene: accepted.
-- Supervised auto-run protocol metadata: accepted documentation-only metadata.
-- GitHub baseline import Layer A: accepted and pinned as project-model GitHub baseline.
+- Supervised auto-run protocol metadata: accepted documentation-only metadata, still disabled.
+- M33 oracle-convergence result: ready for Claude audit.
 - SOURCE/PROVENANCE, MML, and PD-013 remain open.
-- M33: not open.
+- M34: not open.
 
-## What ChatGPT/User should do next
+## M33 result summary
 
-Explicitly authorize M33 if the next milestone should start.
+Added:
 
-No agent may start M33 from this status alone.
+- `tests/monte_carlo/test_m33_oracle_convergence.py`
+- `packages/proposed/P2C_M33_Oracle_Convergence_Result_Codex_v1/`
+
+The M33 test layer covers:
+
+- two-branch ordinary-add oracle fixture;
+- three-branch ordinary-add oracle fixture;
+- empty-pool no-transition oracle fixture;
+- shared injected pool-builder proof for exact/oracle and Monte Carlo paths.
+
+## Validation summary
+
+Executed checks:
+
+- `python -m pytest tests/monte_carlo/test_m33_oracle_convergence.py -q`
+- `python -m pytest tests/monte_carlo -q`
+- `python tools/validate_foundation.py`
+- `python tools/validate_m4.py`
+- `python -m pytest -q`
+- `python tools/check_public_numeric_leaks.py packages/proposed/P2C_M33_Oracle_Convergence_Result_Codex_v1`
+- `python tools/check_sha256sums.py packages/proposed/P2C_M33_Oracle_Convergence_Result_Codex_v1/SHA256SUMS.txt`
+- `python tools/check_sha256sums.py SHA256SUMS.txt`
+- `git diff --check`
+
+All checks passed.
+
+## What Claude should do next
+
+Audit:
+
+- `tests/monte_carlo/test_m33_oracle_convergence.py`
+- `packages/proposed/P2C_M33_Oracle_Convergence_Result_Codex_v1/`
+- this `ACTIVE_TASK.md`
+
+Return GO, GO WITH CHANGES, or NO-GO.
+
+## What ChatGPT/User should do after Claude
+
+Make an explicit gate decision.
+
+No artifact in this commit accepts M33 automatically.
 
 ## Optional automation control (inactive)
 
@@ -78,8 +116,10 @@ Future `supervised_auto_run` mode, if explicitly enabled later, means agents may
 
 STOP_OR_ESCALATION if:
 
-- the task starts M33 without explicit ChatGPT/User authorization;
-- the task changes executable mechanics;
+- the task starts M34;
+- the task changes executable mechanics beyond test-only oracle validation;
+- operation expansion beyond accepted `ordinary_add` appears;
 - public output leaks probability values;
-- optimizer/advice/ranking or public numeric release appears;
-- source/provenance, MML, or PD-013 closure is claimed.
+- optimizer/advice/ranking, economics, EV, or expected-attempts work appears;
+- source/provenance, MML, or PD-013 closure is claimed;
+- supervised auto-run or GitHub Actions are enabled.
