@@ -43,6 +43,131 @@ See repository tree in README and ledger files.
 ## Handoff header
 Each active task should include: task_id, task_type, source_agent, target_agent, allowed_actions, forbidden_actions, stop_triggers, base_commit, expected_output, related_artifacts.
 
+## ACTIVE_TASK schema v2
+
+`work/active/ACTIVE_TASK.md` is a routing/control file only. It is not evidence, not a ledger, and not accepted truth.
+
+The file must be a thin live dispatcher:
+
+- one YAML frontmatter block at the top;
+- no prose before the frontmatter;
+- exactly one live `status`;
+- exactly one live `next_actor`;
+- exactly one live `allowed_next_action`;
+- no historical task log;
+- no old task text below the current task;
+- a short human summary may follow the frontmatter, but it must not introduce state that is absent from the machine block.
+
+Mandatory fields:
+
+- `schema_version`
+- `repo_head_at_last_update`
+- `updated_at_utc`
+- `status`
+- `next_actor`
+- `active_task_id`
+- `allowed_next_action`
+- `forbidden_next_actions`
+- `standing_boundaries_ref`
+- `standing_boundaries_apply`
+- `current_result_path`
+- `current_review_path`
+- `acceptance_authority`
+- `automation`
+- `freshness_rules`
+- `stop_conditions`
+
+Allowed `status` values:
+
+- `awaiting_user_gate`
+- `ready_for_codex`
+- `ready_for_claude`
+- `audited_pending_user_gate`
+- `blocked_for_human`
+- `accepted_closed`
+
+Allowed `next_actor` values:
+
+- `chatgpt_user`
+- `codex`
+- `claude`
+- `blocked`
+
+Status/actor consistency:
+
+- `awaiting_user_gate` requires `next_actor: chatgpt_user`.
+- `ready_for_codex` requires `next_actor: codex`.
+- `ready_for_claude` requires `next_actor: claude`.
+- `audited_pending_user_gate` requires `next_actor: chatgpt_user`.
+- `blocked_for_human` requires `next_actor: chatgpt_user` or `next_actor: blocked`.
+- `accepted_closed` requires `next_actor: chatgpt_user` or `next_actor: blocked`.
+
+Do not add intermediate "agent is working" states. Agent work-in-progress belongs in the agent's local execution context until committed/pushed.
+
+## ACTIVE_TASK read receipt rule
+
+Do not update `ACTIVE_TASK.md` just to log reads.
+
+Every Codex result package and every Claude review must include:
+
+- `observed_repo_head`;
+- `observed_active_task_sha`.
+
+`observed_active_task_sha` must be the SHA-256 of the exact `work/active/ACTIVE_TASK.md` file bytes the actor acted on.
+
+This catches stale raw/cache reads without turning `ACTIVE_TASK.md` into a read log.
+
+## Standing boundaries for active task dispatcher
+
+`ACTIVE_TASK.md` should list task-specific forbidden actions only, then point here with:
+
+```yaml
+standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
+standing_boundaries_apply: true
+```
+
+Unless an explicit ChatGPT/User gate overrides them for the current task, standing boundaries are:
+
+- no milestone transition without ChatGPT/User authorization;
+- no accepted-truth or ledger acceptance by Codex, Claude, tests, packages, manifests, dashboards, or generated reports;
+- no executable mechanics change unless explicitly in scope;
+- no operation expansion unless explicitly in scope;
+- no optimizer, advice, ranking, economics, EV, cost, budget, or expected-attempts work unless explicitly in scope;
+- no public numeric probability release unless explicitly in scope;
+- no server-truth claim;
+- no SOURCE/PROVENANCE closure unless explicitly gated;
+- no MML closure unless explicitly gated;
+- no PD-013 closure unless explicitly gated;
+- no supervised auto-run enablement unless explicitly gated;
+- no GitHub Actions or watcher automation unless explicitly gated;
+- no new mailbox or write-location category unless explicitly gated.
+
+## ACTIVE_TASK freshness and fail-closed rules
+
+Agents must stop and report to `chatgpt_user` if:
+
+- current repo HEAD cannot be verified;
+- `ACTIVE_TASK.md` frontmatter cannot be parsed;
+- mandatory fields are missing;
+- enum values are invalid;
+- `status` and `next_actor` conflict;
+- accepted/proposed/current state is ambiguous;
+- raw/cache/HEAD staleness is suspected;
+- standing boundaries are missing or unclear;
+- the task would require a scope expansion.
+
+## Deferred ACTIVE_TASK validator
+
+A future small validator may check the schema mechanically:
+
+- one machine block;
+- mandatory fields;
+- enum membership;
+- `status`/`next_actor` consistency;
+- automation disabled invariants.
+
+This workflow-hygiene patch only documents the validator; it does not add code or tests.
+
 ## Participant rule
 Codex critiques before building. Claude audits lean but deeply. ChatGPT synthesizes at major gates. Kirill decides.
 

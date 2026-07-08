@@ -1,72 +1,78 @@
-# P2C ACTIVE TASK
+---
+schema_version: "2.0"
+repo_head_at_last_update: "514a81b7440ef7bc17944e021a570290b68e7a7d"
+updated_at_utc: "2026-07-08T14:18:35Z"
 
-status: awaiting_user_go_for_m34b
-next_actor: chatgpt_user
-active_task_id: M34A_ACCEPT_AND_PIN
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "ACTIVE_TASK_SCHEMA_V2"
 
-current_gate_result: M34-A multi-seed MC hardening accepted as completed by ChatGPT/User on 2026-07-08.
+allowed_next_action: "claude_audit_active_task_schema_v2_result"
+forbidden_next_actions:
+  - "start_m34b"
+  - "design_m34b"
+  - "implement_m34b"
+  - "multi_step_sequence_validation"
+  - "change_code_tests_mechanics"
+  - "add_new_mailbox_or_write_location"
+  - "enable_supervised_auto_run"
+  - "enable_github_actions"
+  - "accept_schema_without_chatgpt_user_gate"
 
-current_paths:
-- result_path: packages/proposed/P2C_M34A_Multi_Seed_MC_Hardening_Result_Codex_v1/
-- review_path: reviews/M34A_Multi_Seed_MC_Hardening_Audit_Claude_v1.md
+standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
+standing_boundaries_apply: true
 
-next_required_action:
-- ChatGPT/User must explicitly authorize M34-B before any multi-step or sequence validation starts.
-- M34-B and full M34 remain closed.
+current_result_path: "packages/proposed/P2C_ACTIVE_TASK_SCHEMA_V2_Result_Codex_v1/"
+current_review_path: "reviews/P2C_ACTIVE_TASK_SCHEMA_V2_Audit_Claude_v1.md"
 
-accepted_scope:
-- Accepted `ordinary_add` only.
-- M34-A single-step multi-seed hardening accepted.
-- Pinned seeds: `34001`, `34002`, `34003`.
-- Pinned sample tiers: `512`, `2048`, `8192`.
-- Pinned tolerance multiplier: `6`.
-- Deterministic replay accepted.
-- Hard-fail breach diagnostics accepted.
-- Negative-control failure proof accepted.
-
-not_authorized:
-- M34-B.
-- Full M34.
-- Multi-step / sequence validation.
-- New executable mechanics.
-- Operation expansion beyond accepted `ordinary_add`.
-- Optimizer, advice, ranking, economics, EV, expected attempts.
-- Public numeric probability release.
-- Server-truth claims.
-- SOURCE/PROVENANCE closure.
-- MML closure.
-- PD-013 closure.
-- Supervised auto-run.
-- GitHub Actions.
+acceptance_authority: "chatgpt_user"
 
 automation:
-  mode: manual
+  mode: "manual"
   enabled: false
   max_handoffs: 0
   current_handoff_count: 0
   human_gate_required: true
   allowed_next_actors:
-    - codex
-    - claude
+    - "codex"
+    - "claude"
   stop_on:
-    - NO_GO
-    - GO_WITH_CHANGES_REQUIRES_DESIGN_DECISION
-    - scope_expansion
-    - missing_required_bytes
-    - sha_mismatch
-    - test_failure
-    - dependency_or_provenance_uncertainty
-    - builder_auditor_conflict
-    - accepted_truth_update_needed
-    - milestone_transition
-    - max_handoffs_reached
+    - "NO_GO"
+    - "GO_WITH_CHANGES_REQUIRES_DESIGN_DECISION"
+    - "scope_expansion"
+    - "missing_required_bytes"
+    - "sha_mismatch"
+    - "test_failure"
+    - "dependency_or_provenance_uncertainty"
+    - "builder_auditor_conflict"
+    - "accepted_truth_update_needed"
+    - "milestone_transition"
+    - "max_handoffs_reached"
+
+freshness_rules:
+  must_verify_repo_head: true
+  must_record_visible_head: true
+  stop_if_head_unverified: true
+  stop_if_raw_cache_suspected: true
+  prefer_commit_pinned_urls_for_recent_updates: true
 
 stop_conditions:
-- Stop if any agent starts M34-B without explicit ChatGPT/User authorization.
-- Stop if multi-step or sequence validation is introduced without a new gate.
-- Stop if executable mechanics are changed.
-- Stop if operation expansion beyond accepted `ordinary_add` appears.
-- Stop if public probability values are released.
-- Stop if optimizer/advice/ranking/economics/EV/expected-attempts work appears.
-- Stop if SOURCE/PROVENANCE, MML, or PD-013 closure is claimed.
-- Stop if supervised auto-run or GitHub Actions are enabled.
+  - "Stop if current repo HEAD cannot be verified."
+  - "Stop if ACTIVE_TASK.md frontmatter is invalid or missing mandatory fields."
+  - "Stop if status and next_actor are inconsistent."
+  - "Stop if accepted/proposed/current state is ambiguous."
+  - "Stop if standing boundaries are missing or unclear."
+  - "Stop if this task requires code, tests, mechanics, data, probabilities, or operation-behavior changes."
+  - "Stop if M34-B, sequence validation, or multi-step validation is started or designed."
+  - "Stop if automation or GitHub Actions enablement is attempted."
+---
+
+# P2C Active Task
+
+Current live task: `ACTIVE_TASK_SCHEMA_V2` workflow hygiene.
+
+Next actor: Claude.
+
+Allowed next action: audit `packages/proposed/P2C_ACTIVE_TASK_SCHEMA_V2_Result_Codex_v1/`.
+
+This dispatcher is routing/control only. It is not evidence, not a ledger, and not accepted truth.
