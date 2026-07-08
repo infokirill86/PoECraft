@@ -22,12 +22,14 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - ACTIVE_TASK_SCHEMA_V2: accepted as the workflow-hygiene dispatcher standard; `ACTIVE_TASK.md` is routing/control only, with standing boundaries referenced from `manifest/GitHub_Workflow_Protocol.md`.
 - M34-B design: accepted as the plan after Claude GO audit; M34-B1 implementation was authorized for exactly two accepted `ordinary_add` steps.
 - M34-B1 two-step accepted-ordinary-add sequence hardening: accepted as completed after Claude GO audit.
+- Project next-move proposal: accepted after Claude GO audit; default work should pivot from more `ordinary_add` hardening toward controlled admission of the first new real operation.
+- M35 Operation Admission Framework + Annulment candidate design: authorized as design-only. Annulment runtime implementation is not authorized.
 
 ## Next gate
 
-- ChatGPT/User decision is required for the next M34 step or another task.
-- Full M34, M34-C, sequences longer than two steps, route planning, operation expansion, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed.
+- Claude audit is required for `packages/proposed/P2C_M35_Operation_Admission_Design_Codex_v1/`.
+- Annulment implementation, M35-A, full M35, operation expansion as executable runtime, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
 
-New executable mechanics beyond accepted scope; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; MML closure; PD-013 closure; MC execution of unaccepted operations.
+New executable mechanics beyond accepted scope; Annulment runtime; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; MML closure; PD-013 closure; MC execution of unaccepted operations.

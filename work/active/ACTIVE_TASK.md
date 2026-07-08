@@ -1,17 +1,18 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "d8515b644b9d5611520671c93a98c306f3761f3f"
-updated_at_utc: "2026-07-08T16:41:00Z"
+repo_head_at_last_update: "c9628dee2cfd4a242f2a27d6550a8afa020631e7"
+updated_at_utc: "2026-07-08T17:27:05Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "PROJECT_NEXT_MOVE_REVIEW"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M35_OPERATION_ADMISSION_DESIGN"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_project_next_move"
+allowed_next_action: "claude_audit_m35_operation_admission_design"
 forbidden_next_actions:
-  - "implement_next_move"
+  - "implement_annulment"
+  - "add_annulment_runtime_code_or_tests"
+  - "accept_annulment_as_executable"
   - "implement_new_executable_operation"
-  - "start_annulment_runtime_or_tests"
   - "change_mechanics_data_or_source_truth"
   - "expand_operation_scope"
   - "optimizer_advice_ranking_economics_ev"
@@ -24,8 +25,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_Project_Next_Move_Proposal_Codex_v1/"
-current_review_path: "reviews/P2C_Project_Next_Move_Proposal_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_M35_Operation_Admission_Design_Codex_v1/"
+current_review_path: "reviews/P2C_M35_Operation_Admission_Design_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -65,17 +66,16 @@ stop_conditions:
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
   - "Stop if this task would require implementation, code, tests, mechanics, data, probabilities, or operation-behavior changes."
-  - "Stop if Annulment or any new operation implementation starts."
+  - "Stop if Annulment runtime, code, or tests are started."
   - "Stop if operation expansion, public numeric release, optimizer/economics/advice, automation, or boundary closure appears."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the project next-move proposal.
+Current live task: Claude audit of the M35 design-only operation-admission package.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: Claude.
 
-Allowed next action: decide the direction. Claude audit verdict: GO — pivot to a design-only M35
-operation-admission framework + Annulment candidate (`reviews/P2C_Project_Next_Move_Proposal_Audit_Claude_v1.md`).
+Allowed next action: audit `packages/proposed/P2C_M35_Operation_Admission_Design_Codex_v1/`.
 
-No implementation or new operation admission is authorized by this dispatcher.
+No Annulment implementation or new executable operation admission is authorized by this dispatcher.
