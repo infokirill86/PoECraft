@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "592bc4696c6321e2365c5fa8781d61386131e1aa"
-updated_at_utc: "2026-07-09T21:20:33Z"
+repo_head_at_last_update: "596fcdb7f69a8c285ff5a51698eddd10e167bf3f"
+updated_at_utc: "2026-07-10T09:40:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "SHA256_GIT_NORMALIZED_UPDATE_FIX"
 
-allowed_next_action: "claude_audit_sha256_git_normalized_update_fix"
+allowed_next_action: "chatgpt_user_gate_decision_on_sha256_git_normalized_update_fix"
 forbidden_next_actions:
   - "start_greater_or_perfect_runtime"
   - "enable_greater_or_perfect_exalted_or_chaos"
@@ -27,7 +27,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_SHA256_Git_Normalized_Update_Fix_Codex_v1/"
-current_review_path: ""
+current_review_path: "reviews/P2C_SHA256_Git_Normalized_Update_Fix_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -71,10 +71,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the proposed SHA256 Git-normalized updater/checker fix.
+Current live task: ChatGPT/User gate decision on the audited SHA256 git-normalized updater/checker fix.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_SHA256_Git_Normalized_Update_Fix_Codex_v1/`.
+Allowed next action: decide. Claude verdict: GO — both updater and checker now hash git-normalized (index) bytes for tracked files; recurring CRLF checksum drift closed by construction (proven by execution: forced-CRLF worktree still verifies PASS; regeneration is a no-op). No scope creep, no self-acceptance (`reviews/P2C_SHA256_Git_Normalized_Update_Fix_Audit_Claude_v1.md`).
 
 M39-A MML Filter Interface is accepted after Claude GO and ChatGPT/User gate. The current proposed change is repo-integrity tooling only: tracked files are hashed and checked from Git index bytes to avoid CRLF/LF checksum drift. It does not change crafting runtime, mechanics, data semantics, operation admission, public output, optimizer/economics/advice, automation, or SOURCE/PROVENANCE/MML/PD-013 boundaries.
