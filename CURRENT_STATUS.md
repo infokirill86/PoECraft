@@ -27,13 +27,14 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M35-A Annulment Runtime Admission: accepted after Claude GO audit as base Annulment runtime only, project-model semantics only.
 - Operation Inventory & Admission Reconciliation: accepted after Claude GO audit; active catalog metadata is now explicitly separated from executable runtime admission.
 - Operation Runtime Admission Metadata Correction Floor: accepted after Claude GO WITH CHANGES audit; `runtime_admission_status` is the accepted explicit operation runtime-admission metadata field, and Claude's root `SHA256SUMS.txt` correction is accepted.
-- M36 heterogeneous-chain design: accepted after Claude GO WITH CHANGES audit as design-only; M36-A implementation remains closed pending a separate explicit gate.
+- M36 heterogeneous-chain design: accepted after Claude GO WITH CHANGES audit as design-only; M36-A has now been accepted separately, while full M36 and longer chains remain closed.
 - Repo Integrity SHA Floor: accepted after Claude GO WITH CHANGES audit; deterministic root `SHA256SUMS.txt` updater and generated-manifest rule are accepted.
-- M36-A heterogeneous-chain runtime: proposed implementation produced for Claude audit; includes local pre-push SHA hook plus fixed two-step chains over accepted `ordinary_add` and base Annulment only.
+- M36-A heterogeneous-chain runtime: accepted after Claude GO WITH CHANGES audit; fixed two-step chains over accepted `ordinary_add` and base Annulment only.
+- Repo-integrity local pre-push hook guard: accepted; every active working clone must run `git config core.hooksPath tools/hooks`.
 
 ## Next gate
 
-- Claude audit is required for M36-A heterogeneous-chain runtime before acceptance.
+- ChatGPT/User decision is required for the next chain or operation-admission wave.
 - Full M35, Annulment variants/omens, additional operations, heterogeneous operation chains, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open

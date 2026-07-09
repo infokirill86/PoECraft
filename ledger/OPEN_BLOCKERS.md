@@ -104,3 +104,22 @@ This does not close:
 - Additional executable operation admission.
 - Optimizer / advice / ranking / EV-as-decision.
 - GitHub Actions / watcher automation / supervised auto-run.
+
+## Clarification after M36-A acceptance
+
+M36-A accepts only fixed two-step heterogeneous chains over accepted `ordinary_add` and accepted base Annulment.
+
+This does not close:
+
+- Source/provenance closure.
+- MML closure.
+- PD-013 closure.
+- Public numeric release.
+- Chains longer than two steps.
+- Route planning.
+- Additional executable operation admission.
+- Chaos / Essence / Fracture / Desecrate / Jawbone / Reveal runtime.
+- Annulment variants or omens.
+- Optimizer / advice / ranking / EV-as-decision.
+- GitHub Actions / watcher automation / supervised auto-run.
+- Full M36 beyond M36-A.

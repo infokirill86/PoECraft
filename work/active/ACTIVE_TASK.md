@@ -1,15 +1,14 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "8473eccc6b87161e31e6e9f76a2f1b7940e9acfd"
-updated_at_utc: "2026-07-09T08:40:00Z"
+repo_head_at_last_update: "9f4aae3f9f1aab5a13a6dcfcf754e6ce64d6c5ef"
+updated_at_utc: "2026-07-09T10:04:58Z"
 
-status: "audited_pending_user_gate"
+status: "awaiting_user_gate"
 next_actor: "chatgpt_user"
-active_task_id: "M36A_HETEROGENEOUS_CHAIN_RUNTIME"
+active_task_id: "POST_M36A_NEXT_GATE"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m36a_heterogeneous_chain_runtime"
+allowed_next_action: "chatgpt_user_decide_next_chain_or_operation_admission_wave"
 forbidden_next_actions:
-  - "accept_m36a_without_chatgpt_user_gate"
   - "implement_chains_longer_than_two"
   - "implement_route_planner"
   - "implement_chaos_runtime"
@@ -21,12 +20,11 @@ forbidden_next_actions:
   - "close_source_provenance_mml_or_pd013"
   - "enable_github_actions"
   - "enable_supervised_auto_run_or_watcher_automation"
-  - "self_accept_m36a"
 
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M36A_Heterogeneous_Chain_Runtime_Result_Codex_v1/"
+current_result_path: ""
 current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
@@ -66,16 +64,16 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if M36-A acceptance would be recorded without ChatGPT/User gate."
-  - "Stop if chains longer than two, route planning, a new operation, public numeric release, optimizer/economics/advice, GitHub Actions, watcher automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure appears."
+  - "Stop if any next wave would start without explicit ChatGPT/User authorization."
+  - "Stop if chains longer than two, route planning, a new operation, public numeric release, optimizer/economics/advice, GitHub Actions, watcher automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure appears without a separate gate."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the M36-A heterogeneous-chain runtime.
+Current live task: ChatGPT/User next gate after M36-A acceptance.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: ChatGPT/User.
 
-Allowed next action: decide. Claude audit verdict: GO WITH CHANGES — first mixed add+annul chain runtime is correct and fail-closed on the reconciled registry; manifest regenerated; the pre-push hook is present but was inert (core.hooksPath unset) so integrity drifted a 3rd time — activate it (`reviews/P2C_M36A_Heterogeneous_Chain_Runtime_Audit_Claude_v1.md`).
+Allowed next action: decide the next chain or operation-admission wave.
 
-M36-A is proposed, not accepted. The implementation is limited to fixed two-step chains over accepted `ordinary_add` and accepted base Annulment only.
+M36-A is accepted. Full M36 beyond M36-A, longer chains, route planning, additional operations, public numeric release, optimizer/economics/advice, automation, and SOURCE/PROVENANCE/MML/PD-013 closure remain closed pending separate explicit gates.
