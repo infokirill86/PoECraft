@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "963a61f110a56ee72477a1266d0f6c35ca177a96"
-updated_at_utc: "2026-07-09T18:50:42Z"
+repo_head_at_last_update: "b948dcbbb0e21b604291a18fdd08a55933e66991"
+updated_at_utc: "2026-07-09T18:10:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M39_GREATER_PERFECT_MML_DESIGN_VERIFICATION"
 
-allowed_next_action: "claude_audit_m39_greater_perfect_mml_design_verification"
+allowed_next_action: "chatgpt_user_gate_decision_on_m39_greater_perfect_mml_verification"
 forbidden_next_actions:
   - "implement_runtime_code"
   - "accept_greater_or_perfect_runtime"
@@ -70,10 +70,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the proposed M39 Greater/Perfect + MML design/mechanics verification package.
+Current live task: ChatGPT/User gate decision on the M39 Greater/Perfect + MML design verification.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M39_GreaterPerfect_MML_Design_Verification_Codex_v1/`.
+Allowed next action: decide. Claude verdict: GO — Greater/Perfect = op + shared MML add-pool filter (project-model, not server truth); Essences excluded (separate gate); admit Exalted/Chaos first; nothing admitted, all runtime gated (`reviews/P2C_M39_GreaterPerfect_MML_Design_Verification_Audit_Claude_v1.md`).
 
 This is design/mechanics verification only. It does not implement runtime behavior, admit Greater/Perfect variants, close MML, close SOURCE/PROVENANCE, close PD-013, release public numeric output, or authorize automation.
