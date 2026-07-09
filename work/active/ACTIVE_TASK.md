@@ -1,22 +1,20 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "d73130cdc5f051cfbfb541b19b330d350f769f4c"
-updated_at_utc: "2026-07-09T13:43:50Z"
+repo_head_at_last_update: "d383e9339c245c436198c5cdb6abbd4d7c910672"
+updated_at_utc: "2026-07-09T14:12:25Z"
 
-status: "awaiting_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "POST_M37A_NEXT_GATE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M38_OPERATION_RESOLVER_VARIANT_MODIFIER_DESIGN"
 
-allowed_next_action: "chatgpt_user_decide_next_operation_or_omen_layer_or_chain_wave"
+allowed_next_action: "claude_audit_m38_operation_resolver_variant_modifier_design"
 forbidden_next_actions:
-  - "implement_whittling_runtime_without_explicit_gate"
-  - "implement_omen_runtime_without_explicit_gate"
-  - "implement_greater_or_perfect_chaos_without_explicit_gate"
-  - "implement_chaos_variants_without_explicit_gate"
-  - "implement_essence_fracture_desecrate_jawbone_or_reveal_runtime_without_explicit_gate"
-  - "implement_annulment_variants_without_explicit_gate"
-  - "implement_chains_longer_than_accepted_m36a_scope_without_explicit_gate"
-  - "implement_route_planner_without_explicit_gate"
+  - "implement_m38_runtime"
+  - "accept_greater_or_perfect_runtime"
+  - "accept_whittling_or_omen_runtime"
+  - "accept_additional_operation_runtime"
+  - "implement_chains_longer_than_accepted_m36a_scope"
+  - "implement_route_planner"
   - "optimizer_advice_ranking_economics_ev"
   - "release_public_numeric_probabilities"
   - "claim_server_truth"
@@ -27,8 +25,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M37A_ChaosLike_RemoveThenAdd_Runtime_Result_Codex_v1/"
-current_review_path: "reviews/P2C_M37A_ChaosLike_RemoveThenAdd_Runtime_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_M38_Operation_Resolver_Variant_Modifier_Design_Codex_v1/"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -67,15 +65,16 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if a next wave would require a new mechanics, operation-expansion, public-output, optimizer/economics, automation, SOURCE/PROVENANCE, MML, or PD-013 closure gate."
+  - "Stop if M38 audit would require implementation without a new Codex gate."
+  - "Stop if a new runtime operation, variant, Omen layer, public numeric output, optimizer/economics/advice, automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure enters scope."
 ---
 
 # P2C Active Task
 
-Current live state: M37-A base Chaos-like Remove-Then-Add Runtime is accepted after Claude GO WITH CHANGES audit and ChatGPT/User gate.
+Current live task: Claude audit of the proposed M38 Operation Resolver / Variant & Modifier Layer design package.
 
-Next actor: ChatGPT/User.
+Next actor: Claude.
 
-Allowed next action: decide the next operation, Omen layer, chain wave, or other project move.
+Allowed next action: audit `packages/proposed/P2C_M38_Operation_Resolver_Variant_Modifier_Design_Codex_v1/`.
 
-Accepted runtime now includes `ordinary_add`, base Annulment, and base Chaos-like remove-then-add. Whittling, Omens, Greater/Perfect Chaos, Chaos variants, additional operations, public numeric release, optimizer/economics/advice, automation, and SOURCE/PROVENANCE/MML/PD-013 closure remain closed pending separate explicit ChatGPT/User gates.
+M38 is design-only and proposed. It does not implement a resolver, does not admit Greater/Perfect runtime, does not admit Whittling/Omen runtime, and does not accept additional operation runtime. Accepted runtime remains `ordinary_add`, base Annulment, and base Chaos-like remove-then-add.
