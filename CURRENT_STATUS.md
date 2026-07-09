@@ -32,10 +32,11 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M36-A heterogeneous-chain runtime: accepted after Claude GO WITH CHANGES audit; fixed two-step chains over accepted `ordinary_add` and base Annulment only.
 - Repo-integrity local pre-push hook guard: accepted; every active working clone must run `git config core.hooksPath tools/hooks`.
 - M37 Chaos-like remove-then-add design: authorized as design-only and proposed for Claude audit. Chaos-like rows remain `admission_candidate`, not accepted executable runtime.
+- M37 mechanics verification: proposed for Claude audit before any M37 design acceptance or M37-A implementation; base Chaos random-removal vs Whittling/Omen behavior is being source-checked.
 
 ## Next gate
 
-- Claude audit is required for the proposed M37 Chaos-like remove-then-add design package.
+- Claude audit is required for the proposed M37 mechanics verification package.
 - Full M35, Annulment variants/omens, additional operations, heterogeneous operation chains, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
