@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "0b1f65353e5cff223b225e9367d3695619633a72"
-updated_at_utc: "2026-07-09T16:04:07Z"
+repo_head_at_last_update: "fc5398853b7d7a1dccbd31a213a7b44c46977ce5"
+updated_at_utc: "2026-07-09T13:40:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M38_OPERATION_RESOLVER_VARIANT_MODIFIER_DESIGN"
 
-allowed_next_action: "claude_audit_m38_operation_resolver_variant_modifier_design"
+allowed_next_action: "chatgpt_user_gate_decision_on_m38_operation_resolver_design"
 forbidden_next_actions:
   - "implement_m38_runtime"
   - "accept_greater_or_perfect_runtime"
@@ -70,10 +70,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the proposed M38 Operation Resolver / Variant & Modifier Layer Design package.
+Current live task: ChatGPT/User gate decision on the M38 operation-resolver design.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M38_Operation_Resolver_Variant_Modifier_Design_Codex_v1/`.
+Allowed next action: decide. Claude verdict: GO — lean design-only resolver seam (admission+compilation over accepted primitives, fail-closed), grounded on runtime_admission_status; all variant runtime (Greater/Perfect/Omen/Whittling) stays gated (`reviews/P2C_M38_Operation_Resolver_Variant_Modifier_Design_Audit_Claude_v1.md`).
 
 M38 is design-only. It does not implement resolver runtime, admit Greater/Perfect variants, admit Whittling/Omen layers, add operation runtime, release public numeric output, enable automation, or close SOURCE/PROVENANCE/MML/PD-013.
