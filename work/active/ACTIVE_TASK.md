@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "382e53bb54e228bb9f4193ddc2d44c302c257a83"
-updated_at_utc: "2026-07-08T21:43:09Z"
+repo_head_at_last_update: "8473eccc6b87161e31e6e9f76a2f1b7940e9acfd"
+updated_at_utc: "2026-07-09T08:40:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M36A_HETEROGENEOUS_CHAIN_RUNTIME"
 
-allowed_next_action: "claude_audit_m36a_heterogeneous_chain_runtime"
+allowed_next_action: "chatgpt_user_gate_decision_on_m36a_heterogeneous_chain_runtime"
 forbidden_next_actions:
   - "accept_m36a_without_chatgpt_user_gate"
   - "implement_chains_longer_than_two"
@@ -72,10 +72,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of M36-A heterogeneous-chain runtime.
+Current live task: ChatGPT/User gate decision on the M36-A heterogeneous-chain runtime.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M36A_Heterogeneous_Chain_Runtime_Result_Codex_v1/`.
+Allowed next action: decide. Claude audit verdict: GO WITH CHANGES — first mixed add+annul chain runtime is correct and fail-closed on the reconciled registry; manifest regenerated; the pre-push hook is present but was inert (core.hooksPath unset) so integrity drifted a 3rd time — activate it (`reviews/P2C_M36A_Heterogeneous_Chain_Runtime_Audit_Claude_v1.md`).
 
 M36-A is proposed, not accepted. The implementation is limited to fixed two-step chains over accepted `ordinary_add` and accepted base Annulment only.
