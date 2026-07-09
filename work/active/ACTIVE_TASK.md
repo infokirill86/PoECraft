@@ -1,15 +1,15 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "0cb6b6e315d5b66719d5fd57940bfb8fa9c19486"
-updated_at_utc: "2026-07-09T17:45:00Z"
+repo_head_at_last_update: "89d21d930db0bafd5cca1e3331e401de9958ec7e"
+updated_at_utc: "2026-07-09T18:39:52Z"
 
-status: "audited_pending_user_gate"
+status: "awaiting_user_gate"
 next_actor: "chatgpt_user"
-active_task_id: "M38A_OPERATION_RESOLVER_SKELETON"
+active_task_id: "POST_M38A_NEXT_GATE"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m38a_operation_resolver_skeleton"
+allowed_next_action: "chatgpt_user_decide_next_variant_modifier_or_operation_wave"
 forbidden_next_actions:
-  - "accept_m38a_without_chatgpt_user_gate"
+  - "start_new_runtime_or_mechanics_work_without_explicit_gate"
   - "accept_greater_or_perfect_runtime"
   - "accept_whittling_or_omen_runtime"
   - "accept_side_or_desecrated_modifier_runtime"
@@ -26,7 +26,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M38A_Operation_Resolver_Skeleton_Result_Codex_v1/"
-current_review_path: ""
+current_review_path: "reviews/P2C_M38A_Operation_Resolver_Skeleton_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -65,16 +65,15 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if audit would require implementation changes without a new Codex gate."
-  - "Stop if runtime code beyond the M38-A resolver skeleton, crafting mechanics, data semantics, new operation admission, automation, accepted-truth update, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure enters scope."
+  - "Stop if runtime code, crafting mechanics, data semantics, operation admission, automation, accepted-truth update, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure enters scope without explicit ChatGPT/User gate authorization."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the M38-A operation resolver skeleton.
+Current live task: ChatGPT/User decision on the next wave after accepted M38-A.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: ChatGPT/User.
 
-Allowed next action: decide. Claude verdict: GO — fail-closed single-operation resolver seam; dispatches only accepted ordinary_add/annulment/chaos, keys off runtime_admission_status; variants/modifiers fail closed; additive, 8/8 + regression 140 (`reviews/P2C_M38A_Operation_Resolver_Skeleton_Audit_Claude_v1.md`).
+Allowed next action: decide the next variant, modifier, operation, chain, or other project wave.
 
-M38 design is accepted. M38-A implementation is proposed only and not accepted. M38-A adds a single-operation resolver skeleton and fail-closed admission checks for already accepted `ordinary_add`, base Annulment, and base Chaos-like runtime. It does not admit Greater/Perfect variants, Whittling/Omen layers, side/desecrated modifier runtime, new operations, longer chains, planner behavior, public numeric output, automation, or SOURCE/PROVENANCE/MML/PD-013 closure.
+M38-A Operation Resolver Skeleton is accepted. It is a single-operation resolver/admission seam over already accepted `ordinary_add`, base Annulment, and base Chaos-like runtime. It does not admit Greater/Perfect variants, Whittling/Omen layers, side/desecrated modifier runtime, new operations, longer chains, planner behavior, public numeric output, automation, or SOURCE/PROVENANCE/MML/PD-013 closure.
