@@ -1,21 +1,21 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "89d21d930db0bafd5cca1e3331e401de9958ec7e"
-updated_at_utc: "2026-07-09T18:39:52Z"
+repo_head_at_last_update: "963a61f110a56ee72477a1266d0f6c35ca177a96"
+updated_at_utc: "2026-07-09T18:50:42Z"
 
-status: "awaiting_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "POST_M38A_NEXT_GATE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M39_GREATER_PERFECT_MML_DESIGN_VERIFICATION"
 
-allowed_next_action: "chatgpt_user_decide_next_variant_modifier_or_operation_wave"
+allowed_next_action: "claude_audit_m39_greater_perfect_mml_design_verification"
 forbidden_next_actions:
-  - "start_new_runtime_or_mechanics_work_without_explicit_gate"
+  - "implement_runtime_code"
   - "accept_greater_or_perfect_runtime"
+  - "accept_mml_closure"
   - "accept_whittling_or_omen_runtime"
-  - "accept_side_or_desecrated_modifier_runtime"
   - "accept_new_operation_runtime"
   - "implement_longer_chains"
-  - "implement_route_planner"
+  - "implement_planner"
   - "optimizer_economics_advice"
   - "release_public_numeric_probabilities"
   - "close_source_provenance_mml_or_pd013"
@@ -25,8 +25,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M38A_Operation_Resolver_Skeleton_Result_Codex_v1/"
-current_review_path: "reviews/P2C_M38A_Operation_Resolver_Skeleton_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_M39_GreaterPerfect_MML_Design_Verification_Codex_v1/"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -70,10 +70,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: ChatGPT/User decision on the next wave after accepted M38-A.
+Current live task: Claude audit of the proposed M39 Greater/Perfect + MML design/mechanics verification package.
 
-Next actor: ChatGPT/User.
+Next actor: Claude.
 
-Allowed next action: decide the next variant, modifier, operation, chain, or other project wave.
+Allowed next action: audit `packages/proposed/P2C_M39_GreaterPerfect_MML_Design_Verification_Codex_v1/`.
 
-M38-A Operation Resolver Skeleton is accepted. It is a single-operation resolver/admission seam over already accepted `ordinary_add`, base Annulment, and base Chaos-like runtime. It does not admit Greater/Perfect variants, Whittling/Omen layers, side/desecrated modifier runtime, new operations, longer chains, planner behavior, public numeric output, automation, or SOURCE/PROVENANCE/MML/PD-013 closure.
+This is design/mechanics verification only. It does not implement runtime behavior, admit Greater/Perfect variants, close MML, close SOURCE/PROVENANCE, close PD-013, release public numeric output, or authorize automation.
