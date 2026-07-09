@@ -32,13 +32,14 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M36-A heterogeneous-chain runtime: accepted after Claude GO WITH CHANGES audit; fixed two-step chains over accepted `ordinary_add` and base Annulment only.
 - Repo-integrity local pre-push hook guard: accepted; every active working clone must run `git config core.hooksPath tools/hooks`.
 - M37 mechanics verification: accepted after Claude GO audit; base removal is a uniform combined eligible-instance pool, base add is a combined generation_weight legal pool, and Whittling/side/desecrated behaviors are separate Omen layers. This is project-model policy only, not server truth.
-- M37 Chaos-like remove-then-add design: accepted with the M37 mechanics correction; M37-A implementation is now proposed for Claude audit, not accepted.
+- M37 Chaos-like remove-then-add design: accepted with the M37 mechanics correction.
+- M37-A base Chaos-like Remove-Then-Add Runtime: accepted after Claude GO WITH CHANGES audit as base Chaos-like runtime only; base `chaos` is admitted as `accepted_executable_runtime`, project-model only.
 
 ## Next gate
 
-- Claude audit is required for the proposed M37-A base Chaos-like remove-then-add runtime package.
-- Full M35, Annulment variants/omens, additional operations, heterogeneous operation chains, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
+- ChatGPT/User decision is required for the next operation, Omen layer, chain wave, or other project move.
+- Whittling, Omens, Greater/Perfect Chaos, additional operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
 
-New executable mechanics beyond accepted `ordinary_add`, base Annulment, and proposed-pending-audit base Chaos-like runtime; Whittling runtime; Omen runtime; Greater/Perfect Chaos; Chaos variants; Annulment variants/omens; heterogeneous operation chains beyond accepted M36-A fixed two-step scope; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; MML closure; PD-013 closure; MC execution of unaccepted operations.
+New executable mechanics beyond accepted `ordinary_add`, base Annulment, and base Chaos-like runtime; Whittling runtime; Omen runtime; Greater/Perfect Chaos; Chaos variants; Annulment variants/omens; heterogeneous operation chains beyond accepted M36-A fixed two-step scope; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; MML closure; PD-013 closure; MC execution of unaccepted operations.

@@ -1,22 +1,22 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "0bdc5dba64f9b5c6105eabf18b6e286b7b9aabaf"
-updated_at_utc: "2026-07-09T12:10:00Z"
+repo_head_at_last_update: "d73130cdc5f051cfbfb541b19b330d350f769f4c"
+updated_at_utc: "2026-07-09T13:43:50Z"
 
-status: "audited_pending_user_gate"
+status: "awaiting_user_gate"
 next_actor: "chatgpt_user"
-active_task_id: "M37A_CHAOSLIKE_REMOVE_THEN_ADD_RUNTIME"
+active_task_id: "POST_M37A_NEXT_GATE"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m37a_chaoslike_runtime"
+allowed_next_action: "chatgpt_user_decide_next_operation_or_omen_layer_or_chain_wave"
 forbidden_next_actions:
-  - "self_accept_m37a"
-  - "implement_whittling_runtime"
-  - "implement_omen_runtime"
-  - "implement_greater_or_perfect_chaos"
-  - "implement_essence_fracture_desecrate_jawbone_or_reveal_runtime"
-  - "implement_annulment_variants"
-  - "implement_chains_longer_than_accepted_m36a_scope"
-  - "implement_route_planner"
+  - "implement_whittling_runtime_without_explicit_gate"
+  - "implement_omen_runtime_without_explicit_gate"
+  - "implement_greater_or_perfect_chaos_without_explicit_gate"
+  - "implement_chaos_variants_without_explicit_gate"
+  - "implement_essence_fracture_desecrate_jawbone_or_reveal_runtime_without_explicit_gate"
+  - "implement_annulment_variants_without_explicit_gate"
+  - "implement_chains_longer_than_accepted_m36a_scope_without_explicit_gate"
+  - "implement_route_planner_without_explicit_gate"
   - "optimizer_advice_ranking_economics_ev"
   - "release_public_numeric_probabilities"
   - "claim_server_truth"
@@ -28,7 +28,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M37A_ChaosLike_RemoveThenAdd_Runtime_Result_Codex_v1/"
-current_review_path: ""
+current_review_path: "reviews/P2C_M37A_ChaosLike_RemoveThenAdd_Runtime_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -67,16 +67,15 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if M37-A audit would require implementation changes without a new Codex gate."
-  - "Stop if public numeric output, optimizer/economics/advice, automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure enters scope."
+  - "Stop if a next wave would require a new mechanics, operation-expansion, public-output, optimizer/economics, automation, SOURCE/PROVENANCE, MML, or PD-013 closure gate."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the M37-A base Chaos remove-then-add runtime.
+Current live state: M37-A base Chaos-like Remove-Then-Add Runtime is accepted after Claude GO WITH CHANGES audit and ChatGPT/User gate.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: ChatGPT/User.
 
-Allowed next action: decide. Claude verdict: GO WITH CHANGES — runtime correct (12/12 tests, regression 132, uniform-remove + weighted-add, atomic, fractured-protected). Accepting ADMITS base chaos as executable truth (operations.yaml flip + fingerprint) — a conscious gate decision; manifest regenerated (`reviews/P2C_M37A_ChaosLike_RemoveThenAdd_Runtime_Audit_Claude_v1.md`).
+Allowed next action: decide the next operation, Omen layer, chain wave, or other project move.
 
-M37-A is proposed, not accepted. Base Chaos-like runtime is the only new proposed executable path. Whittling, Omens, Greater/Perfect Chaos, additional operations, public numeric release, optimizer/economics/advice, automation, and SOURCE/PROVENANCE/MML/PD-013 closure remain closed pending separate explicit ChatGPT/User gates.
+Accepted runtime now includes `ordinary_add`, base Annulment, and base Chaos-like remove-then-add. Whittling, Omens, Greater/Perfect Chaos, Chaos variants, additional operations, public numeric release, optimizer/economics/advice, automation, and SOURCE/PROVENANCE/MML/PD-013 closure remain closed pending separate explicit ChatGPT/User gates.
