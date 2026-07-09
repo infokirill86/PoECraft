@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "800daa1becae9fc42fcbd794e9b6f86cd84661bb"
-updated_at_utc: "2026-07-09T14:23:32Z"
+repo_head_at_last_update: "b9cca26fcd04b7727d64654d2ac0eb4323e88c73"
+updated_at_utc: "2026-07-09T12:45:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "AGENT_ROLE_PACKS_DESIGN"
 
-allowed_next_action: "claude_audit_agent_role_packs_design"
+allowed_next_action: "chatgpt_user_gate_decision_on_agent_role_packs_design"
 forbidden_next_actions:
   - "implement_agent_role_files_without_gate"
   - "change_runtime_code"
@@ -67,10 +67,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the proposed persistent agent role-pack design package.
+Current live task: ChatGPT/User gate decision on the agent role-packs design.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_Agent_Role_Packs_Design_Codex_v1/`.
+Allowed next action: decide. Claude verdict: GO WITH CHANGES — layout correct (AGENTS.md for Codex, CLAUDE.md for Claude verified, skills deferred), preserves participants + the gate, reduces prompts without hiding gates; refine to one doctrine source + fold hook-activation/read-receipt into AGENTS.md (`reviews/P2C_Agent_Role_Packs_Design_Audit_Claude_v1.md`).
 
 This is workflow/protocol design only. It does not create `AGENTS.md`, `CLAUDE.md`, skills, runtime code, crafting mechanics, operation admission, automation, or accepted-truth changes.
