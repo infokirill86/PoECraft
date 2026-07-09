@@ -1,27 +1,28 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "b9cca26fcd04b7727d64654d2ac0eb4323e88c73"
-updated_at_utc: "2026-07-09T12:45:00Z"
+repo_head_at_last_update: "52aa38e7e062ff6c6bc705909502a546b474f0c4"
+updated_at_utc: "2026-07-09T15:12:53Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "AGENT_ROLE_PACKS_DESIGN"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "AGENT_ROLE_PACKS_IMPLEMENTATION"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_agent_role_packs_design"
+allowed_next_action: "claude_audit_agent_role_packs_implementation"
 forbidden_next_actions:
-  - "implement_agent_role_files_without_gate"
+  - "self_accept_role_pack_implementation"
   - "change_runtime_code"
   - "change_crafting_mechanics"
+  - "change_data_semantics"
   - "admit_new_operation_runtime"
+  - "implement_m38_runtime"
   - "enable_automation_or_github_actions"
   - "close_source_provenance_mml_or_pd013"
-  - "self_accept_role_pack"
   - "update_accepted_truth_without_gate"
 
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_Agent_Role_Packs_Design_Codex_v1/"
+current_result_path: "packages/proposed/P2C_Agent_Role_Packs_Implementation_Codex_v1/"
 current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
@@ -61,16 +62,16 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if audit would require implementation without a new Codex gate."
-  - "Stop if runtime code, crafting mechanics, operation admission, automation, accepted-truth update, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure enters scope."
+  - "Stop if audit would require implementation changes without a new Codex gate."
+  - "Stop if runtime code, crafting mechanics, data semantics, operation admission, automation, accepted-truth update, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure enters scope."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the agent role-packs design.
+Current live task: Claude audit of the proposed persistent agent role-packs implementation.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: Claude.
 
-Allowed next action: decide. Claude verdict: GO WITH CHANGES — layout correct (AGENTS.md for Codex, CLAUDE.md for Claude verified, skills deferred), preserves participants + the gate, reduces prompts without hiding gates; refine to one doctrine source + fold hook-activation/read-receipt into AGENTS.md (`reviews/P2C_Agent_Role_Packs_Design_Audit_Claude_v1.md`).
+Allowed next action: audit `packages/proposed/P2C_Agent_Role_Packs_Implementation_Codex_v1/`.
 
-This is workflow/protocol design only. It does not create `AGENTS.md`, `CLAUDE.md`, skills, runtime code, crafting mechanics, operation admission, automation, or accepted-truth changes.
+This is workflow/protocol implementation only. It creates compact `AGENTS.md`, `CLAUDE.md`, and `manifest/Agent_Role_Pack.md`. It does not change runtime code, crafting mechanics, data semantics, operation admission, automation, or accepted project truth.
