@@ -1,31 +1,27 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "d383e9339c245c436198c5cdb6abbd4d7c910672"
-updated_at_utc: "2026-07-09T14:12:25Z"
+repo_head_at_last_update: "800daa1becae9fc42fcbd794e9b6f86cd84661bb"
+updated_at_utc: "2026-07-09T14:23:32Z"
 
 status: "ready_for_claude"
 next_actor: "claude"
-active_task_id: "M38_OPERATION_RESOLVER_VARIANT_MODIFIER_DESIGN"
+active_task_id: "AGENT_ROLE_PACKS_DESIGN"
 
-allowed_next_action: "claude_audit_m38_operation_resolver_variant_modifier_design"
+allowed_next_action: "claude_audit_agent_role_packs_design"
 forbidden_next_actions:
-  - "implement_m38_runtime"
-  - "accept_greater_or_perfect_runtime"
-  - "accept_whittling_or_omen_runtime"
-  - "accept_additional_operation_runtime"
-  - "implement_chains_longer_than_accepted_m36a_scope"
-  - "implement_route_planner"
-  - "optimizer_advice_ranking_economics_ev"
-  - "release_public_numeric_probabilities"
-  - "claim_server_truth"
+  - "implement_agent_role_files_without_gate"
+  - "change_runtime_code"
+  - "change_crafting_mechanics"
+  - "admit_new_operation_runtime"
+  - "enable_automation_or_github_actions"
   - "close_source_provenance_mml_or_pd013"
-  - "enable_github_actions"
-  - "enable_supervised_auto_run_or_watcher_automation"
+  - "self_accept_role_pack"
+  - "update_accepted_truth_without_gate"
 
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M38_Operation_Resolver_Variant_Modifier_Design_Codex_v1/"
+current_result_path: "packages/proposed/P2C_Agent_Role_Packs_Design_Codex_v1/"
 current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
@@ -65,16 +61,16 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if M38 audit would require implementation without a new Codex gate."
-  - "Stop if a new runtime operation, variant, Omen layer, public numeric output, optimizer/economics/advice, automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure enters scope."
+  - "Stop if audit would require implementation without a new Codex gate."
+  - "Stop if runtime code, crafting mechanics, operation admission, automation, accepted-truth update, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure enters scope."
 ---
 
 # P2C Active Task
 
-Current live task: Claude audit of the proposed M38 Operation Resolver / Variant & Modifier Layer design package.
+Current live task: Claude audit of the proposed persistent agent role-pack design package.
 
 Next actor: Claude.
 
-Allowed next action: audit `packages/proposed/P2C_M38_Operation_Resolver_Variant_Modifier_Design_Codex_v1/`.
+Allowed next action: audit `packages/proposed/P2C_Agent_Role_Packs_Design_Codex_v1/`.
 
-M38 is design-only and proposed. It does not implement a resolver, does not admit Greater/Perfect runtime, does not admit Whittling/Omen runtime, and does not accept additional operation runtime. Accepted runtime remains `ordinary_add`, base Annulment, and base Chaos-like remove-then-add.
+This is workflow/protocol design only. It does not create `AGENTS.md`, `CLAUDE.md`, skills, runtime code, crafting mechanics, operation admission, automation, or accepted-truth changes.
