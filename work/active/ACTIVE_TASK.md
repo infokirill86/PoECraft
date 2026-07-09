@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "e7497b5abf01a0a4f12ce0932082517bfd86afa8"
-updated_at_utc: "2026-07-09T11:35:19Z"
+repo_head_at_last_update: "1947c735b453b0fadcd3088bdda95479a03c98b7"
+updated_at_utc: "2026-07-09T11:20:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M37_MECHANICS_VERIFICATION"
 
-allowed_next_action: "claude_audit_m37_mechanics_verification"
+allowed_next_action: "chatgpt_user_gate_decision_on_m37_mechanics_verification"
 forbidden_next_actions:
   - "implement_m37a"
   - "implement_chaos_runtime"
@@ -77,10 +77,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the proposed M37 mechanics verification package.
+Current live task: ChatGPT/User gate decision on the M37 mechanics-verification package.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M37_Mechanics_Verification_Codex_v1/`.
+Allowed next action: decide (adopt as project-model policy). Claude audit verdict: GO — removal=uniform combined pool, add=combined generation_weight pool (side=capacity filter, not 50/50), Omens/Whittling are separate layers; project-model policy, not server truth (`reviews/P2C_M37_Mechanics_Verification_Audit_Claude_v1.md`).
 
 M37 mechanics verification is source/provenance design work only. M37-A, Chaos runtime, executable Chaos admission, public numeric release, optimizer/economics/advice, automation, and SOURCE/PROVENANCE/MML/PD-013 closure remain closed pending separate explicit ChatGPT/User gates.
