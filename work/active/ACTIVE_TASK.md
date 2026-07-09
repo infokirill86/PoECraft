@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "f009c1e5a7bbad9434e7c233e0acdbd24e064d5e"
-updated_at_utc: "2026-07-09T17:20:21Z"
+repo_head_at_last_update: "0cb6b6e315d5b66719d5fd57940bfb8fa9c19486"
+updated_at_utc: "2026-07-09T17:45:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M38A_OPERATION_RESOLVER_SKELETON"
 
-allowed_next_action: "claude_audit_m38a_operation_resolver_skeleton"
+allowed_next_action: "chatgpt_user_gate_decision_on_m38a_operation_resolver_skeleton"
 forbidden_next_actions:
   - "accept_m38a_without_chatgpt_user_gate"
   - "accept_greater_or_perfect_runtime"
@@ -71,10 +71,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the proposed M38-A operation resolver skeleton.
+Current live task: ChatGPT/User gate decision on the M38-A operation resolver skeleton.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M38A_Operation_Resolver_Skeleton_Result_Codex_v1/`.
+Allowed next action: decide. Claude verdict: GO — fail-closed single-operation resolver seam; dispatches only accepted ordinary_add/annulment/chaos, keys off runtime_admission_status; variants/modifiers fail closed; additive, 8/8 + regression 140 (`reviews/P2C_M38A_Operation_Resolver_Skeleton_Audit_Claude_v1.md`).
 
 M38 design is accepted. M38-A implementation is proposed only and not accepted. M38-A adds a single-operation resolver skeleton and fail-closed admission checks for already accepted `ordinary_add`, base Annulment, and base Chaos-like runtime. It does not admit Greater/Perfect variants, Whittling/Omen layers, side/desecrated modifier runtime, new operations, longer chains, planner behavior, public numeric output, automation, or SOURCE/PROVENANCE/MML/PD-013 closure.
