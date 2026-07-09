@@ -8,6 +8,8 @@ After M37-A, the project has enough executable operation variety to expose the n
 
 Implementing Greater/Perfect Chaos directly next would be tempting, but it would likely hardcode MML into the Chaos function and repeat the same problem for Exalted, Regal, Transmutation, Augmentation, Essence, and Omens. Implementing Whittling next would have the same problem from the modifier side. Hardening chains again would not answer how mixed operation requests should be represented.
 
+The alternative of admitting another operation first is also weaker right now. The simulator already has add, remove, and remove_then_add coverage. The project now needs a clean admission/resolution seam so future operations and modifier layers do not bypass `runtime_admission_status` or confuse catalog readiness with executable permission.
+
 So the better next step is a design-only M38 resolver boundary:
 
 - broad enough to define currency/variant/modifier composition;
@@ -31,3 +33,4 @@ The resolver should not invent future operations, not normalize every mechanic i
 
 Proceed with M38 design, then audit it with Claude. If accepted, M38-A should implement only the resolver skeleton plus fail-closed checks and no new runtime behavior. Runtime admission of Greater/Perfect or Omen layers should remain separate later gates.
 
+No material objection to the M38 design boundary; proceeding with design-only package work.

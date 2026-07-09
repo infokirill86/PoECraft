@@ -5,11 +5,12 @@ package_type: `DESIGN_ONLY_PROPOSED_DELTA`
 status: `proposed_for_claude_audit`
 author: `codex`
 created_utc: `2026-07-09T13:43:50Z`
+updated_utc: `2026-07-09T15:40:00Z`
 
 ## Read receipt
 
-- observed_repo_head: `d383e9339c245c436198c5cdb6abbd4d7c910672`
-- observed_active_task_sha: `8d6d02dfb1a0e1ac8d3c4854ecdb98d490aa764941c7c797009fccd2d1fe3971`
+- observed_repo_head: `0b1f65353e5cff223b225e9367d3695619633a72`
+- observed_active_task_sha: `94f68b94cb58c9e7589d06a6154fe84ced2b58d14d8182da6de29f4a72488e6a`
 - active_task_path: `work/active/ACTIVE_TASK.md`
 
 ## Plain-language summary for Kirill
@@ -30,6 +31,13 @@ currency + variant + active modifiers + item state -> resolved operation plan
 
 The resolver does not execute new mechanics by itself. It decides whether a requested operation is allowed, which accepted primitive plan it resolves to, and which filters/modifier layers are applied. Unsupported combinations fail closed.
 
+This package uses the accepted persistent role files:
+
+- `AGENTS.md`
+- `manifest/Agent_Role_Pack.md`
+
+It is based on current repo data files and accepted project records, not on a new source/provenance closure.
+
 ## Boundaries
 
 This package is design-only. It does not:
@@ -43,4 +51,3 @@ This package is design-only. It does not:
 - close SOURCE/PROVENANCE, MML, or PD-013;
 - claim server truth;
 - enable automation.
-

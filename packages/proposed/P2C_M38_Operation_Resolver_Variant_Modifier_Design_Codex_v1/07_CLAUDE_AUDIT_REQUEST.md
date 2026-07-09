@@ -32,7 +32,6 @@ Check whether the design:
 
 Please verify:
 
-- Greater/Perfect Chaos and Greater/Perfect Exalted are represented as MML/pool-filter variants in repo data and the checked PoE2DB pages, without treating them as executable.
+- Greater/Perfect Chaos and Greater/Perfect Exalted are represented as MML/pool-filter variants in repo data, without treating them as executable.
 - Whittling, side Erasure, side Annulment, Omen of Light, and Greater Exaltation are independent active modifier layers, not base operation semantics.
 - The proposed M38-A boundary is narrow enough: resolver skeleton + fail-closed only, no new admitted behavior.
-
