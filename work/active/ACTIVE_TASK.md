@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "3a9db200ac367e7c441074d27c6803f15a67c752"
-updated_at_utc: "2026-07-09T12:34:10Z"
+repo_head_at_last_update: "0bdc5dba64f9b5c6105eabf18b6e286b7b9aabaf"
+updated_at_utc: "2026-07-09T12:10:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M37A_CHAOSLIKE_REMOVE_THEN_ADD_RUNTIME"
 
-allowed_next_action: "claude_audit_m37a_chaoslike_remove_then_add_runtime"
+allowed_next_action: "chatgpt_user_gate_decision_on_m37a_chaoslike_runtime"
 forbidden_next_actions:
   - "self_accept_m37a"
   - "implement_whittling_runtime"
@@ -73,10 +73,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the proposed M37-A base Chaos-like remove-then-add runtime package.
+Current live task: ChatGPT/User gate decision on the M37-A base Chaos remove-then-add runtime.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M37A_ChaosLike_RemoveThenAdd_Runtime_Result_Codex_v1/`.
+Allowed next action: decide. Claude verdict: GO WITH CHANGES — runtime correct (12/12 tests, regression 132, uniform-remove + weighted-add, atomic, fractured-protected). Accepting ADMITS base chaos as executable truth (operations.yaml flip + fingerprint) — a conscious gate decision; manifest regenerated (`reviews/P2C_M37A_ChaosLike_RemoveThenAdd_Runtime_Audit_Claude_v1.md`).
 
 M37-A is proposed, not accepted. Base Chaos-like runtime is the only new proposed executable path. Whittling, Omens, Greater/Perfect Chaos, additional operations, public numeric release, optimizer/economics/advice, automation, and SOURCE/PROVENANCE/MML/PD-013 closure remain closed pending separate explicit ChatGPT/User gates.
