@@ -20,6 +20,7 @@ from p2c_engine.static_data.game_data import StaticGameData
 
 
 M38A_RESOLVER_SCHEMA_VERSION = "p2c.m38a.operation_resolver_skeleton.v1"
+M39A_RESOLVER_SCHEMA_VERSION = "p2c.m39a.operation_resolver_mml_filter_interface.v1"
 ACCEPTED_RUNTIME_STATUS = "accepted_executable_runtime"
 BASE_VARIANT_IDS = frozenset({None, "", "base"})
 
@@ -43,7 +44,11 @@ class OperationResolverRequest:
     M38-A is intentionally not a route planner. It compiles one currency or
     engine-primitive invocation into one already accepted runtime operation.
     Variant and active-modifier fields are present as a future interface shape,
-    but every non-base/non-empty value fails closed in M38-A.
+    but every non-base/non-empty value fails closed in M39-A.
+
+    M39-A admits only an explicit MML filter parameter for the accepted
+    ordinary_add engine primitive. It does not admit Greater/Perfect currency
+    rows, Greater/Perfect variants, Chaos MML, Essence, Whittling, or Omens.
     """
 
     currency_id: str
@@ -51,11 +56,17 @@ class OperationResolverRequest:
     mode_id: str = "m38a_resolved_operation"
     variant_id: str | None = None
     active_modifier_ids: tuple[str, ...] = ()
+    mml: int | None = None
 
 
 @dataclass(frozen=True, slots=True)
 class ResolvedOperationFilters:
-    """Future filter shape; all fields must be inactive in M38-A."""
+    """Resolved filter shape.
+
+    In M39-A, only `mml` may be active, and only for explicit ordinary_add
+    engine-primitive requests. All other fields remain future fail-closed
+    interfaces.
+    """
 
     side_filter: Side | None = None
     mml: int | None = None
@@ -102,14 +113,16 @@ class OperationResolver:
     def resolve(self, request: OperationResolverRequest) -> ResolvedOperationPlan:
         self._reject_variant_layers(request.variant_id)
         self._reject_modifier_layers(request.active_modifier_ids)
+        mml = self._validated_mml_filter(request.mml)
 
         if request.currency_id == MC_OPERATION_ID:
             operation = OrdinaryAddOperation(
                 mode_id=request.mode_id,
                 item_class=request.item_state.item_class,
+                mml=mml,
             )
             return ResolvedOperationPlan(
-                schema_version=M38A_RESOLVER_SCHEMA_VERSION,
+                schema_version=M39A_RESOLVER_SCHEMA_VERSION,
                 plan_kind="single_operation",
                 currency_id=request.currency_id,
                 operation_id=operation.operation_id,
@@ -117,7 +130,7 @@ class OperationResolver:
                 runtime_admission_status=ACCEPTED_RUNTIME_STATUS,
                 variant_id=None,
                 active_modifier_ids=(),
-                filters=ResolvedOperationFilters(),
+                filters=ResolvedOperationFilters(mml=mml),
                 operation=operation,
             )
 
@@ -131,6 +144,13 @@ class OperationResolver:
             raise M38AResolverAdmissionError(
                 "operation/currency is not executable-admitted for M38-A resolver: "
                 f"{request.currency_id} (runtime_admission_status={status!r})"
+            )
+
+        if mml is not None:
+            raise M38AResolverAdmissionError(
+                "MML filters are executable-admitted only for explicit ordinary_add "
+                "engine-primitive requests in M39-A; accepted catalog operations "
+                f"remain gated for MML filters: {request.currency_id}"
             )
 
         if request.currency_id == ANNULMENT_OPERATION_ID:
@@ -150,7 +170,7 @@ class OperationResolver:
             )
 
         return ResolvedOperationPlan(
-            schema_version=M38A_RESOLVER_SCHEMA_VERSION,
+            schema_version=M39A_RESOLVER_SCHEMA_VERSION,
             plan_kind="single_operation",
             currency_id=request.currency_id,
             operation_id=operation.operation_id,
@@ -161,6 +181,15 @@ class OperationResolver:
             filters=ResolvedOperationFilters(),
             operation=operation,
         )
+
+    def _validated_mml_filter(self, mml: int | None) -> int | None:
+        if mml is None:
+            return None
+        if isinstance(mml, bool) or not isinstance(mml, int):
+            raise M38AResolverAdmissionError(f"MML filter must be an integer or null: {mml!r}")
+        if mml <= 0:
+            raise M38AResolverAdmissionError(f"MML filter must be a positive integer: {mml!r}")
+        return mml
 
     def _reject_variant_layers(self, variant_id: str | None) -> None:
         if variant_id not in BASE_VARIANT_IDS:
@@ -189,6 +218,7 @@ def _operation_row(operations: Any, operation_id: str) -> dict[str, Any] | None:
 __all__ = [
     "ACCEPTED_RUNTIME_STATUS",
     "M38A_RESOLVER_SCHEMA_VERSION",
+    "M39A_RESOLVER_SCHEMA_VERSION",
     "M38AResolverAdmissionError",
     "M38AResolverError",
     "OperationResolver",

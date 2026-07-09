@@ -2,6 +2,7 @@
 
 from .resolver import (
     M38A_RESOLVER_SCHEMA_VERSION,
+    M39A_RESOLVER_SCHEMA_VERSION,
     M38AResolverAdmissionError,
     M38AResolverError,
     OperationResolver,
@@ -12,6 +13,7 @@ from .resolver import (
 
 __all__ = [
     "M38A_RESOLVER_SCHEMA_VERSION",
+    "M39A_RESOLVER_SCHEMA_VERSION",
     "M38AResolverAdmissionError",
     "M38AResolverError",
     "OperationResolver",

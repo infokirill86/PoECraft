@@ -1,16 +1,17 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "b948dcbbb0e21b604291a18fdd08a55933e66991"
-updated_at_utc: "2026-07-09T18:10:00Z"
+repo_head_at_last_update: "be84534bd0908b49e911d258d457ea0b53b3cd5a"
+updated_at_utc: "2026-07-09T20:38:47Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "M39_GREATER_PERFECT_MML_DESIGN_VERIFICATION"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M39A_MML_FILTER_INTERFACE"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m39_greater_perfect_mml_verification"
+allowed_next_action: "claude_audit_m39a_mml_filter_interface"
 forbidden_next_actions:
-  - "implement_runtime_code"
   - "accept_greater_or_perfect_runtime"
+  - "enable_greater_or_perfect_exalted_or_chaos"
+  - "enable_essence_runtime"
   - "accept_mml_closure"
   - "accept_whittling_or_omen_runtime"
   - "accept_new_operation_runtime"
@@ -25,7 +26,7 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M39_GreaterPerfect_MML_Design_Verification_Codex_v1/"
+current_result_path: "packages/proposed/P2C_M39A_MML_Filter_Interface_Result_Codex_v1/"
 current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
@@ -70,10 +71,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the M39 Greater/Perfect + MML design verification.
+Current live task: Claude audit of the proposed M39-A MML Filter Interface result.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: Claude.
 
-Allowed next action: decide. Claude verdict: GO — Greater/Perfect = op + shared MML add-pool filter (project-model, not server truth); Essences excluded (separate gate); admit Exalted/Chaos first; nothing admitted, all runtime gated (`reviews/P2C_M39_GreaterPerfect_MML_Design_Verification_Audit_Claude_v1.md`).
+Allowed next action: audit `packages/proposed/P2C_M39A_MML_Filter_Interface_Result_Codex_v1/`.
 
-This is design/mechanics verification only. It does not implement runtime behavior, admit Greater/Perfect variants, close MML, close SOURCE/PROVENANCE, close PD-013, release public numeric output, or authorize automation.
+M39 design verification is accepted after Claude GO and ChatGPT/User gate. M39-A implementation is proposed for audit only. It does not admit Greater/Perfect runtime, enable Greater/Perfect Exalted or Chaos, close MML, close SOURCE/PROVENANCE, close PD-013, release public numeric output, or authorize automation.
