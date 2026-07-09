@@ -31,12 +31,13 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - Repo Integrity SHA Floor: accepted after Claude GO WITH CHANGES audit; deterministic root `SHA256SUMS.txt` updater and generated-manifest rule are accepted.
 - M36-A heterogeneous-chain runtime: accepted after Claude GO WITH CHANGES audit; fixed two-step chains over accepted `ordinary_add` and base Annulment only.
 - Repo-integrity local pre-push hook guard: accepted; every active working clone must run `git config core.hooksPath tools/hooks`.
+- M37 Chaos-like remove-then-add design: authorized as design-only and proposed for Claude audit. Chaos-like rows remain `admission_candidate`, not accepted executable runtime.
 
 ## Next gate
 
-- ChatGPT/User decision is required for the next chain or operation-admission wave.
+- Claude audit is required for the proposed M37 Chaos-like remove-then-add design package.
 - Full M35, Annulment variants/omens, additional operations, heterogeneous operation chains, optimizer/economics/advice, public numeric release, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
 
-New executable mechanics beyond accepted `ordinary_add` and base Annulment; Annulment variants/omens; heterogeneous operation chains; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; MML closure; PD-013 closure; MC execution of unaccepted operations.
+New executable mechanics beyond accepted `ordinary_add` and base Annulment; Chaos runtime; Chaos variants; Annulment variants/omens; heterogeneous operation chains beyond accepted M36-A fixed two-step scope; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; MML closure; PD-013 closure; MC execution of unaccepted operations.

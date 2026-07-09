@@ -1,22 +1,24 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "9f4aae3f9f1aab5a13a6dcfcf754e6ce64d6c5ef"
-updated_at_utc: "2026-07-09T10:04:58Z"
+repo_head_at_last_update: "1807b29547c47fb33139f2471fd39e0b3c59a0c6"
+updated_at_utc: "2026-07-09T10:16:34Z"
 
-status: "awaiting_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "POST_M36A_NEXT_GATE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M37_CHAOSLIKE_REMOVE_THEN_ADD_DESIGN"
 
-allowed_next_action: "chatgpt_user_decide_next_chain_or_operation_admission_wave"
+allowed_next_action: "claude_audit_m37_chaoslike_remove_then_add_design"
 forbidden_next_actions:
+  - "implement_chaos_runtime"
+  - "mark_chaos_or_chaoslike_rows_accepted_executable_runtime"
+  - "implement_essence_fracture_desecrate_jawbone_or_reveal_runtime"
+  - "implement_annulment_variants_or_omens"
+  - "implement_new_executable_operation"
   - "implement_chains_longer_than_two"
   - "implement_route_planner"
-  - "implement_chaos_runtime"
-  - "implement_essence_fracture_desecrate_jawbone_or_reveal_runtime"
-  - "implement_new_executable_operation"
-  - "implement_annulment_variants_or_omens"
   - "optimizer_advice_ranking_economics_ev"
   - "release_public_numeric_probabilities"
+  - "claim_server_truth"
   - "close_source_provenance_mml_or_pd013"
   - "enable_github_actions"
   - "enable_supervised_auto_run_or_watcher_automation"
@@ -24,7 +26,7 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: ""
+current_result_path: "packages/proposed/P2C_M37_ChaosLike_RemoveThenAdd_Design_Codex_v1/"
 current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
@@ -64,16 +66,17 @@ stop_conditions:
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
   - "Stop if standing boundaries are missing or unclear."
-  - "Stop if any next wave would start without explicit ChatGPT/User authorization."
-  - "Stop if chains longer than two, route planning, a new operation, public numeric release, optimizer/economics/advice, GitHub Actions, watcher automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure appears without a separate gate."
+  - "Stop if Chaos runtime implementation would begin."
+  - "Stop if any Chaos-like row would be marked accepted executable runtime."
+  - "Stop if public numeric output, optimizer/economics/advice, automation, SOURCE/PROVENANCE closure, MML closure, or PD-013 closure enters scope."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User next gate after M36-A acceptance.
+Current live task: Claude audit of the proposed M37 Chaos-like remove-then-add design package.
 
-Next actor: ChatGPT/User.
+Next actor: Claude.
 
-Allowed next action: decide the next chain or operation-admission wave.
+Allowed next action: audit `packages/proposed/P2C_M37_ChaosLike_RemoveThenAdd_Design_Codex_v1/`.
 
-M36-A is accepted. Full M36 beyond M36-A, longer chains, route planning, additional operations, public numeric release, optimizer/economics/advice, automation, and SOURCE/PROVENANCE/MML/PD-013 closure remain closed pending separate explicit gates.
+M37 is design-only. Chaos-like rows remain candidates, not accepted executable runtime. Chaos runtime, additional operations, public numeric release, optimizer/economics/advice, automation, and SOURCE/PROVENANCE/MML/PD-013 closure remain closed pending separate explicit ChatGPT/User gates.
