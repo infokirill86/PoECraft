@@ -31,7 +31,7 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - Repo Integrity SHA Floor: accepted after Claude GO WITH CHANGES audit; deterministic root `SHA256SUMS.txt` updater and generated-manifest rule are accepted.
 - M36-A heterogeneous-chain runtime: accepted after Claude GO WITH CHANGES audit; fixed two-step chains over accepted `ordinary_add` and base Annulment only.
 - Repo-integrity local pre-push hook guard: accepted; every active working clone must run `git config core.hooksPath tools/hooks`.
-- Agent role-packs design: accepted after Claude GO WITH CHANGES audit; compact persistent repo role files are now proposed for Claude audit.
+- Agent role-packs implementation: accepted after Claude GO audit; root `AGENTS.md`, root `CLAUDE.md`, and `manifest/Agent_Role_Pack.md` are the compact persistent repo role files. Skills remain deferred.
 - M37 mechanics verification: accepted after Claude GO audit; base removal is a uniform combined eligible-instance pool, base add is a combined generation_weight legal pool, and Whittling/side/desecrated behaviors are separate Omen layers. This is project-model policy only, not server truth.
 - M37 Chaos-like remove-then-add design: accepted with the M37 mechanics correction.
 - M37-A base Chaos-like Remove-Then-Add Runtime: accepted after Claude GO WITH CHANGES audit as base Chaos-like runtime only; base `chaos` is admitted as `accepted_executable_runtime`, project-model only.
