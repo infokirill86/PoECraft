@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "be84534bd0908b49e911d258d457ea0b53b3cd5a"
-updated_at_utc: "2026-07-09T20:38:47Z"
+repo_head_at_last_update: "195856327ac57f242e2552125849b2de8423ab54"
+updated_at_utc: "2026-07-10T09:00:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M39A_MML_FILTER_INTERFACE"
 
-allowed_next_action: "claude_audit_m39a_mml_filter_interface"
+allowed_next_action: "chatgpt_user_gate_decision_on_m39a_mml_filter_interface"
 forbidden_next_actions:
   - "accept_greater_or_perfect_runtime"
   - "enable_greater_or_perfect_exalted_or_chaos"
@@ -27,7 +27,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M39A_MML_Filter_Interface_Result_Codex_v1/"
-current_review_path: ""
+current_review_path: "reviews/P2C_M39A_MML_Filter_Interface_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -71,10 +71,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the proposed M39-A MML Filter Interface result.
+Current live task: ChatGPT/User gate decision on the audited M39-A MML Filter Interface result.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M39A_MML_Filter_Interface_Result_Codex_v1/`.
+Allowed next action: decide. Claude verdict: GO — resolver carries an optional MML only into accepted `ordinary_add` (real pool narrowing, verified); everything else fails closed; nothing admitted; MML/SOURCE-PROVENANCE/PD-013 stay open. Root SHA256SUMS regenerated (recurring CRLF drift); recommend a one-time tool fix to hash git-normalized bytes (`reviews/P2C_M39A_MML_Filter_Interface_Audit_Claude_v1.md`).
 
 M39 design verification is accepted after Claude GO and ChatGPT/User gate. M39-A implementation is proposed for audit only. It does not admit Greater/Perfect runtime, enable Greater/Perfect Exalted or Chaos, close MML, close SOURCE/PROVENANCE, close PD-013, release public numeric output, or authorize automation.
