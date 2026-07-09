@@ -6,7 +6,7 @@ from p2c_engine.static_data import build_static_game_data
 ROOT = Path(__file__).resolve().parents[2]
 
 EXPECTED_M7H1_SEMANTIC_FINGERPRINT = (
-    "acc50b83bd6b94835fe9544266ebf7863c67938957a4aa0408d4262765ee7c25"
+    "18339351096e3e925907f2901763f36d69325e4e76bc47ab5db8fbe75c719203"
 )
 
 

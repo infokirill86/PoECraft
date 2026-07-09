@@ -50,13 +50,13 @@ def test_runtime_admission_status_table_is_explicit_and_narrow():
         for row in rows
         if row['runtime_admission_status'] == 'accepted_executable_runtime'
     ]
-    assert admitted == ['annulment']
+    assert admitted == ['annulment', 'chaos']
 
 
 def test_missing_runtime_admission_status_fails(tmp_path):
     clone(tmp_path); p=tmp_path/'data/operations.yaml'
     def change(d):
-        row=next(r for r in d['operations'] if r['operation_id']=='chaos')
+        row=next(r for r in d['operations'] if r['operation_id']=='greater_chaos')
         row.pop('runtime_admission_status')
     mutate_yaml(p, change)
     with pytest.raises(StaticDataDefect, match='runtime_admission_status'):
@@ -122,7 +122,7 @@ def test_active_catalog_candidate_mechanic_change_only_changes_source_fingerprin
     clone(tmp_path); baseline=build_static_game_data(tmp_path)
     p=tmp_path/'data/operations.yaml'
     def change(d):
-        row=next(r for r in d['operations'] if r['operation_id']=='chaos')
+        row=next(r for r in d['operations'] if r['operation_id']=='greater_chaos')
         row['transition']['add']['count']=2
     mutate_yaml(p, change)
     changed=build_static_game_data(tmp_path)

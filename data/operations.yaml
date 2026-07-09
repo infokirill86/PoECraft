@@ -385,7 +385,7 @@ operations:
       rule: rebuild ordinary add pool on the branch-copy after removal
     on_failed_precondition: NO_TRANSITION_NO_CONSUMPTION
   active_in_current_simulation: true
-  runtime_admission_status: admission_candidate
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: greater_chaos
   group: chaos
   input_rarity:
