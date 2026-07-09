@@ -1,20 +1,20 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "195856327ac57f242e2552125849b2de8423ab54"
-updated_at_utc: "2026-07-10T09:00:00Z"
+repo_head_at_last_update: "592bc4696c6321e2365c5fa8781d61386131e1aa"
+updated_at_utc: "2026-07-09T21:20:33Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "M39A_MML_FILTER_INTERFACE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "SHA256_GIT_NORMALIZED_UPDATE_FIX"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m39a_mml_filter_interface"
+allowed_next_action: "claude_audit_sha256_git_normalized_update_fix"
 forbidden_next_actions:
-  - "accept_greater_or_perfect_runtime"
+  - "start_greater_or_perfect_runtime"
   - "enable_greater_or_perfect_exalted_or_chaos"
   - "enable_essence_runtime"
-  - "accept_mml_closure"
   - "accept_whittling_or_omen_runtime"
   - "accept_new_operation_runtime"
+  - "accept_mml_closure"
   - "implement_longer_chains"
   - "implement_planner"
   - "optimizer_economics_advice"
@@ -26,8 +26,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M39A_MML_Filter_Interface_Result_Codex_v1/"
-current_review_path: "reviews/P2C_M39A_MML_Filter_Interface_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_SHA256_Git_Normalized_Update_Fix_Codex_v1/"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -71,10 +71,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the audited M39-A MML Filter Interface result.
+Current live task: Claude audit of the proposed SHA256 Git-normalized updater/checker fix.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: Claude.
 
-Allowed next action: decide. Claude verdict: GO — resolver carries an optional MML only into accepted `ordinary_add` (real pool narrowing, verified); everything else fails closed; nothing admitted; MML/SOURCE-PROVENANCE/PD-013 stay open. Root SHA256SUMS regenerated (recurring CRLF drift); recommend a one-time tool fix to hash git-normalized bytes (`reviews/P2C_M39A_MML_Filter_Interface_Audit_Claude_v1.md`).
+Allowed next action: audit `packages/proposed/P2C_SHA256_Git_Normalized_Update_Fix_Codex_v1/`.
 
-M39 design verification is accepted after Claude GO and ChatGPT/User gate. M39-A implementation is proposed for audit only. It does not admit Greater/Perfect runtime, enable Greater/Perfect Exalted or Chaos, close MML, close SOURCE/PROVENANCE, close PD-013, release public numeric output, or authorize automation.
+M39-A MML Filter Interface is accepted after Claude GO and ChatGPT/User gate. The current proposed change is repo-integrity tooling only: tracked files are hashed and checked from Git index bytes to avoid CRLF/LF checksum drift. It does not change crafting runtime, mechanics, data semantics, operation admission, public output, optimizer/economics/advice, automation, or SOURCE/PROVENANCE/MML/PD-013 boundaries.
