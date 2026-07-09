@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "1807b29547c47fb33139f2471fd39e0b3c59a0c6"
-updated_at_utc: "2026-07-09T10:16:34Z"
+repo_head_at_last_update: "86f5410ab9610504666089558147dd1b1e9f861b"
+updated_at_utc: "2026-07-09T10:30:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M37_CHAOSLIKE_REMOVE_THEN_ADD_DESIGN"
 
-allowed_next_action: "claude_audit_m37_chaoslike_remove_then_add_design"
+allowed_next_action: "chatgpt_user_gate_decision_on_m37_chaoslike_design"
 forbidden_next_actions:
   - "implement_chaos_runtime"
   - "mark_chaos_or_chaoslike_rows_accepted_executable_runtime"
@@ -73,10 +73,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the proposed M37 Chaos-like remove-then-add design package.
+Current live task: ChatGPT/User gate decision on the M37 Chaos-like remove-then-add design.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit `packages/proposed/P2C_M37_ChaosLike_RemoveThenAdd_Design_Codex_v1/`.
+Allowed next action: decide. Claude audit verdict: GO WITH CHANGES — structure sound, but the base-Chaos removal rule (uniform vs whittling/lowest-level) is an unresolved source/mechanics conflict per mechanics_evidence.yaml and needs a USER decision before M37-A (`reviews/P2C_M37_ChaosLike_RemoveThenAdd_Design_Audit_Claude_v1.md`).
 
 M37 is design-only. Chaos-like rows remain candidates, not accepted executable runtime. Chaos runtime, additional operations, public numeric release, optimizer/economics/advice, automation, and SOURCE/PROVENANCE/MML/PD-013 closure remain closed pending separate explicit ChatGPT/User gates.
