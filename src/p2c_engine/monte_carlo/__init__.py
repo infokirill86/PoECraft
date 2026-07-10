@@ -37,6 +37,16 @@ from .rarity_progression import (
     CatalogSingleAddRunResult,
     M40ARarityProgressionInvariantViolation,
 )
+from .greater_essence import (
+    M41A_CRAFTED_CAPACITY_STATUS,
+    M41A_OPERATION_IDS,
+    M41A_SCHEMA_VERSION,
+    M41A_SEMANTICS_VERSION,
+    GreaterEssenceHarness,
+    GreaterEssenceOperation,
+    GreaterEssenceRunResult,
+    M41AGreaterEssenceInvariantViolation,
+)
 
 __all__ = [
     "ANNULMENT_OPERATION_ID",
@@ -68,4 +78,12 @@ __all__ = [
     "CatalogSingleAddPrecondition",
     "CatalogSingleAddRunResult",
     "M40ARarityProgressionInvariantViolation",
+    "M41A_CRAFTED_CAPACITY_STATUS",
+    "M41A_OPERATION_IDS",
+    "M41A_SCHEMA_VERSION",
+    "M41A_SEMANTICS_VERSION",
+    "GreaterEssenceHarness",
+    "GreaterEssenceOperation",
+    "GreaterEssenceRunResult",
+    "M41AGreaterEssenceInvariantViolation",
 ]

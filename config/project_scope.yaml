@@ -15,19 +15,20 @@ active_operation_groups:
 - annulment
 - chaos
 - support_augment
+- greater_essence
 - perfect_essence
 - jawbone
 - reveal
 reference_only_operation_groups:
 - alchemy
 - fracture
-- greater_essence
 active_omen_system: true
 active_mechanics:
 - rarity_progression_currency_variants
 - exalted_currency_variants
 - annulment
 - chaos_currency_variants
+- greater_essences
 - perfect_essences
 - astrids_creativity
 - jawbones
@@ -36,7 +37,6 @@ active_mechanics:
 - abyssal_echoes
 excluded_from_active_solver:
 - fracturing_route
-- greater_essence_magic_to_rare_route
 - alchemy_route
 - corrupted_crafting
 - bonded_augments

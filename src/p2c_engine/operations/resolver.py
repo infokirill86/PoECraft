@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import Any, Literal
 
@@ -22,6 +23,13 @@ from p2c_engine.monte_carlo.rarity_progression import (
     CatalogSingleAddOperation,
     CatalogSingleAddPrecondition,
 )
+from p2c_engine.monte_carlo.greater_essence import (
+    M41A_OPERATION_IDS,
+    M41A_SEMANTICS_VERSION,
+    GreaterEssenceHarness,
+    GreaterEssenceOperation,
+    M41AGreaterEssenceInvariantViolation,
+)
 from p2c_engine.static_data.game_data import StaticGameData
 
 
@@ -29,6 +37,7 @@ M38A_RESOLVER_SCHEMA_VERSION = "p2c.m38a.operation_resolver_skeleton.v1"
 M39A_RESOLVER_SCHEMA_VERSION = "p2c.m39a.operation_resolver_mml_filter_interface.v1"
 M39B_RESOLVER_SCHEMA_VERSION = "p2c.m39b.greater_perfect_exalted_chaos_runtime.v1"
 M40A_RESOLVER_SCHEMA_VERSION = "p2c.m40a.rarity_progression_runtime.v1"
+M41A_RESOLVER_SCHEMA_VERSION = "p2c.m41a.greater_essence_quarterstaff_runtime.v1"
 ACCEPTED_RUNTIME_STATUS = "accepted_executable_runtime"
 BASE_VARIANT_IDS = frozenset({None, "", "base"})
 M39B_EXALTED_CURRENCY_IDS = frozenset({"greater_exalted", "perfect_exalted"})
@@ -40,6 +49,7 @@ AcceptedResolvedOperation = (
     | AnnulmentOperation
     | ChaosLikeOperation
     | CatalogSingleAddOperation
+    | GreaterEssenceOperation
 )
 OperationKind = Literal["engine_primitive", "catalog_operation"]
 
@@ -180,6 +190,9 @@ class OperationResolver:
             operation = _compile_m40a_single_add(row, request)
             schema_version = M40A_RESOLVER_SCHEMA_VERSION
             filters = ResolvedOperationFilters(mml=declared_mml)
+        elif request.currency_id in M41A_OPERATION_IDS:
+            operation = _compile_m41a_greater_essence(self.static, row, request)
+            schema_version = M41A_RESOLVER_SCHEMA_VERSION
         elif request.currency_id == ANNULMENT_OPERATION_ID:
             _validate_catalog_input_rarity(row, request.item_state)
             if declared_mml is not None:
@@ -275,18 +288,18 @@ class OperationResolver:
 
 
 def _operation_row(operations: Any, operation_id: str) -> dict[str, Any] | None:
-    if not isinstance(operations, dict):
+    if not isinstance(operations, Mapping):
         return None
     for row in operations.get("operations") or ():
-        if isinstance(row, dict) and row.get("operation_id") == operation_id:
+        if isinstance(row, Mapping) and row.get("operation_id") == operation_id:
             return row
     return None
 
 
 def _declared_add_mml(row: dict[str, Any]) -> int | None:
     transition = row.get("transition")
-    add = transition.get("add") if isinstance(transition, dict) else None
-    mml = add.get("mml") if isinstance(add, dict) else None
+    add = transition.get("add") if isinstance(transition, Mapping) else None
+    mml = add.get("mml") if isinstance(add, Mapping) else None
     if mml is None:
         return None
     if isinstance(mml, bool) or not isinstance(mml, int) or mml <= 0:
@@ -300,7 +313,7 @@ def _validate_catalog_input_rarity(row: dict[str, Any], state: ItemState) -> Non
     input_rarities = row.get("input_rarity")
     if input_rarities is None:
         return
-    if not isinstance(input_rarities, list) or any(
+    if not isinstance(input_rarities, (list, tuple)) or any(
         not isinstance(value, str) for value in input_rarities
     ):
         raise M38AResolverAdmissionError(
@@ -315,15 +328,15 @@ def _validate_catalog_input_rarity(row: dict[str, Any], state: ItemState) -> Non
 
 def _validate_m39b_exalted_transition(row: dict[str, Any]) -> None:
     transition = row.get("transition")
-    remove = transition.get("remove") if isinstance(transition, dict) else None
-    add = transition.get("add") if isinstance(transition, dict) else None
+    remove = transition.get("remove") if isinstance(transition, Mapping) else None
+    add = transition.get("add") if isinstance(transition, Mapping) else None
     if (
-        not isinstance(transition, dict)
+        not isinstance(transition, Mapping)
         or transition.get("atomic") is not True
         or transition.get("output_rarity") not in (None, "rare")
-        or not isinstance(remove, dict)
+        or not isinstance(remove, Mapping)
         or remove.get("kind") != "none"
-        or not isinstance(add, dict)
+        or not isinstance(add, Mapping)
         or add.get("kind") != "ordinary_weighted"
         or add.get("count") != 1
     ):
@@ -334,17 +347,17 @@ def _validate_m39b_exalted_transition(row: dict[str, Any]) -> None:
 
 def _validate_m39b_chaos_transition(row: dict[str, Any]) -> None:
     transition = row.get("transition")
-    remove = transition.get("remove") if isinstance(transition, dict) else None
-    add = transition.get("add") if isinstance(transition, dict) else None
+    remove = transition.get("remove") if isinstance(transition, Mapping) else None
+    add = transition.get("add") if isinstance(transition, Mapping) else None
     if (
-        not isinstance(transition, dict)
+        not isinstance(transition, Mapping)
         or transition.get("atomic") is not True
         or transition.get("output_rarity") not in (None, "rare")
-        or not isinstance(remove, dict)
+        or not isinstance(remove, Mapping)
         or remove.get("kind") != "uniform_installed_instance"
         or remove.get("count") != 1
         or "fractured" not in (remove.get("exclude_flags") or ())
-        or not isinstance(add, dict)
+        or not isinstance(add, Mapping)
         or add.get("kind") != "ordinary_weighted"
         or add.get("count") != 1
     ):
@@ -357,14 +370,14 @@ def _compile_m40a_single_add(
     row: dict[str, Any], request: OperationResolverRequest
 ) -> CatalogSingleAddOperation:
     transition = row.get("transition")
-    remove = transition.get("remove") if isinstance(transition, dict) else None
-    add = transition.get("add") if isinstance(transition, dict) else None
+    remove = transition.get("remove") if isinstance(transition, Mapping) else None
+    add = transition.get("add") if isinstance(transition, Mapping) else None
     if (
-        not isinstance(transition, dict)
+        not isinstance(transition, Mapping)
         or transition.get("atomic") is not True
-        or not isinstance(remove, dict)
+        or not isinstance(remove, Mapping)
         or remove.get("kind") != "none"
-        or not isinstance(add, dict)
+        or not isinstance(add, Mapping)
         or add.get("kind") != "ordinary_weighted"
         or add.get("count") != 1
         or add.get("side_filter") not in (None,)
@@ -374,7 +387,7 @@ def _compile_m40a_single_add(
         )
 
     raw_inputs = row.get("input_rarity")
-    if not isinstance(raw_inputs, list) or not raw_inputs:
+    if not isinstance(raw_inputs, (list, tuple)) or not raw_inputs:
         raise M38AResolverAdmissionError(
             f"M40-A row requires input_rarity: {row.get('operation_id')}"
         )
@@ -407,13 +420,13 @@ def _compile_m40a_preconditions(
 ) -> tuple[CatalogSingleAddPrecondition, ...]:
     if value is None:
         return ()
-    if not isinstance(value, list):
+    if not isinstance(value, (list, tuple)):
         raise M38AResolverAdmissionError(
             f"invalid M40-A preconditions: {row.get('operation_id')}"
         )
     output: list[CatalogSingleAddPrecondition] = []
     for raw in value:
-        if not isinstance(raw, dict):
+        if not isinstance(raw, Mapping):
             raise M38AResolverAdmissionError(
                 f"invalid M40-A precondition: {row.get('operation_id')}"
             )
@@ -442,12 +455,57 @@ def _compile_m40a_preconditions(
     return tuple(output)
 
 
+def _compile_m41a_greater_essence(
+    static: StaticGameData,
+    row: dict[str, Any],
+    request: OperationResolverRequest,
+) -> GreaterEssenceOperation:
+    _validate_catalog_input_rarity(row, request.item_state)
+    transition = row.get("transition")
+    if not isinstance(transition, Mapping):
+        raise M38AResolverAdmissionError(
+            f"invalid M41-A Greater Essence transition: {request.currency_id}"
+        )
+    guaranteed_mod_id = transition.get("guaranteed_mod_id")
+    guaranteed_family_id = transition.get("guaranteed_family_id")
+    guaranteed_side = transition.get("guaranteed_side")
+    if not isinstance(guaranteed_mod_id, str) or not isinstance(
+        guaranteed_family_id, str
+    ):
+        raise M38AResolverAdmissionError(
+            f"missing M41-A guaranteed modifier metadata: {request.currency_id}"
+        )
+    try:
+        side = Side(guaranteed_side)
+    except (TypeError, ValueError) as exc:
+        raise M38AResolverAdmissionError(
+            f"invalid M41-A guaranteed side: {request.currency_id}"
+        ) from exc
+    operation = GreaterEssenceOperation(
+        mode_id=request.mode_id,
+        operation_id=request.currency_id,
+        item_class=request.item_state.item_class,
+        guaranteed_mod_id=guaranteed_mod_id,
+        guaranteed_family_id=guaranteed_family_id,
+        guaranteed_side=side,
+        semantics_version=M41A_SEMANTICS_VERSION,
+    )
+    try:
+        GreaterEssenceHarness(static=static).validate_operation_contract(operation)
+    except M41AGreaterEssenceInvariantViolation as exc:
+        raise M38AResolverAdmissionError(
+            f"invalid admitted M41-A Greater Essence row: {request.currency_id}: {exc}"
+        ) from exc
+    return operation
+
+
 __all__ = [
     "ACCEPTED_RUNTIME_STATUS",
     "M38A_RESOLVER_SCHEMA_VERSION",
     "M39A_RESOLVER_SCHEMA_VERSION",
     "M39B_RESOLVER_SCHEMA_VERSION",
     "M40A_RESOLVER_SCHEMA_VERSION",
+    "M41A_RESOLVER_SCHEMA_VERSION",
     "M38AResolverAdmissionError",
     "M38AResolverError",
     "OperationResolver",

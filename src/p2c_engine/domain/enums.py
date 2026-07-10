@@ -17,6 +17,7 @@ class OperationGroup(StrEnum):
     ANNULMENT = "annulment"
     CHAOS = "chaos"
     SUPPORT_AUGMENT = "support_augment"
+    GREATER_ESSENCE = "greater_essence"
     PERFECT_ESSENCE = "perfect_essence"
     JAWBONE = "jawbone"
     REVEAL = "reveal"

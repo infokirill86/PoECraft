@@ -8,6 +8,7 @@ handler_declarations:
   annulment: annulment_handler
   chaos: chaos_handler
   support_augment: support_augment_handler
+  greater_essence: greater_essence_handler
   perfect_essence: perfect_essence_handler
   jawbone: jawbone_handler
   reveal: reveal_handler
@@ -565,8 +566,8 @@ operations:
     - family_absent
     - crafted_capacity_free
     - result_side_capacity_free
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: greater_essence_flames
   group: greater_essence
   input_rarity:
@@ -585,8 +586,8 @@ operations:
     - family_absent
     - crafted_capacity_free
     - result_side_capacity_free
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: greater_essence_ice
   group: greater_essence
   input_rarity:
@@ -605,8 +606,8 @@ operations:
     - family_absent
     - crafted_capacity_free
     - result_side_capacity_free
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: greater_essence_electricity
   group: greater_essence
   input_rarity:
@@ -625,8 +626,8 @@ operations:
     - family_absent
     - crafted_capacity_free
     - result_side_capacity_free
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: greater_essence_battle
   group: greater_essence
   input_rarity:
@@ -645,8 +646,8 @@ operations:
     - family_absent
     - crafted_capacity_free
     - result_side_capacity_free
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: greater_essence_haste
   group: greater_essence
   input_rarity:
@@ -665,8 +666,8 @@ operations:
     - family_absent
     - crafted_capacity_free
     - result_side_capacity_free
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: greater_essence_seeking
   group: greater_essence
   input_rarity:
@@ -685,8 +686,8 @@ operations:
     - family_absent
     - crafted_capacity_free
     - result_side_capacity_free
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: greater_essence_infinite
   group: greater_essence
   input_rarity:
@@ -705,8 +706,8 @@ operations:
     - family_absent
     - crafted_capacity_free
     - result_side_capacity_free
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: perfect_essence_abrasion
   group: perfect_essence
   input_rarity:

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Mapping
 from p2c_engine.canonical import normalize_primitive
@@ -29,6 +29,7 @@ class StaticGameData:
     source_fingerprint: str
     semantic_fingerprint: str
     root: Path
+    essence_outputs: Mapping[str, Any] = field(default_factory=dict)
 
 
 def _schema_gate(row: dict[str, Any], schema: dict[str, Any], source: str) -> None:
@@ -106,4 +107,5 @@ def build_static_game_data(root: Path, manifest: DataManifest = DEFAULT_MANIFEST
         item_state_schema=deep_freeze(item_state_schema), static_modifier_schema=deep_freeze(static_modifier_schema),
         source_fingerprint=source_fingerprint(root, manifest.ordered_paths()),
         semantic_fingerprint=semantic_fingerprint(semantic_payload), root=root,
+        essence_outputs=deep_freeze(essence),
     )

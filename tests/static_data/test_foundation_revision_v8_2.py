@@ -67,6 +67,14 @@ def test_runtime_admission_status_table_is_explicit_and_narrow():
         'chaos',
         'greater_chaos',
         'perfect_chaos',
+        'greater_essence_abrasion',
+        'greater_essence_flames',
+        'greater_essence_ice',
+        'greater_essence_electricity',
+        'greater_essence_battle',
+        'greater_essence_haste',
+        'greater_essence_seeking',
+        'greater_essence_infinite',
     ]
 
 
