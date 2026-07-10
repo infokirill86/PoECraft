@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "13471e2b6cc74fae338890da7876d2200e115359"
-updated_at_utc: "2026-07-10T21:59:43Z"
+repo_head_at_last_update: "587e07839b3a695dfde6a2bfa7bcf9368fd0b584"
+updated_at_utc: "2026-07-10T22:45:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M41A_GREATER_ESSENCE_QUARTERSTAFF_RUNTIME"
 
-allowed_next_action: "claude_audit_m41a_greater_essence_quarterstaff_runtime"
+allowed_next_action: "chatgpt_user_gate_decision_on_m41a_greater_essence_quarterstaff_runtime"
 forbidden_next_actions:
   - "accept_m41a_without_chatgpt_user_gate"
   - "admit_perfect_lesser_or_corrupted_essence_runtime"
@@ -25,7 +25,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M41A_Greater_Essence_Quarterstaff_Runtime_Result_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M41A_Greater_Essence_Quarterstaff_Runtime_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -70,4 +70,10 @@ stop_conditions:
 
 # P2C Active Task
 
-M41-A is proposed and ready for Claude audit. The result activates exactly eight Greater Essence quarterstaff rows through one shared deterministic guaranteed-modifier executor. General crafted-capacity semantics remain source-open/unverified. M41-A is not accepted runtime before Claude audit and a later ChatGPT/User gate.
+Current live task: ChatGPT/User gate decision on the audited M41-A Greater Essence quarterstaff runtime.
+
+Next actor: ChatGPT/User (gate decision).
+
+Allowed next action: decide. Claude verdict: GO — eight Greater Essence rows run through one shared deterministic guaranteed-add executor over the accepted M40-A atomic pattern: magic->rare, install exactly the row-declared mod with NO random draw (verified in code + exact==seeded==replay test), existing/fractured mods preserved, cross-file (operations/essence_outputs/modifier_index) consistency, fail-closed on wrong rarity/family-conflict/capacity/Perfect. All four prompt fixes present (project_scope activation, canonical index resolution, fingerprint delta pinned, crafted-capacity source-open-not-blocking). Codex did the AGENTS.md critique and did NOT silently encode crafted-capacity. Full suite 220 passed. Crafted-capacity + essence values stay project-model/source-open; MML/SOURCE-PROVENANCE/PD-013 stay open (`reviews/P2C_M41A_Greater_Essence_Quarterstaff_Runtime_Audit_Claude_v1.md`).
+
+This is a proposed runtime delta only, not accepted until a ChatGPT/User gate. It does not admit Perfect/Lesser/Corrupted Essence, multi-Essence capacity, Omens, Whittling, Alchemy, Fracture/Desecrate/Jawbone/Reveal, longer chains, planner/optimizer/economics, public numeric output, or automation, and does not close crafted-capacity, MML, SOURCE/PROVENANCE, or PD-013.
