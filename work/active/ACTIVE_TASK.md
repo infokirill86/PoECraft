@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "85bae7aa31a8620bf827d4c9308fec2bbb48a4fe"
-updated_at_utc: "2026-07-10T10:24:54Z"
+repo_head_at_last_update: "ce1e46abb0fcce067def9f9165e59ab2b5089e1d"
+updated_at_utc: "2026-07-10T11:20:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M39B_GREATER_PERFECT_EXALTED_CHAOS_RUNTIME"
 
-allowed_next_action: "claude_audit_m39b_greater_perfect_exalted_chaos_runtime"
+allowed_next_action: "chatgpt_user_gate_decision_on_m39b_greater_perfect_exalted_chaos_runtime"
 forbidden_next_actions:
   - "accept_m39b_without_chatgpt_user_gate"
   - "admit_base_exalted_wrapper"
@@ -72,8 +72,8 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the proposed M39-B Greater/Perfect Exalted + Chaos runtime-admission batch.
+Current live task: ChatGPT/User gate decision on the audited M39-B Greater/Perfect Exalted + Chaos runtime batch.
 
-Next actor: Claude.
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit the M39-B implementation, including the base-Exalted boundary, shared-kernel composition, row-declared MML, Chaos atomicity, fail-closed behavior, and regression evidence. M39-B remains proposed and cannot be accepted by Codex, Claude, tests, or package metadata.
+Allowed next action: decide. Claude verdict: GO — four rows (greater/perfect exalted+chaos) admitted as project-model runtime via shared kernels; Exalted = accepted ordinary_add + row-declared MML; Chaos = accepted base uniform non-fractured removal + MML on the post-removal add only (verified in code); base exalted and all other families/variants/modifiers fail closed; full suite 160 passes. Two non-blocking watchpoints: confirm the base-Exalted asymmetry is intended, and log the 35/50 MML thresholds in mechanics_evidence as source-open. MML/SOURCE-PROVENANCE/PD-013 stay open (`reviews/P2C_M39B_GreaterPerfect_Exalted_Chaos_Runtime_Audit_Claude_v1.md`).
