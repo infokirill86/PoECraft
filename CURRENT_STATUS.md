@@ -44,8 +44,8 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 
 ## Next gate
 
-- ChatGPT/User decides the next operation or modifier wave.
-- Base `exalted`, Whittling, Omens, other Greater/Perfect families, additional operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
+- M40 Rarity Progression Family Design Verification is proposed for Claude audit; it covers Transmutation/Augmentation/Regal base/Greater/Perfect rows and the base Exalted wrapper as design only.
+- No M40 runtime row is admitted. Base `exalted`, Whittling, Omens, other operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
 

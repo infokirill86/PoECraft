@@ -1,17 +1,17 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "47fb410826311b78aa85cd421ac784b6e8a7604b"
-updated_at_utc: "2026-07-10T12:01:24Z"
+repo_head_at_last_update: "c609632287838f37bee43380aa3dd5c1aa7ecd4e"
+updated_at_utc: "2026-07-10T15:40:29Z"
 
-status: "awaiting_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "POST_M39B_NEXT_GATE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M40_RARITY_PROGRESSION_FAMILY_DESIGN_VERIFICATION"
 
-allowed_next_action: "chatgpt_user_decide_next_operation_or_modifier_wave"
+allowed_next_action: "claude_audit_m40_rarity_progression_family_design_verification"
 forbidden_next_actions:
-  - "start_new_operation_or_modifier_without_explicit_gate"
-  - "admit_base_exalted_wrapper"
-  - "admit_other_greater_or_perfect_families"
+  - "implement_m40_runtime"
+  - "admit_transmutation_augmentation_regal_or_base_exalted"
+  - "change_runtime_mechanics_or_data_semantics"
   - "enable_essence_runtime"
   - "accept_whittling_or_omen_runtime"
   - "accept_new_operation_runtime"
@@ -27,8 +27,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: ""
-current_review_path: ""
+current_result_path: "packages/proposed/P2C_M40_Rarity_Progression_Family_Design_Verification_Codex_v1"
+current_review_path: "reviews/P2C_M40_Rarity_Progression_Family_Design_Verification_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -72,8 +72,8 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: ChatGPT/User next-move gate after M39-B acceptance.
+Current live task: Claude audit of the proposed M40 Rarity Progression Family Design Verification package.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: Claude (external design/mechanics audit).
 
-Allowed next action: decide the next operation or modifier wave. M39-B is accepted; base `exalted`, other Greater/Perfect families, Whittling/Omens, Essences, public numeric release, optimizer/economics/advice, automation, and SOURCE/PROVENANCE/broader-MML/PD-013 closure remain separately gated.
+Allowed next action: audit the M40 design package only. No Transmutation, Augmentation, Regal, or base Exalted runtime is admitted; implementation and all standing boundaries remain separately gated.
