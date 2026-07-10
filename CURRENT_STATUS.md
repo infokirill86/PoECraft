@@ -41,14 +41,14 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M39-A MML Filter Interface: accepted after Claude GO audit as an interface floor only; resolver supports optional MML only for accepted `ordinary_add`, passes it into the existing add-pool path, and keeps unsupported MML usage fail-closed. Greater/Perfect rows remain not admitted and MML remains open as a broader mechanics/source topic.
 - SHA256 Git-normalized updater/checker fix: accepted after Claude GO audit as repo-integrity tooling only; `update_sha256sums.py` and `check_sha256sums.py` hash tracked files from Git normalized/index bytes (raw working-tree bytes only for untracked files), closing the recurring CRLF/LF root `SHA256SUMS.txt` drift structurally.
 - M39-B Greater/Perfect Exalted + Chaos runtime batch: accepted after Claude GO audit. Accepted rows are `greater_exalted`, `perfect_exalted`, `greater_chaos`, and `perfect_chaos`; they compose through shared ordinary-add/base-Chaos kernels with row-declared MML. Base `exalted` intentionally remains not admitted, and broader MML remains source-open.
-- M40 Rarity Progression Family design: accepted after Claude GO audit. M40-A implementation is authorized and now exists as a proposed audit delta for ten rows only; it is not accepted runtime until Claude audit and a later ChatGPT/User gate.
-- ACTIVE_TASK schema-v2 validator/pre-push guard: included as proposed truth-neutral tooling in the M40-A handoff; it does not change project truth or acceptance authority.
+- M40-A Rarity Progression Runtime: accepted after Claude GO audit for exactly ten rows: base/Greater/Perfect Transmutation, Augmentation, and Regal, plus base Exalted. The accepted shared executor builds Transmutation/Regal pools at target rarity and commits rarity plus modifier atomically. Normal and magic starts are now in active simulator scope. Fractured prefixes and suffixes are both valid; fractured protection remains mandatory.
+- ACTIVE_TASK schema-v2 validator/pre-push guard: accepted as truth-neutral tooling. It validates frontmatter, mandatory fields, status/actor consistency, referenced paths, and malformed dispatcher state before publication.
 
 ## Next gate
 
-- Claude audits the proposed M40-A rarity-progression runtime result.
-- M40-A remains proposed, not accepted. Whittling, Omens, Alchemy, Essences, other operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
+- ChatGPT/User decides the next operation or modifier wave. No next runtime/mechanics wave is open yet.
+- Whittling, Omens, Alchemy, Essences, other operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
 
-M40-A runtime acceptance before audit/User gate; Alchemy; Essences; Whittling runtime; Omen runtime; side/desecrated modifier layers; Fracture/Desecrate/Jawbone/Reveal; other operation variants; Annulment variants/omens; heterogeneous operation chains beyond accepted M36-A fixed two-step scope; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; broader MML closure; PD-013 closure; MC execution of unaccepted operations.
+Alchemy; Essences; Whittling runtime; Omen runtime; side/desecrated modifier layers; Fracture/Desecrate/Jawbone/Reveal; other operation variants; Annulment variants/omens; heterogeneous operation chains beyond accepted M36-A fixed two-step scope; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; broader MML closure; PD-013 closure; MC execution of unaccepted operations.
