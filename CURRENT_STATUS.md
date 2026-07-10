@@ -43,13 +43,14 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M39-B Greater/Perfect Exalted + Chaos runtime batch: accepted after Claude GO audit. Accepted rows are `greater_exalted`, `perfect_exalted`, `greater_chaos`, and `perfect_chaos`; they compose through shared ordinary-add/base-Chaos kernels with row-declared MML. Base `exalted` intentionally remains not admitted, and broader MML remains source-open.
 - M40-A Rarity Progression Runtime: accepted after Claude GO audit for exactly ten rows: base/Greater/Perfect Transmutation, Augmentation, and Regal, plus base Exalted. The accepted shared executor builds Transmutation/Regal pools at target rarity and commits rarity plus modifier atomically. Normal and magic starts are now in active simulator scope. Fractured prefixes and suffixes are both valid; fractured protection remains mandatory.
 - ACTIVE_TASK schema-v2 validator/pre-push guard: accepted as truth-neutral tooling. It validates frontmatter, mandatory fields, status/actor consistency, referenced paths, and malformed dispatcher state before publication.
-- M41 Next Operation Wave Design: accepted after Claude GO audit. M41-A implementation is authorized for exactly eight Greater Essence quarterstaff rows; the implementation remains proposed pending Claude audit and ChatGPT/User acceptance. General crafted-capacity semantics remain source-open/unverified.
+- M41 Next Operation Wave Design: accepted after Claude GO audit.
+- M41-A Greater Essence Quarterstaff Runtime: accepted after Claude GO audit for exactly eight rows: Abrasion, Flames, Ice, Electricity, Battle, Haste, Seeking, and Infinite. One shared deterministic executor performs atomic Magic-to-Rare plus the row-declared canonical guaranteed modifier, preserving existing/fractured modifiers and using no random draw. General crafted-capacity semantics remain source-open/unverified.
 
 ## Next gate
 
-- Claude audits the proposed M41-A Greater Essence quarterstaff runtime result. M41-A is not accepted runtime before that audit and a later ChatGPT/User gate.
+- ChatGPT/User decides the next operation or modifier wave. No next mechanics/runtime wave is open yet.
 - Perfect/Lesser/Corrupted Essences, multi-Essence capacity semantics, Whittling, Omens, Alchemy, other operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
 
-Alchemy; Essences; Whittling runtime; Omen runtime; side/desecrated modifier layers; Fracture/Desecrate/Jawbone/Reveal; other operation variants; Annulment variants/omens; heterogeneous operation chains beyond accepted M36-A fixed two-step scope; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; broader MML closure; PD-013 closure; MC execution of unaccepted operations.
+Alchemy; Perfect/Lesser/Corrupted Essences; multiple-Essence stacking/replacement/capacity semantics; Whittling runtime; Omen runtime; side/desecrated modifier layers; Fracture/Desecrate/Jawbone/Reveal; other operation variants; Annulment variants/omens; heterogeneous operation chains beyond accepted M36-A fixed two-step scope; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; broader MML closure; PD-013 closure; MC execution of unaccepted operations.
