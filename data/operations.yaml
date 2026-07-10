@@ -282,7 +282,7 @@ operations:
         side_filter_applies_before_capacity_check: true
       combined_bundle: When side and double-add Omens are combined, the chosen side must have capacity for both additions.
   active_in_current_simulation: true
-  runtime_admission_status: admission_candidate
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: perfect_exalted
   group: exalted
   input_rarity:
@@ -320,7 +320,7 @@ operations:
         side_filter_applies_before_capacity_check: true
       combined_bundle: When side and double-add Omens are combined, the chosen side must have capacity for both additions.
   active_in_current_simulation: true
-  runtime_admission_status: admission_candidate
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: annulment
   group: annulment
   input_rarity:
@@ -422,7 +422,7 @@ operations:
       rule: rebuild ordinary add pool on the branch-copy after removal
     on_failed_precondition: NO_TRANSITION_NO_CONSUMPTION
   active_in_current_simulation: true
-  runtime_admission_status: admission_candidate
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: perfect_chaos
   group: chaos
   input_rarity:
@@ -459,7 +459,7 @@ operations:
       rule: rebuild ordinary add pool on the branch-copy after removal
     on_failed_precondition: NO_TRANSITION_NO_CONSUMPTION
   active_in_current_simulation: true
-  runtime_admission_status: admission_candidate
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: alchemy
   group: alchemy
   input_rarity:

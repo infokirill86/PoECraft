@@ -1,16 +1,17 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "0006f2cfb8a211f3a3a5fc25c3587094dacea93f"
-updated_at_utc: "2026-07-10T10:15:00Z"
+repo_head_at_last_update: "85bae7aa31a8620bf827d4c9308fec2bbb48a4fe"
+updated_at_utc: "2026-07-10T10:24:54Z"
 
-status: "awaiting_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "POST_SHA256_FIX_NEXT_GATE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M39B_GREATER_PERFECT_EXALTED_CHAOS_RUNTIME"
 
-allowed_next_action: "chatgpt_user_decide_greater_perfect_admission_or_next_project_move"
+allowed_next_action: "claude_audit_m39b_greater_perfect_exalted_chaos_runtime"
 forbidden_next_actions:
-  - "start_greater_or_perfect_runtime"
-  - "enable_greater_or_perfect_exalted_or_chaos"
+  - "accept_m39b_without_chatgpt_user_gate"
+  - "admit_base_exalted_wrapper"
+  - "admit_other_greater_or_perfect_families"
   - "enable_essence_runtime"
   - "accept_whittling_or_omen_runtime"
   - "accept_new_operation_runtime"
@@ -26,8 +27,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: ""
-current_review_path: ""
+current_result_path: "packages/proposed/P2C_M39B_GreaterPerfect_Exalted_Chaos_Runtime_Result_Codex_v1/"
+current_review_path: "reviews/P2C_M39B_GreaterPerfect_Exalted_Chaos_Runtime_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -71,10 +72,8 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: ChatGPT/User next-move gate. The SHA256 Git-normalized updater/checker fix is accepted (User gate 2026-07-10 after Claude GO); the recurring CRLF/LF checksum drift is closed structurally.
+Current live task: Claude audit of the proposed M39-B Greater/Perfect Exalted + Chaos runtime-admission batch.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: Claude.
 
-Allowed next action: decide the next project move — Greater/Perfect admission in controlled slices (Exalted + Chaos first, per accepted M39/M39-A), or another next wave. No package is currently in flight; nothing is queued for Codex or Claude until this gate.
-
-Standing boundaries hold: no Greater/Perfect / Whittling/Omen / Essence runtime, no new operation, no longer chains, no planner/optimizer/economics/advice, no public numeric release, no automation/GitHub Actions, and no SOURCE/PROVENANCE / MML / PD-013 closure without an explicit ChatGPT/User gate.
+Allowed next action: audit the M39-B implementation, including the base-Exalted boundary, shared-kernel composition, row-declared MML, Chaos atomicity, fail-closed behavior, and regression evidence. M39-B remains proposed and cannot be accepted by Codex, Claude, tests, or package metadata.

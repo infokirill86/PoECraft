@@ -59,14 +59,30 @@ def _operations(*, chaos_status: str = "accepted_executable_runtime") -> dict[st
                 "group": "chaos",
                 "active_in_current_simulation": True,
                 "runtime_admission_status": chaos_status,
-                "transition": {"add": {"mml": None}},
+                "transition": {
+                    "atomic": True,
+                    "remove": {
+                        "kind": "uniform_installed_instance",
+                        "count": 1,
+                        "exclude_flags": ["fractured"],
+                    },
+                    "add": {"kind": "ordinary_weighted", "count": 1, "mml": None},
+                },
             },
             {
                 "operation_id": "greater_chaos",
                 "group": "chaos",
                 "active_in_current_simulation": True,
                 "runtime_admission_status": "admission_candidate",
-                "transition": {"add": {"mml": 35}},
+                "transition": {
+                    "atomic": True,
+                    "remove": {
+                        "kind": "uniform_installed_instance",
+                        "count": 1,
+                        "exclude_flags": ["fractured"],
+                    },
+                    "add": {"kind": "ordinary_weighted", "count": 1, "mml": 35},
+                },
             },
         ]
     }
@@ -444,7 +460,7 @@ def test_m37a_fail_closed_non_admitted_operation_and_variants() -> None:
         )
     )
     admitted_harness = ChaosLikeMonteCarloHarness(static=admitted_static)
-    with pytest.raises(M37AChaosLikeInvariantViolation, match="unsupported M37-A operation_id"):
+    with pytest.raises(M37AChaosLikeInvariantViolation, match="not executable-admitted"):
         admitted_harness.enumerate_paths(
             initial_state=state,
             operation=ChaosLikeOperation(

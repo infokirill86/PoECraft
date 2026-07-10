@@ -50,7 +50,14 @@ def test_runtime_admission_status_table_is_explicit_and_narrow():
         for row in rows
         if row['runtime_admission_status'] == 'accepted_executable_runtime'
     ]
-    assert admitted == ['annulment', 'chaos']
+    assert admitted == [
+        'greater_exalted',
+        'perfect_exalted',
+        'annulment',
+        'chaos',
+        'greater_chaos',
+        'perfect_chaos',
+    ]
 
 
 def test_missing_runtime_admission_status_fails(tmp_path):
@@ -122,7 +129,7 @@ def test_active_catalog_candidate_mechanic_change_only_changes_source_fingerprin
     clone(tmp_path); baseline=build_static_game_data(tmp_path)
     p=tmp_path/'data/operations.yaml'
     def change(d):
-        row=next(r for r in d['operations'] if r['operation_id']=='greater_chaos')
+        row=next(r for r in d['operations'] if r['operation_id']=='exalted')
         row['transition']['add']['count']=2
     mutate_yaml(p, change)
     changed=build_static_game_data(tmp_path)

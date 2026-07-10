@@ -44,6 +44,11 @@ from .ordinary_add import (
 M37A_CHAOSLIKE_SCHEMA_VERSION = "p2c.m37a.chaoslike_remove_then_add.v1"
 M37A_CHAOSLIKE_SEMANTICS_VERSION = "p2c.m37a.base_chaos.project_model.v1"
 CHAOS_OPERATION_ID = "chaos"
+M39B_CHAOS_OPERATION_IDS = frozenset({
+    CHAOS_OPERATION_ID,
+    "greater_chaos",
+    "perfect_chaos",
+})
 M37A_PROJECT_MODEL_POLICY = (
     "base chaos removes uniformly over eligible removable non-fractured installed "
     "modifier instances, then adds from the accepted combined generation_weight "
@@ -61,15 +66,18 @@ class M37AChaosLikeInvariantViolation(M37AChaosLikeError, M32InvariantViolation)
 
 @dataclass(frozen=True, slots=True)
 class ChaosLikeOperation:
-    """One M37-A base Chaos-like operation invocation.
+    """One accepted Chaos-like remove-then-add invocation.
 
-    M37-A admits only base `chaos`. Whittling, side Omens, Greater/Perfect
-    Chaos, MML, and every other Chaos-like variant remain out of scope.
+    Base `chaos` uses no MML. M39-B Greater/Perfect Chaos reuse the same
+    removal and atomic commit behavior, then pass row-declared MML into the
+    branch-specific post-removal ordinary-add pool. Whittling, side Omens,
+    and caller-selected modifier layers remain out of scope.
     """
 
     mode_id: str
     operation_id: str = CHAOS_OPERATION_ID
     item_class: str = "quarterstaff"
+    mml: int | None = None
     semantics_version: str = M37A_CHAOSLIKE_SEMANTICS_VERSION
 
 
@@ -190,7 +198,7 @@ class ChaosLikeRunResult:
 
 
 class ChaosLikeMonteCarloHarness:
-    """Exact/oracle and seeded MC harness for M37-A base Chaos-like runtime only."""
+    """Exact/oracle and seeded MC harness for admitted Chaos-like runtime."""
 
     def __init__(
         self,
@@ -221,7 +229,7 @@ class ChaosLikeMonteCarloHarness:
             item_class=operation.item_class,
             state=state,
             side_filter=None,
-            mml=None,
+            mml=operation.mml,
         )
         return self.ordinary_add_pool_builder(request, self.static)
 
@@ -600,9 +608,9 @@ class ChaosLikeMonteCarloHarness:
         )
 
     def _validate_operation(self, operation: ChaosLikeOperation, state: ItemState) -> None:
-        if operation.operation_id != CHAOS_OPERATION_ID:
+        if operation.operation_id not in M39B_CHAOS_OPERATION_IDS:
             raise M37AChaosLikeInvariantViolation(
-                f"unsupported M37-A operation_id: {operation.operation_id}"
+                f"unsupported Chaos-like operation_id: {operation.operation_id}"
             )
         if operation.semantics_version != M37A_CHAOSLIKE_SEMANTICS_VERSION:
             raise M37AChaosLikeInvariantViolation("chaos-like semantics version mismatch")
@@ -619,10 +627,47 @@ class ChaosLikeMonteCarloHarness:
             raise M37AChaosLikeInvariantViolation(
                 f"operation row is not executable-admitted: {operation.operation_id}"
             )
+        if row.get("group") != "chaos":
+            raise M37AChaosLikeInvariantViolation(
+                f"Chaos-like operation row has unexpected group: {operation.operation_id}"
+            )
         transition = row.get("transition") if isinstance(row, dict) else None
+        remove = transition.get("remove") if isinstance(transition, dict) else None
         add = transition.get("add") if isinstance(transition, dict) else None
-        if isinstance(add, dict) and add.get("mml") is not None:
+        if (
+            not isinstance(transition, dict)
+            or transition.get("atomic") is not True
+            or not isinstance(remove, dict)
+            or remove.get("kind") != "uniform_installed_instance"
+            or remove.get("count") != 1
+            or "fractured" not in (remove.get("exclude_flags") or ())
+            or not isinstance(add, dict)
+            or add.get("kind") != "ordinary_weighted"
+            or add.get("count") != 1
+        ):
+            raise M37AChaosLikeInvariantViolation(
+                f"unsupported Chaos-like transition shape: {operation.operation_id}"
+            )
+        declared_mml = add.get("mml")
+        if declared_mml is not None and (
+            isinstance(declared_mml, bool)
+            or not isinstance(declared_mml, int)
+            or declared_mml <= 0
+        ):
+            raise M37AChaosLikeInvariantViolation(
+                f"invalid Chaos-like add MML: {operation.operation_id}"
+            )
+        if operation.operation_id == CHAOS_OPERATION_ID and declared_mml is not None:
             raise M37AChaosLikeInvariantViolation("M37-A base Chaos must not use MML")
+        if operation.operation_id != CHAOS_OPERATION_ID and declared_mml is None:
+            raise M37AChaosLikeInvariantViolation(
+                f"M39-B Chaos variant requires row-declared MML: {operation.operation_id}"
+            )
+        if operation.mml != declared_mml:
+            raise M37AChaosLikeInvariantViolation(
+                "Chaos-like operation MML does not match the admitted catalog row: "
+                f"{operation.operation_id}"
+            )
 
     def _remove_step(
         self,
@@ -734,6 +779,7 @@ __all__ = [
     "M37A_CHAOSLIKE_SCHEMA_VERSION",
     "M37A_CHAOSLIKE_SEMANTICS_VERSION",
     "M37A_PROJECT_MODEL_POLICY",
+    "M39B_CHAOS_OPERATION_IDS",
     "ChaosLikeMonteCarloHarness",
     "ChaosLikeOperation",
     "ChaosLikeRunResult",

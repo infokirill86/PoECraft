@@ -21,8 +21,11 @@ from p2c_engine.static_data.game_data import StaticGameData
 
 M38A_RESOLVER_SCHEMA_VERSION = "p2c.m38a.operation_resolver_skeleton.v1"
 M39A_RESOLVER_SCHEMA_VERSION = "p2c.m39a.operation_resolver_mml_filter_interface.v1"
+M39B_RESOLVER_SCHEMA_VERSION = "p2c.m39b.greater_perfect_exalted_chaos_runtime.v1"
 ACCEPTED_RUNTIME_STATUS = "accepted_executable_runtime"
 BASE_VARIANT_IDS = frozenset({None, "", "base"})
+M39B_EXALTED_CURRENCY_IDS = frozenset({"greater_exalted", "perfect_exalted"})
+M39B_CHAOS_CURRENCY_IDS = frozenset({"greater_chaos", "perfect_chaos"})
 
 
 AcceptedResolvedOperation = OrdinaryAddOperation | AnnulmentOperation | ChaosLikeOperation
@@ -44,11 +47,14 @@ class OperationResolverRequest:
     M38-A is intentionally not a route planner. It compiles one currency or
     engine-primitive invocation into one already accepted runtime operation.
     Variant and active-modifier fields are present as a future interface shape,
-    but every non-base/non-empty value fails closed in M39-A.
+    but every non-base/non-empty value fails closed.
 
-    M39-A admits only an explicit MML filter parameter for the accepted
-    ordinary_add engine primitive. It does not admit Greater/Perfect currency
-    rows, Greater/Perfect variants, Chaos MML, Essence, Whittling, or Omens.
+    M39-A admits an explicit MML filter parameter for the accepted ordinary_add
+    engine primitive. M39-B additionally admits four independent catalog rows:
+    Greater/Perfect Exalted compile to ordinary_add plus row-declared MML, while
+    Greater/Perfect Chaos compile to accepted base Chaos mechanics plus
+    row-declared MML on the post-removal add pool. Caller-supplied catalog MML,
+    Essence, Whittling, Omens, and side/desecrated modifiers remain fail-closed.
     """
 
     currency_id: str
@@ -149,20 +155,64 @@ class OperationResolver:
         if mml is not None:
             raise M38AResolverAdmissionError(
                 "MML filters are executable-admitted only for explicit ordinary_add "
-                "engine-primitive requests in M39-A; accepted catalog operations "
-                f"remain gated for MML filters: {request.currency_id}"
+                "requests when supplied by the caller; catalog-operation MML is fixed "
+                f"by its admitted operation row: {request.currency_id}"
             )
 
+        _validate_catalog_input_rarity(row, request.item_state)
+        declared_mml = _declared_add_mml(row)
+        group = row.get("group")
+        schema_version = M39A_RESOLVER_SCHEMA_VERSION
+        filters = ResolvedOperationFilters()
+
         if request.currency_id == ANNULMENT_OPERATION_ID:
+            if declared_mml is not None:
+                raise M38AResolverAdmissionError("Annulment catalog row must not declare add MML")
             operation = AnnulmentOperation(
                 mode_id=request.mode_id,
                 item_class=request.item_state.item_class,
             )
-        elif request.currency_id == CHAOS_OPERATION_ID:
-            operation = ChaosLikeOperation(
+        elif group == "exalted":
+            if request.currency_id not in M39B_EXALTED_CURRENCY_IDS:
+                raise M38AResolverAdmissionError(
+                    "admitted Exalted-family row is outside the M39-B allowlist: "
+                    f"{request.currency_id}"
+                )
+            if declared_mml is None:
+                raise M38AResolverAdmissionError(
+                    f"M39-B Exalted variant requires row-declared MML: {request.currency_id}"
+                )
+            _validate_m39b_exalted_transition(row)
+            operation = OrdinaryAddOperation(
                 mode_id=request.mode_id,
                 item_class=request.item_state.item_class,
+                mml=declared_mml,
             )
+            schema_version = M39B_RESOLVER_SCHEMA_VERSION
+            filters = ResolvedOperationFilters(mml=declared_mml)
+        elif group == "chaos":
+            if (
+                request.currency_id != CHAOS_OPERATION_ID
+                and request.currency_id not in M39B_CHAOS_CURRENCY_IDS
+            ):
+                raise M38AResolverAdmissionError(
+                    "admitted Chaos-family row is outside the accepted resolver allowlist: "
+                    f"{request.currency_id}"
+                )
+            operation = ChaosLikeOperation(
+                mode_id=request.mode_id,
+                operation_id=request.currency_id,
+                item_class=request.item_state.item_class,
+                mml=declared_mml,
+            )
+            if request.currency_id in M39B_CHAOS_CURRENCY_IDS:
+                if declared_mml is None:
+                    raise M38AResolverAdmissionError(
+                        f"M39-B Chaos variant requires row-declared MML: {request.currency_id}"
+                    )
+                _validate_m39b_chaos_transition(row)
+                schema_version = M39B_RESOLVER_SCHEMA_VERSION
+                filters = ResolvedOperationFilters(mml=declared_mml)
         else:
             raise M38AResolverAdmissionError(
                 "operation row is admitted but unsupported by the M38-A resolver skeleton: "
@@ -170,7 +220,7 @@ class OperationResolver:
             )
 
         return ResolvedOperationPlan(
-            schema_version=M39A_RESOLVER_SCHEMA_VERSION,
+            schema_version=schema_version,
             plan_kind="single_operation",
             currency_id=request.currency_id,
             operation_id=operation.operation_id,
@@ -178,7 +228,7 @@ class OperationResolver:
             runtime_admission_status=ACCEPTED_RUNTIME_STATUS,
             variant_id=None,
             active_modifier_ids=(),
-            filters=ResolvedOperationFilters(),
+            filters=filters,
             operation=operation,
         )
 
@@ -215,10 +265,81 @@ def _operation_row(operations: Any, operation_id: str) -> dict[str, Any] | None:
     return None
 
 
+def _declared_add_mml(row: dict[str, Any]) -> int | None:
+    transition = row.get("transition")
+    add = transition.get("add") if isinstance(transition, dict) else None
+    mml = add.get("mml") if isinstance(add, dict) else None
+    if mml is None:
+        return None
+    if isinstance(mml, bool) or not isinstance(mml, int) or mml <= 0:
+        raise M38AResolverAdmissionError(
+            f"catalog row has invalid add MML: {row.get('operation_id')} ({mml!r})"
+        )
+    return mml
+
+
+def _validate_catalog_input_rarity(row: dict[str, Any], state: ItemState) -> None:
+    input_rarities = row.get("input_rarity")
+    if input_rarities is None:
+        return
+    if not isinstance(input_rarities, list) or any(
+        not isinstance(value, str) for value in input_rarities
+    ):
+        raise M38AResolverAdmissionError(
+            f"catalog row has invalid input_rarity: {row.get('operation_id')}"
+        )
+    if state.rarity.value not in input_rarities:
+        raise M38AResolverAdmissionError(
+            "catalog operation does not accept the current item rarity: "
+            f"{row.get('operation_id')} ({state.rarity.value})"
+        )
+
+
+def _validate_m39b_exalted_transition(row: dict[str, Any]) -> None:
+    transition = row.get("transition")
+    remove = transition.get("remove") if isinstance(transition, dict) else None
+    add = transition.get("add") if isinstance(transition, dict) else None
+    if (
+        not isinstance(transition, dict)
+        or transition.get("atomic") is not True
+        or transition.get("output_rarity") not in (None, "rare")
+        or not isinstance(remove, dict)
+        or remove.get("kind") != "none"
+        or not isinstance(add, dict)
+        or add.get("kind") != "ordinary_weighted"
+        or add.get("count") != 1
+    ):
+        raise M38AResolverAdmissionError(
+            f"unsupported M39-B Exalted transition shape: {row.get('operation_id')}"
+        )
+
+
+def _validate_m39b_chaos_transition(row: dict[str, Any]) -> None:
+    transition = row.get("transition")
+    remove = transition.get("remove") if isinstance(transition, dict) else None
+    add = transition.get("add") if isinstance(transition, dict) else None
+    if (
+        not isinstance(transition, dict)
+        or transition.get("atomic") is not True
+        or transition.get("output_rarity") not in (None, "rare")
+        or not isinstance(remove, dict)
+        or remove.get("kind") != "uniform_installed_instance"
+        or remove.get("count") != 1
+        or "fractured" not in (remove.get("exclude_flags") or ())
+        or not isinstance(add, dict)
+        or add.get("kind") != "ordinary_weighted"
+        or add.get("count") != 1
+    ):
+        raise M38AResolverAdmissionError(
+            f"unsupported M39-B Chaos transition shape: {row.get('operation_id')}"
+        )
+
+
 __all__ = [
     "ACCEPTED_RUNTIME_STATUS",
     "M38A_RESOLVER_SCHEMA_VERSION",
     "M39A_RESOLVER_SCHEMA_VERSION",
+    "M39B_RESOLVER_SCHEMA_VERSION",
     "M38AResolverAdmissionError",
     "M38AResolverError",
     "OperationResolver",
