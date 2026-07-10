@@ -31,5 +31,6 @@ testpaths = [
     "tests/monte_carlo",
     "tests/sampling",
     "tests/static_data",
+    "tests/tools",
 ]
 addopts = "-ra"

@@ -22,8 +22,27 @@ mml:
     - poe2db_currency
     corroborating_context_source_refs:
     - official_patch_0_5
-    source_note: PoE2DB Currency lists the specific thresholds. Official patch 0.5.0 corroborates the Greater/Perfect minimum-level concept but is not treated as line-level proof for every value.
+    - official_patch_0_3
+    source_note: PoE2DB Currency lists the specific thresholds. Official patch 0.3.0 confirms the Greater/Perfect introduction and minimum-level concept; later official patch context is corroborating only. Neither is treated as server-truth closure.
     values:
+      greater_transmutation:
+        add_pool_mml: 44
+        application_stage: target_magic_add_pool
+      perfect_transmutation:
+        add_pool_mml: 70
+        application_stage: target_magic_add_pool
+      greater_augmentation:
+        add_pool_mml: 44
+        application_stage: magic_add_pool
+      perfect_augmentation:
+        add_pool_mml: 70
+        application_stage: magic_add_pool
+      greater_regal:
+        add_pool_mml: 35
+        application_stage: target_rare_add_pool
+      perfect_regal:
+        add_pool_mml: 50
+        application_stage: target_rare_add_pool
       greater_exalted:
         add_pool_mml: 35
         application_stage: rare_add_pool
@@ -36,6 +55,39 @@ mml:
       perfect_chaos:
         add_pool_mml: 50
         application_stage: rebuilt_post_removal_add_pool
+rarity_capacity_and_mutable_modifier_count:
+  runtime_status: USER_AUTHORIZED_M40A_PROJECT_MODEL
+  evidence_level: project_model_source_open
+  server_truth_claimed: false
+  source_refs:
+  - poe2db_currency
+  - official_patch_0_3
+  capacity:
+    normal:
+      prefix: 0
+      suffix: 0
+    magic:
+      prefix: 1
+      suffix: 1
+    rare:
+      prefix: 3
+      suffix: 3
+  current_modifier_count:
+    rule: mutable_state_from_zero_through_rarity_capacity
+    magic_zero_after_removal_supported: true
+    rare_below_generated_count_supported: true
+  fractured_modifiers:
+    consume_corresponding_side_capacity: true
+    protected_from_excluding_removal_operations: true
+    current_fractured_critical_suffix_staff_is_supported_scenario_not_global_invariant: true
+  augmentation:
+    opposite_side_behavior: derived_from_magic_side_capacity_and_combined_legal_pool
+    separate_side_lottery: false
+  rarity_transition_add:
+    transmutation_pool_build_rarity: magic
+    regal_pool_build_rarity: rare
+    commit: target_rarity_and_added_modifier_atomic
+    failure: no_transition_no_consumption_original_state_unchanged
 whittling:
   official_rule: remove the lowest modifier-level removable modifier
   tie_breaker: uniform_random_among_tied_lowest_level_instances

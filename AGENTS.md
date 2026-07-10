@@ -25,10 +25,10 @@ Execution hygiene:
   - `python tools/check_sha256sums.py SHA256SUMS.txt`
 - Keep packages compact. Do not include nested historical packages unless explicitly authorized.
 - Do not change runtime code, crafting mechanics, data semantics, or accepted ledgers unless the live gate explicitly authorizes it.
+- Definition of done: the commit is pushed, remote `main` equals local `HEAD`, and commit-pinned `ACTIVE_TASK.md` names the intended next actor.
 
 Final response:
 
 - State what changed.
 - State checks run.
 - State current `ACTIVE_TASK.md` status, next actor, active task id, allowed next action, and whose turn it is.
-

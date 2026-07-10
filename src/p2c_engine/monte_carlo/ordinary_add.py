@@ -695,7 +695,7 @@ class OrdinaryAddMonteCarloHarness:
             raise M32InvariantViolation(f"unsupported operation_id: {operation_id}")
         if actual_mode_id != expected_mode_id:
             raise M32InvariantViolation("mode changed during MC trajectory")
-        _assert_fractured_suffix_unchanged(pre_state, post_state, self.static.modifier_index)
+        _assert_fractured_modifiers_unchanged(pre_state, post_state, self.static.modifier_index)
         _assert_capacity(post_state, self.static.modifier_index)
         _assert_duplicate_family_and_groups(post_state, self.static.modifier_index)
 
@@ -714,7 +714,7 @@ def _append_ordinary_modifier(state: ItemState, mod_id: str) -> ItemState:
     )
 
 
-def _assert_fractured_suffix_unchanged(
+def _assert_fractured_modifiers_unchanged(
     pre_state: ItemState,
     post_state: ItemState,
     modifier_index: Mapping[str, Any],
@@ -727,8 +727,6 @@ def _assert_fractured_suffix_unchanged(
         static = modifier_index.get(instance.mod_id)
         if static is None:
             raise M32InvariantViolation(f"unknown fractured mod_id: {instance.mod_id}")
-        if static.side != Side.SUFFIX:
-            raise M32InvariantViolation("fractured modifier is not a suffix")
 
 
 def _assert_capacity(state: ItemState, modifier_index: Mapping[str, Any]) -> None:

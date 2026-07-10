@@ -27,6 +27,16 @@ from .chaos_like import (
     ChaosLikeRunResult,
     M37AChaosLikeInvariantViolation,
 )
+from .rarity_progression import (
+    M40A_OPERATION_IDS,
+    M40A_SCHEMA_VERSION,
+    M40A_SEMANTICS_VERSION,
+    CatalogSingleAddHarness,
+    CatalogSingleAddOperation,
+    CatalogSingleAddPrecondition,
+    CatalogSingleAddRunResult,
+    M40ARarityProgressionInvariantViolation,
+)
 
 __all__ = [
     "ANNULMENT_OPERATION_ID",
@@ -50,4 +60,12 @@ __all__ = [
     "OrdinaryAddMonteCarloHarness",
     "OrdinaryAddOperation",
     "MonteCarloRunResult",
+    "M40A_OPERATION_IDS",
+    "M40A_SCHEMA_VERSION",
+    "M40A_SEMANTICS_VERSION",
+    "CatalogSingleAddHarness",
+    "CatalogSingleAddOperation",
+    "CatalogSingleAddPrecondition",
+    "CatalogSingleAddRunResult",
+    "M40ARarityProgressionInvariantViolation",
 ]

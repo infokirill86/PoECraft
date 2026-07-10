@@ -30,7 +30,7 @@ def test_m39b_runtime_thresholds_match_operations_and_trusted_source_registry() 
     assert set(threshold_evidence["exact_threshold_source_refs"]) <= source_ids
     assert set(threshold_evidence["corroborating_context_source_refs"]) <= source_ids
 
-    assert set(threshold_evidence["values"]) == set(expected)
+    assert set(expected) <= set(threshold_evidence["values"])
     for operation_id, (mml, application_stage) in expected.items():
         evidence_row = threshold_evidence["values"][operation_id]
         operation_row = operation_rows[operation_id]

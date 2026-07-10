@@ -37,7 +37,7 @@ from .ordinary_add import (
     _append_ordinary_modifier,
     _assert_capacity,
     _assert_duplicate_family_and_groups,
-    _assert_fractured_suffix_unchanged,
+    _assert_fractured_modifiers_unchanged,
 )
 
 
@@ -756,7 +756,7 @@ class ChaosLikeMonteCarloHarness:
             mod for mod in terminal_state.modifiers if mod.fractured
         ):
             raise M37AChaosLikeInvariantViolation("fractured modifier changed during Chaos add")
-        _assert_fractured_suffix_unchanged(
+        _assert_fractured_modifiers_unchanged(
             pre_state,
             terminal_state,
             self.static.modifier_index,

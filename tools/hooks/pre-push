@@ -4,6 +4,9 @@ set -eu
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
+echo "P2C pre-push: validating ACTIVE_TASK schema and live state"
+python tools/validate_active_task.py work/active/ACTIVE_TASK.md
+
 echo "P2C pre-push: regenerating root SHA256SUMS.txt"
 python tools/update_sha256sums.py
 

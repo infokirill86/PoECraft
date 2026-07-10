@@ -8,6 +8,9 @@ simulation_boundary:
   model_process_of_obtaining_fracture: false
   starting_item_has_required_fractured_crit: true
 active_operation_groups:
+- transmutation
+- augmentation
+- regal
 - exalted
 - annulment
 - chaos
@@ -16,14 +19,12 @@ active_operation_groups:
 - jawbone
 - reveal
 reference_only_operation_groups:
-- transmutation
-- augmentation
-- regal
 - alchemy
 - fracture
 - greater_essence
 active_omen_system: true
 active_mechanics:
+- rarity_progression_currency_variants
 - exalted_currency_variants
 - annulment
 - chaos_currency_variants
@@ -34,7 +35,6 @@ active_mechanics:
 - lich_omens
 - abyssal_echoes
 excluded_from_active_solver:
-- normal_or_magic_start
 - fracturing_route
 - greater_essence_magic_to_rare_route
 - alchemy_route

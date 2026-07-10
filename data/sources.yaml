@@ -49,6 +49,14 @@ sources:
   use_for:
   - current crafting additions and changed outputs
   status: checked
+- source_id: official_patch_0_3
+  type: official_patch_notes
+  url: https://www.pathofexile.com/forum/view-thread/3826682
+  use_for:
+  - Greater/Perfect currency introduction
+  - minimum modifier level concept for added modifiers
+  status: checked
+  note: Official context for M40-A rarity-progression variants; exact displayed thresholds remain sourced from PoE2DB Currency. This is project-model evidence, not a server-truth claim.
 model_postulate: When PoE2DB and Craft of Exile agree, their pool, tier, modifier-level, family/group and weight data are
   accepted as model truth. RePoE is structural support, not the primary weight source.
 research_source_order:

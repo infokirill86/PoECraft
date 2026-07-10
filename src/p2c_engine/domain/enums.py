@@ -10,6 +10,9 @@ class Side(StrEnum):
     SUFFIX = "suffix"
 
 class OperationGroup(StrEnum):
+    TRANSMUTATION = "transmutation"
+    AUGMENTATION = "augmentation"
+    REGAL = "regal"
     EXALTED = "exalted"
     ANNULMENT = "annulment"
     CHAOS = "chaos"

@@ -22,6 +22,7 @@ from p2c_engine.monte_carlo.ordinary_add import (
     OrdinaryAddMonteCarloHarness,
     OrdinaryAddOperation,
 )
+from p2c_engine.monte_carlo.rarity_progression import M40A_OPERATION_IDS
 from p2c_engine.operations.resolver import (
     M39B_RESOLVER_SCHEMA_VERSION,
     M38AResolverAdmissionError,
@@ -190,7 +191,7 @@ def _mass(row: object) -> Fraction:
     return Fraction(row.probability_numerator, row.probability_denominator)  # type: ignore[attr-defined]
 
 
-def test_m39b_real_catalog_admits_only_the_authorized_variant_batch() -> None:
+def test_m39b_rows_remain_admitted_with_later_m40a_surface() -> None:
     static = build_static_game_data(ROOT)
     rows = {row["operation_id"]: row for row in static.operations["operations"]}
 
@@ -198,7 +199,7 @@ def test_m39b_real_catalog_admits_only_the_authorized_variant_batch() -> None:
         operation_id
         for operation_id, row in rows.items()
         if row["runtime_admission_status"] == "accepted_executable_runtime"
-    } == {
+    } == M40A_OPERATION_IDS | {
         "annulment",
         "chaos",
         "greater_exalted",
@@ -206,7 +207,7 @@ def test_m39b_real_catalog_admits_only_the_authorized_variant_batch() -> None:
         "greater_chaos",
         "perfect_chaos",
     }
-    assert rows["exalted"]["runtime_admission_status"] == "admission_candidate"
+    assert rows["exalted"]["runtime_admission_status"] == "accepted_executable_runtime"
 
 
 def test_m39b_resolver_compiles_four_catalog_rows_with_row_declared_mml() -> None:

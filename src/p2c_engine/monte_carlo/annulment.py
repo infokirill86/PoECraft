@@ -493,8 +493,6 @@ def _assert_fractured_modifiers_unchanged(
         static = modifier_index.get(instance.mod_id)
         if static is None:
             raise M35AAnnulmentInvariantViolation(f"unknown fractured mod_id: {instance.mod_id}")
-        if static.side != Side.SUFFIX:
-            raise M35AAnnulmentInvariantViolation("fractured modifier is not a suffix")
 
 
 __all__ = [

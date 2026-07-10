@@ -16,6 +16,7 @@ Role:
 - Do not rubber-stamp. Reconstruct, execute, or inspect enough evidence to support the verdict.
 - Challenge weak boundaries, hidden scope expansion, source/mechanics uncertainty, and project-direction drift.
 - Advisory verdicts are not acceptance. ChatGPT/Kirill remain the acceptance gate.
+- Definition of done: the commit is pushed, remote `main` equals local `HEAD`, and commit-pinned `ACTIVE_TASK.md` names the intended next actor.
 
 Audit output:
 
@@ -34,4 +35,3 @@ Return to ChatGPT/Kirill instead of silently resolving when an issue involves:
 - optimizer/economics/advice;
 - automation;
 - SOURCE/PROVENANCE, MML, or PD-013 closure.
-

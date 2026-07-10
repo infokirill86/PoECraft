@@ -1,6 +1,9 @@
 schema_version: 2
 item_class: quarterstaff
 handler_declarations:
+  transmutation: catalog_single_add_handler
+  augmentation: catalog_single_add_handler
+  regal: catalog_single_add_handler
   exalted: exalted_handler
   annulment: annulment_handler
   chaos: chaos_handler
@@ -48,8 +51,8 @@ operations:
       count: 1
       side_filter: null
       mml: null
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: greater_transmutation
   group: transmutation
   input_rarity:
@@ -65,8 +68,8 @@ operations:
       count: 1
       side_filter: null
       mml: 44
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: perfect_transmutation
   group: transmutation
   input_rarity:
@@ -82,8 +85,8 @@ operations:
       count: 1
       side_filter: null
       mml: 70
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: augmentation
   group: augmentation
   input_rarity:
@@ -105,8 +108,8 @@ operations:
       mml: null
       side_resolution: On Magic items, only a side below its 1-mod capacity is eligible. If one prefix is installed, the addition
         must be a suffix; if one suffix is installed, it must be a prefix.
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: greater_augmentation
   group: augmentation
   input_rarity:
@@ -128,8 +131,8 @@ operations:
       mml: 44
       side_resolution: On Magic items, only a side below its 1-mod capacity is eligible. If one prefix is installed, the addition
         must be a suffix; if one suffix is installed, it must be a prefix.
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: perfect_augmentation
   group: augmentation
   input_rarity:
@@ -151,8 +154,8 @@ operations:
       mml: 70
       side_resolution: On Magic items, only a side below its 1-mod capacity is eligible. If one prefix is installed, the addition
         must be a suffix; if one suffix is installed, it must be a prefix.
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: regal
   group: regal
   input_rarity:
@@ -169,8 +172,8 @@ operations:
       count: 1
       side_filter: null
       mml: null
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: greater_regal
   group: regal
   input_rarity:
@@ -187,8 +190,8 @@ operations:
       count: 1
       side_filter: null
       mml: 35
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: perfect_regal
   group: regal
   input_rarity:
@@ -205,8 +208,8 @@ operations:
       count: 1
       side_filter: null
       mml: 50
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: exalted
   group: exalted
   input_rarity:
@@ -244,7 +247,7 @@ operations:
         side_filter_applies_before_capacity_check: true
       combined_bundle: When side and double-add Omens are combined, the chosen side must have capacity for both additions.
   active_in_current_simulation: true
-  runtime_admission_status: admission_candidate
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: greater_exalted
   group: exalted
   input_rarity:

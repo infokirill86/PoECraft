@@ -41,12 +41,14 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M39-A MML Filter Interface: accepted after Claude GO audit as an interface floor only; resolver supports optional MML only for accepted `ordinary_add`, passes it into the existing add-pool path, and keeps unsupported MML usage fail-closed. Greater/Perfect rows remain not admitted and MML remains open as a broader mechanics/source topic.
 - SHA256 Git-normalized updater/checker fix: accepted after Claude GO audit as repo-integrity tooling only; `update_sha256sums.py` and `check_sha256sums.py` hash tracked files from Git normalized/index bytes (raw working-tree bytes only for untracked files), closing the recurring CRLF/LF root `SHA256SUMS.txt` drift structurally.
 - M39-B Greater/Perfect Exalted + Chaos runtime batch: accepted after Claude GO audit. Accepted rows are `greater_exalted`, `perfect_exalted`, `greater_chaos`, and `perfect_chaos`; they compose through shared ordinary-add/base-Chaos kernels with row-declared MML. Base `exalted` intentionally remains not admitted, and broader MML remains source-open.
+- M40 Rarity Progression Family design: accepted after Claude GO audit. M40-A implementation is authorized and now exists as a proposed audit delta for ten rows only; it is not accepted runtime until Claude audit and a later ChatGPT/User gate.
+- ACTIVE_TASK schema-v2 validator/pre-push guard: included as proposed truth-neutral tooling in the M40-A handoff; it does not change project truth or acceptance authority.
 
 ## Next gate
 
-- M40 Rarity Progression Family Design Verification is proposed for Claude audit; it covers Transmutation/Augmentation/Regal base/Greater/Perfect rows and the base Exalted wrapper as design only.
-- No M40 runtime row is admitted. Base `exalted`, Whittling, Omens, other operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
+- Claude audits the proposed M40-A rarity-progression runtime result.
+- M40-A remains proposed, not accepted. Whittling, Omens, Alchemy, Essences, other operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
 
-New executable mechanics beyond accepted `ordinary_add`, base Annulment, base Chaos-like runtime, and accepted M39-B rows; base `exalted` wrapper; Whittling runtime; Omen runtime; other Greater/Perfect families and Chaos variants; Annulment variants/omens; heterogeneous operation chains beyond accepted M36-A fixed two-step scope; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; broader MML closure; PD-013 closure; MC execution of unaccepted operations.
+M40-A runtime acceptance before audit/User gate; Alchemy; Essences; Whittling runtime; Omen runtime; side/desecrated modifier layers; Fracture/Desecrate/Jawbone/Reveal; other operation variants; Annulment variants/omens; heterogeneous operation chains beyond accepted M36-A fixed two-step scope; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; broader MML closure; PD-013 closure; MC execution of unaccepted operations.
