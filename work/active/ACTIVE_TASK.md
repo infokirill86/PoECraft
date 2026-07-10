@@ -1,15 +1,15 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "ce1e46abb0fcce067def9f9165e59ab2b5089e1d"
-updated_at_utc: "2026-07-10T11:20:00Z"
+repo_head_at_last_update: "47fb410826311b78aa85cd421ac784b6e8a7604b"
+updated_at_utc: "2026-07-10T12:01:24Z"
 
-status: "audited_pending_user_gate"
+status: "awaiting_user_gate"
 next_actor: "chatgpt_user"
-active_task_id: "M39B_GREATER_PERFECT_EXALTED_CHAOS_RUNTIME"
+active_task_id: "POST_M39B_NEXT_GATE"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m39b_greater_perfect_exalted_chaos_runtime"
+allowed_next_action: "chatgpt_user_decide_next_operation_or_modifier_wave"
 forbidden_next_actions:
-  - "accept_m39b_without_chatgpt_user_gate"
+  - "start_new_operation_or_modifier_without_explicit_gate"
   - "admit_base_exalted_wrapper"
   - "admit_other_greater_or_perfect_families"
   - "enable_essence_runtime"
@@ -27,8 +27,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M39B_GreaterPerfect_Exalted_Chaos_Runtime_Result_Codex_v1/"
-current_review_path: "reviews/P2C_M39B_GreaterPerfect_Exalted_Chaos_Runtime_Audit_Claude_v1.md"
+current_result_path: ""
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -72,8 +72,8 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the audited M39-B Greater/Perfect Exalted + Chaos runtime batch.
+Current live task: ChatGPT/User next-move gate after M39-B acceptance.
 
 Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: decide. Claude verdict: GO — four rows (greater/perfect exalted+chaos) admitted as project-model runtime via shared kernels; Exalted = accepted ordinary_add + row-declared MML; Chaos = accepted base uniform non-fractured removal + MML on the post-removal add only (verified in code); base exalted and all other families/variants/modifiers fail closed; full suite 160 passes. Two non-blocking watchpoints: confirm the base-Exalted asymmetry is intended, and log the 35/50 MML thresholds in mechanics_evidence as source-open. MML/SOURCE-PROVENANCE/PD-013 stay open (`reviews/P2C_M39B_GreaterPerfect_Exalted_Chaos_Runtime_Audit_Claude_v1.md`).
+Allowed next action: decide the next operation or modifier wave. M39-B is accepted; base `exalted`, other Greater/Perfect families, Whittling/Omens, Essences, public numeric release, optimizer/economics/advice, automation, and SOURCE/PROVENANCE/broader-MML/PD-013 closure remain separately gated.

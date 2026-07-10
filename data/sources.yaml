@@ -10,6 +10,14 @@ sources:
   - tier/value display
   - base item class facts
   status: checked
+- source_id: poe2db_currency
+  type: game_database
+  url: https://poe2db.tw/us/Currency
+  use_for:
+  - currency operation wording
+  - Greater/Perfect modifier-level thresholds
+  status: checked
+  note: Used as the exact displayed-threshold source for the accepted M39-B project-model values; this is not a PoE2 server-truth claim.
 - source_id: craft_of_exile_poe2
   type: crafting_database_and_simulator
   url: https://www.craftofexile.com/?game=poe2

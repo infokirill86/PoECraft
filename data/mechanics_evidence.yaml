@@ -13,6 +13,29 @@ mml:
   sampling_granularity:
     chosen_model: tier_row_after_family_internal_MML_filter
     status: USER_APPROVED_RUNTIME_MODEL
+  accepted_runtime_thresholds:
+    runtime_status: USER_APPROVED_PROJECT_RULE
+    evidence_level: project_model_source_open
+    broader_mml_closure: false
+    server_truth_claimed: false
+    exact_threshold_source_refs:
+    - poe2db_currency
+    corroborating_context_source_refs:
+    - official_patch_0_5
+    source_note: PoE2DB Currency lists the specific thresholds. Official patch 0.5.0 corroborates the Greater/Perfect minimum-level concept but is not treated as line-level proof for every value.
+    values:
+      greater_exalted:
+        add_pool_mml: 35
+        application_stage: rare_add_pool
+      perfect_exalted:
+        add_pool_mml: 50
+        application_stage: rare_add_pool
+      greater_chaos:
+        add_pool_mml: 35
+        application_stage: rebuilt_post_removal_add_pool
+      perfect_chaos:
+        add_pool_mml: 50
+        application_stage: rebuilt_post_removal_add_pool
 whittling:
   official_rule: remove the lowest modifier-level removable modifier
   tie_breaker: uniform_random_among_tied_lowest_level_instances
