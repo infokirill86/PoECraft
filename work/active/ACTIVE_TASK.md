@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "f2650b0355f1dac870be7daf6fb83a180c74ea02"
-updated_at_utc: "2026-07-10T18:33:35Z"
+repo_head_at_last_update: "253297846f8870ca72ce25915b2cccf7b14b6be6"
+updated_at_utc: "2026-07-10T19:30:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M40A_RARITY_PROGRESSION_RUNTIME"
 
-allowed_next_action: "claude_audit_m40a_rarity_progression_runtime"
+allowed_next_action: "chatgpt_user_gate_decision_on_m40a_rarity_progression_runtime"
 forbidden_next_actions:
   - "accept_m40a_without_chatgpt_user_gate"
   - "expand_m40a_beyond_authorized_ten_rows"
@@ -28,7 +28,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M40A_Rarity_Progression_Runtime_Result_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M40A_Rarity_Progression_Runtime_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -72,10 +72,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audit of the proposed M40-A Rarity Progression Runtime implementation.
+Current live task: ChatGPT/User gate decision on the audited M40-A rarity-progression runtime.
 
-Next actor: Claude (external implementation/mechanics audit).
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit the proposed ten-row M40-A runtime, with target-rarity pool construction and atomicity as load-bearing evidence. M40-A is not accepted by this implementation commit.
+Allowed next action: decide. Claude verdict: GO — ten rarity-ladder rows run through one shared, data-driven single-add executor; the pool is built on an isolated copy at the TARGET rarity and the rarity change + added modifier commit atomically (verified in code + 204 tests); MML 44/70 & 35/50 read from data, no per-currency branches; fractured mods stay immutable/removal-protected (only the over-strict "must be suffix" assertion relaxed); mechanics_evidence/sources/project_scope updated as source-open project-model. Also adds the validate_active_task.py dispatcher guard (wired to pre-push). Non-blocking watchpoints for the gate: acknowledge (1) the deliberate scope widening to normal/magic starts, and (2) the accepted fractured-assertion relaxation. MML/SOURCE-PROVENANCE/PD-013 stay open (`reviews/P2C_M40A_Rarity_Progression_Runtime_Audit_Claude_v1.md`).
 
-All non-M40-A operations/modifiers, longer chains, planner/optimizer/economics/advice, public numeric output, automation, and SOURCE/PROVENANCE/broader-MML/PD-013 closure remain separately gated.
+This is a proposed runtime delta only. It is not accepted until a ChatGPT/User gate. It does not admit Alchemy/Essence/Whittling/Omen/side/desecrated runtime, longer chains, planner/optimizer/economics/advice, public numeric output, or automation, and does not close MML, SOURCE/PROVENANCE, or PD-013.
