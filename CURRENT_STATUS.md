@@ -39,11 +39,11 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M38-A Operation Resolver Skeleton: accepted after Claude GO audit as a single-operation resolver/admission seam over already accepted `ordinary_add`, base Annulment, and base Chaos-like runtime only.
 - M39 Greater/Perfect + MML Design Verification: accepted after Claude GO audit as design/mechanics verification only; MML is a shared add-pool filter layer, Greater/Perfect variants should compose through resolver/filtering rather than hardcoded per currency, Greater/Perfect Chaos keeps base Chaos removal and applies MML only to the post-removal add pool, Essences are excluded from the MML-only batch, and MML remains project-model/source-open.
 - M39-A MML Filter Interface: accepted after Claude GO audit as an interface floor only; resolver supports optional MML only for accepted `ordinary_add`, passes it into the existing add-pool path, and keeps unsupported MML usage fail-closed. Greater/Perfect rows remain not admitted and MML remains open as a broader mechanics/source topic.
-- SHA256 Git-normalized updater/checker fix: implemented as a tiny repo-integrity tool fix and proposed for Claude audit; not accepted yet.
+- SHA256 Git-normalized updater/checker fix: accepted after Claude GO audit as repo-integrity tooling only; `update_sha256sums.py` and `check_sha256sums.py` hash tracked files from Git normalized/index bytes (raw working-tree bytes only for untracked files), closing the recurring CRLF/LF root `SHA256SUMS.txt` drift structurally.
 
 ## Next gate
 
-- Claude audit is required for the proposed SHA256 Git-normalized updater/checker fix.
+- ChatGPT/User decision is required for the next project move: Greater/Perfect admission (in controlled slices) or another next wave.
 - Whittling, Omens, Greater/Perfect Chaos, additional operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open

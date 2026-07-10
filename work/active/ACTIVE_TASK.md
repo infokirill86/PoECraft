@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "596fcdb7f69a8c285ff5a51698eddd10e167bf3f"
-updated_at_utc: "2026-07-10T09:40:00Z"
+repo_head_at_last_update: "0006f2cfb8a211f3a3a5fc25c3587094dacea93f"
+updated_at_utc: "2026-07-10T10:15:00Z"
 
-status: "audited_pending_user_gate"
+status: "awaiting_user_gate"
 next_actor: "chatgpt_user"
-active_task_id: "SHA256_GIT_NORMALIZED_UPDATE_FIX"
+active_task_id: "POST_SHA256_FIX_NEXT_GATE"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_sha256_git_normalized_update_fix"
+allowed_next_action: "chatgpt_user_decide_greater_perfect_admission_or_next_project_move"
 forbidden_next_actions:
   - "start_greater_or_perfect_runtime"
   - "enable_greater_or_perfect_exalted_or_chaos"
@@ -26,8 +26,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_SHA256_Git_Normalized_Update_Fix_Codex_v1/"
-current_review_path: "reviews/P2C_SHA256_Git_Normalized_Update_Fix_Audit_Claude_v1.md"
+current_result_path: ""
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -71,10 +71,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on the audited SHA256 git-normalized updater/checker fix.
+Current live task: ChatGPT/User next-move gate. The SHA256 Git-normalized updater/checker fix is accepted (User gate 2026-07-10 after Claude GO); the recurring CRLF/LF checksum drift is closed structurally.
 
 Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: decide. Claude verdict: GO — both updater and checker now hash git-normalized (index) bytes for tracked files; recurring CRLF checksum drift closed by construction (proven by execution: forced-CRLF worktree still verifies PASS; regeneration is a no-op). No scope creep, no self-acceptance (`reviews/P2C_SHA256_Git_Normalized_Update_Fix_Audit_Claude_v1.md`).
+Allowed next action: decide the next project move — Greater/Perfect admission in controlled slices (Exalted + Chaos first, per accepted M39/M39-A), or another next wave. No package is currently in flight; nothing is queued for Codex or Claude until this gate.
 
-M39-A MML Filter Interface is accepted after Claude GO and ChatGPT/User gate. The current proposed change is repo-integrity tooling only: tracked files are hashed and checked from Git index bytes to avoid CRLF/LF checksum drift. It does not change crafting runtime, mechanics, data semantics, operation admission, public output, optimizer/economics/advice, automation, or SOURCE/PROVENANCE/MML/PD-013 boundaries.
+Standing boundaries hold: no Greater/Perfect / Whittling/Omen / Essence runtime, no new operation, no longer chains, no planner/optimizer/economics/advice, no public numeric release, no automation/GitHub Actions, and no SOURCE/PROVENANCE / MML / PD-013 closure without an explicit ChatGPT/User gate.
