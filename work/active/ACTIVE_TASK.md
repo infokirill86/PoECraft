@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "b68ed5bc47782cd99290d35bc66a66152b7d1eed"
-updated_at_utc: "2026-07-10T20:15:44Z"
+repo_head_at_last_update: "fbe7b337039af88641dcf000f59f277a1bd8c863"
+updated_at_utc: "2026-07-10T21:10:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M41_NEXT_OPERATION_WAVE_DESIGN"
 
-allowed_next_action: "claude_audit_m41_next_operation_wave_design"
+allowed_next_action: "chatgpt_user_gate_decision_on_m41_next_operation_wave_design"
 forbidden_next_actions:
   - "implement_m41_runtime"
   - "admit_greater_or_perfect_essence_runtime"
@@ -28,7 +28,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M41_Next_Operation_Wave_Design_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M41_Next_Operation_Wave_Design_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -72,10 +72,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: Claude audits the proposed M41 next-operation-wave selection and design.
+Current live task: ChatGPT/User gate decision on the audited M41 Next Operation Wave design (Greater Essence quarterstaff core).
 
-Next actor: Claude (external design/mechanics audit).
+Next actor: ChatGPT/User (gate decision).
 
-Allowed next action: audit the proposed Greater Essence M41-A boundary, the split from Perfect Essence, source grounding, and implementation acceptance contract.
+Allowed next action: decide. Claude verdict: GO — selects the eight Greater Essence quarterstaff rows as the next wave: guaranteed (non-random) magic->rare add of a row-declared modifier, reusing the accepted M40-A atomic target-rarity pattern, data-driven, no per-row branches. All eight rows exist and are fully described across operations.yaml + essence_outputs.yaml. Perfect Essence correctly split (unresolved removal-capacity question), Omens/Alchemy/Fracture/Desecrated/Jawbone/Reveal deferred. Design-only, nothing admitted. Watchpoint for M41-A: source-verify the `crafted: true` + separate crafted-capacity model before it becomes load-bearing (not load-bearing in the Greater-only scope). MML/SOURCE-PROVENANCE/PD-013 stay open (`reviews/P2C_M41_Next_Operation_Wave_Design_Audit_Claude_v1.md`).
 
-This is design-only. No Essence, Alchemy, Omen, Fracture, Jawbone, Reveal, longer-chain, planner/optimizer/economics/advice, public numeric, automation, or boundary-closure runtime is authorized or accepted.
+This is design/selection verification only. It does not implement M41 runtime, admit any Essence row, admit Perfect Essence, admit Omen/Alchemy/Fracture/Desecrated/Jawbone/Reveal runtime, close MML, close SOURCE/PROVENANCE, close PD-013, release public numeric output, or authorize automation.
