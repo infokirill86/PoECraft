@@ -1,14 +1,16 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "092c627274e475d567a9b18ff87eb0ae5c4feaf3"
-updated_at_utc: "2026-07-10T19:56:12Z"
+repo_head_at_last_update: "b68ed5bc47782cd99290d35bc66a66152b7d1eed"
+updated_at_utc: "2026-07-10T20:15:44Z"
 
-status: "awaiting_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "POST_M40A_NEXT_GATE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M41_NEXT_OPERATION_WAVE_DESIGN"
 
-allowed_next_action: "chatgpt_user_decide_next_operation_or_modifier_wave"
+allowed_next_action: "claude_audit_m41_next_operation_wave_design"
 forbidden_next_actions:
+  - "implement_m41_runtime"
+  - "admit_greater_or_perfect_essence_runtime"
   - "implement_alchemy_or_multi_add"
   - "enable_essence_runtime"
   - "accept_whittling_or_omen_runtime"
@@ -25,7 +27,7 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: ""
+current_result_path: "packages/proposed/P2C_M41_Next_Operation_Wave_Design_Codex_v1"
 current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
@@ -70,10 +72,10 @@ stop_conditions:
 
 # P2C Active Task
 
-Current live task: ChatGPT/User decides the next operation or modifier wave after accepted M40-A.
+Current live task: Claude audits the proposed M41 next-operation-wave selection and design.
 
-Next actor: ChatGPT/User (gate decision).
+Next actor: Claude (external design/mechanics audit).
 
-Allowed next action: choose the next separately gated operation or modifier wave. No new runtime/mechanics work is authorized by this acceptance record.
+Allowed next action: audit the proposed Greater Essence M41-A boundary, the split from Perfect Essence, source grounding, and implementation acceptance contract.
 
-M40-A and the ACTIVE_TASK validator/pre-push guard are accepted. Alchemy/Essence/Whittling/Omen/side/desecrated runtime, longer chains, planner/optimizer/economics/advice, public numeric output, automation, and MML/SOURCE-PROVENANCE/PD-013 closure remain closed.
+This is design-only. No Essence, Alchemy, Omen, Fracture, Jawbone, Reveal, longer-chain, planner/optimizer/economics/advice, public numeric, automation, or boundary-closure runtime is authorized or accepted.
