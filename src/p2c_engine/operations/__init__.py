@@ -8,12 +8,22 @@ from .resolver import (
     M41A_RESOLVER_SCHEMA_VERSION,
     M42A_RESOLVER_SCHEMA_VERSION,
     M44A_RESOLVER_SCHEMA_VERSION,
+    M45A_RESOLVER_SCHEMA_VERSION,
     M38AResolverAdmissionError,
     M38AResolverError,
     OperationResolver,
     OperationResolverRequest,
     ResolvedOperationFilters,
     ResolvedOperationPlan,
+)
+from .omen import (
+    M45A_ACCEPTED_OMEN_IDS,
+    M45A_ACCEPTED_OMEN_STATUS,
+    M45A_AVAILABLE_STATUS,
+    M45A_OMEN_SEMANTICS_VERSION,
+    M45AOmenAdmissionError,
+    ResolvedOmenEffects,
+    compile_omen_effects,
 )
 
 __all__ = [
@@ -24,10 +34,18 @@ __all__ = [
     "M41A_RESOLVER_SCHEMA_VERSION",
     "M42A_RESOLVER_SCHEMA_VERSION",
     "M44A_RESOLVER_SCHEMA_VERSION",
+    "M45A_RESOLVER_SCHEMA_VERSION",
+    "M45A_ACCEPTED_OMEN_IDS",
+    "M45A_ACCEPTED_OMEN_STATUS",
+    "M45A_AVAILABLE_STATUS",
+    "M45A_OMEN_SEMANTICS_VERSION",
+    "M45AOmenAdmissionError",
     "M38AResolverAdmissionError",
     "M38AResolverError",
     "OperationResolver",
     "OperationResolverRequest",
     "ResolvedOperationFilters",
     "ResolvedOperationPlan",
+    "ResolvedOmenEffects",
+    "compile_omen_effects",
 ]

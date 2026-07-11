@@ -106,6 +106,20 @@ from .bounded_sequence import (
     SequenceStepTrace,
     SequenceTrajectory,
 )
+from .greater_exaltation import (
+    GreaterExaltationAddTrace,
+    GreaterExaltationExactPath,
+    GreaterExaltationExactTerminal,
+    GreaterExaltationHarness,
+    GreaterExaltationRunResult,
+    GreaterExaltationTrajectory,
+    M45AGreaterExaltationCeilingExceeded,
+    M45AGreaterExaltationInvariantViolation,
+    M45A_GREATER_EXALTATION_ADD_COUNT,
+    M45A_GREATER_EXALTATION_OMEN_ID,
+    M45A_GREATER_EXALTATION_SCHEMA_VERSION,
+    M45A_GREATER_EXALTATION_SEMANTICS_VERSION,
+)
 
 __all__ = [
     "ANNULMENT_OPERATION_ID",
@@ -198,4 +212,16 @@ __all__ = [
     "SequenceRunResult",
     "SequenceStepTrace",
     "SequenceTrajectory",
+    "GreaterExaltationAddTrace",
+    "GreaterExaltationExactPath",
+    "GreaterExaltationExactTerminal",
+    "GreaterExaltationHarness",
+    "GreaterExaltationRunResult",
+    "GreaterExaltationTrajectory",
+    "M45AGreaterExaltationCeilingExceeded",
+    "M45AGreaterExaltationInvariantViolation",
+    "M45A_GREATER_EXALTATION_ADD_COUNT",
+    "M45A_GREATER_EXALTATION_OMEN_ID",
+    "M45A_GREATER_EXALTATION_SCHEMA_VERSION",
+    "M45A_GREATER_EXALTATION_SEMANTICS_VERSION",
 ]

@@ -12,6 +12,20 @@ RUNTIME_ADMISSION_STATUSES = frozenset({
     'disputed_or_requires_user_resolution',
 })
 ACCEPTED_EXECUTABLE_RUNTIME = 'accepted_executable_runtime'
+OMEN_RUNTIME_ADMISSION_STATUSES = frozenset({
+    'accepted_executable_modifier',
+    'data_reference_candidate',
+    'blocked_or_out_of_scope',
+    'disputed_or_requires_user_resolution',
+})
+OMEN_AVAILABILITY_STATUSES = frozenset({
+    'available_project_model',
+    'reference_only_project_data',
+    'historical_or_unavailable',
+    'disputed_or_requires_user_resolution',
+})
+ACCEPTED_EXECUTABLE_OMEN = 'accepted_executable_modifier'
+AVAILABLE_PROJECT_MODEL_OMEN = 'available_project_model'
 
 
 def _fail(message: str) -> None:
@@ -94,7 +108,24 @@ def validate_cross_file_contracts(*, index: Mapping[str, Any], essence: dict[str
     if extra_declarations:
         _fail(f'handler declarations contain non-active groups: {sorted(extra_declarations)}')
 
+    omen_ids: list[str] = []
     for omen in omens.get('omens') or []:
+        if not isinstance(omen, dict) or not isinstance(omen.get('omen_id'), str):
+            _fail('every Omen requires omen_id')
+        omen_ids.append(omen['omen_id'])
+        omen_runtime_status = omen.get('runtime_admission_status')
+        availability_status = omen.get('availability_status')
+        if omen_runtime_status not in OMEN_RUNTIME_ADMISSION_STATUSES:
+            _fail(f"omen {omen['omen_id']} has invalid or missing runtime_admission_status")
+        if availability_status not in OMEN_AVAILABILITY_STATUSES:
+            _fail(f"omen {omen['omen_id']} has invalid or missing availability_status")
+        if (
+            omen_runtime_status == ACCEPTED_EXECUTABLE_OMEN
+            and availability_status != AVAILABLE_PROJECT_MODEL_OMEN
+        ):
+            _fail(
+                f"omen {omen['omen_id']} cannot be executable-admitted while unavailable"
+            )
         for group in omen.get('operation_groups') or []:
             if group not in groups:
                 _fail(f"omen {omen.get('omen_id')} references unknown operation group {group}")
@@ -115,6 +146,8 @@ def validate_cross_file_contracts(*, index: Mapping[str, Any], essence: dict[str
             }
             if lich_tag not in desecrated_tags:
                 _fail(f"omen {omen.get('omen_id')} references unknown Lich tag {lich_tag!r}")
+    if len(omen_ids) != len(set(omen_ids)):
+        _fail('duplicate omen_id')
     for mod in index.values():
         if mod.lich_tag is not None and mod.static_category != 'desecrated':
             _fail(f'modifier {mod.mod_id} has Lich tag outside desecrated category')

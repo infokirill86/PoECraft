@@ -65,6 +65,10 @@ from .alchemy import (
     AlchemyOperation,
     M44AExactCeilingExceeded,
 )
+from .greater_exaltation import (
+    GreaterExaltationHarness,
+    M45AGreaterExaltationCeilingExceeded,
+)
 
 
 M43A_SCHEMA_VERSION = "p2c.m43a.bounded_accepted_operation_sequence.v1"
@@ -442,6 +446,9 @@ class BoundedAcceptedOperationSequenceHarness:
         self.greater_essence = GreaterEssenceHarness(static=static, code_version=code_version)
         self.perfect_essence = PerfectEssenceHarness(static=static, code_version=code_version)
         self.alchemy = AlchemyHarness(static=static, code_version=code_version)
+        self.greater_exaltation = GreaterExaltationHarness(
+            static=static, code_version=code_version
+        )
         self.code_version = code_version
 
     def enumerate_exact(
@@ -743,9 +750,12 @@ class BoundedAcceptedOperationSequenceHarness:
                 raise M43ASequenceAdmissionError(
                     f"unsupported sequence variant: {step.variant_id}"
                 )
-            if step.active_modifier_ids:
+            if not isinstance(step.active_modifier_ids, tuple) or any(
+                not isinstance(value, str) or not value
+                for value in step.active_modifier_ids
+            ):
                 raise M43ASequenceAdmissionError(
-                    "active modifier layers are not admitted in M43-A"
+                    "active_modifier_ids must be a tuple of non-empty strings"
                 )
             self.executor_registry.executor_for(step.currency_id, self.static)
 
@@ -798,6 +808,16 @@ class BoundedAcceptedOperationSequenceHarness:
         decision_id = (
             f"{decision_id_prefix}.step_{step_index}.{plan.operation_id}.{step.mode_id}"
         )
+        if plan.filters.add_count == 2:
+            return self._greater_exaltation_exact(
+                state,
+                step,
+                step_index,
+                plan,
+                decision_id,
+                max_candidates_per_pool,
+                executor_id,
+            )
         if executor_id == "ordinary_add":
             return self._ordinary_exact(state, step, step_index, plan, decision_id, max_candidates_per_pool)
         if executor_id == "annulment":
@@ -841,6 +861,17 @@ class BoundedAcceptedOperationSequenceHarness:
                 executor_id=executor_id,
             )
         self._assert_plan_executor(plan, executor_id)
+        if plan.filters.add_count == 2:
+            return self._greater_exaltation_sample(
+                state,
+                step,
+                step_index,
+                plan,
+                decision_source,
+                sample_index,
+                run_id,
+                executor_id,
+            )
         if executor_id == "ordinary_add":
             return self._ordinary_sample(state, step, step_index, plan, decision_source, sample_index, run_id)
         if executor_id == "annulment":
@@ -1013,6 +1044,74 @@ class BoundedAcceptedOperationSequenceHarness:
             )
         return tuple(output)
 
+    def _greater_exaltation_exact(
+        self,
+        state,
+        step,
+        step_index,
+        plan,
+        decision_id,
+        ceiling,
+        executor_id,
+    ):
+        operation = plan.operation
+        if not isinstance(operation, (OrdinaryAddOperation, CatalogSingleAddOperation)):
+            raise M43ASequenceAdmissionError(
+                "Greater Exaltation plan must wrap an accepted Exalted add executor"
+            )
+        try:
+            paths = self.greater_exaltation.enumerate_paths(
+                initial_state=state,
+                operation=operation,
+                decision_id_prefix=decision_id,
+                max_candidates_per_pool=ceiling,
+                max_exact_paths=M43A_MAX_EXACT_PATHS,
+            )
+        except M45AGreaterExaltationCeilingExceeded as exc:
+            raise _ExactCeilingExceeded(
+                self._ceiling_stop(
+                    "greater_exaltation_internal_exact_ceiling_exceeded",
+                    exc.ceiling_name,
+                    exc.limit,
+                    exc.observed,
+                    step_index,
+                    step,
+                )
+            ) from exc
+        output = []
+        for path in paths:
+            decision_ids = tuple(
+                trace.decision_id for trace in path.traces if trace.decision_id is not None
+            )
+            pool_digest = _combined_digest(
+                *(trace.pool_fingerprint for trace in path.traces)
+            )
+            key = (
+                "greater_exaltation:" + "|".join(path.selected_mod_ids)
+                if path.outcome == "completed"
+                else f"greater_exaltation:NO_TRANSITION:{path.no_transition_reason}"
+            )
+            output.append(
+                self._transition(
+                    state,
+                    path.terminal_state,
+                    step,
+                    step_index,
+                    plan,
+                    executor_id,
+                    path.outcome,
+                    key,
+                    decision_ids,
+                    path.selected_mod_ids,
+                    sum(trace.candidate_count for trace in path.traces),
+                    pool_digest,
+                    path.no_transition_reason,
+                    Fraction(path.probability_numerator, path.probability_denominator),
+                    path.outcome != "completed",
+                )
+            )
+        return tuple(output)
+
     def _ordinary_sample(self, state, step, step_index, plan, source, sample_index, run_id):
         operation = _expect_operation(plan, OrdinaryAddOperation)
         pool = self.ordinary.build_pool(state, operation)
@@ -1154,6 +1253,67 @@ class BoundedAcceptedOperationSequenceHarness:
             trajectory.selected_mod_ids,
             trajectory.candidate_count_total,
             trajectory.pool_digest,
+            trajectory.no_transition_reason,
+            Fraction(1, 1),
+            trajectory.outcome != "completed",
+        )
+
+    def _greater_exaltation_sample(
+        self,
+        state,
+        step,
+        step_index,
+        plan,
+        source,
+        sample_index,
+        run_id,
+        executor_id,
+    ):
+        operation = plan.operation
+        if not isinstance(operation, (OrdinaryAddOperation, CatalogSingleAddOperation)):
+            raise M43ASequenceAdmissionError(
+                "Greater Exaltation plan must wrap an accepted Exalted add executor"
+            )
+        prefix = self._sample_decision_id(
+            run_id, sample_index, step_index, step, plan.operation_id
+        )
+        trajectory = self.greater_exaltation.sample_once(
+            initial_state=state,
+            operation=operation,
+            decision_source=source,
+            sample_index=sample_index,
+            run_id=run_id,
+            decision_id_prefix=prefix,
+        )
+        terminal = state
+        if trajectory.outcome == "completed":
+            for selected_mod_id in trajectory.selected_mod_ids:
+                terminal = _append_ordinary_modifier(terminal, selected_mod_id)
+            self.greater_exaltation._assert_terminal(state, terminal)
+        decision_ids = tuple(
+            trace.decision_id for trace in trajectory.traces if trace.decision_id is not None
+        )
+        pool_digest = _combined_digest(
+            *(trace.pool_fingerprint for trace in trajectory.traces)
+        )
+        key = (
+            "greater_exaltation:" + "|".join(trajectory.selected_mod_ids)
+            if trajectory.outcome == "completed"
+            else f"greater_exaltation:NO_TRANSITION:{trajectory.no_transition_reason}"
+        )
+        return self._transition(
+            state,
+            terminal,
+            step,
+            step_index,
+            plan,
+            executor_id,
+            trajectory.outcome,
+            key,
+            decision_ids,
+            trajectory.selected_mod_ids,
+            sum(trace.candidate_count for trace in trajectory.traces),
+            pool_digest,
             trajectory.no_transition_reason,
             Fraction(1, 1),
             trajectory.outcome != "completed",

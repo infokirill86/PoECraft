@@ -51,6 +51,9 @@ class OrdinaryAddOperation:
     item_class: str = "quarterstaff"
     side_filter: Side | None = None
     mml: int | None = None
+    source_currency_id: str | None = None
+    active_modifier_ids: tuple[str, ...] = ()
+    add_count: int = 1
     semantics_version: str = ORDINARY_ADD_SEMANTICS_VERSION
 
 
@@ -284,6 +287,10 @@ class OrdinaryAddMonteCarloHarness:
         operation: OrdinaryAddOperation,
         decision_id: str,
     ) -> tuple[BranchOption, ...]:
+        if operation.add_count != 1:
+            raise M32InvariantViolation(
+                "multi-add modifier plans require the accepted M45-A atomic harness"
+            )
         pool = self.build_pool(state, operation)
         if not pool.candidates:
             return ()
@@ -299,6 +306,10 @@ class OrdinaryAddMonteCarloHarness:
         run_id: str,
     ) -> MonteCarloTrajectory:
         self._validate_operation(operation)
+        if operation.add_count != 1:
+            raise M32InvariantViolation(
+                "multi-add modifier plans require the accepted M45-A atomic harness"
+            )
         pre_hash = state.state_hash()
         pool = self.build_pool(state, operation)
         if not pool.candidates:
@@ -673,6 +684,53 @@ class OrdinaryAddMonteCarloHarness:
             raise M32InvariantViolation(f"unsupported operation_id: {operation.operation_id}")
         if operation.semantics_version != ORDINARY_ADD_SEMANTICS_VERSION:
             raise M32InvariantViolation("ordinary_add semantics version mismatch")
+        if operation.add_count not in {1, 2}:
+            raise M32InvariantViolation("ordinary_add add_count must be one or two")
+        if operation.active_modifier_ids:
+            if operation.source_currency_id not in {"greater_exalted", "perfect_exalted"}:
+                raise M32InvariantViolation(
+                    "Omen-modified ordinary_add requires an admitted Exalted source currency"
+                )
+            from p2c_engine.operations.omen import (
+                M45AOmenAdmissionError,
+                compile_omen_effects,
+            )
+
+            try:
+                effects = compile_omen_effects(
+                    self.static.omens,
+                    operation_group="exalted",
+                    active_modifier_ids=operation.active_modifier_ids,
+                )
+            except M45AOmenAdmissionError as exc:
+                raise M32InvariantViolation(str(exc)) from exc
+            if (
+                effects.add_count != operation.add_count
+                or effects.add_side_filter != operation.side_filter
+            ):
+                raise M32InvariantViolation("ordinary_add Omen effect plan mismatch")
+            row = next(
+                (
+                    value
+                    for value in self.static.operations.get("operations", ())
+                    if value.get("operation_id") == operation.source_currency_id
+                ),
+                None,
+            )
+            transition = row.get("transition") if isinstance(row, Mapping) else None
+            add = transition.get("add") if isinstance(transition, Mapping) else None
+            if (
+                not isinstance(row, Mapping)
+                or row.get("runtime_admission_status") != "accepted_executable_runtime"
+                or row.get("group") != "exalted"
+                or not isinstance(add, Mapping)
+                or add.get("mml") != operation.mml
+            ):
+                raise M32InvariantViolation(
+                    "ordinary_add Omen source-currency contract mismatch"
+                )
+        elif operation.add_count != 1:
+            raise M32InvariantViolation("ordinary_add multi-add requires admitted Omen metadata")
 
     def _validate_two_step_operations(
         self,

@@ -1,17 +1,18 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "0982567d3ff1f6371f32672a7257cc4a459baf21"
-updated_at_utc: "2026-07-11T20:05:00Z"
+repo_head_at_last_update: "70b3a3ff7986efcd7f2075f73064895375039324"
+updated_at_utc: "2026-07-11T21:17:03Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "M45_NEXT_PROJECT_WAVE_DESIGN"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M45A_INDEPENDENT_OMEN_LAYER_RUNTIME"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m45_next_project_wave_design"
+allowed_next_action: "claude_audit_m45a_independent_omen_layer_runtime"
 forbidden_next_actions:
-  - "implement_or_admit_any_m45_runtime_operation_or_modifier"
-  - "admit_omens_whittling_fracture_desecrate_jawbone_or_reveal"
-  - "change_accepted_m44a_or_other_runtime_mechanics"
+  - "accept_m45a_without_chatgpt_user_gate"
+  - "admit_any_omen_outside_the_exact_ten_row_allowlist"
+  - "admit_historical_alchemy_coronation_greater_annulment_light_jawbone_or_reveal_omens"
+  - "change_accepted_base_operation_mechanics"
   - "add_conditional_retry_route_generation_planner_or_optimizer_behavior"
   - "release_public_numeric_probabilities"
   - "close_source_provenance_mml_crafted_capacity_or_pd013"
@@ -21,8 +22,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M45_Next_Project_Wave_Design_Codex_v1"
-current_review_path: "reviews/P2C_M45_Next_Project_Wave_Design_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_M45A_Independent_Omen_Layer_Runtime_Result_Codex_v1"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -60,15 +61,13 @@ stop_conditions:
   - "Stop if ACTIVE_TASK.md frontmatter is invalid or missing mandatory fields."
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
-  - "Stop if the M45 design is treated as runtime admission or implementation authority."
-  - "Stop if source/catalogue drift is resolved without a ChatGPT/User gate."
+  - "Stop if any Omen outside the ten-row M45-A allowlist becomes executable."
+  - "Stop if canonical pool reuse, atomicity, exact mass, or direct/resolver/M43-A parity fails."
   - "Stop if planner/optimizer behavior, public numeric output, automation, or boundary closure enters scope."
 ---
 
 # P2C Active Task
 
-Claude audit of M45 Next Project Wave Design (independent Omen layer): verdict GO on design/direction. Omens are the right next move (base already fractured -> side-directed control of accepted add/removal/Chaos/Perfect-Essence has real route leverage; Fracture sensibly deferred). Ten Omens = four effect dimensions over accepted ops (add-count/add-side/removal-side/removal-selector), coherent, not a meta-algebra (pinned compatibility matrix, one invocation, fail-closed). Verified all filter/application stages mechanically correct: Exalted add-side on add pool; Annulment removal-side on removable pool; Chaos removal-side with ADD STAGE UNCHANGED; Whittling = min modifier-level then uniform tie; Perfect Essence Crystallisation on the feasible-removal pool NOT the guaranteed add. Reuses accepted pools/executors, fail-closed. Byte-checked: 10 clean-core Omens present in omens.yaml; historical Alchemy/Coronation/Greater-Annulment absent (correctly excluded); no Omen admission field yet.
+M45 design is accepted. M45-A implements the authorized ten-Omen independent modifier layer and remains proposed pending audit.
 
-Two things for the gate: (1) MANDATORY M45-A deliverable = explicit Omen runtime_admission/availability status (catalogue presence + active_omen_system must never mean executable); (2) Greater Exaltation is the only non-filter effect (new atomic double-add + sampling contract) - Claude recommends splitting it out (ship the 9 filter Omens first) or explicitly ratifying its two-add project-model contract. Historical/drop-disabled, Greater Annulment 2-removal, light/Desecrated, Jawbone/Reveal/PD-013, Fracture, planner/optimizer/public all stay closed. Review: reviews/P2C_M45_Next_Project_Wave_Design_Audit_Claude_v1.md.
-
-This is design/direction verification only. It authorizes no M45 runtime, admits no Omen, and closes no MML/SOURCE-PROVENANCE/crafted-capacity/PD-013.
+Claude should audit the result package, runtime/data diff, focused and full test evidence, fingerprint delta, fail-closed registry, canonical pool stages, Greater Exaltation atomicity, and M43-A parity.

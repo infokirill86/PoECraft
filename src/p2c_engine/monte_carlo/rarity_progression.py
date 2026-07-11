@@ -10,7 +10,7 @@ from p2c_engine.canonical.hashes import sha256_canonical
 from p2c_engine.decisions import RecordingDecisionSource, SeededDecisionSource
 from p2c_engine.domain.decision import DecisionRecord
 from p2c_engine.domain.defects import SamplingContractDefect
-from p2c_engine.domain.enums import Rarity
+from p2c_engine.domain.enums import Rarity, Side
 from p2c_engine.domain.item_state import ItemState
 from p2c_engine.domain.pool_building import PoolBuildResult
 from p2c_engine.domain.versions import RNG_STREAM_VERSION, SAMPLING_ALGORITHM_ID
@@ -88,6 +88,9 @@ class CatalogSingleAddOperation:
     output_rarity: Rarity
     preconditions: tuple[CatalogSingleAddPrecondition, ...] = ()
     mml: int | None = None
+    side_filter: Side | None = None
+    active_modifier_ids: tuple[str, ...] = ()
+    add_count: int = 1
     semantics_version: str = M40A_SEMANTICS_VERSION
 
 
@@ -226,6 +229,7 @@ class CatalogSingleAddHarness:
         request = OrdinaryAddPoolRequest(
             item_class=operation.item_class,
             state=working_state,
+            side_filter=operation.side_filter,
             mml=operation.mml,
         )
         return self.pool_builder(request, self.static)
@@ -451,8 +455,17 @@ class CatalogSingleAddHarness:
                 ):
                     return "occupied_explicit_slots_precondition_failed"
             elif precondition.kind == "free_explicit_slots_after_side_filter":
-                required = 1 if precondition.value == "resolved_add_count" else None
-                free_total = capacity.total_capacity - capacity.total_used
+                required = (
+                    operation.add_count
+                    if precondition.value == "resolved_add_count"
+                    else None
+                )
+                if operation.side_filter == Side.PREFIX:
+                    free_total = capacity.prefix_capacity - capacity.prefix_used
+                elif operation.side_filter == Side.SUFFIX:
+                    free_total = capacity.suffix_capacity - capacity.suffix_used
+                else:
+                    free_total = capacity.total_capacity - capacity.total_used
                 if not (
                     precondition.operator == ">="
                     and required is not None
@@ -469,6 +482,10 @@ class CatalogSingleAddHarness:
         if operation.semantics_version != M40A_SEMANTICS_VERSION:
             raise M40ARarityProgressionInvariantViolation(
                 "M40-A catalog single-add semantics version mismatch"
+            )
+        if operation.add_count not in {1, 2}:
+            raise M40ARarityProgressionInvariantViolation(
+                "catalog add_count must be one or two"
             )
         if operation.operation_id not in M40A_OPERATION_IDS:
             raise M40ARarityProgressionInvariantViolation(
@@ -524,6 +541,27 @@ class CatalogSingleAddHarness:
         ):
             raise M40ARarityProgressionInvariantViolation(
                 f"operation plan does not match admitted catalog row: {operation.operation_id}"
+            )
+        from p2c_engine.operations.omen import M45AOmenAdmissionError, compile_omen_effects
+
+        try:
+            effects = compile_omen_effects(
+                self.static.omens,
+                operation_group=M40A_OPERATION_GROUPS[operation.operation_id],
+                active_modifier_ids=operation.active_modifier_ids,
+            )
+        except M45AOmenAdmissionError as exc:
+            raise M40ARarityProgressionInvariantViolation(str(exc)) from exc
+        if (
+            effects.add_count != operation.add_count
+            or effects.add_side_filter != operation.side_filter
+        ):
+            raise M40ARarityProgressionInvariantViolation(
+                "catalog single-add Omen effect plan mismatch"
+            )
+        if operation.add_count != 1:
+            raise M40ARarityProgressionInvariantViolation(
+                "multi-add modifier plans require the accepted M45-A atomic harness"
             )
 
     def _assert_applied_transition(

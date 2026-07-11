@@ -1,6 +1,8 @@
 schema_version: 2
 omens:
 - omen_id: greater_exaltation
+  runtime_admission_status: accepted_executable_modifier
+  availability_status: available_project_model
   operation_groups:
   - exalted
   effect:
@@ -9,41 +11,57 @@ omens:
     partial_execution: false
     on_insufficient_slots: NO_TRANSITION_NO_CONSUMPTION
 - omen_id: sinistral_exaltation
+  runtime_admission_status: accepted_executable_modifier
+  availability_status: available_project_model
   operation_groups:
   - exalted
   effect:
     side_filter: prefix
 - omen_id: dextral_exaltation
+  runtime_admission_status: accepted_executable_modifier
+  availability_status: available_project_model
   operation_groups:
   - exalted
   effect:
     side_filter: suffix
 - omen_id: sinistral_annulment
+  runtime_admission_status: accepted_executable_modifier
+  availability_status: available_project_model
   operation_groups:
   - annulment
   effect:
     side_filter: prefix
 - omen_id: dextral_annulment
+  runtime_admission_status: accepted_executable_modifier
+  availability_status: available_project_model
   operation_groups:
   - annulment
   effect:
     side_filter: suffix
 - omen_id: light
+  runtime_admission_status: blocked_or_out_of_scope
+  availability_status: reference_only_project_data
   operation_groups:
   - annulment
   effect:
     desecrated_only: true
 - omen_id: sinistral_erasure
+  runtime_admission_status: accepted_executable_modifier
+  availability_status: available_project_model
   operation_groups:
   - chaos
   effect:
     removal_side_filter: prefix
 - omen_id: dextral_erasure
+  runtime_admission_status: accepted_executable_modifier
+  availability_status: available_project_model
   operation_groups:
   - chaos
   effect:
     removal_side_filter: suffix
 - omen_id: whittling
+  runtime_admission_status: accepted_executable_modifier
+  availability_status: available_project_model
   operation_groups:
   - chaos
   effect:
@@ -54,26 +72,36 @@ omens:
     lowest_level_selection: official_wording
     uniform_tie_breaker: not_published_project_policy
 - omen_id: sinistral_crystallisation
+  runtime_admission_status: accepted_executable_modifier
+  availability_status: available_project_model
   operation_groups:
   - perfect_essence
   effect:
     removal_side_filter: prefix
 - omen_id: dextral_crystallisation
+  runtime_admission_status: accepted_executable_modifier
+  availability_status: available_project_model
   operation_groups:
   - perfect_essence
   effect:
     removal_side_filter: suffix
 - omen_id: sinistral_necromancy
+  runtime_admission_status: blocked_or_out_of_scope
+  availability_status: reference_only_project_data
   operation_groups:
   - jawbone
   effect:
     force_side: prefix
 - omen_id: dextral_necromancy
+  runtime_admission_status: blocked_or_out_of_scope
+  availability_status: reference_only_project_data
   operation_groups:
   - jawbone
   effect:
     force_side: suffix
 - omen_id: liege
+  runtime_admission_status: blocked_or_out_of_scope
+  availability_status: reference_only_project_data
   operation_groups:
   - jawbone
   effect:
@@ -89,6 +117,8 @@ omens:
   compatible_with_abyssal_echoes: true
   runtime_status: USER_APPROVED_PROJECT_RULE
 - omen_id: blackblooded
+  runtime_admission_status: blocked_or_out_of_scope
+  availability_status: reference_only_project_data
   operation_groups:
   - jawbone
   effect:
@@ -104,6 +134,8 @@ omens:
   compatible_with_abyssal_echoes: true
   runtime_status: USER_APPROVED_PROJECT_RULE
 - omen_id: sovereign
+  runtime_admission_status: blocked_or_out_of_scope
+  availability_status: reference_only_project_data
   operation_groups:
   - jawbone
   effect:
@@ -119,6 +151,8 @@ omens:
   compatible_with_abyssal_echoes: true
   runtime_status: USER_APPROVED_PROJECT_RULE
 - omen_id: abyssal_echoes
+  runtime_admission_status: blocked_or_out_of_scope
+  availability_status: reference_only_project_data
   operation_groups:
   - reveal
   effect:

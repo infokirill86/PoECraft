@@ -45,6 +45,8 @@ class AnnulmentOperation:
     mode_id: str
     operation_id: str = ANNULMENT_OPERATION_ID
     item_class: str = "quarterstaff"
+    side_filter: Side | None = None
+    active_modifier_ids: tuple[str, ...] = ()
     semantics_version: str = ANNULMENT_SEMANTICS_VERSION
 
 
@@ -175,6 +177,7 @@ class AnnulmentMonteCarloHarness:
         request = RemovalPoolRequest(
             item_class=operation.item_class,
             state=state,
+            side_filter=operation.side_filter,
         )
         pool = self.removal_pool_builder(request, self.static)
         _validate_annulment_pool(pool)
@@ -404,6 +407,18 @@ class AnnulmentMonteCarloHarness:
             raise M35AAnnulmentInvariantViolation("operation item_class does not match state")
         if state.rarity not in {Rarity.MAGIC, Rarity.RARE}:
             raise M35AAnnulmentInvariantViolation("annulment supports magic and rare states only")
+        from p2c_engine.operations.omen import M45AOmenAdmissionError, compile_omen_effects
+
+        try:
+            effects = compile_omen_effects(
+                self.static.omens,
+                operation_group="annulment",
+                active_modifier_ids=operation.active_modifier_ids,
+            )
+        except M45AOmenAdmissionError as exc:
+            raise M35AAnnulmentInvariantViolation(str(exc)) from exc
+        if effects.removal_side_filter != operation.side_filter:
+            raise M35AAnnulmentInvariantViolation("annulment Omen effect plan mismatch")
 
 
 def _metadata_by_candidate_key(pool: PoolBuildResult) -> dict[str, RemovalInstanceMetadata]:

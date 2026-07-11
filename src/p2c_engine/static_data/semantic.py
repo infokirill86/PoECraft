@@ -42,6 +42,8 @@ _NON_RUNTIME_OPERATION_KEYS = frozenset({
 })
 
 _RUNTIME_ADMITTED_STATUS = 'accepted_executable_runtime'
+_OMEN_RUNTIME_ADMITTED_STATUS = 'accepted_executable_modifier'
+_OMEN_AVAILABLE_STATUS = 'available_project_model'
 
 
 def _project_runtime_value(value: Any, *, key: str | None = None) -> Any:
@@ -93,13 +95,18 @@ def normalize_operations(operations: dict[str, Any], active_groups: set[str]) ->
 
 
 def normalize_omens(omens: dict[str, Any], active_groups: set[str]) -> dict[str, Any]:
+    """Project only executable-admitted, project-available Omen semantics."""
     result = {k: v for k, v in omens.items() if k != 'omens'}
     rows=[]
     for row in omens.get('omens') or []:
         if not isinstance(row, dict):
             continue
         groups = row.get('operation_groups') or []
-        if groups and not active_groups.intersection(groups):
+        if (
+            (groups and not active_groups.intersection(groups))
+            or row.get('runtime_admission_status') != _OMEN_RUNTIME_ADMITTED_STATUS
+            or row.get('availability_status') != _OMEN_AVAILABLE_STATUS
+        ):
             continue
         normalized=dict(row)
         if isinstance(normalized.get('operation_groups'), list):

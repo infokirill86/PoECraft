@@ -171,3 +171,48 @@ alchemy_m44a:
   atomicity:
     commit_only_after_all_adds_succeed: true
     failure: no_transition_no_consumption_original_state_unchanged
+omen_layer_m45a:
+  runtime_status: USER_AUTHORIZED_PROPOSED_RUNTIME_PENDING_AUDIT
+  evidence_level: project_model_source_open
+  server_truth_claimed: false
+  admitted_omen_ids:
+  - greater_exaltation
+  - sinistral_exaltation
+  - dextral_exaltation
+  - sinistral_annulment
+  - dextral_annulment
+  - sinistral_erasure
+  - dextral_erasure
+  - whittling
+  - sinistral_crystallisation
+  - dextral_crystallisation
+  admission:
+    catalogue_presence_is_execution_authority: false
+    project_scope_activity_is_execution_authority: false
+    requires_runtime_admission_status: accepted_executable_modifier
+    requires_availability_status: available_project_model
+  compatibility:
+    same_effect_dimension: mutually_exclusive
+    cross_dimension: pinned_matrix_only
+  effect_order:
+    add_side: accepted_ordinary_add_pool_before_draw
+    annulment_side: fractured_protected_removal_pool_before_uniform_draw
+    chaos_side: removal_pool_only_post_removal_add_unchanged
+    whittling: eligibility_then_fractured_exclusion_then_minimum_modifier_level_then_uniform_tie
+    crystallisation: accepted_terminal_feasible_removal_pool_only
+  greater_exaltation:
+    add_count: 2
+    selection: sequential_accepted_ordinary_weighted_add
+    rebuild_after_first_add: true
+    atomic: true
+    partial_result: forbidden
+    failure: no_transition_no_consumption_original_state_unchanged
+    exact_mass: product_of_sequential_draw_masses
+  still_closed:
+  - historical_alchemy_omens
+  - coronation_omens
+  - greater_annulment
+  - light_desecrated
+  - jawbone_reveal
+  - fracture
+  - essence_repeat_replacement_capacity

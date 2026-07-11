@@ -44,6 +44,11 @@ from p2c_engine.monte_carlo.alchemy import (
     AlchemyOperation,
 )
 from p2c_engine.static_data.game_data import StaticGameData
+from p2c_engine.operations.omen import (
+    M45AOmenAdmissionError,
+    ResolvedOmenEffects,
+    compile_omen_effects,
+)
 
 
 M38A_RESOLVER_SCHEMA_VERSION = "p2c.m38a.operation_resolver_skeleton.v1"
@@ -53,6 +58,7 @@ M40A_RESOLVER_SCHEMA_VERSION = "p2c.m40a.rarity_progression_runtime.v1"
 M41A_RESOLVER_SCHEMA_VERSION = "p2c.m41a.greater_essence_quarterstaff_runtime.v1"
 M42A_RESOLVER_SCHEMA_VERSION = "p2c.m42a.perfect_essence_quarterstaff_runtime.v1"
 M44A_RESOLVER_SCHEMA_VERSION = "p2c.m44a.alchemy_runtime.v1"
+M45A_RESOLVER_SCHEMA_VERSION = "p2c.m45a.independent_omen_layer.v1"
 ACCEPTED_RUNTIME_STATUS = "accepted_executable_runtime"
 BASE_VARIANT_IDS = frozenset({None, "", "base"})
 M39B_EXALTED_CURRENCY_IDS = frozenset({"greater_exalted", "perfect_exalted"})
@@ -114,9 +120,11 @@ class ResolvedOperationFilters:
     """
 
     side_filter: Side | None = None
+    removal_side_filter: Side | None = None
     mml: int | None = None
     whittling: bool = False
     desecrated_only: bool = False
+    add_count: int = 1
 
 
 @dataclass(frozen=True, slots=True)
@@ -143,9 +151,15 @@ class ResolvedOperationPlan:
             "variant_id": self.variant_id,
             "active_modifier_count": len(self.active_modifier_ids),
             "filter_side": self.filters.side_filter.value if self.filters.side_filter else None,
+            "filter_removal_side": (
+                self.filters.removal_side_filter.value
+                if self.filters.removal_side_filter
+                else None
+            ),
             "filter_mml": self.filters.mml,
             "filter_whittling": self.filters.whittling,
             "filter_desecrated_only": self.filters.desecrated_only,
+            "resolved_add_count": self.filters.add_count,
         }
 
 
@@ -157,10 +171,10 @@ class OperationResolver:
 
     def resolve(self, request: OperationResolverRequest) -> ResolvedOperationPlan:
         self._reject_variant_layers(request.variant_id)
-        self._reject_modifier_layers(request.active_modifier_ids)
         mml = self._validated_mml_filter(request.mml)
 
         if request.currency_id == MC_OPERATION_ID:
+            self._reject_modifier_layers(request.active_modifier_ids)
             operation = OrdinaryAddOperation(
                 mode_id=request.mode_id,
                 item_class=request.item_state.item_class,
@@ -200,19 +214,30 @@ class OperationResolver:
 
         declared_mml = _declared_add_mml(row)
         group = row.get("group")
+        omen_effects = self._resolve_omen_layers(group, request.active_modifier_ids)
         schema_version = M39A_RESOLVER_SCHEMA_VERSION
-        filters = ResolvedOperationFilters()
+        filters = _resolved_filters(omen_effects)
 
         if request.currency_id in M40A_OPERATION_IDS:
-            operation = _compile_m40a_single_add(row, request)
-            schema_version = M40A_RESOLVER_SCHEMA_VERSION
-            filters = ResolvedOperationFilters(mml=declared_mml)
+            operation = _compile_m40a_single_add(row, request, omen_effects)
+            schema_version = (
+                M45A_RESOLVER_SCHEMA_VERSION
+                if omen_effects.omen_ids
+                else M40A_RESOLVER_SCHEMA_VERSION
+            )
+            filters = _resolved_filters(omen_effects, mml=declared_mml)
         elif request.currency_id in M41A_OPERATION_IDS:
             operation = _compile_m41a_greater_essence(self.static, row, request)
             schema_version = M41A_RESOLVER_SCHEMA_VERSION
         elif request.currency_id in M42A_OPERATION_IDS:
-            operation = _compile_m42a_perfect_essence(self.static, row, request)
-            schema_version = M42A_RESOLVER_SCHEMA_VERSION
+            operation = _compile_m42a_perfect_essence(
+                self.static, row, request, omen_effects
+            )
+            schema_version = (
+                M45A_RESOLVER_SCHEMA_VERSION
+                if omen_effects.omen_ids
+                else M42A_RESOLVER_SCHEMA_VERSION
+            )
         elif request.currency_id == M44A_ALCHEMY_OPERATION_ID:
             operation = _compile_m44a_alchemy(row, request)
             schema_version = M44A_RESOLVER_SCHEMA_VERSION
@@ -223,7 +248,11 @@ class OperationResolver:
             operation = AnnulmentOperation(
                 mode_id=request.mode_id,
                 item_class=request.item_state.item_class,
+                side_filter=omen_effects.removal_side_filter,
+                active_modifier_ids=omen_effects.omen_ids,
             )
+            if omen_effects.omen_ids:
+                schema_version = M45A_RESOLVER_SCHEMA_VERSION
         elif group == "exalted":
             _validate_catalog_input_rarity(row, request.item_state)
             if request.currency_id not in M39B_EXALTED_CURRENCY_IDS:
@@ -239,10 +268,18 @@ class OperationResolver:
             operation = OrdinaryAddOperation(
                 mode_id=request.mode_id,
                 item_class=request.item_state.item_class,
+                side_filter=omen_effects.add_side_filter,
                 mml=declared_mml,
+                source_currency_id=request.currency_id,
+                active_modifier_ids=omen_effects.omen_ids,
+                add_count=omen_effects.add_count,
             )
-            schema_version = M39B_RESOLVER_SCHEMA_VERSION
-            filters = ResolvedOperationFilters(mml=declared_mml)
+            schema_version = (
+                M45A_RESOLVER_SCHEMA_VERSION
+                if omen_effects.omen_ids
+                else M39B_RESOLVER_SCHEMA_VERSION
+            )
+            filters = _resolved_filters(omen_effects, mml=declared_mml)
         elif group == "chaos":
             _validate_catalog_input_rarity(row, request.item_state)
             if (
@@ -258,6 +295,9 @@ class OperationResolver:
                 operation_id=request.currency_id,
                 item_class=request.item_state.item_class,
                 mml=declared_mml,
+                removal_side_filter=omen_effects.removal_side_filter,
+                lowest_modifier_level=omen_effects.lowest_modifier_level,
+                active_modifier_ids=omen_effects.omen_ids,
             )
             if request.currency_id in M39B_CHAOS_CURRENCY_IDS:
                 if declared_mml is None:
@@ -266,7 +306,9 @@ class OperationResolver:
                     )
                 _validate_m39b_chaos_transition(row)
                 schema_version = M39B_RESOLVER_SCHEMA_VERSION
-                filters = ResolvedOperationFilters(mml=declared_mml)
+                filters = _resolved_filters(omen_effects, mml=declared_mml)
+            if omen_effects.omen_ids:
+                schema_version = M45A_RESOLVER_SCHEMA_VERSION
         else:
             raise M38AResolverAdmissionError(
                 "operation row is admitted but unsupported by the M38-A resolver skeleton: "
@@ -281,7 +323,7 @@ class OperationResolver:
             operation_kind="catalog_operation",
             runtime_admission_status=ACCEPTED_RUNTIME_STATUS,
             variant_id=None,
-            active_modifier_ids=(),
+            active_modifier_ids=omen_effects.omen_ids,
             filters=filters,
             operation=operation,
         )
@@ -308,6 +350,26 @@ class OperationResolver:
                 "operation modifier layers are not executable-admitted in M38-A resolver: "
                 f"{active_modifier_ids!r}"
             )
+
+    def _resolve_omen_layers(
+        self, operation_group: Any, active_modifier_ids: tuple[str, ...]
+    ) -> ResolvedOmenEffects:
+        if not isinstance(operation_group, str):
+            if active_modifier_ids:
+                raise M38AResolverAdmissionError(
+                    "Omen modifier layers require a catalog operation group"
+                )
+            return ResolvedOmenEffects()
+        try:
+            return compile_omen_effects(
+                self.static.omens,
+                operation_group=operation_group,
+                active_modifier_ids=active_modifier_ids,
+            )
+        except M45AOmenAdmissionError as exc:
+            raise M38AResolverAdmissionError(
+                f"modifier layers are not executable-admitted: {exc}"
+            ) from exc
 
 
 def _operation_row(operations: Any, operation_id: str) -> dict[str, Any] | None:
@@ -390,7 +452,9 @@ def _validate_m39b_chaos_transition(row: dict[str, Any]) -> None:
 
 
 def _compile_m40a_single_add(
-    row: dict[str, Any], request: OperationResolverRequest
+    row: dict[str, Any],
+    request: OperationResolverRequest,
+    omen_effects: ResolvedOmenEffects,
 ) -> CatalogSingleAddOperation:
     transition = row.get("transition")
     remove = transition.get("remove") if isinstance(transition, Mapping) else None
@@ -434,6 +498,9 @@ def _compile_m40a_single_add(
         output_rarity=output_rarity,
         preconditions=_compile_m40a_preconditions(transition.get("preconditions"), row),
         mml=_declared_add_mml(row),
+        side_filter=omen_effects.add_side_filter,
+        active_modifier_ids=omen_effects.omen_ids,
+        add_count=omen_effects.add_count,
         semantics_version=M40A_SEMANTICS_VERSION,
     )
 
@@ -526,6 +593,7 @@ def _compile_m42a_perfect_essence(
     static: StaticGameData,
     row: dict[str, Any],
     request: OperationResolverRequest,
+    omen_effects: ResolvedOmenEffects,
 ) -> PerfectEssenceOperation:
     _validate_catalog_input_rarity(row, request.item_state)
     transition = row.get("transition")
@@ -555,6 +623,8 @@ def _compile_m42a_perfect_essence(
         guaranteed_mod_id=guaranteed_mod_id,
         guaranteed_family_id=guaranteed_family_id,
         guaranteed_side=side,
+        removal_side_filter=omen_effects.removal_side_filter,
+        active_modifier_ids=omen_effects.omen_ids,
         semantics_version=M42A_SEMANTICS_VERSION,
     )
     try:
@@ -618,6 +688,18 @@ def _compile_m44a_alchemy(
     )
 
 
+def _resolved_filters(
+    effects: ResolvedOmenEffects, *, mml: int | None = None
+) -> ResolvedOperationFilters:
+    return ResolvedOperationFilters(
+        side_filter=effects.add_side_filter,
+        removal_side_filter=effects.removal_side_filter,
+        mml=mml,
+        whittling=effects.lowest_modifier_level,
+        add_count=effects.add_count,
+    )
+
+
 __all__ = [
     "ACCEPTED_RUNTIME_STATUS",
     "M38A_RESOLVER_SCHEMA_VERSION",
@@ -627,6 +709,7 @@ __all__ = [
     "M41A_RESOLVER_SCHEMA_VERSION",
     "M42A_RESOLVER_SCHEMA_VERSION",
     "M44A_RESOLVER_SCHEMA_VERSION",
+    "M45A_RESOLVER_SCHEMA_VERSION",
     "M38AResolverAdmissionError",
     "M38AResolverError",
     "OperationResolver",

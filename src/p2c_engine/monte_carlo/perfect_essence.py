@@ -68,6 +68,8 @@ class PerfectEssenceOperation:
     input_rarities: tuple[Rarity, ...] = (Rarity.RARE,)
     output_rarity: Rarity = Rarity.RARE
     crafted: bool = True
+    removal_side_filter: Side | None = None
+    active_modifier_ids: tuple[str, ...] = ()
     semantics_version: str = M42A_SEMANTICS_VERSION
 
 
@@ -326,6 +328,20 @@ class PerfectEssenceHarness:
             raise M42APerfectEssenceInvariantViolation(
                 f"Perfect Essence output does not apply to item class: {operation.item_class}"
             )
+        from p2c_engine.operations.omen import M45AOmenAdmissionError, compile_omen_effects
+
+        try:
+            effects = compile_omen_effects(
+                self.static.omens,
+                operation_group="perfect_essence",
+                active_modifier_ids=operation.active_modifier_ids,
+            )
+        except M45AOmenAdmissionError as exc:
+            raise M42APerfectEssenceInvariantViolation(str(exc)) from exc
+        if effects.removal_side_filter != operation.removal_side_filter:
+            raise M42APerfectEssenceInvariantViolation(
+                "Perfect Essence Omen effect plan mismatch"
+            )
 
     def build_feasible_pool(
         self,
@@ -338,7 +354,11 @@ class PerfectEssenceHarness:
             return self._empty_pool(state, operation, reason)
 
         base_pool = self.removal_pool_builder(
-            RemovalPoolRequest(item_class=operation.item_class, state=state),
+            RemovalPoolRequest(
+                item_class=operation.item_class,
+                state=state,
+                side_filter=operation.removal_side_filter,
+            ),
             self.static,
         )
         _validate_annulment_pool(base_pool)
@@ -373,6 +393,11 @@ class PerfectEssenceHarness:
                 "state_hash": state.state_hash(),
                 "operation_id": operation.operation_id,
                 "guaranteed_side": operation.guaranteed_side.value,
+                "removal_side_filter": (
+                    operation.removal_side_filter.value
+                    if operation.removal_side_filter is not None
+                    else None
+                ),
                 "removal_policy": M42A_REMOVAL_POLICY,
                 "crafted_capacity_policy": M42A_CRAFTED_CAPACITY_POLICY,
                 "base_pool_fingerprint": base_pool.result_fingerprint,

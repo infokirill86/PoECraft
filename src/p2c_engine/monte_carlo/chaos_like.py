@@ -10,7 +10,7 @@ from p2c_engine.decisions import RecordingDecisionSource, SeededDecisionSource
 from p2c_engine.domain.candidate import BranchOption
 from p2c_engine.domain.decision import DecisionRecord
 from p2c_engine.domain.defects import SamplingContractDefect
-from p2c_engine.domain.enums import Rarity
+from p2c_engine.domain.enums import Rarity, Side
 from p2c_engine.domain.item_state import ItemState
 from p2c_engine.domain.pool_building import RemovalInstanceMetadata
 from p2c_engine.domain.versions import RNG_STREAM_VERSION, SAMPLING_ALGORITHM_ID
@@ -79,6 +79,9 @@ class ChaosLikeOperation:
     operation_id: str = CHAOS_OPERATION_ID
     item_class: str = "quarterstaff"
     mml: int | None = None
+    removal_side_filter: Side | None = None
+    lowest_modifier_level: bool = False
+    active_modifier_ids: tuple[str, ...] = ()
     semantics_version: str = M37A_CHAOSLIKE_SEMANTICS_VERSION
 
 
@@ -219,6 +222,8 @@ class ChaosLikeMonteCarloHarness:
         request = RemovalPoolRequest(
             item_class=operation.item_class,
             state=state,
+            side_filter=operation.removal_side_filter,
+            lowest_modifier_level=operation.lowest_modifier_level,
         )
         pool = self.removal_pool_builder(request, self.static)
         _validate_annulment_pool(pool)
@@ -669,6 +674,21 @@ class ChaosLikeMonteCarloHarness:
                 "Chaos-like operation MML does not match the admitted catalog row: "
                 f"{operation.operation_id}"
             )
+        from p2c_engine.operations.omen import M45AOmenAdmissionError, compile_omen_effects
+
+        try:
+            effects = compile_omen_effects(
+                self.static.omens,
+                operation_group="chaos",
+                active_modifier_ids=operation.active_modifier_ids,
+            )
+        except M45AOmenAdmissionError as exc:
+            raise M37AChaosLikeInvariantViolation(str(exc)) from exc
+        if (
+            effects.removal_side_filter != operation.removal_side_filter
+            or effects.lowest_modifier_level != operation.lowest_modifier_level
+        ):
+            raise M37AChaosLikeInvariantViolation("Chaos-like Omen effect plan mismatch")
 
     def _remove_step(
         self,

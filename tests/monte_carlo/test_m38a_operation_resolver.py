@@ -331,7 +331,9 @@ def test_m38a_public_summary_is_metadata_only() -> None:
         "variant_id": None,
         "active_modifier_count": 0,
         "filter_side": None,
+        "filter_removal_side": None,
         "filter_mml": None,
         "filter_whittling": False,
         "filter_desecrated_only": False,
+        "resolved_add_count": 1,
     }
