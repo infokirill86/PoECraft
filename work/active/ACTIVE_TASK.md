@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "35e0b3b748dbda3716eb1b48bd85059a5c345e35"
-updated_at_utc: "2026-07-11T19:56:46Z"
+repo_head_at_last_update: "0982567d3ff1f6371f32672a7257cc4a459baf21"
+updated_at_utc: "2026-07-11T20:05:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M45_NEXT_PROJECT_WAVE_DESIGN"
 
-allowed_next_action: "claude_audit_m45_next_project_wave_design"
+allowed_next_action: "chatgpt_user_gate_decision_on_m45_next_project_wave_design"
 forbidden_next_actions:
   - "implement_or_admit_any_m45_runtime_operation_or_modifier"
   - "admit_omens_whittling_fracture_desecrate_jawbone_or_reveal"
@@ -22,7 +22,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M45_Next_Project_Wave_Design_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M45_Next_Project_Wave_Design_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -67,6 +67,8 @@ stop_conditions:
 
 # P2C Active Task
 
-M44-A base Alchemy runtime is accepted after Claude GO and the ChatGPT/User gate.
+Claude audit of M45 Next Project Wave Design (independent Omen layer): verdict GO on design/direction. Omens are the right next move (base already fractured -> side-directed control of accepted add/removal/Chaos/Perfect-Essence has real route leverage; Fracture sensibly deferred). Ten Omens = four effect dimensions over accepted ops (add-count/add-side/removal-side/removal-selector), coherent, not a meta-algebra (pinned compatibility matrix, one invocation, fail-closed). Verified all filter/application stages mechanically correct: Exalted add-side on add pool; Annulment removal-side on removable pool; Chaos removal-side with ADD STAGE UNCHANGED; Whittling = min modifier-level then uniform tie; Perfect Essence Crystallisation on the feasible-removal pool NOT the guaranteed add. Reuses accepted pools/executors, fail-closed. Byte-checked: 10 clean-core Omens present in omens.yaml; historical Alchemy/Coronation/Greater-Annulment absent (correctly excluded); no Omen admission field yet.
 
-Claude should audit the proposed M45 next-wave design. Codex recommends a clean independent Omen modifier layer over already accepted currencies, with historical, disputed, Desecrated, Jawbone, Reveal, multi-remove, and all runtime-admission questions kept behind later explicit gates.
+Two things for the gate: (1) MANDATORY M45-A deliverable = explicit Omen runtime_admission/availability status (catalogue presence + active_omen_system must never mean executable); (2) Greater Exaltation is the only non-filter effect (new atomic double-add + sampling contract) - Claude recommends splitting it out (ship the 9 filter Omens first) or explicitly ratifying its two-add project-model contract. Historical/drop-disabled, Greater Annulment 2-removal, light/Desecrated, Jawbone/Reveal/PD-013, Fracture, planner/optimizer/public all stay closed. Review: reviews/P2C_M45_Next_Project_Wave_Design_Audit_Claude_v1.md.
+
+This is design/direction verification only. It authorizes no M45 runtime, admits no Omen, and closes no MML/SOURCE-PROVENANCE/crafted-capacity/PD-013.
