@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "39039aed65678a10b05a72b9fe6300dadbf339fe"
-updated_at_utc: "2026-07-11T17:57:51Z"
+repo_head_at_last_update: "cff00323ad7923f0fcc9c79314e942ffa301eb55"
+updated_at_utc: "2026-07-11T18:30:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M44_ALCHEMY_MECHANICS_DESIGN_VERIFICATION"
 
-allowed_next_action: "claude_audit_m44_alchemy_mechanics_design_verification"
+allowed_next_action: "chatgpt_user_gate_decision_on_m44_alchemy_mechanics_design_verification"
 forbidden_next_actions:
   - "accept_or_implement_alchemy_runtime_without_later_chatgpt_user_gate"
   - "assume_unverified_fractured_alchemy_behavior"
@@ -23,7 +23,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M44_Alchemy_Mechanics_Design_Verification_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M44_Alchemy_Mechanics_Design_Verification_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -69,4 +69,8 @@ stop_conditions:
 
 # P2C Active Task
 
-Claude audits the proposed M44 base-Alchemy mechanics/design verification. M43-A is accepted. The proposed M44-A floor is non-fractured Normal/Magic quarterstaff input, isolated Rare working-state construction, exactly four sequential accepted ordinary weighted additions with legality rebuilt after each draw, and one atomic commit. Sequential sampling remains explicitly project-model behavior rather than server truth. Alchemy runtime/admission and fractured-input behavior remain closed pending later ChatGPT/User gates.
+Claude audit of M44 Alchemy Mechanics Design Verification: verdict GO (design-only; alchemy row stays data_reference_candidate; nothing admitted). Independent source check (held back from Codex per Kirill's diligence test) agrees with the package: exactly 4 modifiers (PoE2-specific), Normal/Magic input, original magic mods not retained, Rare output, max 3/side; the 4 distribute weight-driven across sides capped at 3 (never 4-0), so no fixed 2-2/3-1. Codex PASSED the diligence test: it independently confirmed count/input/replacement and did NOT guess the server sampling algorithm - it labelled the exact 4-mod roll as project-model/unresolved and asked for a user gate, and fenced off fractured-input. Architecture sound: one atomic multi-add (isolated empty-Rare copy, 4 sequential accepted weighted adds with capacity rebuild, all-or-nothing commit; NOT four M43-A caller steps). Fractured input rejected in the M44-A floor (our base is fractured, so Alchemy is for the normal/magic route).
+
+ONE decision required at the gate (like Perfect Essence removal): ratify sequential accepted ordinary-weighted-add as the project-model 4-mod roll (server-unverified, record in mechanics_evidence as source-open). Claude leans for it. Then M44-A implements base non-fractured quarterstaff Alchemy. Fractured input, variants, Omens, other item classes stay separate gates. Review: reviews/P2C_M44_Alchemy_Mechanics_Design_Verification_Audit_Claude_v1.md.
+
+This is mechanics verification only. It does not implement/admit Alchemy runtime, decide the sampling model, close crafted-capacity/MML/SOURCE-PROVENANCE/PD-013, release public numbers, or authorize automation.
