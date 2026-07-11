@@ -23,6 +23,7 @@ from p2c_engine.monte_carlo.rarity_progression import (
     M40ARarityProgressionInvariantViolation,
 )
 from p2c_engine.monte_carlo.greater_essence import M41A_OPERATION_IDS
+from p2c_engine.monte_carlo.perfect_essence import M42A_OPERATION_IDS
 from p2c_engine.operations.resolver import (
     M40A_RESOLVER_SCHEMA_VERSION,
     M38AResolverAdmissionError,
@@ -301,7 +302,7 @@ def test_m40a_real_catalog_admits_exactly_the_authorized_rows_plus_prior_runtime
         for row in static.operations["operations"]
         if row["runtime_admission_status"] == "accepted_executable_runtime"
     }
-    assert admitted == M40A_OPERATION_IDS | M41A_OPERATION_IDS | {
+    assert admitted == M40A_OPERATION_IDS | M41A_OPERATION_IDS | M42A_OPERATION_IDS | {
         "greater_exalted",
         "perfect_exalted",
         "annulment",

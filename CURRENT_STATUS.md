@@ -45,11 +45,12 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - ACTIVE_TASK schema-v2 validator/pre-push guard: accepted as truth-neutral tooling. It validates frontmatter, mandatory fields, status/actor consistency, referenced paths, and malformed dispatcher state before publication.
 - M41 Next Operation Wave Design: accepted after Claude GO audit.
 - M41-A Greater Essence Quarterstaff Runtime: accepted after Claude GO audit for exactly eight rows: Abrasion, Flames, Ice, Electricity, Battle, Haste, Seeking, and Infinite. One shared deterministic executor performs atomic Magic-to-Rare plus the row-declared canonical guaranteed modifier, preserving existing/fractured modifiers and using no random draw. General crafted-capacity semantics remain source-open/unverified.
-- M42 Perfect Essence Mechanics Verification: proposed and ready for Claude audit; design-only. The repo contains six prepared quarterstaff rows. Capacity-conditioned removal and existing-crafted-modifier/repeat behavior remain unresolved and require a later ChatGPT/User project-model decision before runtime.
+- M42 Perfect Essence Mechanics Verification: accepted after Claude GO audit. The repo contains six prepared quarterstaff rows.
+- M42-A Perfect Essence Quarterstaff Runtime: implemented as a proposed audit delta for exactly those six rows. The User-approved project model uses uniform selection over terminal-feasible non-fractured removals and requires `crafted_count == 0`; replacement, stacking, repeat application, and broader crafted-capacity remain open. M42-A runtime is not accepted before Claude audit and a later ChatGPT/User gate.
 
 ## Next gate
 
-- Claude audits the proposed M42 Perfect Essence mechanics verification. No M42 runtime/admission is open.
+- Claude audits the proposed M42-A Perfect Essence quarterstaff runtime. No later Essence or modifier wave is open.
 - Perfect/Lesser/Corrupted Essences, multi-Essence capacity semantics, Whittling, Omens, Alchemy, other operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open

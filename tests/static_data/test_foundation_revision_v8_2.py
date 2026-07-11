@@ -75,6 +75,12 @@ def test_runtime_admission_status_table_is_explicit_and_narrow():
         'greater_essence_haste',
         'greater_essence_seeking',
         'greater_essence_infinite',
+        'perfect_essence_abrasion',
+        'perfect_essence_flames',
+        'perfect_essence_ice',
+        'perfect_essence_electricity',
+        'perfect_essence_battle',
+        'perfect_essence_haste',
     ]
 
 
@@ -143,7 +149,7 @@ def test_utf8_yaml_round_trip_does_not_change_semantic_fingerprint(tmp_path):
     assert changed.semantic_fingerprint == baseline.semantic_fingerprint
 
 
-def test_active_catalog_candidate_mechanic_change_only_changes_source_fingerprint(tmp_path):
+def test_perfect_essence_runtime_mechanic_change_changes_semantic_fingerprint(tmp_path):
     clone(tmp_path); baseline=build_static_game_data(tmp_path)
     p=tmp_path/'data/operations.yaml'
     def change(d):
@@ -152,7 +158,7 @@ def test_active_catalog_candidate_mechanic_change_only_changes_source_fingerprin
     mutate_yaml(p, change)
     changed=build_static_game_data(tmp_path)
     assert changed.source_fingerprint != baseline.source_fingerprint
-    assert changed.semantic_fingerprint == baseline.semantic_fingerprint
+    assert changed.semantic_fingerprint != baseline.semantic_fingerprint
 
 
 def test_accepted_runtime_mechanic_change_changes_semantic_fingerprint(tmp_path):
@@ -165,7 +171,7 @@ def test_accepted_runtime_mechanic_change_changes_semantic_fingerprint(tmp_path)
     assert build_static_game_data(tmp_path).semantic_fingerprint != baseline
 
 
-def test_perfect_essence_prevalidate_change_only_changes_source_fingerprint(tmp_path):
+def test_perfect_essence_prevalidate_change_changes_semantic_fingerprint(tmp_path):
     clone(tmp_path); baseline=build_static_game_data(tmp_path)
     p=tmp_path/'data/operations.yaml'
     def change(d):
@@ -174,7 +180,7 @@ def test_perfect_essence_prevalidate_change_only_changes_source_fingerprint(tmp_
     mutate_yaml(p, change)
     changed=build_static_game_data(tmp_path)
     assert changed.source_fingerprint != baseline.source_fingerprint
-    assert changed.semantic_fingerprint == baseline.semantic_fingerprint
+    assert changed.semantic_fingerprint != baseline.semantic_fingerprint
 
 
 def test_jawbone_prevalidate_change_only_changes_source_fingerprint(tmp_path):

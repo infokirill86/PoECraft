@@ -30,6 +30,13 @@ from p2c_engine.monte_carlo.greater_essence import (
     GreaterEssenceOperation,
     M41AGreaterEssenceInvariantViolation,
 )
+from p2c_engine.monte_carlo.perfect_essence import (
+    M42A_OPERATION_IDS,
+    M42A_SEMANTICS_VERSION,
+    PerfectEssenceHarness,
+    PerfectEssenceOperation,
+    M42APerfectEssenceInvariantViolation,
+)
 from p2c_engine.static_data.game_data import StaticGameData
 
 
@@ -38,6 +45,7 @@ M39A_RESOLVER_SCHEMA_VERSION = "p2c.m39a.operation_resolver_mml_filter_interface
 M39B_RESOLVER_SCHEMA_VERSION = "p2c.m39b.greater_perfect_exalted_chaos_runtime.v1"
 M40A_RESOLVER_SCHEMA_VERSION = "p2c.m40a.rarity_progression_runtime.v1"
 M41A_RESOLVER_SCHEMA_VERSION = "p2c.m41a.greater_essence_quarterstaff_runtime.v1"
+M42A_RESOLVER_SCHEMA_VERSION = "p2c.m42a.perfect_essence_quarterstaff_runtime.v1"
 ACCEPTED_RUNTIME_STATUS = "accepted_executable_runtime"
 BASE_VARIANT_IDS = frozenset({None, "", "base"})
 M39B_EXALTED_CURRENCY_IDS = frozenset({"greater_exalted", "perfect_exalted"})
@@ -50,6 +58,7 @@ AcceptedResolvedOperation = (
     | ChaosLikeOperation
     | CatalogSingleAddOperation
     | GreaterEssenceOperation
+    | PerfectEssenceOperation
 )
 OperationKind = Literal["engine_primitive", "catalog_operation"]
 
@@ -193,6 +202,9 @@ class OperationResolver:
         elif request.currency_id in M41A_OPERATION_IDS:
             operation = _compile_m41a_greater_essence(self.static, row, request)
             schema_version = M41A_RESOLVER_SCHEMA_VERSION
+        elif request.currency_id in M42A_OPERATION_IDS:
+            operation = _compile_m42a_perfect_essence(self.static, row, request)
+            schema_version = M42A_RESOLVER_SCHEMA_VERSION
         elif request.currency_id == ANNULMENT_OPERATION_ID:
             _validate_catalog_input_rarity(row, request.item_state)
             if declared_mml is not None:
@@ -499,6 +511,50 @@ def _compile_m41a_greater_essence(
     return operation
 
 
+def _compile_m42a_perfect_essence(
+    static: StaticGameData,
+    row: dict[str, Any],
+    request: OperationResolverRequest,
+) -> PerfectEssenceOperation:
+    _validate_catalog_input_rarity(row, request.item_state)
+    transition = row.get("transition")
+    if not isinstance(transition, Mapping):
+        raise M38AResolverAdmissionError(
+            f"invalid M42-A Perfect Essence transition: {request.currency_id}"
+        )
+    guaranteed_mod_id = transition.get("guaranteed_mod_id")
+    guaranteed_family_id = transition.get("guaranteed_family_id")
+    guaranteed_side = transition.get("guaranteed_side")
+    if not isinstance(guaranteed_mod_id, str) or not isinstance(
+        guaranteed_family_id, str
+    ):
+        raise M38AResolverAdmissionError(
+            f"missing M42-A guaranteed modifier metadata: {request.currency_id}"
+        )
+    try:
+        side = Side(guaranteed_side)
+    except (TypeError, ValueError) as exc:
+        raise M38AResolverAdmissionError(
+            f"invalid M42-A guaranteed side: {request.currency_id}"
+        ) from exc
+    operation = PerfectEssenceOperation(
+        mode_id=request.mode_id,
+        operation_id=request.currency_id,
+        item_class=request.item_state.item_class,
+        guaranteed_mod_id=guaranteed_mod_id,
+        guaranteed_family_id=guaranteed_family_id,
+        guaranteed_side=side,
+        semantics_version=M42A_SEMANTICS_VERSION,
+    )
+    try:
+        PerfectEssenceHarness(static=static).validate_operation_contract(operation)
+    except M42APerfectEssenceInvariantViolation as exc:
+        raise M38AResolverAdmissionError(
+            f"invalid admitted M42-A Perfect Essence row: {request.currency_id}: {exc}"
+        ) from exc
+    return operation
+
+
 __all__ = [
     "ACCEPTED_RUNTIME_STATUS",
     "M38A_RESOLVER_SCHEMA_VERSION",
@@ -506,6 +562,7 @@ __all__ = [
     "M39B_RESOLVER_SCHEMA_VERSION",
     "M40A_RESOLVER_SCHEMA_VERSION",
     "M41A_RESOLVER_SCHEMA_VERSION",
+    "M42A_RESOLVER_SCHEMA_VERSION",
     "M38AResolverAdmissionError",
     "M38AResolverError",
     "OperationResolver",

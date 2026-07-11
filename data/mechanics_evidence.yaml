@@ -112,3 +112,35 @@ fracturing_revealed_desecrated:
     in_game: not tested
 approved_contract_authority:
   rule: After user review and approval, runtime YAML is authoritative for the simulator until a later approved change.
+perfect_essence_m42a:
+  runtime_status: USER_APPROVED_PROJECT_RULE
+  evidence_level: project_model_source_open
+  server_truth_claimed: false
+  source_refs:
+  - official_patch_0_5
+  - official_patch_0_3
+  - poe2db_currency
+  authorized_operation_ids:
+  - perfect_essence_abrasion
+  - perfect_essence_flames
+  - perfect_essence_ice
+  - perfect_essence_electricity
+  - perfect_essence_battle
+  - perfect_essence_haste
+  removal:
+    selection: uniform_over_terminal_feasible_nonfractured_instances
+    target_side_free: all_removable_nonfractured_instances_are_feasible
+    target_side_full: only_removals_creating_target_side_capacity_are_feasible
+    empty_feasible_pool: no_transition_no_consumption_before_draw
+    omen_or_side_filter_layer_admitted: false
+  crafted_capacity:
+    precondition: crafted_count_equals_zero
+    existing_crafted_modifier: no_transition_no_consumption
+    replacement_stacking_repeat_admitted: false
+    broader_contract_closed: false
+  guaranteed_add:
+    selection: exact_row_declared_canonical_modifier
+    weighted_add_draw: false
+  atomicity:
+    remove_and_guaranteed_add_commit_together: true
+    failure: no_transition_no_consumption_original_state_unchanged

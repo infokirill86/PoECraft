@@ -15,6 +15,7 @@ from p2c_engine.monte_carlo.greater_essence import (
     GreaterEssenceOperation,
     M41AGreaterEssenceInvariantViolation,
 )
+from p2c_engine.monte_carlo.perfect_essence import M42A_OPERATION_IDS
 from p2c_engine.operations import (
     M41A_RESOLVER_SCHEMA_VERSION,
     M38AResolverAdmissionError,
@@ -69,11 +70,12 @@ def test_m41a_activation_is_exactly_the_authorized_eight_rows() -> None:
     assert "greater_essence" in scope["active_operation_groups"]
     assert "greater_essence" not in scope["reference_only_operation_groups"]
     assert "greater_essence_magic_to_rare_route" not in scope["excluded_from_active_solver"]
-    assert all(
-        row["runtime_admission_status"] != "accepted_executable_runtime"
+    assert {
+        row["operation_id"]
         for row in rows
         if row["group"] == "perfect_essence"
-    )
+        and row["runtime_admission_status"] == "accepted_executable_runtime"
+    } == M42A_OPERATION_IDS
 
 
 @pytest.mark.parametrize("operation_id", sorted(M41A_OPERATION_IDS))
@@ -213,7 +215,7 @@ def test_m41a_exact_and_seeded_paths_have_no_random_candidate_draw() -> None:
     }
 
 
-def test_m41a_invalid_rarity_and_perfect_essence_remain_fail_closed() -> None:
+def test_m41a_invalid_rarity_remains_no_transition() -> None:
     static = build_static_game_data(ROOT)
     magic = _state()
     operation = _resolve(static, "greater_essence_abrasion", magic)
@@ -224,13 +226,6 @@ def test_m41a_invalid_rarity_and_perfect_essence_remain_fail_closed() -> None:
     )[0]
     assert path.outcome == "no_transition_no_consumption"
     assert path.no_transition_reason == "invalid_source_rarity"
-    with pytest.raises(M38AResolverAdmissionError, match="not executable-admitted"):
-        OperationResolver(static=static).resolve(
-            OperationResolverRequest(
-                currency_id="perfect_essence_abrasion",
-                item_state=rare,
-            )
-        )
 
 
 def test_m41a_missing_or_inconsistent_canonical_output_fails_closed() -> None:

@@ -47,6 +47,17 @@ from .greater_essence import (
     GreaterEssenceRunResult,
     M41AGreaterEssenceInvariantViolation,
 )
+from .perfect_essence import (
+    M42A_CRAFTED_CAPACITY_POLICY,
+    M42A_OPERATION_IDS,
+    M42A_REMOVAL_POLICY,
+    M42A_SCHEMA_VERSION,
+    M42A_SEMANTICS_VERSION,
+    PerfectEssenceHarness,
+    PerfectEssenceOperation,
+    PerfectEssenceRunResult,
+    M42APerfectEssenceInvariantViolation,
+)
 
 __all__ = [
     "ANNULMENT_OPERATION_ID",
@@ -86,4 +97,13 @@ __all__ = [
     "GreaterEssenceOperation",
     "GreaterEssenceRunResult",
     "M41AGreaterEssenceInvariantViolation",
+    "M42A_CRAFTED_CAPACITY_POLICY",
+    "M42A_OPERATION_IDS",
+    "M42A_REMOVAL_POLICY",
+    "M42A_SCHEMA_VERSION",
+    "M42A_SEMANTICS_VERSION",
+    "PerfectEssenceHarness",
+    "PerfectEssenceOperation",
+    "PerfectEssenceRunResult",
+    "M42APerfectEssenceInvariantViolation",
 ]

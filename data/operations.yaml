@@ -721,18 +721,20 @@ operations:
     guaranteed_side: prefix
     crafted: true
     remove:
-      kind: uniform_installed_instance
+      kind: uniform_feasible_installed_instance
       count: 1
       exclude_flags:
       - fractured
+      selection: uniform
+      feasible_if: guaranteed_modifier_installable_after_removal
       omen_filters:
       - side_filter
     prevalidate:
     - family_absent
-    - crafted_capacity_free
-    - filtered_removal_pool_nonempty
+    - crafted_count_zero
+    - feasible_removal_pool_nonempty
   active_in_current_simulation: true
-  runtime_admission_status: admission_candidate
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: perfect_essence_flames
   group: perfect_essence
   input_rarity:
@@ -746,18 +748,20 @@ operations:
     guaranteed_side: prefix
     crafted: true
     remove:
-      kind: uniform_installed_instance
+      kind: uniform_feasible_installed_instance
       count: 1
       exclude_flags:
       - fractured
+      selection: uniform
+      feasible_if: guaranteed_modifier_installable_after_removal
       omen_filters:
       - side_filter
     prevalidate:
     - family_absent
-    - crafted_capacity_free
-    - filtered_removal_pool_nonempty
+    - crafted_count_zero
+    - feasible_removal_pool_nonempty
   active_in_current_simulation: true
-  runtime_admission_status: admission_candidate
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: perfect_essence_ice
   group: perfect_essence
   input_rarity:
@@ -771,18 +775,20 @@ operations:
     guaranteed_side: prefix
     crafted: true
     remove:
-      kind: uniform_installed_instance
+      kind: uniform_feasible_installed_instance
       count: 1
       exclude_flags:
       - fractured
+      selection: uniform
+      feasible_if: guaranteed_modifier_installable_after_removal
       omen_filters:
       - side_filter
     prevalidate:
     - family_absent
-    - crafted_capacity_free
-    - filtered_removal_pool_nonempty
+    - crafted_count_zero
+    - feasible_removal_pool_nonempty
   active_in_current_simulation: true
-  runtime_admission_status: admission_candidate
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: perfect_essence_electricity
   group: perfect_essence
   input_rarity:
@@ -796,18 +802,20 @@ operations:
     guaranteed_side: prefix
     crafted: true
     remove:
-      kind: uniform_installed_instance
+      kind: uniform_feasible_installed_instance
       count: 1
       exclude_flags:
       - fractured
+      selection: uniform
+      feasible_if: guaranteed_modifier_installable_after_removal
       omen_filters:
       - side_filter
     prevalidate:
     - family_absent
-    - crafted_capacity_free
-    - filtered_removal_pool_nonempty
+    - crafted_count_zero
+    - feasible_removal_pool_nonempty
   active_in_current_simulation: true
-  runtime_admission_status: admission_candidate
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: perfect_essence_battle
   group: perfect_essence
   input_rarity:
@@ -821,18 +829,20 @@ operations:
     guaranteed_side: suffix
     crafted: true
     remove:
-      kind: uniform_installed_instance
+      kind: uniform_feasible_installed_instance
       count: 1
       exclude_flags:
       - fractured
+      selection: uniform
+      feasible_if: guaranteed_modifier_installable_after_removal
       omen_filters:
       - side_filter
     prevalidate:
     - family_absent
-    - crafted_capacity_free
-    - filtered_removal_pool_nonempty
+    - crafted_count_zero
+    - feasible_removal_pool_nonempty
   active_in_current_simulation: true
-  runtime_admission_status: admission_candidate
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: perfect_essence_haste
   group: perfect_essence
   input_rarity:
@@ -846,18 +856,20 @@ operations:
     guaranteed_side: suffix
     crafted: true
     remove:
-      kind: uniform_installed_instance
+      kind: uniform_feasible_installed_instance
       count: 1
       exclude_flags:
       - fractured
+      selection: uniform
+      feasible_if: guaranteed_modifier_installable_after_removal
       omen_filters:
       - side_filter
     prevalidate:
     - family_absent
-    - crafted_capacity_free
-    - filtered_removal_pool_nonempty
+    - crafted_count_zero
+    - feasible_removal_pool_nonempty
   active_in_current_simulation: true
-  runtime_admission_status: admission_candidate
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: gnawed_jawbone
   group: jawbone
   input_rarity:
