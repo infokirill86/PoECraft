@@ -15,6 +15,7 @@ Policy:
 from __future__ import annotations
 
 import hashlib
+import io
 import subprocess
 import sys
 from pathlib import Path
@@ -62,14 +63,40 @@ def repo_file_paths(root: Path) -> dict[str, PathSource]:
     return dict(sorted(paths.items()))
 
 
-def git_index_bytes(root: Path, rel_path: str) -> bytes:
+def git_index_blobs(root: Path, rel_paths: list[str]) -> dict[str, bytes]:
+    """Read all requested index blobs through one git cat-file process."""
+    if not rel_paths:
+        return {}
+    if any("\n" in rel_path or "\r" in rel_path for rel_path in rel_paths):
+        raise ValueError("tracked paths containing newlines are unsupported")
+    queries = b"".join(f":{rel_path}\n".encode("utf-8") for rel_path in rel_paths)
     result = subprocess.run(
-        ["git", "cat-file", "blob", f":{rel_path}"],
+        ["git", "cat-file", "--batch"],
         cwd=root,
         check=True,
+        input=queries,
         capture_output=True,
     )
-    return result.stdout
+    stream = io.BytesIO(result.stdout)
+    blobs: dict[str, bytes] = {}
+    for rel_path in rel_paths:
+        header = stream.readline().rstrip(b"\n")
+        parts = header.rsplit(b" ", 2)
+        if len(parts) != 3 or parts[1] != b"blob":
+            raise ValueError(f"unexpected git cat-file header for {rel_path}: {header!r}")
+        try:
+            size = int(parts[2])
+        except ValueError as exc:
+            raise ValueError(
+                f"invalid git cat-file size for {rel_path}: {parts[2]!r}"
+            ) from exc
+        payload = stream.read(size)
+        if len(payload) != size or stream.read(1) != b"\n":
+            raise ValueError(f"truncated git cat-file payload for {rel_path}")
+        blobs[rel_path] = payload
+    if stream.read(1):
+        raise ValueError("unexpected trailing git cat-file output")
+    return blobs
 
 
 def sha256_bytes(payload: bytes) -> str:
@@ -88,17 +115,24 @@ def main() -> int:
     try:
         root = repo_root()
         paths = repo_file_paths(root)
+        tracked_paths = [
+            rel_path for rel_path, source in paths.items() if source == "tracked_index"
+        ]
+        tracked_blobs = git_index_blobs(root, tracked_paths)
         lines: list[str] = []
         for rel_path, source in paths.items():
             if source == "tracked_index":
-                digest = sha256_bytes(git_index_bytes(root, rel_path))
+                digest = sha256_bytes(tracked_blobs[rel_path])
             else:
                 digest = sha256_worktree_file(root / rel_path)
             lines.append(f"{digest}  {rel_path}")
         (root / ROOT_SHA_FILE).write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
         print(f"UPDATED {ROOT_SHA_FILE}: {len(lines)} entries")
         return 0
-    except subprocess.CalledProcessError as exc:
+    except (subprocess.CalledProcessError, ValueError) as exc:
+        if isinstance(exc, ValueError):
+            print(f"ERROR: {exc}", file=sys.stderr)
+            return 1
         print(f"ERROR: command failed: {' '.join(exc.cmd)}", file=sys.stderr)
         if exc.stderr:
             print(exc.stderr, file=sys.stderr)
