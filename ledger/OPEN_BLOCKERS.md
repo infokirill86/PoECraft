@@ -6,8 +6,8 @@ Standing blockers remain open unless explicitly closed by a separate gate:
 - MML closure.
 - PD-013 closure.
 - Public numeric release.
-- New executable mechanics beyond accepted ordinary_add and accepted base Annulment.
-- Fractured-mod invariant changes.
+- Any executable mechanic or operation not already accepted in the canonical ledgers/runtime registry.
+- Changes to accepted fractured-modifier behavior.
 - Optimizer / advice / ranking / EV-as-decision.
 - Server-truth framing.
 

@@ -1,6 +1,6 @@
 # P2C - CURRENT STATUS
 
-last_updated: 2026-07-10
+last_updated: 2026-07-11
 
 Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_Manifest_v4.md.
 
@@ -48,11 +48,13 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M42 Perfect Essence Mechanics Verification: accepted after Claude GO audit. The repo contains six prepared quarterstaff rows.
 - M42-A Perfect Essence Quarterstaff Runtime: accepted after Claude GO audit for exactly six rows: Abrasion, Flames, Ice, Electricity, Battle, and Haste. The accepted project model selects uniformly over terminal-feasible non-fractured removals, installs the canonical guaranteed modifier atomically, and temporarily requires `crafted_count == 0`. Replacement, stacking, repeat application, Astrid/rune capacity, and broader crafted-capacity remain source-open.
 - M43 Next Project Wave Design: Claude audit returned GO; design remains proposed pending a later ChatGPT/User direction decision. No M43-A implementation or new mechanic is authorized.
-- Repository Structure & Truth-Surface Audit: proposed after repeated stale-task/navigation failures; no cleanup, move, deletion, accepted-truth change, or runtime change has been applied. Claude audit is next.
+- Repository Structure & Truth-Surface Audit: accepted after Claude GO; it confirmed conflicting first-read truth surfaces and historical tasks under `work/active/` as the cause of repeated stale-task failures.
+- Repository Structure Cleanup Wave A+B: authorized and implemented as a proposed docs/tooling delta; it repairs read order, single-dispatcher enforcement, and stale canonical prose without changing runtime/mechanics/data or moving evidence. Acceptance requires Claude audit and a later ChatGPT/User gate.
 
-## Next gate
+## Live routing
 
-- Claude audits `packages/proposed/P2C_Repo_Structure_Truth_Surface_Audit_Codex_v1/`. M43 design remains GO/proposed; M43-A remains closed pending a later ChatGPT/User gate.
+- Always use verified `work/active/ACTIVE_TASK.md` for the current actor and allowed action; this file is a snapshot, not routing.
+- M43 design remains Claude-GO/proposed and M43-A remains closed pending a later ChatGPT/User gate.
 - Perfect/Lesser/Corrupted Essences, multi-Essence capacity semantics, Whittling, Omens, Alchemy, other operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open

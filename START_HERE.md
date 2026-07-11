@@ -1,87 +1,102 @@
-# P2C — START HERE: Project Resume Kit (v2)
+# P2C — Stable Project Orientation
 
-last_updated: `<set on commit>` · current gate: see `CURRENT_STATUS.md`
-
-Purpose: the first file a new Claude / Codex / ChatGPT session loads to resume P2C. It is a
-reconstruction aid, not memory, and **not a task authorization** — it orients the session; actual
-work needs a current objective/prompt or explicit user instruction. For where the project stands
-right now, read `CURRENT_STATUS.md` (this kit stays stable; volatile status lives there). Keep this
-kit minimal (target under ~1200 words); grow it only on a real failure.
+Purpose: reconstruct the project identity and collaboration model after the live
+dispatcher has been read. This file is not routing, accepted truth, or task
+authorization. Current actor/action lives only in `work/active/ACTIVE_TASK.md`;
+accepted scope lives in the ledgers; the compact project snapshot lives in
+`CURRENT_STATUS.md`.
 
 ## 1. What P2C is
-A Path of Exile 2 crafting simulator, deliberately narrow: one fixed base (physical quarterstaff)
-with a fixed fractured crit suffix; affix capacity 3 prefixes / 3 suffixes. Model: item = state; a
-currency = a stochastic operation (state transition); probability = mass over reachable states;
-target success / attempts / cost / economics = derived. Long-term goal (built last, separately
-gated): support strategy comparison and eventually optimizer-like policy search over crafting paths,
-to a graded acceptance target, unbounded and within a user budget, with human decision ownership.
-Data = project-model accepted truth, not server truth.
 
-## 2. Engine direction
-Exact rational engine = oracle / benchmark for narrow lanes. Seeded Monte Carlo = scalable
-production engine (approximate but scales; deterministic under a fixed seed). Exact and MC MUST share
-one mechanics / pool / legality / weight kernel, differing only in enumerate-vs-sample. Roadmap
-(direction, not current status — see `CURRENT_STATUS.md`): M31 policy → M32 seeded MC over
-ordinary_add → M33 oracle convergence → one real deterministic operation → M34 hardening → operation
-breadth → cost/budget as distribution → optimizer (last).
+P2C is a Path of Exile 2 crafting simulator. The primary product lane is a
+physical quarterstaff route, but current starts, item states, accepted operations,
+and executable scope are intentionally not enumerated here because they change.
+Use `config/`, `CURRENT_STATUS.md`, and `ledger/ACCEPTED_ARTIFACTS.md` for the
+current project-model basis.
 
-## 3. Roles & collaboration model
-- **Kirill (User):** product owner; game priorities; decides at gates; final acceptance.
-- **ChatGPT:** architect / synthesis; big-plan design at forks; task authoring; plain-language summaries.
-- **Codex:** builder / packager; ALSO critiques the task before building (not a blind executor).
-- **Claude:** independent auditor; verifies by reconstruction / execution; ALSO contributes design.
+Model: item = state; crafting action = state transition; probability = mass over
+reachable states. Exact rational execution is the oracle for tractable lanes.
+Seeded Monte Carlo is the scalable execution direction. Exact and MC must share
+the same accepted mechanics, legality, pool, and weight kernels.
 
-Principle — full participants, not executors. Layered rigor: routine steps run on **Claude ⇄ Codex
-mutual challenge**; forks (new mechanics, model changes, optimizer) add **ChatGPT architect** review;
-Kirill approves at gates. Guard: mutual challenge fails if it becomes politeness — when everyone
-agrees too easily on something high-stakes, red-team it or pull in the third head; anyone auditing
-their own idea flags it.
+Data is project-model accepted truth, not a server-truth claim.
 
-## 4. Pre-task self-check (run before acting)
-1. Does this change accepted truth / executable mechanics / the fractured-mod invariant / public numeric output? → separate gate.
-2. If it were wrong, would an automatic check catch it? Is it reconstructible / testable?
-3. Does the mechanic actually fit the current state model? If not, extend the model first.
-4. Am I silently assuming the data / mechanics are correct? (that is the ceiling of correctness)
-5. If there is a **material disagreement, unsafe assumption, or clear improvement — state it before acting.** Do not invent objections for routine, safe tasks.
-6. Am I about to do something forbidden without a gate (optimizer / advice / new mechanic / public numbers / boundary closure)?
+## 2. Roles
 
-## 5. Two governance rules
-- **Step size:** batch when reconstructible + auto-testable + truth-neutral; separate gate when it
-  touches executable mechanics, the fractured invariant, public numbers, or moves toward
-  optimizer/advice. Test: *"if wrong, would an auto-check catch it, and does it change accepted
-  truth?"* catchable + truth-neutral → batch; silent-corruption or truth-changing → gate.
-- **Process changes:** change the workflow or rules ONLY when a real, observed failure exposed a gap.
-  Never expand process speculatively. This stops the audit-of-audits spiral.
+- **Kirill / ChatGPT:** product direction, synthesis, gates, and final acceptance.
+- **Codex:** builder-critic, implementer, verifier, and package producer.
+- **Claude:** independent auditor-designer and contradiction finder.
 
-## 6. Standing boundaries & authority
-project-model, not server-truth; no public numeric release; no optimizer / advice / ranking /
-EV-as-decision; no new executable mechanics (only `ordinary_add` is executable); the fractured
-invariant is never modified; MC executes only accepted operations; source/provenance, MML, PD-013
-remain open; costs are user assumptions, not market truth.
-**Authority:** no package, audit, test result, report, Codex output, or Claude output self-accepts
-into project truth. ChatGPT/User (Kirill) acceptance is required. Nothing auto-merges.
+All participants have a duty to raise material correctness, source, foundation,
+cost, safety, maintainability, or direction concerns. Taste-only objections do not
+justify delay. Full doctrine lives in `manifest/Participant_Voice_Charter.md` and
+`manifest/Agent_Role_Pack.md`.
 
-## 7. Where things live (target repo layout, once GitHub handoff is active)
-- Operating Manifest v4 (full rules) — `/manifest`
-- Accepted packages (audit from these bytes) — `/packages`
-- Audits — `/reviews`
-- This file & `CURRENT_STATUS.md` — repo root
+## 3. Boot and handoff rule
 
-If the layout is not present yet, verify against the local workspace artifacts and ask for the
-current baseline package — do not assume missing folders are a project defect.
+1. Verify current remote `main` HEAD.
+2. Read exact `work/active/ACTIVE_TASK.md` bytes from that HEAD.
+3. Run `python tools/validate_active_task.py`.
+4. Read only the current package/review and relevant accepted/status context.
 
-## 8. Communication
-To Kirill: plain language, short; technical detail only on request. Long prompts as `.md` files, not
-pasted into chat; avoid dumping raw code / PASS tables / SHA lists unless asked. (Full policy:
-Operating Manifest v4.)
+If live routing and accepted truth appear inconsistent, stop for ChatGPT/User.
+Do not choose another status-like document.
 
-## 9. Honest limits
-A new session is not the same session; this kit reconstructs, it does not remember. Models do not
-follow written rules perfectly — the system is designed to survive that: the human gate (Kirill) and
-the independent audit catch violations downstream. Safety rests on "violations get caught," not on
-"everyone follows the manifest." Keep this kit minimal.
+## 4. Pre-task self-check
+
+1. Does the task change accepted truth, executable mechanics, fractured behavior,
+   public numeric output, optimizer/advice, or a standing boundary? If yes, require
+   the appropriate explicit gate.
+2. Is the change reconstructible and automatically testable?
+3. Does the mechanic fit the accepted state model?
+4. Am I silently assuming source or mechanics certainty?
+5. Is there a material objection or safer/broader boundary that must be stated?
+
+## 5. Step-size rule
+
+Batch work when it is reconstructible, automatically testable, truth-neutral,
+and does not cross a gate. Separate review is required for silent-corruption risk,
+accepted-truth change, executable mechanics, public values, optimizer/advice, or
+standing-boundary changes.
+
+Change workflow only after an observed failure demonstrates the need. The current
+single-dispatcher cleanup is such a repair; speculative process growth is not.
+
+## 6. Standing authority and boundaries
+
+Only operations and mechanics accepted in `ledger/ACCEPTED_ARTIFACTS.md` and
+`ledger/DECISIONS.md` may execute. Do not hardcode that changing inventory in
+orientation or protocol files.
+
+No package, audit, test, manifest, dashboard, Codex output, or Claude output can
+self-accept. ChatGPT/User acceptance is required. Public numeric release,
+optimizer/economics/advice, automation, server-truth framing, and closure of
+SOURCE/PROVENANCE, MML, or PD-013 remain separately gated unless the accepted
+ledgers explicitly say otherwise.
+
+## 7. Repository roles
+
+- `work/active/ACTIVE_TASK.md` — sole live dispatcher.
+- `CURRENT_STATUS.md` — compact snapshot, not routing.
+- `ledger/` — accepted truth, decisions, blockers, historical index.
+- `manifest/` — stable process doctrine.
+- `packages/` and `reviews/` — immutable evidence, not acceptance authority.
+- `config/`, `data/`, `src/`, `tests/`, `schemas/`, `tools/` — project model and implementation.
+
+Package directory names do not determine lifecycle status; the accepted ledger does.
+
+## 8. Communication and honest limits
+
+Explain outcomes to Kirill in plain language, then add concise technical detail.
+Keep long evidence in repository files rather than chat.
+
+A new session reconstructs state from Git; it does not inherit memory. The system
+therefore relies on verified HEAD, one live dispatcher, explicit acceptance, and
+independent audit rather than perfect model recall.
 
 ---
-- author: `claude` (v2 folds Codex + ChatGPT review)
-- document_type: `project_resume_kit`
-- status: `active session-resume aid; not an implementation prompt; does not authorize new work`
+
+- document type: stable orientation
+- routing authority: none
+- accepted-truth authority: none
+- current-state authority: none

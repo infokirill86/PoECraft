@@ -4,12 +4,12 @@ Purpose: one compact role entry point for Codex and Claude. This file points to 
 
 ## Authoritative sources
 
+- `work/active/ACTIVE_TASK.md` - sole live routing source; read first after verifying remote HEAD.
+- `CURRENT_STATUS.md` - compact project snapshot; never overrides live routing.
+- `ledger/ACCEPTED_ARTIFACTS.md` and `ledger/DECISIONS.md` - accepted artifacts and gate decisions.
 - `manifest/Participant_Voice_Charter.md` - participant voice, critique duty, and role philosophy.
 - `manifest/GitHub_Workflow_Protocol.md` - ACTIVE_TASK schema, standing boundaries, read receipts, package/checksum workflow, and plain-language summary rule.
 - `manifest/Operating_Manifest_v4.md` - operating baseline.
-- `CURRENT_STATUS.md` - compact current project state.
-- `ledger/ACCEPTED_ARTIFACTS.md` and `ledger/DECISIONS.md` - accepted artifacts and gate decisions.
-- `work/active/ACTIVE_TASK.md` - live dispatcher only.
 
 ## Role summary
 

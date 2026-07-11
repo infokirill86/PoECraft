@@ -1,12 +1,16 @@
 # P2C Codex Instructions
 
-Read before project work:
+Read before project work, in this order:
 
-1. `START_HERE.md`
-2. `CURRENT_STATUS.md`
-3. `manifest/Agent_Role_Pack.md`
-4. `manifest/GitHub_Workflow_Protocol.md`
-5. `work/active/ACTIVE_TASK.md`
+1. Fetch/pull and verify the current remote `main` HEAD.
+2. Read `work/active/ACTIVE_TASK.md` from that verified HEAD.
+3. Run `python tools/validate_active_task.py` and stop if it fails.
+4. Read `CURRENT_STATUS.md` and the relevant accepted-ledger rows.
+5. Read `START_HERE.md`, `manifest/Agent_Role_Pack.md`, and only the stable protocol sections needed by the live task.
+
+`ACTIVE_TASK.md` is the sole live routing source. Orientation, status, manifests,
+packages, and reviews must not override its current actor/action. If routing and
+accepted truth conflict, stop for ChatGPT/User.
 
 Role:
 

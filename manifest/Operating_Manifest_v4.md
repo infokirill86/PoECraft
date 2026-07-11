@@ -1,6 +1,6 @@
 # P2C Project Operating Manifest — ChatGPT v4
 
-Status: ratification candidate / proposed operating baseline after Codex and Claude final review.
+Status: accepted operating baseline. Acceptance details live in `ledger/ACCEPTED_ARTIFACTS.md`.
 Scope: project process, roles, data policy, Monte Carlo direction, gate policy, public-output policy, and implementation workflow.
 This document does not authorize Monte Carlo implementation, new executable mechanics, optimizer/advice, public numeric release, or closure of source/provenance, MML, or PD-013.
 
@@ -10,13 +10,11 @@ P2C is a Path of Exile 2 crafting simulator/emulator project.
 
 The long-term objective is to model item crafting as state transitions under crafting operations, then later support target evaluation, cost assumptions, budget analysis, and optimizer-like strategy suggestions with the user in control.
 
-Current narrow foundation:
-- Quarterstaff / staff-focused branch;
-- fixed initial item with one fractured suffix;
-- affix capacity model: three prefixes and three suffixes;
-- tier-level modifiers, without internal roll ranges for now;
-- accepted ordinary-add mechanics and exact two-step oracle evidence;
-- runtime layers for structural queries, goals, target mass, attempts, single-plan economics, operation sequences, and plan evaluation.
+Current executable operations, item-state scope, and milestone state are deliberately
+not enumerated in this stable manifest. Read `CURRENT_STATUS.md`,
+`ledger/ACCEPTED_ARTIFACTS.md`, and the admitted runtime registry. The physical
+quarterstaff route remains the primary product lane; its current start and scope
+come from accepted configuration and ledgers rather than this file.
 
 ## 2. Roles
 
@@ -189,7 +187,7 @@ Batch when the work is:
 - automatically testable;
 - truth-neutral;
 - not changing executable mechanics;
-- not touching the fractured-mod invariant;
+- not changing accepted fractured-modifier behavior;
 - not releasing public numeric values;
 - not moving into optimizer/advice.
 
@@ -237,10 +235,9 @@ Routine PASS prose should be omitted unless it affects the decision.
 
 Only accepted executable operation semantics may be used by runtime execution or MC.
 
-Current accepted executable operation:
-- ordinary_add.
-
-All other operations remain blocked/reference-only until separately admitted.
+The changing accepted executable inventory is defined by the accepted ledger and
+the admitted runtime registry. Do not copy that inventory into this stable
+manifest. Catalog/reference presence is not executable permission.
 
 New executable operation mechanics require their own gate, especially:
 - stochastic pool operations;
@@ -328,21 +325,14 @@ What the next step is.
 
 Avoid routine SHA/file-count/PASS dumps unless requested.
 
-## 14. Current strategic sequence
+## 14. Strategic sequencing
 
-Near-term sequence:
+Current milestone direction is intentionally not hardcoded in this stable
+manifest. Read verified `work/active/ACTIVE_TASK.md` for routing, `CURRENT_STATUS.md`
+for the compact checkpoint, and `ledger/DECISIONS.md` for accepted pivots.
 
-1. Ratify this manifest as operating baseline.
-2. Defer broad operation expansion until MC foundation is planned.
-3. M31: Monte Carlo Execution Policy and Oracle Validation Blueprint.
-4. M32: seeded MC harness over accepted ordinary_add only.
-5. M33: exact-oracle convergence validation.
-6. Add one real deterministic operation after MC validation to prove scale and feature value.
-7. M34: MC reporting/reproducibility hardening.
-8. Resume broader operation mechanics expansion.
-9. Cost/budget/optimizer remain controlled by later gates.
-
-M26-M30 operation-mechanics blueprint remains useful, but broad operation expansion is deferred until the MC harness is oracle-validated.
+Cost, budget, optimizer, ranking, and advice remain separately gated regardless of
+the current milestone sequence.
 
 ## 15. Non-goals of this manifest
 

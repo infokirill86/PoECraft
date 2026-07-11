@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import subprocess
 import sys
 from pathlib import Path, PurePosixPath
 from typing import Any
@@ -43,6 +44,7 @@ ALLOWED_STATUS_ACTORS = {
 LIVE_STATE_KEYS = frozenset(
     {"schema_version", "status", "next_actor", "active_task_id", "allowed_next_action"}
 )
+CANONICAL_ACTIVE_TASK = PurePosixPath("work/active/ACTIVE_TASK.md")
 
 
 class ActiveTaskValidationError(ValueError):
@@ -123,9 +125,49 @@ def _validate_reference(repo_root: Path, field: str, raw_value: str) -> None:
         raise ActiveTaskValidationError(f"{field} references missing path: {path_value}")
 
 
+def _validate_single_tracked_dispatcher(path: Path, repo_root: Path) -> None:
+    root = repo_root.resolve()
+    try:
+        relative = path.resolve().relative_to(root)
+    except ValueError as exc:
+        raise ActiveTaskValidationError("ACTIVE_TASK must be inside the repository") from exc
+    relative_posix = PurePosixPath(relative.as_posix())
+    if relative_posix != CANONICAL_ACTIVE_TASK:
+        raise ActiveTaskValidationError(
+            f"live dispatcher must be {CANONICAL_ACTIVE_TASK}, got {relative_posix}"
+        )
+
+    result = subprocess.run(
+        ["git", "-C", str(root), "ls-files", "--", "work/active"],
+        capture_output=True,
+        text=True,
+        stdin=subprocess.DEVNULL,
+        check=False,
+    )
+    if result.returncode != 0:
+        detail = result.stderr.strip() or "git ls-files failed"
+        raise ActiveTaskValidationError(
+            f"cannot verify tracked work/active files: {detail}"
+        )
+    tracked = tuple(
+        sorted(
+            line.strip().replace("\\", "/")
+            for line in result.stdout.splitlines()
+            if line.strip()
+        )
+    )
+    expected = (CANONICAL_ACTIVE_TASK.as_posix(),)
+    if tracked != expected:
+        raise ActiveTaskValidationError(
+            "work/active must contain exactly one tracked file, "
+            f"{CANONICAL_ACTIVE_TASK}; found {list(tracked)}"
+        )
+
+
 def validate_active_task(path: Path, repo_root: Path) -> dict[str, Any]:
     if not path.is_file():
         raise ActiveTaskValidationError(f"ACTIVE_TASK file is missing: {path}")
+    _validate_single_tracked_dispatcher(path, repo_root)
     data, _body = _frontmatter(path.read_text(encoding="utf-8"))
 
     missing = MANDATORY_FIELDS - set(data)
