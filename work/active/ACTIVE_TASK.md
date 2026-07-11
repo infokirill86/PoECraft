@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "ca7ac2bfec5a967bcbae6df99532fb9d351b77d2"
-updated_at_utc: "2026-07-11T21:58:51Z"
+repo_head_at_last_update: "77c8418e2b80480d46af77ae55598ddb9e51ca51"
+updated_at_utc: "2026-07-12T08:20:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M46_FRACTURE_CORE_MECHANICS_DESIGN_VERIFICATION"
 
-allowed_next_action: "claude_audit_m46_fracture_core_mechanics_design_verification"
+allowed_next_action: "chatgpt_user_gate_decision_on_m46_fracture_core_mechanics_design_verification"
 forbidden_next_actions:
   - "implement_or_admit_fracturing_orb_runtime"
   - "resolve_revealed_desecrated_jawbone_reveal_or_pd013_behavior"
@@ -23,7 +23,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M46_Fracture_Core_Mechanics_Design_Verification_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M46_Fracture_Core_Mechanics_Design_Verification_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -69,6 +69,8 @@ stop_conditions:
 
 # P2C Active Task
 
-M45-A Independent Omen Layer Runtime and the Whittling documentary evidence bump are accepted by ChatGPT/User after Claude GO.
+Claude audit of M46 Fracture Core Mechanics Design Verification: verdict GO (design-only; fracturing_orb stays disputed/candidate; nothing admitted). Clean-core matches Kirill's ground truth + accepted mechanics: rare input, >=4 explicit slots, no existing fracture, select ONE random instance from a COMBINED uniform pool (no side lottery, no weight), set fractured:true, atomic, fail-closed. Fractured-can-be-crafted captured (pool includes crafted; preserve crafted flag; ModifierInstance has independent crafted/fractured). Disputed Desecrated edge (the 1-of-3 trick) correctly EXCLUDED from the clean floor and kept as PD-013 (sources conflict: wiki ineligible-but-counts vs CoE eligible). Thorough fractured-immutability contract: accepted Annulment/Chaos removal + Perfect Essence feasible-removal keep excluding it, Alchemy fail-closed on fractured input, capacity still counts it, no op clears fractured without a gate. Honest source pass; project-model. Byte-confirmed operations.yaml fracturing_orb row + mechanics_evidence fracturing_revealed_desecrated conflict.
 
-M46 is design/mechanics verification only. Claude should audit the fresh source comparison, the clean Fracture candidate-pool and immutability contract, the deliberate fail-closed exclusion of all Desecrated/Revealed states, and the proposed later M46-A implementation boundary. No Fracture runtime is authorized by this package.
+Watchpoints for M46-A: our pinned base is ALREADY fractured (fails no-existing-fracture) so Fracture applies to OTHER rare states in a route; uniform is 1-of-N (N>=4) over ALL instances; record clean-core in mechanics_evidence as source-open with the Desecrated conflict noted. Desecrated/Revealed/Jawbone/PD-013, multi-fracture, side-directed Fracture, other classes stay separate gates. Review: reviews/P2C_M46_Fracture_Core_Mechanics_Design_Verification_Audit_Claude_v1.md.
+
+This is mechanics verification only. It admits no Fracture runtime, decides no Desecrated/PD-013 edge, releases no public numbers, and closes no MML/SOURCE-PROVENANCE/crafted-capacity/PD-013.
