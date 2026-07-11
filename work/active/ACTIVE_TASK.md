@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "2f1a6b5e75ca873f0e32aa44ebc2ab1569be4d64"
-updated_at_utc: "2026-07-11T08:54:21Z"
+repo_head_at_last_update: "daa42dcf664c96f8a28fa8d900d1a3c2a3e86759"
+updated_at_utc: "2026-07-11T10:30:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M42A_PERFECT_ESSENCE_QUARTERSTAFF_RUNTIME"
 
-allowed_next_action: "claude_audit_m42a_perfect_essence_quarterstaff_runtime"
+allowed_next_action: "chatgpt_user_gate_decision_on_m42a_perfect_essence_quarterstaff_runtime"
 forbidden_next_actions:
   - "accept_m42a_without_chatgpt_user_gate"
   - "admit_perfect_essence_seeking_or_infinite"
@@ -26,7 +26,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M42A_Perfect_Essence_Quarterstaff_Runtime_Result_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M42A_Perfect_Essence_Quarterstaff_Runtime_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -70,4 +70,10 @@ stop_conditions:
 
 # P2C Active Task
 
-M42-A is proposed and ready for Claude audit. Exactly six prepared Perfect Essence quarterstaff rows use one shared atomic executor with uniform terminal-feasible non-fractured removal and a `crafted_count == 0` precondition. Replacement, stacking, repeat application, and broader crafted-capacity remain source-open and unimplemented.
+Current live task: ChatGPT/User gate decision on the audited M42-A Perfect Essence quarterstaff runtime.
+
+Next actor: ChatGPT/User (gate decision).
+
+Allowed next action: decide. Claude verdict: GO — six Perfect Essence rows via one shared remove-then-guaranteed-add executor. Verified by execution: removal = uniform over the terminal-feasible non-fractured pool, both sub-cases correct (free target side -> all removable; full side -> only capacity-creating removals; empty -> no-transition before draw); operations.yaml removal wording updated to the feasible model; guaranteed mod installed exactly with NO random/weighted draw; atomic, fractured/unselected preserved; canonical index resolution; fail-closed. crafted_count==0 is an honest conservative floor (uses real capacity_snapshot; recorded project_model_source_open with broader_contract_closed:false - my promised catch, not baked as truth). Full suite 239 passed; fingerprint 230dc88 reproduces. Watchpoint: generalize crafted precondition to count<crafted_capacity (Astrid rune) when that gate opens. Removal rule + values stay project-model/source-open; MML/SOURCE-PROVENANCE/crafted-capacity/PD-013 open (`reviews/P2C_M42A_Perfect_Essence_Quarterstaff_Runtime_Audit_Claude_v1.md`).
+
+This is a proposed runtime delta only, not accepted until a ChatGPT/User gate. It does not admit Perfect Essence replacement/stacking/repeat, the Astrid/rune multi-crafted path, Omens/Whittling/side, Lesser/Corrupted or non-inventory Essences, Alchemy/Fracture/Jawbone/Reveal, longer chains, planner/optimizer/economics, public numeric output, or automation, and does not close crafted-capacity, MML, SOURCE/PROVENANCE, or PD-013.
