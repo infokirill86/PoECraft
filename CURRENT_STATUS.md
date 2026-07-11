@@ -51,12 +51,13 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - Repository Structure & Truth-Surface Audit: accepted after Claude GO; it confirmed conflicting first-read truth surfaces and historical tasks under `work/active/` as the cause of repeated stale-task failures.
 - Repository Structure Cleanup Wave A+B: accepted after Claude GO; it repairs read order, single-dispatcher enforcement, and stale canonical prose without changing runtime/mechanics/data or moving evidence.
 - Repo-integrity performance Wave D: accepted after Claude GO; full tracked-index hashing uses one batched Git stream per checksum tool while preserving full verification and manifest behavior.
-- M43-A Bounded Accepted-Operation Sequence Runtime: authorized and implemented as proposed for Claude audit; fixed caller-supplied 1-8-step sequences only, accepted executors only, no planner or new mechanic. Runtime acceptance still requires Claude audit and a later ChatGPT/User gate.
+- M43-A Bounded Accepted-Operation Sequence Runtime: accepted after Claude GO audit and ChatGPT/User gate. It evaluates caller-supplied fixed 1-8-step sequences over accepted executors, resolves every later step from the actual current branch state, preserves one-step direct parity, stops exact evaluation honestly at explicit ceilings, supports seeded deterministic replay, and fails closed on an admitted row without an accepted executor. It is an evaluator, not a route generator or optimizer.
+- M44 base-Alchemy mechanics/design verification: authorized as design-only and prepared for Claude audit. No Alchemy runtime or admission is accepted.
 
 ## Live routing
 
 - Always use verified `work/active/ACTIVE_TASK.md` for the current actor and allowed action; this file is a snapshot, not routing.
-- M43-A is routed to Claude audit. Alchemy remains deferred and all later operation/modifier/planner gates remain closed.
+- M44 base-Alchemy design/mechanics verification is routed to Claude audit. Alchemy runtime/admission and all later operation/modifier/planner gates remain closed.
 - Perfect/Lesser/Corrupted Essences, multi-Essence capacity semantics, Whittling, Omens, Alchemy, other operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
