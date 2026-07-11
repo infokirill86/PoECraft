@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "ee9ca03efeff104c009d17171819f203a6d5f0f8"
-updated_at_utc: "2026-07-11T11:05:04Z"
+repo_head_at_last_update: "6f9f97f9804db4900fedf76cb07e883bc41ab53c"
+updated_at_utc: "2026-07-11T11:40:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M43_NEXT_PROJECT_WAVE_DESIGN"
 
-allowed_next_action: "claude_audit_m43_next_project_wave_design"
+allowed_next_action: "chatgpt_user_gate_decision_on_m43_next_project_wave_design"
 forbidden_next_actions:
   - "implement_m43a_or_any_new_runtime"
   - "admit_omen_whittling_fracture_alchemy_or_other_mechanics"
@@ -23,7 +23,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M43_Next_Project_Wave_Design_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M43_Next_Project_Wave_Design_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -67,4 +67,10 @@ stop_conditions:
 
 # P2C Active Task
 
-M43 design proposes bounded fixed-sequence evaluation over already accepted operations. Claude audits the package next. M43-A implementation and every new mechanic remain closed pending a later ChatGPT/User gate.
+Current live task: ChatGPT/User gate decision on the audited M43 Next Project Wave design.
+
+Next actor: ChatGPT/User (gate decision).
+
+Allowed next action: decide. Claude verdict: GO on the design. It selects a BOUNDED FIXED-SEQUENCE EVALUATOR (1-8 user-supplied accepted-operation steps) as the next wave - the bridge from currency emulators to a crafting-route simulator, generalizing the accepted M36-A seam. Verified it is an evaluator, NOT a planner: runs the user's supplied route, explicit exclusions of planner/ranking/retry/conditional/economics/discovery, stop_on_no_transition pinned, dispatch only to accepted executors (admitted-but-no-executor fails closed), exact-under-ceilings with honest structured-stop. Design-only, nothing admitted. KEY DIRECTION DECISION for the gate: this DEFERS Alchemy (which Kirill earlier wanted next) in favor of sequence composition - a conscious strategic pivot, both legitimate; Claude leans for M43 (route-evaluator is the real product) but it is Kirill's/ChatGPT's call. Optimizer/planner/economics and all other mechanics stay gated (`reviews/P2C_M43_Next_Project_Wave_Design_Audit_Claude_v1.md`).
+
+This is design/selection verification only. It does not implement M43-A, admit any operation, build a planner/optimizer, release public numeric output, or authorize automation, and does not close MML, SOURCE/PROVENANCE, crafted-capacity, or PD-013.
