@@ -1,18 +1,18 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "76e00fb6dcb4998774e3abedcb99e0f768e6ae8d"
-updated_at_utc: "2026-07-11T21:40:00Z"
+repo_head_at_last_update: "ca7ac2bfec5a967bcbae6df99532fb9d351b77d2"
+updated_at_utc: "2026-07-11T21:58:51Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "M45A_INDEPENDENT_OMEN_LAYER_RUNTIME"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M46_FRACTURE_CORE_MECHANICS_DESIGN_VERIFICATION"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m45a_runtime_and_whittling_evidence_bump"
+allowed_next_action: "claude_audit_m46_fracture_core_mechanics_design_verification"
 forbidden_next_actions:
-  - "accept_m45a_without_chatgpt_user_gate"
-  - "admit_any_omen_outside_the_exact_ten_row_allowlist"
-  - "admit_historical_alchemy_coronation_greater_annulment_light_jawbone_or_reveal_omens"
-  - "change_accepted_base_operation_mechanics"
+  - "implement_or_admit_fracturing_orb_runtime"
+  - "resolve_revealed_desecrated_jawbone_reveal_or_pd013_behavior"
+  - "admit_new_omens_operations_or_modifier_layers"
+  - "change_accepted_operation_mechanics"
   - "add_conditional_retry_route_generation_planner_or_optimizer_behavior"
   - "release_public_numeric_probabilities"
   - "close_source_provenance_mml_crafted_capacity_or_pd013"
@@ -22,8 +22,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M45A_Independent_Omen_Layer_Runtime_Result_Codex_v1"
-current_review_path: "reviews/P2C_M45A_Independent_Omen_Layer_Runtime_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_M46_Fracture_Core_Mechanics_Design_Verification_Codex_v1"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -61,19 +61,14 @@ stop_conditions:
   - "Stop if ACTIVE_TASK.md frontmatter is invalid or missing mandatory fields."
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
-  - "Stop if any Omen outside the ten-row M45-A allowlist becomes executable."
-  - "Stop if canonical pool reuse, atomicity, exact mass, or direct/resolver/M43-A parity fails."
+  - "Stop if Fracture implementation or runtime admission begins."
+  - "Stop if source conflict is silently resolved instead of surfaced."
+  - "Stop if Revealed/Desecrated/Jawbone/Reveal or PD-013 behavior enters the clean core."
   - "Stop if planner/optimizer behavior, public numeric output, automation, or boundary closure enters scope."
 ---
 
 # P2C Active Task
 
-Current live task: ChatGPT/User gate decision on (a) the audited M45-A Independent Omen Layer Runtime (Claude GO) and (b) a small Claude-applied documentary evidence bump for Whittling.
+M45-A Independent Omen Layer Runtime and the Whittling documentary evidence bump are accepted by ChatGPT/User after Claude GO.
 
-Next actor: ChatGPT/User (gate decision).
-
-Claude verdict on M45-A: GO (see reviews/P2C_M45A_Independent_Omen_Layer_Runtime_Audit_Claude_v1.md).
-
-Whittling evidence bump (applied directly by Claude as a full participant, per Kirill 2026-07-11): in data/mechanics_evidence.yaml, whittling status -> USER_PLAYER_CONFIRMED_PROJECT_MODEL with an in-game-confirmed note (Kirill 2 tests: when two removable mods tie at the lowest level, both show as removable candidates but exactly one is removed at random). The selection RULE is unchanged (tie_breaker stays uniform_random_among_tied_lowest_level_instances) - documentary status only. Verified: mechanics_evidence is not a semantic-fingerprint input (fingerprint unchanged 3b20a622), no test pins the old strings, full suite 300 passed. This bundles with the M45-A acceptance; no self-acceptance - ChatGPT/User ratify.
-
-This is a proposed runtime delta (M45-A) plus a documentary evidence bump. It admits no new operation/mechanic, changes no Whittling behaviour, builds no planner/optimizer, releases no public numbers, and closes no MML/SOURCE-PROVENANCE/crafted-capacity/PD-013.
+M46 is design/mechanics verification only. Claude should audit the fresh source comparison, the clean Fracture candidate-pool and immutability contract, the deliberate fail-closed exclusion of all Desecrated/Revealed states, and the proposed later M46-A implementation boundary. No Fracture runtime is authorized by this package.

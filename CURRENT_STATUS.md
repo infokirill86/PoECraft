@@ -1,6 +1,6 @@
 # P2C - CURRENT STATUS
 
-last_updated: 2026-07-11
+last_updated: 2026-07-12
 
 Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_Manifest_v4.md.
 
@@ -55,14 +55,16 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M44 base-Alchemy mechanics/design verification: accepted after Claude GO audit and ChatGPT/User gate. The accepted project-model design uses non-fractured Normal/Magic quarterstaff input, an isolated empty Rare working state, exactly four sequential accepted ordinary weighted adds with branch-state pool rebuild, and one atomic commit. Fractured input remains separately gated.
 - M44-A base-Alchemy runtime: accepted after Claude GO audit and ChatGPT/User gate for base non-fractured quarterstaff Alchemy only. It discards Normal/Magic explicits on an isolated Rare working state, performs exactly four sequential accepted ordinary weighted adds with branch-state pool rebuild, and commits atomically. Sampling remains project-model/source-open; fractured input remains closed.
 - M45 Independent Omen Layer design: accepted after Claude GO audit and ChatGPT/User gate. It defines a single-operation modifier compiler, explicit Omen admission/availability metadata, a pinned ten-Omen clean core, and fail-closed compatibility; it does not itself accept runtime.
-- M45-A Independent Omen Layer runtime: authorized and implemented as proposed for Claude audit for exactly the ten gated Omens. Runtime acceptance still requires Claude audit and a later ChatGPT/User gate.
+- M45-A Independent Omen Layer runtime: accepted after Claude GO audit and ChatGPT/User gate for exactly the ten audited Omens. The accepted layer reuses canonical operation pools, keeps unsupported combinations fail-closed, includes the atomic Greater Exaltation two-add contract, and preserves direct/resolver/M43-A parity.
+- Whittling evidence: behavior is unchanged; lowest eligible modifier level is selected first and ties are uniform. The tie behavior is now user player-confirmed project-model evidence, not server truth.
+- M46 clean Fracture core mechanics/design verification: authorized and proposed for Claude audit only; Fracture runtime remains closed.
 
 ## Live routing
 
 - Always use verified `work/active/ACTIVE_TASK.md` for the current actor and allowed action; this file is a snapshot, not routing.
-- M45-A Independent Omen Layer runtime is routed to Claude audit. The ten-row implementation remains proposed and no further operation/modifier/planner gate is open.
-- Historical/drop-disabled Omens, Greater Annulment, Light/Desecrated, Jawbone/Reveal, Fracture, Essence capacity expansion, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
+- M46 clean Fracture mechanics/design verification is routed to Claude audit. No Fracture runtime is admitted by this design wave.
+- Historical/drop-disabled Omens, Greater Annulment, Light/Desecrated, Jawbone/Reveal and PD-013 interactions, Essence capacity expansion, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
 
-M45-A acceptance before audit/gate; every Omen outside the exact ten-row proposed allowlist; Alchemy/Coronation/Greater Annulment Omens; Light/Desecrated/Jawbone/Reveal modifiers; Alchemy variants and fractured-input Alchemy; Perfect/Lesser/Corrupted Essence expansion; multiple-Essence stacking/replacement/capacity semantics; Fracture/Desecrate/Jawbone/Reveal operations; conditional/retry route generation; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; broader MML closure; PD-013 closure; MC execution of unaccepted operations.
+Every Omen outside the accepted ten-row M45-A allowlist; Alchemy/Coronation/Greater Annulment Omens; Light/Desecrated/Jawbone/Reveal modifiers; Alchemy variants and fractured-input Alchemy; Perfect/Lesser/Corrupted Essence expansion; multiple-Essence stacking/replacement/capacity semantics; Fracture runtime before a later audit/gate; Desecrate/Jawbone/Reveal operations; conditional/retry route generation; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; broader MML closure; PD-013 closure; MC execution of unaccepted operations.

@@ -174,7 +174,7 @@ alchemy_m44a:
     commit_only_after_all_adds_succeed: true
     failure: no_transition_no_consumption_original_state_unchanged
 omen_layer_m45a:
-  runtime_status: USER_AUTHORIZED_PROPOSED_RUNTIME_PENDING_AUDIT
+  runtime_status: USER_ACCEPTED_PROJECT_RUNTIME
   evidence_level: project_model_source_open
   server_truth_claimed: false
   admitted_omen_ids:
