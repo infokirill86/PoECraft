@@ -47,11 +47,12 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M41-A Greater Essence Quarterstaff Runtime: accepted after Claude GO audit for exactly eight rows: Abrasion, Flames, Ice, Electricity, Battle, Haste, Seeking, and Infinite. One shared deterministic executor performs atomic Magic-to-Rare plus the row-declared canonical guaranteed modifier, preserving existing/fractured modifiers and using no random draw. General crafted-capacity semantics remain source-open/unverified.
 - M42 Perfect Essence Mechanics Verification: accepted after Claude GO audit. The repo contains six prepared quarterstaff rows.
 - M42-A Perfect Essence Quarterstaff Runtime: accepted after Claude GO audit for exactly six rows: Abrasion, Flames, Ice, Electricity, Battle, and Haste. The accepted project model selects uniformly over terminal-feasible non-fractured removals, installs the canonical guaranteed modifier atomically, and temporarily requires `crafted_count == 0`. Replacement, stacking, repeat application, Astrid/rune capacity, and broader crafted-capacity remain source-open.
-- M43 Next Project Wave Design: proposed after participant/source/repo review; selects bounded fixed-sequence evaluation over already accepted operations as the highest-value next wave. No M43-A implementation or new mechanic is authorized; Claude audit is next.
+- M43 Next Project Wave Design: Claude audit returned GO; design remains proposed pending a later ChatGPT/User direction decision. No M43-A implementation or new mechanic is authorized.
+- Repository Structure & Truth-Surface Audit: proposed after repeated stale-task/navigation failures; no cleanup, move, deletion, accepted-truth change, or runtime change has been applied. Claude audit is next.
 
 ## Next gate
 
-- Claude audits `packages/proposed/P2C_M43_Next_Project_Wave_Design_Codex_v1/`. M43-A implementation remains closed pending a later ChatGPT/User gate.
+- Claude audits `packages/proposed/P2C_Repo_Structure_Truth_Surface_Audit_Codex_v1/`. M43 design remains GO/proposed; M43-A remains closed pending a later ChatGPT/User gate.
 - Perfect/Lesser/Corrupted Essences, multi-Essence capacity semantics, Whittling, Omens, Alchemy, other operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
