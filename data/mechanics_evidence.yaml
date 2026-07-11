@@ -144,3 +144,30 @@ perfect_essence_m42a:
   atomicity:
     remove_and_guaranteed_add_commit_together: true
     failure: no_transition_no_consumption_original_state_unchanged
+alchemy_m44a:
+  runtime_status: USER_APPROVED_PROJECT_RULE
+  evidence_level: project_model_source_open
+  server_truth_claimed: false
+  source_refs:
+  - official_patch_0_3_1_alchemy
+  - poe2db_currency
+  authorized_operation_id: alchemy
+  input:
+    item_class: quarterstaff
+    rarities:
+    - normal
+    - magic
+    fractured_input_admitted: false
+  replacement:
+    discard_all_existing_explicit_modifiers: true
+    isolated_empty_rare_working_state: true
+  generation:
+    add_count: 4
+    selection: sequential_accepted_ordinary_weighted_add
+    rebuild_legality_capacity_family_groups_and_weights_after_each_add: true
+    prefix_suffix_distribution: weight_driven_under_three_per_side_capacity
+    fixed_two_prefix_two_suffix: false
+    exact_server_sampling_algorithm_verified: false
+  atomicity:
+    commit_only_after_all_adds_succeed: true
+    failure: no_transition_no_consumption_original_state_unchanged

@@ -52,12 +52,13 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - Repository Structure Cleanup Wave A+B: accepted after Claude GO; it repairs read order, single-dispatcher enforcement, and stale canonical prose without changing runtime/mechanics/data or moving evidence.
 - Repo-integrity performance Wave D: accepted after Claude GO; full tracked-index hashing uses one batched Git stream per checksum tool while preserving full verification and manifest behavior.
 - M43-A Bounded Accepted-Operation Sequence Runtime: accepted after Claude GO audit and ChatGPT/User gate. It evaluates caller-supplied fixed 1-8-step sequences over accepted executors, resolves every later step from the actual current branch state, preserves one-step direct parity, stops exact evaluation honestly at explicit ceilings, supports seeded deterministic replay, and fails closed on an admitted row without an accepted executor. It is an evaluator, not a route generator or optimizer.
-- M44 base-Alchemy mechanics/design verification: authorized as design-only and prepared for Claude audit. No Alchemy runtime or admission is accepted.
+- M44 base-Alchemy mechanics/design verification: accepted after Claude GO audit and ChatGPT/User gate. The accepted project-model design uses non-fractured Normal/Magic quarterstaff input, an isolated empty Rare working state, exactly four sequential accepted ordinary weighted adds with branch-state pool rebuild, and one atomic commit. Fractured input remains separately gated.
+- M44-A base-Alchemy runtime: authorized and implemented as proposed for Claude audit. Runtime acceptance still requires Claude audit and a later ChatGPT/User gate.
 
 ## Live routing
 
 - Always use verified `work/active/ACTIVE_TASK.md` for the current actor and allowed action; this file is a snapshot, not routing.
-- M44 base-Alchemy design/mechanics verification is routed to Claude audit. Alchemy runtime/admission and all later operation/modifier/planner gates remain closed.
+- M44-A base-Alchemy runtime is routed to Claude audit. Alchemy variants, fractured-input Alchemy, other item classes, and all later operation/modifier/planner gates remain closed.
 - Perfect/Lesser/Corrupted Essences, multi-Essence capacity semantics, Whittling, Omens, Alchemy, other operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open

@@ -37,6 +37,12 @@ from p2c_engine.monte_carlo.perfect_essence import (
     PerfectEssenceOperation,
     M42APerfectEssenceInvariantViolation,
 )
+from p2c_engine.monte_carlo.alchemy import (
+    M44A_ADD_COUNT,
+    M44A_ALCHEMY_OPERATION_ID,
+    M44A_SEMANTICS_VERSION,
+    AlchemyOperation,
+)
 from p2c_engine.static_data.game_data import StaticGameData
 
 
@@ -46,6 +52,7 @@ M39B_RESOLVER_SCHEMA_VERSION = "p2c.m39b.greater_perfect_exalted_chaos_runtime.v
 M40A_RESOLVER_SCHEMA_VERSION = "p2c.m40a.rarity_progression_runtime.v1"
 M41A_RESOLVER_SCHEMA_VERSION = "p2c.m41a.greater_essence_quarterstaff_runtime.v1"
 M42A_RESOLVER_SCHEMA_VERSION = "p2c.m42a.perfect_essence_quarterstaff_runtime.v1"
+M44A_RESOLVER_SCHEMA_VERSION = "p2c.m44a.alchemy_runtime.v1"
 ACCEPTED_RUNTIME_STATUS = "accepted_executable_runtime"
 BASE_VARIANT_IDS = frozenset({None, "", "base"})
 M39B_EXALTED_CURRENCY_IDS = frozenset({"greater_exalted", "perfect_exalted"})
@@ -59,6 +66,7 @@ AcceptedResolvedOperation = (
     | CatalogSingleAddOperation
     | GreaterEssenceOperation
     | PerfectEssenceOperation
+    | AlchemyOperation
 )
 OperationKind = Literal["engine_primitive", "catalog_operation"]
 
@@ -205,6 +213,9 @@ class OperationResolver:
         elif request.currency_id in M42A_OPERATION_IDS:
             operation = _compile_m42a_perfect_essence(self.static, row, request)
             schema_version = M42A_RESOLVER_SCHEMA_VERSION
+        elif request.currency_id == M44A_ALCHEMY_OPERATION_ID:
+            operation = _compile_m44a_alchemy(row, request)
+            schema_version = M44A_RESOLVER_SCHEMA_VERSION
         elif request.currency_id == ANNULMENT_OPERATION_ID:
             _validate_catalog_input_rarity(row, request.item_state)
             if declared_mml is not None:
@@ -555,6 +566,58 @@ def _compile_m42a_perfect_essence(
     return operation
 
 
+def _compile_m44a_alchemy(
+    row: dict[str, Any], request: OperationResolverRequest
+) -> AlchemyOperation:
+    _validate_catalog_input_rarity(row, request.item_state)
+    transition = row.get("transition")
+    remove = transition.get("remove") if isinstance(transition, Mapping) else None
+    add = transition.get("add") if isinstance(transition, Mapping) else None
+    sequence = transition.get("sequence") if isinstance(transition, Mapping) else None
+    if (
+        not isinstance(transition, Mapping)
+        or transition.get("atomic") is not True
+        or transition.get("output_rarity") != "rare"
+        or tuple(sequence or ())
+        != (
+            "discard_all_explicit",
+            "create_empty_rare_shell",
+            "add_ordinary_x4",
+            "commit",
+        )
+        or not isinstance(remove, Mapping)
+        or remove.get("kind") != "all_explicit"
+        or not isinstance(add, Mapping)
+        or add.get("kind") != "ordinary_weighted_sequential"
+        or add.get("count") != M44A_ADD_COUNT
+        or add.get("mml") is not None
+    ):
+        raise M38AResolverAdmissionError("unsupported admitted M44-A Alchemy transition")
+
+    raw_inputs = row.get("input_rarity")
+    if not isinstance(raw_inputs, (list, tuple)):
+        raise M38AResolverAdmissionError("invalid admitted M44-A Alchemy input_rarity")
+    try:
+        input_rarities = tuple(Rarity(value) for value in raw_inputs)
+    except (TypeError, ValueError) as exc:
+        raise M38AResolverAdmissionError(
+            "invalid admitted M44-A Alchemy input_rarity"
+        ) from exc
+    if input_rarities != (Rarity.NORMAL, Rarity.MAGIC):
+        raise M38AResolverAdmissionError(
+            "M44-A Alchemy admits exactly Normal and Magic input"
+        )
+    return AlchemyOperation(
+        mode_id=request.mode_id,
+        operation_id=request.currency_id,
+        item_class=request.item_state.item_class,
+        input_rarities=input_rarities,
+        output_rarity=Rarity.RARE,
+        add_count=M44A_ADD_COUNT,
+        semantics_version=M44A_SEMANTICS_VERSION,
+    )
+
+
 __all__ = [
     "ACCEPTED_RUNTIME_STATUS",
     "M38A_RESOLVER_SCHEMA_VERSION",
@@ -563,6 +626,7 @@ __all__ = [
     "M40A_RESOLVER_SCHEMA_VERSION",
     "M41A_RESOLVER_SCHEMA_VERSION",
     "M42A_RESOLVER_SCHEMA_VERSION",
+    "M44A_RESOLVER_SCHEMA_VERSION",
     "M38AResolverAdmissionError",
     "M38AResolverError",
     "OperationResolver",

@@ -325,6 +325,8 @@ def test_every_registered_currency_compiles_on_a_compatible_state(static) -> Non
                 ModifierInstance(SUFFIX_ATTACK_SPEED),
                 rarity=Rarity.MAGIC,
             )
+        elif currency_id == "alchemy":
+            state = _state(rarity=Rarity.NORMAL)
         elif currency_id.startswith("greater_essence_"):
             state = _state(rarity=Rarity.MAGIC)
         elif currency_id.startswith("perfect_essence_"):
@@ -572,10 +574,10 @@ def test_missing_executor_and_nonadmitted_operation_fail_closed(static) -> None:
     with pytest.raises(M43ASequenceAdmissionError, match="not admitted"):
         BoundedAcceptedOperationSequenceHarness(static=static).run(
             initial_state=_state(rarity=Rarity.NORMAL),
-            request=_request("alchemy"),
+            request=_request("fracturing_orb"),
             seed=43_001,
             sample_count=1,
-            run_id="m43a.alchemy_blocked",
+            run_id="m43a.fracturing_orb_blocked",
         )
 
 

@@ -67,6 +67,7 @@ def test_runtime_admission_status_table_is_explicit_and_narrow():
         'chaos',
         'greater_chaos',
         'perfect_chaos',
+        'alchemy',
         'greater_essence_abrasion',
         'greater_essence_flames',
         'greater_essence_ice',
@@ -97,7 +98,7 @@ def test_missing_runtime_admission_status_fails(tmp_path):
 def test_inactive_operation_cannot_be_executable_admitted(tmp_path):
     clone(tmp_path); p=tmp_path/'data/operations.yaml'
     def change(d):
-        row=next(r for r in d['operations'] if r['operation_id']=='alchemy')
+        row=next(r for r in d['operations'] if r['operation_id']=='fracturing_orb')
         row['runtime_admission_status']='accepted_executable_runtime'
     mutate_yaml(p, change)
     with pytest.raises(StaticDataDefect, match='executable-admitted'):

@@ -58,6 +58,13 @@ from .rarity_progression import (
     CatalogSingleAddHarness,
     CatalogSingleAddOperation,
 )
+from .alchemy import (
+    M44A_ALCHEMY_OPERATION_ID,
+    M44A_MAX_EXACT_PATHS,
+    AlchemyHarness,
+    AlchemyOperation,
+    M44AExactCeilingExceeded,
+)
 
 
 M43A_SCHEMA_VERSION = "p2c.m43a.bounded_accepted_operation_sequence.v1"
@@ -77,6 +84,7 @@ ExecutorId = Literal[
     "catalog_single_add",
     "greater_essence",
     "perfect_essence",
+    "alchemy",
 ]
 
 
@@ -433,6 +441,7 @@ class BoundedAcceptedOperationSequenceHarness:
         self.catalog_add = CatalogSingleAddHarness(static=static, code_version=code_version)
         self.greater_essence = GreaterEssenceHarness(static=static, code_version=code_version)
         self.perfect_essence = PerfectEssenceHarness(static=static, code_version=code_version)
+        self.alchemy = AlchemyHarness(static=static, code_version=code_version)
         self.code_version = code_version
 
     def enumerate_exact(
@@ -801,6 +810,15 @@ class BoundedAcceptedOperationSequenceHarness:
             return self._greater_exact(state, step, step_index, plan)
         if executor_id == "perfect_essence":
             return self._perfect_exact(state, step, step_index, plan, decision_id, max_candidates_per_pool)
+        if executor_id == "alchemy":
+            return self._alchemy_exact(
+                state,
+                step,
+                step_index,
+                plan,
+                decision_id,
+                max_candidates_per_pool,
+            )
         raise M43ASequenceAdmissionError(f"unsupported executor id: {executor_id}")
 
     def _sample_transition(
@@ -835,6 +853,16 @@ class BoundedAcceptedOperationSequenceHarness:
             return self._greater_sample(state, step, step_index, plan)
         if executor_id == "perfect_essence":
             return self._perfect_sample(state, step, step_index, plan, decision_source, sample_index, run_id)
+        if executor_id == "alchemy":
+            return self._alchemy_sample(
+                state,
+                step,
+                step_index,
+                plan,
+                decision_source,
+                sample_index,
+                run_id,
+            )
         raise M43ASequenceAdmissionError(f"unsupported executor id: {executor_id}")
 
     def _ordinary_exact(self, state, step, step_index, plan, decision_id, ceiling):
@@ -931,6 +959,58 @@ class BoundedAcceptedOperationSequenceHarness:
                 raise M43ASequenceInvariantViolation("perfect Essence feasible candidate became invalid")
             self.perfect_essence._assert_terminal_invariants(state, post, operation, selected)
             output.append(self._transition(state, post, step, step_index, plan, "perfect_essence", "completed", f"remove:{option.selected_key}|guaranteed:{operation.guaranteed_mod_id}", (option.decision_id,), (option.selected_key, operation.guaranteed_mod_id), len(pool.candidates), pool.result_fingerprint, None, Fraction(option.probability_numerator, option.probability_denominator), False))
+        return tuple(output)
+
+    def _alchemy_exact(self, state, step, step_index, plan, decision_id, ceiling):
+        operation = _expect_operation(plan, AlchemyOperation)
+        try:
+            paths = self.alchemy.enumerate_paths(
+                initial_state=state,
+                operation=operation,
+                decision_id_prefix=decision_id,
+                max_candidates_per_pool=ceiling,
+                max_exact_paths=M44A_MAX_EXACT_PATHS,
+            )
+        except M44AExactCeilingExceeded as exc:
+            raise _ExactCeilingExceeded(
+                self._ceiling_stop(
+                    "alchemy_internal_exact_ceiling_exceeded",
+                    exc.ceiling_name,
+                    exc.ceiling_limit,
+                    exc.observed_count,
+                    step_index,
+                    step,
+                )
+            ) from exc
+        output = []
+        for path in paths:
+            decision_ids = tuple(
+                trace.decision_id for trace in path.traces if trace.decision_id is not None
+            )
+            key = (
+                "alchemy:" + "|".join(path.selected_mod_ids)
+                if path.outcome == "completed"
+                else f"alchemy:NO_TRANSITION:{path.no_transition_reason}"
+            )
+            output.append(
+                self._transition(
+                    state,
+                    path.terminal_state,
+                    step,
+                    step_index,
+                    plan,
+                    "alchemy",
+                    path.outcome,
+                    key,
+                    decision_ids,
+                    path.selected_mod_ids,
+                    path.candidate_count_total,
+                    path.pool_digest,
+                    path.no_transition_reason,
+                    Fraction(path.probability_numerator, path.probability_denominator),
+                    path.outcome != "completed",
+                )
+            )
         return tuple(output)
 
     def _ordinary_sample(self, state, step, step_index, plan, source, sample_index, run_id):
@@ -1030,6 +1110,55 @@ class BoundedAcceptedOperationSequenceHarness:
         self.perfect_essence._assert_terminal_invariants(state, post, operation, selected)
         return self._transition(state, post, step, step_index, plan, "perfect_essence", "completed", f"remove:{decision.selected.key}|guaranteed:{operation.guaranteed_mod_id}", (decision.record.decision_id,), (decision.selected.key, operation.guaranteed_mod_id), decision.record.candidate_count, pool.result_fingerprint, None, Fraction(1, 1), False)
 
+    def _alchemy_sample(self, state, step, step_index, plan, source, sample_index, run_id):
+        operation = _expect_operation(plan, AlchemyOperation)
+        prefix = self._sample_decision_id(
+            run_id, sample_index, step_index, step, operation.operation_id
+        )
+        trajectory = self.alchemy.sample_once(
+            initial_state=state,
+            operation=operation,
+            decision_source=source,
+            sample_index=sample_index,
+            run_id=run_id,
+            decision_id_prefix=prefix,
+        )
+        decision_ids = tuple(
+            trace.decision_id
+            for trace in trajectory.traces
+            if trace.decision_id is not None
+        )
+        key = (
+            "alchemy:" + "|".join(trajectory.selected_mod_ids)
+            if trajectory.outcome == "completed"
+            else f"alchemy:NO_TRANSITION:{trajectory.no_transition_reason}"
+        )
+        terminal_state = state
+        if trajectory.outcome == "completed":
+            terminal_state = self.alchemy._working_state(state, operation)
+            for selected_mod_id in trajectory.selected_mod_ids:
+                terminal_state = _append_ordinary_modifier(
+                    terminal_state, selected_mod_id
+                )
+            self.alchemy._assert_terminal(state, terminal_state, operation)
+        return self._transition(
+            state,
+            terminal_state,
+            step,
+            step_index,
+            plan,
+            "alchemy",
+            trajectory.outcome,
+            key,
+            decision_ids,
+            trajectory.selected_mod_ids,
+            trajectory.candidate_count_total,
+            trajectory.pool_digest,
+            trajectory.no_transition_reason,
+            Fraction(1, 1),
+            trajectory.outcome != "completed",
+        )
+
     def _sample_decision_id(
         self, run_id, sample_index, step_index, step, operation_id, suffix=""
     ):
@@ -1072,7 +1201,7 @@ class BoundedAcceptedOperationSequenceHarness:
         return tuple(ExactExecutionTerminal(execution_terminal_key=key, terminal_state=representative[key].terminal_state, terminal_state_hash=representative[key].terminal_state_hash, outcome=representative[key].outcome, completed_step_count=representative[key].completed_step_count, terminal_step_index=representative[key].terminal_step_index, path_count=len(grouped_paths[key]), path_keys=tuple(sorted(grouped_paths[key])), probability_numerator=masses[key].numerator, probability_denominator=masses[key].denominator) for key in sorted(masses))
 
     def _assert_plan_executor(self, plan, executor_id):
-        expected = {"ordinary_add": OrdinaryAddOperation, "annulment": AnnulmentOperation, "chaos_like": ChaosLikeOperation, "catalog_single_add": CatalogSingleAddOperation, "greater_essence": GreaterEssenceOperation, "perfect_essence": PerfectEssenceOperation}[executor_id]
+        expected = {"ordinary_add": OrdinaryAddOperation, "annulment": AnnulmentOperation, "chaos_like": ChaosLikeOperation, "catalog_single_add": CatalogSingleAddOperation, "greater_essence": GreaterEssenceOperation, "perfect_essence": PerfectEssenceOperation, "alchemy": AlchemyOperation}[executor_id]
         if not isinstance(plan.operation, expected):
             raise M43ASequenceAdmissionError(f"executor registry/plan mismatch for {plan.currency_id}: expected {executor_id}, got {type(plan.operation).__name__}")
 
@@ -1087,6 +1216,7 @@ def _default_executor_mapping() -> dict[str, ExecutorId]:
     mapping.update({"greater_exalted": "ordinary_add", "perfect_exalted": "ordinary_add"})
     mapping.update({operation_id: "greater_essence" for operation_id in M41A_OPERATION_IDS})
     mapping.update({operation_id: "perfect_essence" for operation_id in M42A_OPERATION_IDS})
+    mapping[M44A_ALCHEMY_OPERATION_ID] = "alchemy"
     return mapping
 
 

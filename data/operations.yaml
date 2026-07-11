@@ -10,6 +10,7 @@ handler_declarations:
   support_augment: support_augment_handler
   greater_essence: greater_essence_handler
   perfect_essence: perfect_essence_handler
+  alchemy: alchemy_handler
   jawbone: jawbone_handler
   reveal: reveal_handler
 global_contracts:
@@ -484,8 +485,8 @@ operations:
       kind: ordinary_weighted_sequential
       count: 4
       mml: null
-  active_in_current_simulation: false
-  runtime_admission_status: data_reference_candidate
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: fracturing_orb
   group: fracture
   input_rarity:

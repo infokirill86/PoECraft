@@ -17,10 +17,10 @@ active_operation_groups:
 - support_augment
 - greater_essence
 - perfect_essence
+- alchemy
 - jawbone
 - reveal
 reference_only_operation_groups:
-- alchemy
 - fracture
 active_omen_system: true
 active_mechanics:

@@ -208,6 +208,7 @@ def test_m39b_rows_remain_admitted_with_later_m40a_surface() -> None:
         "perfect_exalted",
         "greater_chaos",
         "perfect_chaos",
+        "alchemy",
     }
     assert rows["exalted"]["runtime_admission_status"] == "accepted_executable_runtime"
 
