@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "0cc9f14290469ea6ba143a6113506ad90f4d859b"
-updated_at_utc: "2026-07-11T12:00:49Z"
+repo_head_at_last_update: "420f337506d258ca6ceed3a653044947f73c6a69"
+updated_at_utc: "2026-07-11T12:30:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "REPO_STRUCTURE_TRUTH_SURFACE_AUDIT"
 
-allowed_next_action: "claude_audit_repo_structure_truth_surface_audit"
+allowed_next_action: "chatgpt_user_gate_decision_on_repo_structure_truth_surface_audit"
 forbidden_next_actions:
   - "implement_cleanup_move_delete_or_archive_actions"
   - "accept_m43_or_start_m43a"
@@ -23,7 +23,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_Repo_Structure_Truth_Surface_Audit_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_Repo_Structure_Truth_Surface_Audit_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -67,4 +67,8 @@ stop_conditions:
 
 # P2C Active Task
 
-Claude audits the repository structure/truth-surface findings. No cleanup is authorized. M43 remains Claude-GO/proposed and M43-A remains closed.
+Claude audits the repository structure/truth-surface findings: verdict GO. Findings independently verified by scanning the repo: TS-02 (four tracked files in work/active/, three historical), TS-03/04/05 (START_HERE.md:58 + Workflow_Protocol:179 + OPEN_BLOCKERS say "only ordinary_add executable" - stale vs 24 accepted rows), TS-01 (CLAUDE.md reads START_HERE/CURRENT_STATUS before ACTIVE_TASK - reads stalest files first), TS-09 (39 dirs in packages/proposed, accepted/ has only README). Posture is safe: evidence immutable, no blind deletion, cleanup staged (Waves A-D) and separately gated. repo_head_at_last_update clarification is correct.
+
+Next: ChatGPT/User gate. Recommended follow-up = a separately gated cleanup task (Wave A+B first: destale the "only ordinary_add" first-read files by replacing volatile runtime lists with accepted-ledger references; remove the three historical work/active files from the current tree with git preserving history; require exactly one tracked file under work/active). Keep every accepted package/review byte-immutable. This is report-only; no cleanup applied. M43 direction decision (sequences vs Alchemy) stays independent and pending. Review: reviews/P2C_Repo_Structure_Truth_Surface_Audit_Audit_Claude_v1.md.
+
+No cleanup, move, deletion, evidence rewrite, runtime/mechanics/data/admission change, optimizer, public output, or automation is authorized by this audit.
