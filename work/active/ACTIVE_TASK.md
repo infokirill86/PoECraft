@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "4420a40b07038139922d706117bde550c43ce27e"
-updated_at_utc: "2026-07-11T20:55:00Z"
+repo_head_at_last_update: "76e00fb6dcb4998774e3abedcb99e0f768e6ae8d"
+updated_at_utc: "2026-07-11T21:40:00Z"
 
 status: "audited_pending_user_gate"
 next_actor: "chatgpt_user"
 active_task_id: "M45A_INDEPENDENT_OMEN_LAYER_RUNTIME"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m45a_independent_omen_layer_runtime"
+allowed_next_action: "chatgpt_user_gate_decision_on_m45a_runtime_and_whittling_evidence_bump"
 forbidden_next_actions:
   - "accept_m45a_without_chatgpt_user_gate"
   - "admit_any_omen_outside_the_exact_ten_row_allowlist"
@@ -68,8 +68,12 @@ stop_conditions:
 
 # P2C Active Task
 
-Claude audit of M45-A Independent Omen Layer Runtime: verdict GO. First Omen runtime - exactly the ten clean-core Omens admitted (other 7 blocked_or_out_of_scope; historical absent); omens.yaml now carries runtime_admission_status + availability_status (the admission registry I required - catalogue presence != execution). Filter hooks on accepted executors are additive (default None/False = base behaviour unchanged) and at the correct stages: Exalted add-side on add pool; Annulment removal-side on removable pool; Chaos/Erasure + Whittling filter the REMOVAL with add stage unchanged; Whittling = lowest_modifier_level then uniform tie; Perfect Essence Crystallisation on the terminal-feasible removal pool NOT the guaranteed add. Greater Exaltation matches the User-ratified contract: two sequential accepted adds, branch-state rebuild, exact product mass, atomic rollback/no-partial. omen.py fail-closes on unknown/non-admitted/unavailable/duplicate/incompatible/wrong-group via a pinned matrix. Direct/resolver/M43-A one-step parity + MC replay verified. mechanics_evidence omen_layer_m45a = project_model_source_open. 18 M45-A tests + 300 full suite pass; fingerprint reproduces package-pinned 3b20a622. Both design-audit conditions (admission registry; Greater Exaltation ratification) satisfied.
+Current live task: ChatGPT/User gate decision on (a) the audited M45-A Independent Omen Layer Runtime (Claude GO) and (b) a small Claude-applied documentary evidence bump for Whittling.
 
-Next: ChatGPT/User gate. Blocked Omens, historical, Greater Annulment 2-removal, light/Desecrated, Jawbone/Reveal/PD-013, Fracture, planner/optimizer stay closed. Review: reviews/P2C_M45A_Independent_Omen_Layer_Runtime_Audit_Claude_v1.md.
+Next actor: ChatGPT/User (gate decision).
 
-This is a proposed runtime delta only. It admits only the ten Omens over accepted operations, changes no base mechanic, builds no planner/optimizer, releases no public numbers, and closes no MML/SOURCE-PROVENANCE/crafted-capacity/PD-013.
+Claude verdict on M45-A: GO (see reviews/P2C_M45A_Independent_Omen_Layer_Runtime_Audit_Claude_v1.md).
+
+Whittling evidence bump (applied directly by Claude as a full participant, per Kirill 2026-07-11): in data/mechanics_evidence.yaml, whittling status -> USER_PLAYER_CONFIRMED_PROJECT_MODEL with an in-game-confirmed note (Kirill 2 tests: when two removable mods tie at the lowest level, both show as removable candidates but exactly one is removed at random). The selection RULE is unchanged (tie_breaker stays uniform_random_among_tied_lowest_level_instances) - documentary status only. Verified: mechanics_evidence is not a semantic-fingerprint input (fingerprint unchanged 3b20a622), no test pins the old strings, full suite 300 passed. This bundles with the M45-A acceptance; no self-acceptance - ChatGPT/User ratify.
+
+This is a proposed runtime delta (M45-A) plus a documentary evidence bump. It admits no new operation/mechanic, changes no Whittling behaviour, builds no planner/optimizer, releases no public numbers, and closes no MML/SOURCE-PROVENANCE/crafted-capacity/PD-013.

@@ -91,8 +91,10 @@ rarity_capacity_and_mutable_modifier_count:
 whittling:
   official_rule: remove the lowest modifier-level removable modifier
   tie_breaker: uniform_random_among_tied_lowest_level_instances
-  status: PROJECT_ADOPTED_INFERENCE
-  evidence_level: official wording confirms lowest level; tie behavior is not published
+  status: USER_PLAYER_CONFIRMED_PROJECT_MODEL
+  server_truth_claimed: false
+  evidence_level: official wording confirms lowest level; tie behavior is player-confirmed, not server-published
+  tie_breaker_evidence: In-game confirmed by user 2026-07-11 (2 tests). When two removable modifiers share the lowest modifier level, both are shown as removable candidates in the preview but exactly one is removed at random. This matches the existing uniform-among-tied-lowest project model; the selection rule is unchanged.
 lich_guarantee_one:
   runtime_status: USER_APPROVED_PROJECT_RULE
   source_label: PROJECT_POLICY / source-aligned project model
