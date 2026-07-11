@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from collections import Counter
+from collections.abc import Mapping
 from dataclasses import dataclass
 from fractions import Fraction
 from typing import Any
@@ -797,11 +798,11 @@ def _operation_id(operation: AcceptedM36AOperation) -> str:
     return operation.operation_id
 
 
-def _operation_row(operations: Any, operation_id: str) -> dict[str, Any] | None:
-    if not isinstance(operations, dict):
+def _operation_row(operations: Any, operation_id: str) -> Mapping[str, Any] | None:
+    if not isinstance(operations, Mapping):
         return None
     for row in operations.get("operations") or ():
-        if isinstance(row, dict) and row.get("operation_id") == operation_id:
+        if isinstance(row, Mapping) and row.get("operation_id") == operation_id:
             return row
     return None
 

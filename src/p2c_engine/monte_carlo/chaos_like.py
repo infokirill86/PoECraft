@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 from fractions import Fraction
 from typing import Any
@@ -631,17 +632,17 @@ class ChaosLikeMonteCarloHarness:
             raise M37AChaosLikeInvariantViolation(
                 f"Chaos-like operation row has unexpected group: {operation.operation_id}"
             )
-        transition = row.get("transition") if isinstance(row, dict) else None
-        remove = transition.get("remove") if isinstance(transition, dict) else None
-        add = transition.get("add") if isinstance(transition, dict) else None
+        transition = row.get("transition") if isinstance(row, Mapping) else None
+        remove = transition.get("remove") if isinstance(transition, Mapping) else None
+        add = transition.get("add") if isinstance(transition, Mapping) else None
         if (
-            not isinstance(transition, dict)
+            not isinstance(transition, Mapping)
             or transition.get("atomic") is not True
-            or not isinstance(remove, dict)
+            or not isinstance(remove, Mapping)
             or remove.get("kind") != "uniform_installed_instance"
             or remove.get("count") != 1
             or "fractured" not in (remove.get("exclude_flags") or ())
-            or not isinstance(add, dict)
+            or not isinstance(add, Mapping)
             or add.get("kind") != "ordinary_weighted"
             or add.get("count") != 1
         ):

@@ -47,15 +47,16 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M41-A Greater Essence Quarterstaff Runtime: accepted after Claude GO audit for exactly eight rows: Abrasion, Flames, Ice, Electricity, Battle, Haste, Seeking, and Infinite. One shared deterministic executor performs atomic Magic-to-Rare plus the row-declared canonical guaranteed modifier, preserving existing/fractured modifiers and using no random draw. General crafted-capacity semantics remain source-open/unverified.
 - M42 Perfect Essence Mechanics Verification: accepted after Claude GO audit. The repo contains six prepared quarterstaff rows.
 - M42-A Perfect Essence Quarterstaff Runtime: accepted after Claude GO audit for exactly six rows: Abrasion, Flames, Ice, Electricity, Battle, and Haste. The accepted project model selects uniformly over terminal-feasible non-fractured removals, installs the canonical guaranteed modifier atomically, and temporarily requires `crafted_count == 0`. Replacement, stacking, repeat application, Astrid/rune capacity, and broader crafted-capacity remain source-open.
-- M43 Next Project Wave Design: Claude audit returned GO; design remains proposed pending a later ChatGPT/User direction decision. No M43-A implementation or new mechanic is authorized.
+- M43 Next Project Wave Design: accepted after Claude GO; ChatGPT/User deliberately selected bounded accepted-operation sequence composition before Alchemy.
 - Repository Structure & Truth-Surface Audit: accepted after Claude GO; it confirmed conflicting first-read truth surfaces and historical tasks under `work/active/` as the cause of repeated stale-task failures.
 - Repository Structure Cleanup Wave A+B: accepted after Claude GO; it repairs read order, single-dispatcher enforcement, and stale canonical prose without changing runtime/mechanics/data or moving evidence.
-- Repo-integrity performance Wave D: authorized and implemented as proposed tooling only; full tracked-index hashing now uses one batched Git stream per checksum tool while preserving the committed manifest bytes. Acceptance requires Claude audit and a later ChatGPT/User gate.
+- Repo-integrity performance Wave D: accepted after Claude GO; full tracked-index hashing uses one batched Git stream per checksum tool while preserving full verification and manifest behavior.
+- M43-A Bounded Accepted-Operation Sequence Runtime: authorized and implemented as proposed for Claude audit; fixed caller-supplied 1-8-step sequences only, accepted executors only, no planner or new mechanic. Runtime acceptance still requires Claude audit and a later ChatGPT/User gate.
 
 ## Live routing
 
 - Always use verified `work/active/ACTIVE_TASK.md` for the current actor and allowed action; this file is a snapshot, not routing.
-- Wave D is routed to Claude audit. M43 design remains Claude-GO/proposed and M43-A remains closed pending a later ChatGPT/User gate.
+- M43-A is routed to Claude audit. Alchemy remains deferred and all later operation/modifier/planner gates remain closed.
 - Perfect/Lesser/Corrupted Essences, multi-Essence capacity semantics, Whittling, Omens, Alchemy, other operations, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open

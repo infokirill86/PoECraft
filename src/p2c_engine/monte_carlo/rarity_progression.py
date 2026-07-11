@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections import defaultdict
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass, replace
 from fractions import Fraction
 from typing import Any
@@ -489,14 +489,14 @@ class CatalogSingleAddHarness:
             )
 
         transition = row.get("transition")
-        remove = transition.get("remove") if isinstance(transition, dict) else None
-        add = transition.get("add") if isinstance(transition, dict) else None
+        remove = transition.get("remove") if isinstance(transition, Mapping) else None
+        add = transition.get("add") if isinstance(transition, Mapping) else None
         if (
-            not isinstance(transition, dict)
+            not isinstance(transition, Mapping)
             or transition.get("atomic") is not True
-            or not isinstance(remove, dict)
+            or not isinstance(remove, Mapping)
             or remove.get("kind") != "none"
-            or not isinstance(add, dict)
+            or not isinstance(add, Mapping)
             or add.get("kind") != "ordinary_weighted"
             or add.get("count") != 1
             or add.get("side_filter") not in (None,)
@@ -592,11 +592,11 @@ class CatalogSingleAddHarness:
         )
 
 
-def _operation_row(operations: Any, operation_id: str) -> dict[str, Any] | None:
-    if not isinstance(operations, dict):
+def _operation_row(operations: Any, operation_id: str) -> Mapping[str, Any] | None:
+    if not isinstance(operations, Mapping):
         return None
     for row in operations.get("operations") or ():
-        if isinstance(row, dict) and row.get("operation_id") == operation_id:
+        if isinstance(row, Mapping) and row.get("operation_id") == operation_id:
             return row
     return None
 
@@ -611,7 +611,7 @@ def _rarity(value: Any, operation_id: str) -> Rarity:
 
 
 def _rarity_tuple(value: Any, operation_id: str) -> tuple[Rarity, ...]:
-    if not isinstance(value, list) or not value:
+    if not isinstance(value, (list, tuple)) or not value:
         raise M40ARarityProgressionInvariantViolation(
             f"invalid input_rarity in admitted row: {operation_id}"
         )
@@ -633,13 +633,13 @@ def _precondition_tuple(
 ) -> tuple[CatalogSingleAddPrecondition, ...]:
     if value is None:
         return ()
-    if not isinstance(value, list):
+    if not isinstance(value, (list, tuple)):
         raise M40ARarityProgressionInvariantViolation(
             f"invalid preconditions in admitted row: {operation_id}"
         )
     output: list[CatalogSingleAddPrecondition] = []
     for row in value:
-        if not isinstance(row, dict):
+        if not isinstance(row, Mapping):
             raise M40ARarityProgressionInvariantViolation(
                 f"invalid precondition in admitted row: {operation_id}"
             )
