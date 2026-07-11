@@ -1,18 +1,19 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "150021e5a0a75727bd8d1c81965b52cef6b229a5"
-updated_at_utc: "2026-07-10T22:25:13Z"
+repo_head_at_last_update: "1a73d51d51115dbe496626b1d22872f61f3b8de0"
+updated_at_utc: "2026-07-11T07:58:32Z"
 
-status: "awaiting_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "POST_M41A_NEXT_GATE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M42_PERFECT_ESSENCE_MECHANICS_VERIFICATION"
 
-allowed_next_action: "chatgpt_user_decide_next_operation_or_modifier_wave"
+allowed_next_action: "claude_audit_m42_perfect_essence_mechanics_verification"
 forbidden_next_actions:
-  - "start_next_mechanics_or_runtime_wave_without_explicit_gate"
-  - "admit_perfect_lesser_or_corrupted_essence_runtime"
-  - "decide_multiple_essence_stacking_replacement_or_capacity_semantics"
-  - "accept_whittling_or_omen_runtime"
+  - "implement_or_admit_perfect_essence_runtime"
+  - "treat_current_yaml_as_accepted_perfect_essence_mechanics"
+  - "close_crafted_capacity_or_repeat_application_contract"
+  - "admit_lesser_or_corrupted_essence_runtime"
+  - "accept_whittling_omen_or_side_filter_runtime"
   - "implement_alchemy_fracture_desecrate_jawbone_or_reveal"
   - "implement_longer_chains_or_planner"
   - "optimizer_economics_advice"
@@ -24,8 +25,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M41A_Greater_Essence_Quarterstaff_Runtime_Result_Codex_v1"
-current_review_path: "reviews/P2C_M41A_Greater_Essence_Quarterstaff_Runtime_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_M42_Perfect_Essence_Mechanics_Verification_Codex_v1"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -63,11 +64,10 @@ stop_conditions:
   - "Stop if ACTIVE_TASK.md frontmatter is invalid or missing mandatory fields."
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
-  - "Stop if any new mechanics/runtime wave starts without explicit ChatGPT/User authorization."
-  - "Stop if crafted-capacity, SOURCE/PROVENANCE, broader MML, or PD-013 closure is implied."
-  - "Stop if public numeric output, optimizer/economics/advice, automation, or an unauthorized operation enters scope."
+  - "Stop before runtime while removal-feasibility or crafted-replacement policy is unresolved."
+  - "Stop if Perfect Essence runtime/admission, Omen behavior, public numeric output, optimizer/economics/advice, automation, or boundary closure enters scope."
 ---
 
 # P2C Active Task
 
-M41-A Greater Essence Quarterstaff Runtime is accepted for exactly eight audited rows. Crafted-capacity remains source-open/unverified, and no multiple-Essence, stacking, replacement, or Perfect-Essence semantics are accepted. The next project move requires an explicit ChatGPT/User gate.
+M42 Perfect Essence mechanics verification is ready for Claude audit. The package identifies six prepared quarterstaff rows and leaves two load-bearing rules for later ChatGPT/User decision: capacity-conditioned removal and existing-crafted-modifier/repeat application behavior. No runtime is implemented or admitted.
