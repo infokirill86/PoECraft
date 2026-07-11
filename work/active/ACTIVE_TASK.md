@@ -1,33 +1,29 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "3279874d9e487d082b018e7c87e320d1a03a1fa0"
-updated_at_utc: "2026-07-11T10:15:07Z"
+repo_head_at_last_update: "ee9ca03efeff104c009d17171819f203a6d5f0f8"
+updated_at_utc: "2026-07-11T11:05:04Z"
 
-status: "awaiting_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "POST_M42A_NEXT_GATE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M43_NEXT_PROJECT_WAVE_DESIGN"
 
-allowed_next_action: "chatgpt_user_decide_next_operation_or_modifier_wave"
+allowed_next_action: "claude_audit_m43_next_project_wave_design"
 forbidden_next_actions:
-  - "start_next_mechanics_or_runtime_wave_without_explicit_gate"
-  - "admit_perfect_essence_seeking_or_infinite"
-  - "implement_essence_replacement_stacking_or_repeat_application"
-  - "expand_astrid_or_rune_multi_crafted_capacity"
-  - "change_lesser_or_corrupted_essence_runtime"
-  - "accept_whittling_omen_or_side_filter_runtime"
-  - "implement_alchemy_fracture_desecrate_jawbone_or_reveal"
-  - "implement_longer_chains_or_planner"
-  - "optimizer_economics_advice"
+  - "implement_m43a_or_any_new_runtime"
+  - "admit_omen_whittling_fracture_alchemy_or_other_mechanics"
+  - "implement_essence_replacement_stacking_repeat_or_astrid_rune_capacity"
+  - "implement_desecrate_jawbone_reveal_or_close_pd013"
+  - "create_planner_optimizer_economics_advice_or_ranking"
   - "release_public_numeric_probabilities"
-  - "close_crafted_capacity_source_provenance_mml_or_pd013"
+  - "close_source_provenance_mml_crafted_capacity_or_pd013"
   - "enable_automation_or_github_actions"
   - "agent_self_acceptance"
 
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M42A_Perfect_Essence_Quarterstaff_Runtime_Result_Codex_v1"
-current_review_path: "reviews/P2C_M42A_Perfect_Essence_Quarterstaff_Runtime_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_M43_Next_Project_Wave_Design_Codex_v1"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -65,10 +61,10 @@ stop_conditions:
   - "Stop if ACTIVE_TASK.md frontmatter is invalid or missing mandatory fields."
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
-  - "Stop if any new mechanics/runtime wave starts without explicit ChatGPT/User authorization."
-  - "Stop if crafted replacement/repeat, Astrid/rune capacity, public numeric output, optimizer/economics/advice, automation, or boundary closure enters scope."
+  - "Stop if audit would turn into implementation or operation admission."
+  - "Stop if public numeric output, optimizer/economics/advice, automation, or boundary closure enters scope."
 ---
 
 # P2C Active Task
 
-M42-A Perfect Essence Quarterstaff Runtime is accepted for exactly six audited rows. The `crafted_count == 0` precondition remains a conservative source-open floor and does not establish replacement, repeat, or Astrid/rune capacity behavior. The next project move requires an explicit ChatGPT/User gate.
+M43 design proposes bounded fixed-sequence evaluation over already accepted operations. Claude audits the package next. M43-A implementation and every new mechanic remain closed pending a later ChatGPT/User gate.
