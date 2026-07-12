@@ -1,18 +1,19 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "10597e4008964650ce2b71f43c41ff3b0874e073"
-updated_at_utc: "2026-07-12T11:05:34Z"
+repo_head_at_last_update: "5122428d2e963a430a54bfd2878754dbfbee187a"
+updated_at_utc: "2026-07-12T14:51:46Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "M47A2_REVEAL_OFFER_GENERATION_DESIGN_VERIFICATION"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M47A2V_REVEAL_SAMPLING_VERIFICATION"
 
-allowed_next_action: "chatgpt_user_gate_m47a2_after_claude_go"
+allowed_next_action: "claude_audit_m47a2v_reveal_sampling_verification"
 forbidden_next_actions:
-  - "accept_or_implement_d3_d5_without_explicit_chatgpt_user_gate"
+  - "accept_or_promote_d3_d5_from_observations_without_explicit_chatgpt_user_gate"
   - "implement_or_admit_reveal_or_echoes_runtime"
   - "implement_omen_of_light_necromancy_lich_or_putrefaction"
   - "admit_multiple_placeholders_or_revealed_desecrated_fracture_runtime"
+  - "publish_captured_probability_results_or_crafting_advice"
   - "add_conditional_retry_route_generation_planner_or_optimizer_behavior"
   - "release_public_numeric_probabilities"
   - "close_source_provenance_mml_crafted_capacity_or_pd013"
@@ -22,8 +23,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M47A2_Reveal_Offer_Generation_Design_Verification_Codex_v1"
-current_review_path: "reviews/P2C_M47A2_Reveal_Offer_Generation_Design_Verification_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_M47A2V_Reveal_Sampling_Verification_Codex_v1"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -61,8 +62,9 @@ stop_conditions:
   - "Stop if ACTIVE_TASK.md frontmatter is invalid or missing mandatory fields."
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
-  - "Stop if a D3-D5 candidate is represented as accepted mechanics."
-  - "Stop if design work turns into Reveal or Echoes implementation/admission."
+  - "Stop if a D3-D5 candidate or limited observation set is represented as accepted mechanics."
+  - "Stop if evidence tooling turns into Reveal or Echoes implementation/admission."
+  - "Stop if D4 is inferred without reproducible setups and eligible-pool evidence."
   - "Stop if an external-source conflict is silently resolved."
   - "Stop if revealed-Desecrated Fracture runtime or PD-013 closure enters scope."
   - "Stop if planner/optimizer behavior, public numeric output, automation, or boundary closure enters scope."
@@ -70,8 +72,8 @@ stop_conditions:
 
 # P2C Active Task
 
-M47-A1 Jawbone + Desecrated Placeholder Runtime is accepted after Claude GO audit. Codex completed the design/mechanics verification for the next base Reveal floor. The package confirms the visible three-offer/one-user-choice contour, proposes an exact auditable D3-A/D4-A/D5-A project model without accepting it, and recommends splitting Echoes runtime because MML/constraint persistence on reroll remains source-conflicted.
+M47-A2 Reveal Offer Generation Design Verification is accepted as design-only after Claude GO audit. D3-A, D4-A, and D5-A remain proposed candidate models; no Reveal or Echoes runtime is authorized.
 
-Claude audited M47-A2 with verdict **GO (design/mechanics verification only)** (`reviews/P2C_M47A2_Reveal_Offer_Generation_Design_Verification_Audit_Claude_v1.md`): confirmed design-only (one documentary evidence line), nothing presented as accepted mechanics/server truth, no source conflict silently resolved (Ancient+Echoes MML persistence flagged to User), Echoes correctly split to a later gate, candidate contract reuses accepted kernels and is fail-closed, Fracture/PD-013 boundary preserved. D4 offer-sampling stays the load-bearing open decision for in-game verification.
+Codex created the proposed M47-A2V offline evidence-support layer: an in-game capture protocol, canonical observation schema, fail-closed validator/analyzer, decision criteria, and focused tests. The analyzer reports contradictions and uncertainty but cannot update runtime or accepted truth. D4 remains inconclusive without homogeneous reproducible setups and eligible-pool/weight snapshots. Ancient+Echoes MML persistence remains a separate unresolved conflict.
 
-Next: ChatGPT/User gate — decide D3/D4/D5 (D4 sampling is the in-game-verification candidate) before any base Reveal runtime is authorized. No Reveal/Echoes runtime is authorized. D3-D5, named-Lich/Necromancy, Omen of Light, Putrefaction, revealed-Desecrated Fracture runtime, and PD-013 remain gated.
+Next: Claude audits `packages/proposed/P2C_M47A2V_Reveal_Sampling_Verification_Codex_v1/`. D3-D5 acceptance, Reveal/Echoes runtime, named-Lich/Necromancy, Omen of Light, Putrefaction, revealed-Desecrated Fracture runtime, public numeric release, and PD-013 closure remain gated.

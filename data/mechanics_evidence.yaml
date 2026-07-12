@@ -157,6 +157,13 @@ m47_ratified_rules:
     rune_bypass: false
     reveal_runtime_admitted: false
     d3_d5_closed: false
+  reveal_offer_design_m47a2:
+    status: USER_ACCEPTED_DESIGN_ONLY
+    d3_a_status: PROPOSED_CANDIDATE_NOT_ACCEPTED
+    d4_a_status: PROPOSED_CANDIDATE_NOT_ACCEPTED
+    d5_a_status: PROPOSED_CANDIDATE_NOT_ACCEPTED
+    reveal_runtime_admitted: false
+    echoes_runtime_admitted: false
 approved_contract_authority:
   rule: After user review and approval, runtime YAML is authoritative for the simulator until a later approved change.
 perfect_essence_m42a:

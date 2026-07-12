@@ -1,0 +1,219 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: p2c.m47a2v.reveal_observation.v1
+title: P2C M47-A2V Reveal Observation Dataset
+type: object
+additionalProperties: false
+required:
+- schema_version
+- observations
+properties:
+  schema_version:
+    const: p2c.m47a2v.reveal_observation.v1
+  observations:
+    type: array
+    minItems: 1
+    items:
+      $ref: '#/$defs/observation'
+$defs:
+  modifier_row:
+    type: object
+    additionalProperties: false
+    required:
+    - modifier_id
+    - tier
+    - family_id
+    - group_ids
+    - exclusive
+    properties:
+      modifier_id:
+        type: string
+        minLength: 1
+      tier:
+        type: integer
+        minimum: 1
+      family_id:
+        type: string
+        minLength: 1
+      group_ids:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+          minLength: 1
+      exclusive:
+        type: boolean
+      generation_weight:
+        type:
+        - integer
+        - 'null'
+        minimum: 0
+  offer:
+    type: object
+    additionalProperties: false
+    required:
+    - modifier_id
+    - tier
+    - family_id
+    - group_ids
+    - exclusive
+    - display_order
+    properties:
+      modifier_id:
+        type: string
+        minLength: 1
+      tier:
+        type: integer
+        minimum: 1
+      family_id:
+        type: string
+        minLength: 1
+      group_ids:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+          minLength: 1
+      exclusive:
+        type: boolean
+      generation_weight:
+        type:
+        - integer
+        - 'null'
+        minimum: 0
+      display_order:
+        type: integer
+        minimum: 1
+        maximum: 3
+  observation:
+    type: object
+    additionalProperties: false
+    required:
+    - observation_id
+    - setup_id
+    - item_class
+    - item_level
+    - jawbone_row
+    - stored_mml
+    - placeholder_side
+    - installed_modifier_ids
+    - installed_family_ids
+    - installed_group_ids
+    - compatible_exclusive_known
+    - compatible_exclusive_modifier_ids
+    - offers
+    - reveal_success_or_failure
+    - display_order_recorded
+    - item_unchanged_after_failure
+    - currency_consumed_on_failure
+    - screenshot_references
+    - notes
+    properties:
+      observation_id:
+        type: string
+        minLength: 1
+      setup_id:
+        type: string
+        minLength: 1
+      captured_at_utc:
+        type:
+        - string
+        - 'null'
+        format: date-time
+      item_class:
+        const: quarterstaff
+      item_level:
+        type: integer
+        minimum: 1
+      jawbone_row:
+        enum:
+        - gnawed_jawbone
+        - preserved_jawbone
+        - ancient_jawbone
+      stored_mml:
+        type:
+        - integer
+        - 'null'
+        minimum: 1
+      placeholder_side:
+        enum:
+        - prefix
+        - suffix
+      installed_modifier_ids:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+          minLength: 1
+      installed_family_ids:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+          minLength: 1
+      installed_group_ids:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+          minLength: 1
+      compatible_exclusive_known:
+        type: boolean
+      compatible_exclusive_modifier_ids:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+          minLength: 1
+      eligible_pool_snapshot:
+        type:
+        - array
+        - 'null'
+        items:
+          $ref: '#/$defs/modifier_row'
+      offers:
+        type: array
+        items:
+          $ref: '#/$defs/offer'
+      reveal_success_or_failure:
+        enum:
+        - success
+        - failure
+      failure_code:
+        type:
+        - string
+        - 'null'
+      display_order_recorded:
+        type: boolean
+      item_unchanged_after_failure:
+        type:
+        - boolean
+        - 'null'
+      currency_consumed_on_failure:
+        type:
+        - boolean
+        - 'null'
+      screenshot_references:
+        type: array
+        items:
+          type: string
+          minLength: 1
+      notes:
+        type: string
+    allOf:
+    - if:
+        properties:
+          reveal_success_or_failure:
+            const: success
+      then:
+        properties:
+          offers:
+            minItems: 3
+            maxItems: 3
+    - if:
+        properties:
+          reveal_success_or_failure:
+            const: failure
+      then:
+        properties:
+          offers:
+            maxItems: 0
