@@ -1,19 +1,18 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "5abc11c0b85c8b500adca99c2826f19d30d0f961"
-updated_at_utc: "2026-07-12T09:20:00Z"
+repo_head_at_last_update: "9a898b4588cf0cc16ac264ff8d705fa15bec8b39"
+updated_at_utc: "2026-07-12T08:43:49Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "M46A_FRACTURE_CORE_RUNTIME"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M47_DESECRATED_JAWBONE_REVEAL_MECHANICS_DESIGN"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m46a_fracture_core_runtime"
+allowed_next_action: "claude_audit_m47_desecrated_jawbone_reveal_mechanics_design"
 forbidden_next_actions:
-  - "chatgpt_user_accept_m46a_before_claude_audit"
-  - "resolve_desecrated_revealed_jawbone_reveal_or_pd013_behavior"
-  - "admit_multiple_side_directed_non_quarterstaff_or_variant_fracture"
-  - "admit_new_omens_operations_or_modifier_layers"
-  - "change_accepted_operation_mechanics"
+  - "implement_or_admit_jawbone_reveal_desecrated_or_related_omen_runtime"
+  - "silently_resolve_pd013_or_source_conflicts"
+  - "extend_m46a_to_desecrated_states"
+  - "admit_putrefaction_multi_placeholder_or_corruption_behavior"
   - "add_conditional_retry_route_generation_planner_or_optimizer_behavior"
   - "release_public_numeric_probabilities"
   - "close_source_provenance_mml_crafted_capacity_or_pd013"
@@ -23,8 +22,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M46A_Fracture_Core_Runtime_Result_Codex_v1"
-current_review_path: "reviews/P2C_M46A_Fracture_Core_Runtime_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_M47_Desecrated_Jawbone_Reveal_Mechanics_Design_Codex_v1"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -62,16 +61,14 @@ stop_conditions:
   - "Stop if ACTIVE_TASK.md frontmatter is invalid or missing mandatory fields."
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
-  - "Stop if M46-A implementation is treated as accepted before Claude audit and a later User gate."
-  - "Stop if a source conflict is silently resolved instead of surfaced."
-  - "Stop if Desecrated/Revealed/Jawbone/Reveal or PD-013 behavior enters the clean core."
+  - "Stop if M47 design is treated as runtime authorization or accepted mechanics."
+  - "Stop if prepared YAML policy is promoted without source or User gate."
+  - "Stop if the documentation-versus-emulator Fracture conflict is silently resolved."
   - "Stop if planner/optimizer behavior, public numeric output, automation, or boundary closure enters scope."
 ---
 
 # P2C Active Task
 
-Claude audit of M46-A Fracture Core Runtime: verdict GO. First Fracture runtime - only fracturing_orb admitted. Preconditions fail-closed: <4 explicit, existing fracture, unrevealed placeholder, or any desecrated instance rejected (clean floor; PD-013 stays open). Uniform combined-pool selection (Candidate weight 1, no side-first, no generation weight; crafted eligible); one-bit atomic mutation preserving crafted (fractured+crafted). Fractured immutability verified across accepted Annulment/Chaos removal + capacity + Alchemy fail-closed. Direct/resolver/M43-A parity + MC<->exact convergence. mechanics_evidence fracture_core_m46a = project_model_source_open (uniform_without_generation_weights). bounded_sequence change is additive fracture executor registration. 16 M46-A tests + 316 full suite pass; fingerprint 2e5e4454 self-consistent (pinned-fingerprint tests pass). Closes the Fracture mechanic.
+Audit the M47 Desecrated/Jawbone/Reveal mechanics reconstruction and proposed split. Verify the fresh trusted-source comparison, the distinction between prepared repository policy and accepted truth, the explicit User decision list, the conditional base Jawbone/Reveal M47-A boundary, the separately gated modifier layer, and the unresolved Fracture/PD-013 conflict.
 
-Watchpoints: pinned base already fractured -> Fracture applies to OTHER rare states; Desecrated<->Fracture interaction deferred to the Desecrate wave (rules recorded). Next: ChatGPT/User gate. Review: reviews/P2C_M46A_Fracture_Core_Runtime_Audit_Claude_v1.md.
-
-This is a proposed runtime delta only. It admits only base fracturing_orb, decides no Desecrated/PD-013 edge, builds no planner/optimizer, releases no public numbers, and closes no crafted-capacity/MML/SOURCE-PROVENANCE/PD-013.
+M46-A is accepted. M47 is design/mechanics verification only: no Jawbone, Reveal, Desecrated, related Omen, or PD-013 runtime is authorized.
