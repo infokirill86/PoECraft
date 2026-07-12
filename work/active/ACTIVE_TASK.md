@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "bd40cd14a8feb25f9b69b907d5864294c48b74f0"
-updated_at_utc: "2026-07-12T07:57:55Z"
+repo_head_at_last_update: "5abc11c0b85c8b500adca99c2826f19d30d0f961"
+updated_at_utc: "2026-07-12T09:20:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M46A_FRACTURE_CORE_RUNTIME"
 
-allowed_next_action: "claude_audit_m46a_fracture_core_runtime"
+allowed_next_action: "chatgpt_user_gate_decision_on_m46a_fracture_core_runtime"
 forbidden_next_actions:
   - "chatgpt_user_accept_m46a_before_claude_audit"
   - "resolve_desecrated_revealed_jawbone_reveal_or_pd013_behavior"
@@ -24,7 +24,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M46A_Fracture_Core_Runtime_Result_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M46A_Fracture_Core_Runtime_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -70,6 +70,8 @@ stop_conditions:
 
 # P2C Active Task
 
-Audit the proposed M46-A clean base Fracture runtime. Verify the combined uniform installed-instance pool, crafted-flag preservation, atomic one-flag mutation, exact/seeded evidence, accepted-operation immutability regressions, resolver/M43-A parity, and fail-closed exclusion of every disputed or unauthorized edge.
+Claude audit of M46-A Fracture Core Runtime: verdict GO. First Fracture runtime - only fracturing_orb admitted. Preconditions fail-closed: <4 explicit, existing fracture, unrevealed placeholder, or any desecrated instance rejected (clean floor; PD-013 stays open). Uniform combined-pool selection (Candidate weight 1, no side-first, no generation weight; crafted eligible); one-bit atomic mutation preserving crafted (fractured+crafted). Fractured immutability verified across accepted Annulment/Chaos removal + capacity + Alchemy fail-closed. Direct/resolver/M43-A parity + MC<->exact convergence. mechanics_evidence fracture_core_m46a = project_model_source_open (uniform_without_generation_weights). bounded_sequence change is additive fracture executor registration. 16 M46-A tests + 316 full suite pass; fingerprint 2e5e4454 self-consistent (pinned-fingerprint tests pass). Closes the Fracture mechanic.
 
-M46 design is accepted. M46-A runtime is proposed only and requires Claude audit followed by a separate ChatGPT/User acceptance gate.
+Watchpoints: pinned base already fractured -> Fracture applies to OTHER rare states; Desecrated<->Fracture interaction deferred to the Desecrate wave (rules recorded). Next: ChatGPT/User gate. Review: reviews/P2C_M46A_Fracture_Core_Runtime_Audit_Claude_v1.md.
+
+This is a proposed runtime delta only. It admits only base fracturing_orb, decides no Desecrated/PD-013 edge, builds no planner/optimizer, releases no public numbers, and closes no crafted-capacity/MML/SOURCE-PROVENANCE/PD-013.
