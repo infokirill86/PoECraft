@@ -83,6 +83,9 @@ def test_runtime_admission_status_table_is_explicit_and_narrow():
         'perfect_essence_electricity',
         'perfect_essence_battle',
         'perfect_essence_haste',
+        'gnawed_jawbone',
+        'preserved_jawbone',
+        'ancient_jawbone',
     ]
 
 
@@ -189,7 +192,7 @@ def test_perfect_essence_prevalidate_change_changes_semantic_fingerprint(tmp_pat
     assert changed.semantic_fingerprint != baseline.semantic_fingerprint
 
 
-def test_jawbone_prevalidate_change_only_changes_source_fingerprint(tmp_path):
+def test_admitted_jawbone_prevalidate_change_changes_semantic_fingerprint(tmp_path):
     clone(tmp_path); baseline=build_static_game_data(tmp_path)
     p=tmp_path/'data/operations.yaml'
     def change(d):
@@ -198,10 +201,10 @@ def test_jawbone_prevalidate_change_only_changes_source_fingerprint(tmp_path):
     mutate_yaml(p, change)
     changed=build_static_game_data(tmp_path)
     assert changed.source_fingerprint != baseline.source_fingerprint
-    assert changed.semantic_fingerprint == baseline.semantic_fingerprint
+    assert changed.semantic_fingerprint != baseline.semantic_fingerprint
 
 
-def test_jawbone_legal_sides_change_only_changes_source_fingerprint(tmp_path):
+def test_admitted_jawbone_side_policy_change_changes_semantic_fingerprint(tmp_path):
     clone(tmp_path); baseline=build_static_game_data(tmp_path)
     p=tmp_path/'data/operations.yaml'
     def change(d):
@@ -210,4 +213,4 @@ def test_jawbone_legal_sides_change_only_changes_source_fingerprint(tmp_path):
     mutate_yaml(p, change)
     changed=build_static_game_data(tmp_path)
     assert changed.source_fingerprint != baseline.source_fingerprint
-    assert changed.semantic_fingerprint == baseline.semantic_fingerprint
+    assert changed.semantic_fingerprint != baseline.semantic_fingerprint

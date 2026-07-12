@@ -202,21 +202,6 @@ def test_m46a_crafted_selection_preserves_crafted_and_changes_one_flag(static) -
             ),
             "desecrated_modifier_state_forbidden",
         ),
-        (
-            _state(
-                ModifierInstance(PREFIX_PHYSICAL),
-                ModifierInstance(PREFIX_ACCURACY),
-                ModifierInstance(SUFFIX_ATTACK_SPEED),
-                ModifierInstance(SUFFIX_CRIT),
-                placeholder=DesecratedPlaceholder(
-                    side=Side.PREFIX,
-                    jawbone_id="ancient_jawbone",
-                    reveal_mml=40,
-                    lich_tag_constraint=None,
-                ),
-            ),
-            "unrevealed_desecrated_state_forbidden",
-        ),
     ),
 )
 def test_m46a_invalid_inputs_fail_closed_without_mutation(static, state, reason) -> None:

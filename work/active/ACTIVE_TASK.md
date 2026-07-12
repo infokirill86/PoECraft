@@ -1,18 +1,18 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "988d006da2812c594a2026fcfae25ea2ec92e21d"
-updated_at_utc: "2026-07-12T11:00:00Z"
+repo_head_at_last_update: "441f880456d60bb5d74a457cc00d8eb3a2fe6663"
+updated_at_utc: "2026-07-12T10:06:14Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "M47_MECHANICS_DECISION_CLOSURE"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M47A1_JAWBONE_PLACEHOLDER_RUNTIME"
 
-allowed_next_action: "chatgpt_user_gate_decision_on_m47_mechanics_decision_closure"
+allowed_next_action: "claude_audit_m47a1_jawbone_placeholder_runtime"
 forbidden_next_actions:
-  - "implement_or_admit_jawbone_reveal_desecrated_echoes_light_or_combined_fracture_runtime"
-  - "promote_d1_d5_candidate_yaml_without_trusted_evidence_or_user_gate"
-  - "reinterpret_ratified_reveal_desecrated_fracture_or_echoes_rules"
-  - "admit_putrefaction_multi_placeholder_or_corruption_behavior"
+  - "accept_m47a1_without_chatgpt_user_gate"
+  - "implement_reveal_or_select_d3_d5_sampling_policy"
+  - "implement_echoes_omen_of_light_necromancy_lich_or_putrefaction"
+  - "admit_multiple_placeholders_or_revealed_desecrated_fracture_runtime"
   - "add_conditional_retry_route_generation_planner_or_optimizer_behavior"
   - "release_public_numeric_probabilities"
   - "close_source_provenance_mml_crafted_capacity_or_pd013"
@@ -22,8 +22,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M47_Mechanics_Decision_Closure_Codex_v1"
-current_review_path: "reviews/P2C_M47_Mechanics_Decision_Closure_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_M47A1_Jawbone_Placeholder_Runtime_Result_Codex_v1"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -61,16 +61,14 @@ stop_conditions:
   - "Stop if ACTIVE_TASK.md frontmatter is invalid or missing mandatory fields."
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
-  - "Stop if a D1-D5 recommendation is treated as accepted policy."
-  - "Stop if runtime implementation or admission begins."
-  - "Stop if a few observations are represented as proof of an exact server algorithm."
+  - "Stop if M47-A1 requires selecting D3-D5 or implementing Reveal."
+  - "Stop if revealed-Desecrated Fracture runtime or PD-013 closure enters scope."
+  - "Stop if any row beyond the three authorized Jawbones is admitted."
   - "Stop if planner/optimizer behavior, public numeric output, automation, or boundary closure enters scope."
 ---
 
 # P2C Active Task
 
-Claude audit of M47 Mechanics Decision Closure: verdict GO. Documentary only (mechanics_evidence.yaml +29/-3; no src/runtime; fingerprint unchanged 2e5e4454; 316 tests pass). Records EXACTLY Kirill's ratified Desecrated decisions as USER_RATIFIED_PROJECT_RULE / server_truth_claimed false / runtime NOT admitted: Reveal 3->1; single-desecrated max 1, no rune; unrevealed placeholder counts_toward_fracture_minimum but eligible_fracture_target false (1-of-3); revealed = valid Fracture target -> combined fractured+desecrated valid; Echoes separate currency, same mod may reappear, tier-level; Omen of Light separate gate. PD-013 correctly stays OPEN (pd013_blocker_closed false; runtime_extension_admitted false). The genuinely-open D1-D5 stay PENDING with recommendations-not-accepted; critically reveal.sampling_algorithm_closed=false so D4 (exact offer sampling) is NOT force-closed - matches my prior routing.
+M47 Mechanics Decision Closure is accepted. D1-A and D2-A are accepted project-base policies for the Jawbone clean core. Codex implemented the proposed M47-A1 runtime for exactly Gnawed, Preserved, and Ancient Jawbone, including canonical hidden placeholders, atomic D1/D2 transitions, exact/seeded execution, resolver and bounded-sequence parity, and the hidden-placeholder Fracture minimum-count/non-target rule.
 
-Next: ChatGPT/User gate. Before M47-A, the gate must explicitly select D1-D5 (esp D4 sampling - candidate for Kirill in-game check). Omen of Light, Echoes, Lich, Fracture combined-state runtime, PD-013 stay gated. Review: reviews/P2C_M47_Mechanics_Decision_Closure_Audit_Claude_v1.md.
-
-This records project-model decisions only. It admits no runtime, closes no PD-013/MML/SOURCE-PROVENANCE/crafted-capacity, releases no public numbers, and decides no D1-D5 sampling model.
+Next: Claude audits `packages/proposed/P2C_M47A1_Jawbone_Placeholder_Runtime_Result_Codex_v1/`. M47-A1 is proposed, not accepted. Reveal, D3-D5, Echoes, Omen of Light, multiple placeholders, revealed-Desecrated Fracture runtime, and PD-013 remain closed.

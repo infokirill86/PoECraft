@@ -138,6 +138,23 @@ from .fracture import (
     M46AFractureInvariantViolation,
     build_fracture_pool,
 )
+from .jawbone import (
+    M47A1_FIXED_SEEDS,
+    M47A1_OPERATION_IDS,
+    M47A1_SCHEMA_VERSION,
+    M47A1_SEMANTICS_VERSION,
+    ExactJawbonePath,
+    ExactJawboneTerminal,
+    JawboneCandidateMetadata,
+    JawboneHarness,
+    JawboneOperation,
+    JawbonePoolResult,
+    JawboneRunResult,
+    JawboneTrajectory,
+    M47A1JawboneError,
+    M47A1JawboneInvariantViolation,
+    build_jawbone_pool,
+)
 
 __all__ = [
     "ANNULMENT_OPERATION_ID",
@@ -258,4 +275,19 @@ __all__ = [
     "M46AFractureError",
     "M46AFractureInvariantViolation",
     "build_fracture_pool",
+    "M47A1_FIXED_SEEDS",
+    "M47A1_OPERATION_IDS",
+    "M47A1_SCHEMA_VERSION",
+    "M47A1_SEMANTICS_VERSION",
+    "ExactJawbonePath",
+    "ExactJawboneTerminal",
+    "JawboneCandidateMetadata",
+    "JawboneHarness",
+    "JawboneOperation",
+    "JawbonePoolResult",
+    "JawboneRunResult",
+    "JawboneTrajectory",
+    "M47A1JawboneError",
+    "M47A1JawboneInvariantViolation",
+    "build_jawbone_pool",
 ]

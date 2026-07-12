@@ -106,22 +106,23 @@ lich_guarantee_one:
     persists_through_abyssal_echoes_reroll: true
   verification_todo: Re-check in game before exact probability treats the Lich model as final server truth.
 fracturing_revealed_desecrated:
-  runtime_status: USER_RATIFIED_PROJECT_RULE_RUNTIME_NOT_ADMITTED
+  runtime_status: USER_RATIFIED_PROJECT_RULE_PARTIALLY_ADMITTED
   evidence_level: user_authority_over_source_conflict
   server_truth_claimed: false
   pd013_blocker_closed: false
   unrevealed_placeholder:
     counts_toward_fracture_minimum: true
     eligible_fracture_target: false
+    runtime_admitted_in_m47a1: true
   revealed_modifier:
     craft_of_exile_emulator: eligible
     external_documentation: ineligible
     in_game: user_project_rule_ratified
     eligible_fracture_target: true
     combined_fractured_and_desecrated_flags_valid: true
-  runtime_extension_admitted: false
+  revealed_runtime_extension_admitted: false
 m47_ratified_rules:
-  runtime_status: USER_RATIFIED_PROJECT_RULES_RUNTIME_NOT_ADMITTED
+  runtime_status: USER_RATIFIED_PROJECT_RULES_PARTIALLY_ADMITTED
   server_truth_claimed: false
   reveal:
     offer_count: 3
@@ -138,6 +139,24 @@ m47_ratified_rules:
   omen_of_light:
     separate_later_gate: true
     runtime_admitted: false
+  jawbone_clean_core_m47a1:
+    runtime_status: USER_AUTHORIZED_PROPOSED_RUNTIME_PENDING_AUDIT
+    authorized_operation_ids:
+    - gnawed_jawbone
+    - preserved_jawbone
+    - ancient_jawbone
+    d1_side_selection:
+      one_free_side: install_on_that_side_without_removal
+      both_free_sides: uniform_prefix_or_suffix
+      select_full_side_while_other_side_free: false
+    d2_full_item_replacement:
+      selection: uniform_over_all_removable_nonfractured_installed_instances
+      placeholder_side: removed_instance_side
+      atomic: true
+    one_hidden_or_revealed_per_item: true
+    rune_bypass: false
+    reveal_runtime_admitted: false
+    d3_d5_closed: false
 approved_contract_authority:
   rule: After user review and approval, runtime YAML is authoritative for the simulator until a later approved change.
 perfect_essence_m42a:
@@ -245,7 +264,7 @@ omen_layer_m45a:
   - fracture
   - essence_repeat_replacement_capacity
 fracture_core_m46a:
-  runtime_status: USER_AUTHORIZED_PROPOSED_RUNTIME_PENDING_AUDIT
+  runtime_status: USER_ACCEPTED_RUNTIME
   evidence_level: project_model_source_open
   server_truth_claimed: false
   source_refs:
@@ -268,11 +287,10 @@ fracture_core_m46a:
     failure: no_transition_no_consumption_original_state_unchanged
   disputed_states_fail_closed:
     desecrated_modifier_present: true
-    unrevealed_desecrated_placeholder_present: true
+    unrevealed_desecrated_placeholder_present: false
     pd013_closed: false
   still_closed:
   - revealed_desecrated_fracture_interaction
-  - unrevealed_desecrated_fracture_interaction
   - multiple_fractures
   - side_directed_fracture
   - non_quarterstaff_classes

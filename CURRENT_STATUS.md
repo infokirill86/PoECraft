@@ -59,12 +59,14 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - Whittling evidence: behavior is unchanged; lowest eligible modifier level is selected first and ties are uniform. The tie behavior is now user player-confirmed project-model evidence, not server truth.
 - M46 clean Fracture core mechanics/design verification: accepted after Claude GO audit and ChatGPT/User gate.
 - M46-A clean Fracture core runtime: accepted after Claude GO audit and ChatGPT/User gate for base `fracturing_orb` only. Desecrated/Revealed/Jawbone/PD-013 behavior remains outside the accepted runtime.
-- M47 Desecrated/Jawbone/Reveal mechanics design: accepted as design-only after Claude GO audit and ChatGPT/User gate. M47-A runtime is not authorized. The D1-D5 mechanics-decision closure wave is proposed; ratified Desecrated/Fracture and Echoes rules remain non-executable until later gates.
+- M47 Desecrated/Jawbone/Reveal mechanics design: accepted as design-only after Claude GO audit and ChatGPT/User gate.
+- M47 Mechanics Decision Closure: accepted as the documentary record of already ratified Desecrated rules. D1-A/D2-A are accepted project-base policies for the three-row Jawbone clean core; D3-D5 and Reveal sampling remain open.
+- M47-A1 Jawbone + Desecrated Placeholder Clean-Core Runtime: authorized and implemented as a proposed result for exactly Gnawed, Preserved, and Ancient Jawbone; it awaits Claude audit and later User acceptance. The hidden placeholder counts toward Fracture's minimum but is never a Fracture target. Revealed-Desecrated Fracture runtime remains closed.
 
 ## Live routing
 
 - Always use verified `work/active/ACTIVE_TASK.md` for the current actor and allowed action; this file is a snapshot, not routing.
-- M47 D1-D5 mechanics-decision closure is the active proposed wave. No M47 runtime is authorized.
+- M47-A1 three-row Jawbone placeholder runtime is the active proposed wave awaiting Claude audit. Reveal and D3-D5 remain closed.
 - Historical/drop-disabled Omens, Greater Annulment, Light/Desecrated, Jawbone/Reveal and PD-013 interactions, Essence capacity expansion, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open

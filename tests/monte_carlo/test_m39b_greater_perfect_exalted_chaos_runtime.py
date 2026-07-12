@@ -25,6 +25,7 @@ from p2c_engine.monte_carlo.ordinary_add import (
 from p2c_engine.monte_carlo.rarity_progression import M40A_OPERATION_IDS
 from p2c_engine.monte_carlo.greater_essence import M41A_OPERATION_IDS
 from p2c_engine.monte_carlo.perfect_essence import M42A_OPERATION_IDS
+from p2c_engine.monte_carlo.jawbone import M47A1_OPERATION_IDS
 from p2c_engine.operations.resolver import (
     M39B_RESOLVER_SCHEMA_VERSION,
     M38AResolverAdmissionError,
@@ -201,7 +202,7 @@ def test_m39b_rows_remain_admitted_with_later_m40a_surface() -> None:
         operation_id
         for operation_id, row in rows.items()
         if row["runtime_admission_status"] == "accepted_executable_runtime"
-    } == M40A_OPERATION_IDS | M41A_OPERATION_IDS | M42A_OPERATION_IDS | {
+    } == M40A_OPERATION_IDS | M41A_OPERATION_IDS | M42A_OPERATION_IDS | M47A1_OPERATION_IDS | {
         "annulment",
         "chaos",
         "greater_exalted",

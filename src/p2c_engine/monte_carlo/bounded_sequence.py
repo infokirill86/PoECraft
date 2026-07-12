@@ -77,6 +77,14 @@ from .fracture import (
     _metadata_by_candidate_key as _fracture_metadata_by_candidate_key,
     _assert_fracture_transition,
 )
+from .jawbone import (
+    M47A1_OPERATION_IDS,
+    JawboneHarness,
+    JawboneOperation,
+    _apply_candidate as _apply_jawbone_candidate,
+    _assert_transition as _assert_jawbone_transition,
+    _metadata_by_key as _jawbone_metadata_by_key,
+)
 
 
 M43A_SCHEMA_VERSION = "p2c.m43a.bounded_accepted_operation_sequence.v1"
@@ -98,6 +106,7 @@ ExecutorId = Literal[
     "perfect_essence",
     "alchemy",
     "fracture",
+    "jawbone",
 ]
 
 
@@ -459,6 +468,7 @@ class BoundedAcceptedOperationSequenceHarness:
             static=static, code_version=code_version
         )
         self.fracture = FractureHarness(static=static, code_version=code_version)
+        self.jawbone = JawboneHarness(static=static, code_version=code_version)
         self.code_version = code_version
 
     def enumerate_exact(
@@ -853,6 +863,10 @@ class BoundedAcceptedOperationSequenceHarness:
             return self._fracture_exact(
                 state, step, step_index, plan, decision_id, max_candidates_per_pool
             )
+        if executor_id == "jawbone":
+            return self._jawbone_exact(
+                state, step, step_index, plan, decision_id, max_candidates_per_pool
+            )
         raise M43ASequenceAdmissionError(f"unsupported executor id: {executor_id}")
 
     def _sample_transition(
@@ -910,6 +924,16 @@ class BoundedAcceptedOperationSequenceHarness:
             )
         if executor_id == "fracture":
             return self._fracture_sample(
+                state,
+                step,
+                step_index,
+                plan,
+                decision_source,
+                sample_index,
+                run_id,
+            )
+        if executor_id == "jawbone":
+            return self._jawbone_sample(
                 state,
                 step,
                 step_index,
@@ -980,6 +1004,49 @@ class BoundedAcceptedOperationSequenceHarness:
                     "fracture",
                     "applied",
                     f"fracture:{option.selected_key}",
+                    (option.decision_id,),
+                    (option.selected_key,),
+                    len(pool.candidates),
+                    option.candidate_digest,
+                    None,
+                    Fraction(option.probability_numerator, option.probability_denominator),
+                    False,
+                )
+            )
+        return tuple(output)
+
+    def _jawbone_exact(self, state, step, step_index, plan, decision_id, ceiling):
+        operation = _expect_operation(plan, JawboneOperation)
+        pool = self.jawbone.build_pool(state, operation)
+        self._candidate_ceiling(pool.candidates, ceiling, step_index, step)
+        if not pool.candidates:
+            return (
+                self._no_transition(
+                    state,
+                    step,
+                    step_index,
+                    plan,
+                    "jawbone",
+                    pool.empty_reason or "jawbone_transition_pool_exhausted",
+                    pool.result_fingerprint,
+                ),
+            )
+        metadata = _jawbone_metadata_by_key(pool)
+        output = []
+        for option in branch_options(decision_id, pool.candidates):
+            selected = metadata[option.selected_key]
+            post = _apply_jawbone_candidate(state, operation, selected)
+            _assert_jawbone_transition(state, post, operation, selected, self.static)
+            output.append(
+                self._transition(
+                    state,
+                    post,
+                    step,
+                    step_index,
+                    plan,
+                    "jawbone",
+                    "applied",
+                    f"jawbone:{option.selected_key}",
                     (option.decision_id,),
                     (option.selected_key,),
                     len(pool.candidates),
@@ -1253,6 +1320,44 @@ class BoundedAcceptedOperationSequenceHarness:
             False,
         )
 
+    def _jawbone_sample(self, state, step, step_index, plan, source, sample_index, run_id):
+        operation = _expect_operation(plan, JawboneOperation)
+        pool = self.jawbone.build_pool(state, operation)
+        if not pool.candidates:
+            return self._no_transition(
+                state,
+                step,
+                step_index,
+                plan,
+                "jawbone",
+                pool.empty_reason or "jawbone_transition_pool_exhausted",
+                pool.result_fingerprint,
+            )
+        decision_id = self._sample_decision_id(
+            run_id, sample_index, step_index, step, operation.operation_id
+        )
+        decision = source.choose_one(decision_id, pool.candidates)
+        selected = _jawbone_metadata_by_key(pool)[decision.selected.key]
+        post = _apply_jawbone_candidate(state, operation, selected)
+        _assert_jawbone_transition(state, post, operation, selected, self.static)
+        return self._transition(
+            state,
+            post,
+            step,
+            step_index,
+            plan,
+            "jawbone",
+            "applied",
+            f"jawbone:{decision.selected.key}",
+            (decision.record.decision_id,),
+            (decision.selected.key,),
+            decision.record.candidate_count,
+            decision.record.candidate_digest,
+            None,
+            Fraction(1, 1),
+            False,
+        )
+
     def _chaos_sample(self, state, step, step_index, plan, source, sample_index, run_id):
         operation = _expect_operation(plan, ChaosLikeOperation)
         removal_pool = self.chaos.build_removal_pool(state, operation)
@@ -1474,7 +1579,7 @@ class BoundedAcceptedOperationSequenceHarness:
         return tuple(ExactExecutionTerminal(execution_terminal_key=key, terminal_state=representative[key].terminal_state, terminal_state_hash=representative[key].terminal_state_hash, outcome=representative[key].outcome, completed_step_count=representative[key].completed_step_count, terminal_step_index=representative[key].terminal_step_index, path_count=len(grouped_paths[key]), path_keys=tuple(sorted(grouped_paths[key])), probability_numerator=masses[key].numerator, probability_denominator=masses[key].denominator) for key in sorted(masses))
 
     def _assert_plan_executor(self, plan, executor_id):
-        expected = {"ordinary_add": OrdinaryAddOperation, "annulment": AnnulmentOperation, "chaos_like": ChaosLikeOperation, "catalog_single_add": CatalogSingleAddOperation, "greater_essence": GreaterEssenceOperation, "perfect_essence": PerfectEssenceOperation, "alchemy": AlchemyOperation, "fracture": FractureOperation}[executor_id]
+        expected = {"ordinary_add": OrdinaryAddOperation, "annulment": AnnulmentOperation, "chaos_like": ChaosLikeOperation, "catalog_single_add": CatalogSingleAddOperation, "greater_essence": GreaterEssenceOperation, "perfect_essence": PerfectEssenceOperation, "alchemy": AlchemyOperation, "fracture": FractureOperation, "jawbone": JawboneOperation}[executor_id]
         if not isinstance(plan.operation, expected):
             raise M43ASequenceAdmissionError(f"executor registry/plan mismatch for {plan.currency_id}: expected {executor_id}, got {type(plan.operation).__name__}")
 
@@ -1491,6 +1596,7 @@ def _default_executor_mapping() -> dict[str, ExecutorId]:
     mapping.update({operation_id: "perfect_essence" for operation_id in M42A_OPERATION_IDS})
     mapping[M44A_ALCHEMY_OPERATION_ID] = "alchemy"
     mapping[FRACTURING_ORB_OPERATION_ID] = "fracture"
+    mapping.update({operation_id: "jawbone" for operation_id in M47A1_OPERATION_IDS})
     return mapping
 
 

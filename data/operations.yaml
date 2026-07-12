@@ -497,16 +497,13 @@ operations:
     atomic: true
     output_rarity: rare
     preconditions:
-    - type: occupied_explicit_slots
+    - type: installed_modifier_or_placeholder_count
       operator: '>='
       value: 4
     - type: fractured_modifier_count
       operator: ==
       value: 0
     - type: desecrated_modifier_count
-      operator: ==
-      value: 0
-    - type: unrevealed_desecrated_count
       operator: ==
       value: 0
     target:
@@ -528,7 +525,7 @@ operations:
       craft_of_exile_emulator_observation: eligible target
       external_documentation_claim: ineligible target
       in_game_verification: not performed
-      runtime_behavior_for_current_simulation: clean-core runtime rejects every Desecrated or unrevealed-placeholder state before selection; disputed rule cannot affect execution
+      runtime_behavior_for_current_simulation: unrevealed placeholders count toward the minimum installed count but are excluded from the target pool; revealed Desecrated modifiers remain rejected pending a separate gate
   active_in_current_simulation: true
   runtime_admission_status: accepted_executable_runtime
 - operation_id: install_astrid
@@ -895,21 +892,18 @@ operations:
     item_level_max: 64
     reveal_mml: null
     side_selection:
-      forced_by_omen:
-        rule: use forced side only
-        failure: NO_TRANSITION if forced side is neither free nor replaceable
-      without_omen:
-        legal_sides: all free or replaceable sides
-        selection: uniform_random_over_legal_sides
-        failure: NO_TRANSITION if legal_sides is empty
+      when_one_side_has_capacity: install_on_the_only_free_side
+      when_both_sides_have_capacity: uniform_prefix_or_suffix
+      never_select_full_side_while_other_side_has_capacity: true
     replacement:
-      when_selected_side_full: true
+      only_when_item_fully_occupied: true
       target:
         kind: uniform_installed_instance
-        side: selected_side
+        selection_scope: combined_prefix_suffix
         exclude_flags:
         - fractured
-      failure: NO_TRANSITION if selected side is full and filtered removable target pool is empty
+      placeholder_side: removed_instance_side
+      failure: NO_TRANSITION if full item has no removable non-fractured instance
     install:
       kind: unrevealed_desecrated_placeholder
       stored_context:
@@ -917,19 +911,15 @@ operations:
       - jawbone_id
       - reveal_mml
       - lich_tag_constraint
-    legal_side_definition:
-      free_side: current side count is below side capacity
-      replaceable_full_side: current side count equals side capacity and at least one installed instance on that side is removable
-        after excluding fractured instances
-    failure_atomicity: Jawbone and all paired Omens remain unconsumed when no legal transition exists.
+    failure_atomicity: Jawbone remains unconsumed and the source item remains unchanged when no legal transition exists.
     prevalidate:
     - item is Rare
     - item has no existing Desecrated modifier or placeholder
     - item level satisfies Jawbone maximum
-    - at least one legal side exists after Omen constraints
-    - if selected side is full, at least one non-fractured removable instance exists on that side
+    - use D1-A while any side has capacity
+    - use D2-A only when the item is fully occupied
   active_in_current_simulation: true
-  runtime_admission_status: blocked_or_out_of_scope
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: preserved_jawbone
   group: jawbone
   input_rarity:
@@ -945,21 +935,18 @@ operations:
     item_level_max: null
     reveal_mml: null
     side_selection:
-      forced_by_omen:
-        rule: use forced side only
-        failure: NO_TRANSITION if forced side is neither free nor replaceable
-      without_omen:
-        legal_sides: all free or replaceable sides
-        selection: uniform_random_over_legal_sides
-        failure: NO_TRANSITION if legal_sides is empty
+      when_one_side_has_capacity: install_on_the_only_free_side
+      when_both_sides_have_capacity: uniform_prefix_or_suffix
+      never_select_full_side_while_other_side_has_capacity: true
     replacement:
-      when_selected_side_full: true
+      only_when_item_fully_occupied: true
       target:
         kind: uniform_installed_instance
-        side: selected_side
+        selection_scope: combined_prefix_suffix
         exclude_flags:
         - fractured
-      failure: NO_TRANSITION if selected side is full and filtered removable target pool is empty
+      placeholder_side: removed_instance_side
+      failure: NO_TRANSITION if full item has no removable non-fractured instance
     install:
       kind: unrevealed_desecrated_placeholder
       stored_context:
@@ -967,19 +954,15 @@ operations:
       - jawbone_id
       - reveal_mml
       - lich_tag_constraint
-    legal_side_definition:
-      free_side: current side count is below side capacity
-      replaceable_full_side: current side count equals side capacity and at least one installed instance on that side is removable
-        after excluding fractured instances
-    failure_atomicity: Jawbone and all paired Omens remain unconsumed when no legal transition exists.
+    failure_atomicity: Jawbone remains unconsumed and the source item remains unchanged when no legal transition exists.
     prevalidate:
     - item is Rare
     - item has no existing Desecrated modifier or placeholder
     - item level satisfies Jawbone maximum
-    - at least one legal side exists after Omen constraints
-    - if selected side is full, at least one non-fractured removable instance exists on that side
+    - use D1-A while any side has capacity
+    - use D2-A only when the item is fully occupied
   active_in_current_simulation: true
-  runtime_admission_status: blocked_or_out_of_scope
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: ancient_jawbone
   group: jawbone
   input_rarity:
@@ -995,21 +978,18 @@ operations:
     item_level_max: null
     reveal_mml: 40
     side_selection:
-      forced_by_omen:
-        rule: use forced side only
-        failure: NO_TRANSITION if forced side is neither free nor replaceable
-      without_omen:
-        legal_sides: all free or replaceable sides
-        selection: uniform_random_over_legal_sides
-        failure: NO_TRANSITION if legal_sides is empty
+      when_one_side_has_capacity: install_on_the_only_free_side
+      when_both_sides_have_capacity: uniform_prefix_or_suffix
+      never_select_full_side_while_other_side_has_capacity: true
     replacement:
-      when_selected_side_full: true
+      only_when_item_fully_occupied: true
       target:
         kind: uniform_installed_instance
-        side: selected_side
+        selection_scope: combined_prefix_suffix
         exclude_flags:
         - fractured
-      failure: NO_TRANSITION if selected side is full and filtered removable target pool is empty
+      placeholder_side: removed_instance_side
+      failure: NO_TRANSITION if full item has no removable non-fractured instance
     install:
       kind: unrevealed_desecrated_placeholder
       stored_context:
@@ -1017,19 +997,15 @@ operations:
       - jawbone_id
       - reveal_mml
       - lich_tag_constraint
-    legal_side_definition:
-      free_side: current side count is below side capacity
-      replaceable_full_side: current side count equals side capacity and at least one installed instance on that side is removable
-        after excluding fractured instances
-    failure_atomicity: Jawbone and all paired Omens remain unconsumed when no legal transition exists.
+    failure_atomicity: Jawbone remains unconsumed and the source item remains unchanged when no legal transition exists.
     prevalidate:
     - item is Rare
     - item has no existing Desecrated modifier or placeholder
     - item level satisfies Jawbone maximum
-    - at least one legal side exists after Omen constraints
-    - if selected side is full, at least one non-fractured removable instance exists on that side
+    - use D1-A while any side has capacity
+    - use D2-A only when the item is fully occupied
   active_in_current_simulation: true
-  runtime_admission_status: blocked_or_out_of_scope
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: reveal_desecrated
   group: reveal
   input_rarity:

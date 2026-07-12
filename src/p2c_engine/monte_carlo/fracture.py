@@ -455,12 +455,13 @@ def _fracture_precondition_failure(
         return "unsupported_item_class"
     if state.rarity is not Rarity.RARE:
         return "rare_input_required"
-    if len(state.modifiers) < 4:
+    installed_count = len(state.modifiers) + int(
+        state.unrevealed_desecrated is not None
+    )
+    if installed_count < 4:
         return "at_least_four_explicit_modifiers_required"
     if any(instance.fractured for instance in state.modifiers):
         return "existing_fractured_modifier_forbidden"
-    if state.unrevealed_desecrated is not None:
-        return "unrevealed_desecrated_state_forbidden"
     if any(instance.desecrated for instance in state.modifiers):
         return "desecrated_modifier_state_forbidden"
     if any(instance.mod_id not in static.modifier_index for instance in state.modifiers):

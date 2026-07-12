@@ -48,6 +48,11 @@ from p2c_engine.monte_carlo.fracture import (
     M46A_FRACTURE_SEMANTICS_VERSION,
     FractureOperation,
 )
+from p2c_engine.monte_carlo.jawbone import (
+    M47A1_OPERATION_IDS,
+    M47A1_SEMANTICS_VERSION,
+    JawboneOperation,
+)
 from p2c_engine.static_data.game_data import StaticGameData
 from p2c_engine.operations.omen import (
     M45AOmenAdmissionError,
@@ -65,6 +70,7 @@ M42A_RESOLVER_SCHEMA_VERSION = "p2c.m42a.perfect_essence_quarterstaff_runtime.v1
 M44A_RESOLVER_SCHEMA_VERSION = "p2c.m44a.alchemy_runtime.v1"
 M45A_RESOLVER_SCHEMA_VERSION = "p2c.m45a.independent_omen_layer.v1"
 M46A_RESOLVER_SCHEMA_VERSION = "p2c.m46a.fracture_core_runtime.v1"
+M47A1_RESOLVER_SCHEMA_VERSION = "p2c.m47a1.jawbone_placeholder_runtime.v1"
 ACCEPTED_RUNTIME_STATUS = "accepted_executable_runtime"
 BASE_VARIANT_IDS = frozenset({None, "", "base"})
 M39B_EXALTED_CURRENCY_IDS = frozenset({"greater_exalted", "perfect_exalted"})
@@ -80,6 +86,7 @@ AcceptedResolvedOperation = (
     | PerfectEssenceOperation
     | AlchemyOperation
     | FractureOperation
+    | JawboneOperation
 )
 OperationKind = Literal["engine_primitive", "catalog_operation"]
 
@@ -261,6 +268,14 @@ class OperationResolver:
                 semantics_version=M46A_FRACTURE_SEMANTICS_VERSION,
             )
             schema_version = M46A_RESOLVER_SCHEMA_VERSION
+        elif request.currency_id in M47A1_OPERATION_IDS:
+            _validate_catalog_input_rarity(row, request.item_state)
+            if omen_effects.omen_ids:
+                raise M38AResolverAdmissionError(
+                    "Jawbone modifier layers are not executable-admitted"
+                )
+            operation = _compile_m47a1_jawbone(row, request)
+            schema_version = M47A1_RESOLVER_SCHEMA_VERSION
         elif request.currency_id == ANNULMENT_OPERATION_ID:
             _validate_catalog_input_rarity(row, request.item_state)
             if declared_mml is not None:
@@ -461,10 +476,9 @@ def _validate_m46a_fracture_transition(row: dict[str, Any]) -> None:
         if isinstance(entry, Mapping)
     }
     required = {
-        ("occupied_explicit_slots", ">=", 4),
+        ("installed_modifier_or_placeholder_count", ">=", 4),
         ("fractured_modifier_count", "==", 0),
         ("desecrated_modifier_count", "==", 0),
-        ("unrevealed_desecrated_count", "==", 0),
     }
     if (
         not isinstance(transition, Mapping)
@@ -481,6 +495,62 @@ def _validate_m46a_fracture_transition(row: dict[str, Any]) -> None:
         raise M38AResolverAdmissionError(
             "unsupported M46-A Fracture transition shape"
         )
+
+
+def _compile_m47a1_jawbone(
+    row: dict[str, Any], request: OperationResolverRequest
+) -> JawboneOperation:
+    transition = row.get("transition")
+    side_selection = (
+        transition.get("side_selection") if isinstance(transition, Mapping) else None
+    )
+    replacement = (
+        transition.get("replacement") if isinstance(transition, Mapping) else None
+    )
+    target = replacement.get("target") if isinstance(replacement, Mapping) else None
+    install = transition.get("install") if isinstance(transition, Mapping) else None
+    if (
+        not isinstance(transition, Mapping)
+        or transition.get("atomic") is not True
+        or transition.get("output_rarity") != "rare"
+        or not isinstance(side_selection, Mapping)
+        or side_selection.get("when_one_side_has_capacity")
+        != "install_on_the_only_free_side"
+        or side_selection.get("when_both_sides_have_capacity")
+        != "uniform_prefix_or_suffix"
+        or side_selection.get("never_select_full_side_while_other_side_has_capacity")
+        is not True
+        or not isinstance(replacement, Mapping)
+        or replacement.get("only_when_item_fully_occupied") is not True
+        or not isinstance(target, Mapping)
+        or target.get("kind") != "uniform_installed_instance"
+        or target.get("selection_scope") != "combined_prefix_suffix"
+        or "fractured" not in (target.get("exclude_flags") or ())
+        or replacement.get("placeholder_side") != "removed_instance_side"
+        or not isinstance(install, Mapping)
+        or install.get("kind") != "unrevealed_desecrated_placeholder"
+    ):
+        raise M38AResolverAdmissionError(
+            f"unsupported M47-A1 Jawbone transition shape: {request.currency_id}"
+        )
+    item_level_max = transition.get("item_level_max")
+    reveal_mml = transition.get("reveal_mml")
+    for name, value in (("item_level_max", item_level_max), ("reveal_mml", reveal_mml)):
+        if value is not None and (
+            isinstance(value, bool) or not isinstance(value, int) or value <= 0
+        ):
+            raise M38AResolverAdmissionError(
+                f"invalid M47-A1 {name}: {request.currency_id}"
+            )
+    return JawboneOperation(
+        mode_id=request.mode_id,
+        operation_id=request.currency_id,
+        item_class=request.item_state.item_class,
+        item_level_max=item_level_max,
+        reveal_mml=reveal_mml,
+        lich_tag_constraint=None,
+        semantics_version=M47A1_SEMANTICS_VERSION,
+    )
 
 
 def _validate_m39b_chaos_transition(row: dict[str, Any]) -> None:
