@@ -61,12 +61,13 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M46-A clean Fracture core runtime: accepted after Claude GO audit and ChatGPT/User gate for base `fracturing_orb` only. Desecrated/Revealed/Jawbone/PD-013 behavior remains outside the accepted runtime.
 - M47 Desecrated/Jawbone/Reveal mechanics design: accepted as design-only after Claude GO audit and ChatGPT/User gate.
 - M47 Mechanics Decision Closure: accepted as the documentary record of already ratified Desecrated rules. D1-A/D2-A are accepted project-base policies for the three-row Jawbone clean core; D3-D5 and Reveal sampling remain open.
-- M47-A1 Jawbone + Desecrated Placeholder Clean-Core Runtime: authorized and implemented as a proposed result for exactly Gnawed, Preserved, and Ancient Jawbone; it awaits Claude audit and later User acceptance. The hidden placeholder counts toward Fracture's minimum but is never a Fracture target. Revealed-Desecrated Fracture runtime remains closed.
+- M47-A1 Jawbone + Desecrated Placeholder Clean-Core Runtime: accepted after Claude GO audit for exactly Gnawed, Preserved, and Ancient Jawbone. The hidden placeholder counts toward Fracture's minimum but is never a Fracture target. Reveal, D3-D5, Echoes, and revealed-Desecrated Fracture runtime remain closed.
+- M47-A2 Reveal Offer Generation Design Verification: authorized as design/mechanics verification only; exact D3-D5 policies remain proposed until explicit later decisions.
 
 ## Live routing
 
 - Always use verified `work/active/ACTIVE_TASK.md` for the current actor and allowed action; this file is a snapshot, not routing.
-- M47-A1 three-row Jawbone placeholder runtime is the active proposed wave awaiting Claude audit. Reveal and D3-D5 remain closed.
+- M47-A2 base Reveal offer-generation design/mechanics verification is the active proposed wave awaiting Claude audit. No Reveal or Echoes runtime is authorized.
 - Historical/drop-disabled Omens, Greater Annulment, Light/Desecrated, Jawbone/Reveal and PD-013 interactions, Essence capacity expansion, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
