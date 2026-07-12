@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "441f880456d60bb5d74a457cc00d8eb3a2fe6663"
-updated_at_utc: "2026-07-12T10:06:14Z"
+repo_head_at_last_update: "74d9fcb25e213feff706cc97682fbe9e31238c60"
+updated_at_utc: "2026-07-12T10:33:05Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M47A1_JAWBONE_PLACEHOLDER_RUNTIME"
 
-allowed_next_action: "claude_audit_m47a1_jawbone_placeholder_runtime"
+allowed_next_action: "chatgpt_user_gate_m47a1_after_claude_go"
 forbidden_next_actions:
   - "accept_m47a1_without_chatgpt_user_gate"
   - "implement_reveal_or_select_d3_d5_sampling_policy"
@@ -23,7 +23,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M47A1_Jawbone_Placeholder_Runtime_Result_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M47A1_Jawbone_Placeholder_Runtime_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -71,4 +71,6 @@ stop_conditions:
 
 M47 Mechanics Decision Closure is accepted. D1-A and D2-A are accepted project-base policies for the Jawbone clean core. Codex implemented the proposed M47-A1 runtime for exactly Gnawed, Preserved, and Ancient Jawbone, including canonical hidden placeholders, atomic D1/D2 transitions, exact/seeded execution, resolver and bounded-sequence parity, and the hidden-placeholder Fracture minimum-count/non-target rule.
 
-Next: Claude audits `packages/proposed/P2C_M47A1_Jawbone_Placeholder_Runtime_Result_Codex_v1/`. M47-A1 is proposed, not accepted. Reveal, D3-D5, Echoes, Omen of Light, multiple placeholders, revealed-Desecrated Fracture runtime, and PD-013 remain closed.
+Claude audited M47-A1 with verdict **GO** (`reviews/P2C_M47A1_Jawbone_Placeholder_Runtime_Audit_Claude_v1.md`): exactly the three authorized Jawbones admitted, D1-A/D2-A match the decided policy, single-Desecrated limit and fractured immutability enforced, no Reveal, the hidden-placeholder Fracture rule is the authorized one, atomic and fail-closed, additive-only integration, all tests pass.
+
+Next: ChatGPT/User acceptance gate. M47-A1 is proposed, not accepted. Reveal, D3-D5, Echoes, Omen of Light, multiple placeholders, revealed-Desecrated Fracture runtime, and PD-013 remain closed.
