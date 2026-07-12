@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "5f131596dc31a93de8479e5447c85e3bb0fca9da"
-updated_at_utc: "2026-07-12T10:45:57Z"
+repo_head_at_last_update: "10597e4008964650ce2b71f43c41ff3b0874e073"
+updated_at_utc: "2026-07-12T11:05:34Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M47A2_REVEAL_OFFER_GENERATION_DESIGN_VERIFICATION"
 
-allowed_next_action: "claude_audit_m47a2_reveal_offer_generation_design_verification"
+allowed_next_action: "chatgpt_user_gate_m47a2_after_claude_go"
 forbidden_next_actions:
   - "accept_or_implement_d3_d5_without_explicit_chatgpt_user_gate"
   - "implement_or_admit_reveal_or_echoes_runtime"
@@ -23,7 +23,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M47A2_Reveal_Offer_Generation_Design_Verification_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M47A2_Reveal_Offer_Generation_Design_Verification_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -72,4 +72,6 @@ stop_conditions:
 
 M47-A1 Jawbone + Desecrated Placeholder Runtime is accepted after Claude GO audit. Codex completed the design/mechanics verification for the next base Reveal floor. The package confirms the visible three-offer/one-user-choice contour, proposes an exact auditable D3-A/D4-A/D5-A project model without accepting it, and recommends splitting Echoes runtime because MML/constraint persistence on reroll remains source-conflicted.
 
-Next: Claude audits `packages/proposed/P2C_M47A2_Reveal_Offer_Generation_Design_Verification_Codex_v1/`. No Reveal/Echoes runtime is authorized. D3-D5, named-Lich/Necromancy, Omen of Light, Putrefaction, revealed-Desecrated Fracture runtime, and PD-013 remain gated.
+Claude audited M47-A2 with verdict **GO (design/mechanics verification only)** (`reviews/P2C_M47A2_Reveal_Offer_Generation_Design_Verification_Audit_Claude_v1.md`): confirmed design-only (one documentary evidence line), nothing presented as accepted mechanics/server truth, no source conflict silently resolved (Ancient+Echoes MML persistence flagged to User), Echoes correctly split to a later gate, candidate contract reuses accepted kernels and is fail-closed, Fracture/PD-013 boundary preserved. D4 offer-sampling stays the load-bearing open decision for in-game verification.
+
+Next: ChatGPT/User gate — decide D3/D4/D5 (D4 sampling is the in-game-verification candidate) before any base Reveal runtime is authorized. No Reveal/Echoes runtime is authorized. D3-D5, named-Lich/Necromancy, Omen of Light, Putrefaction, revealed-Desecrated Fracture runtime, and PD-013 remain gated.
