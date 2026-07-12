@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "27d580b5f84286a7d508e1a6b32ab99e50853c12"
-updated_at_utc: "2026-07-12T18:12:11Z"
+repo_head_at_last_update: "2d8f1f44ba9ad6955a65a6fb23fb1fe43dcc3a33"
+updated_at_utc: "2026-07-12T18:26:35Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M48_NEXT_INDEPENDENT_PROJECT_WAVE_DESIGN"
 
-allowed_next_action: "claude_audit_m48_next_independent_project_wave_design"
+allowed_next_action: "chatgpt_user_gate_m48_after_claude_go"
 forbidden_next_actions:
   - "accept_or_promote_d3_d5_from_observations_without_explicit_chatgpt_user_gate"
   - "implement_or_admit_reveal_or_echoes_runtime"
@@ -26,7 +26,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M48_Next_Independent_Project_Wave_Design_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M48_Next_Independent_Project_Wave_Design_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -78,4 +78,6 @@ M47-A2V Reveal Sampling Verification & Decision Support is accepted after Claude
 
 Codex created the proposed M48 independent next-wave design. It compares Omen of Light, Echoes, Putrefaction, revealed-Desecrated Fracture, Astrid/crafted capacity, more sequence infrastructure, and a bounded caller-authored branching evaluator. The recommendation is a finite acyclic branching-sequence evaluator over accepted operations: the caller supplies the complete graph, while P2C only evaluates it through accepted resolver/executor, exact/MC, replay, and named success predicates. It contains no route generation, ranking, costs, advice, optimizer, new mechanics, or runtime implementation.
 
-Next: Claude audits `packages/proposed/P2C_M48_Next_Independent_Project_Wave_Design_Codex_v1/`, including whether the selected boundary remains an evaluator and whether Omen of Light or Astrid should instead be the next clean wave. All D3-D5, Echoes, Putrefaction, Omen of Light, Astrid/crafted-capacity, revealed-Fracture/PD-013, public numeric release, optimizer/economics/advice, and automation remain separately gated.
+Claude audited M48 with verdict **GO (design/direction only)** (`reviews/P2C_M48_Next_Independent_Project_Wave_Design_Audit_Claude_v1.md`): design-only (no code; fingerprint unchanged); the selected boundary stays a true evaluator (caller supplies the whole DAG, deterministic state-based predicates, bounded acyclic, exact mass, no route generation/ranking/optimizer); Omen of Light is correctly dependency-blocked by unaccepted Reveal and Astrid is a separate mechanics wave, so the branching evaluator is correctly first. Elevated invariant for the M48-A gate: the success classifier/predicate registry must stay deterministic and state-based — no predicate may ever return a score, probability, cost, or ranking (the evaluator/optimizer firewall).
+
+Next: ChatGPT/User gate — decide whether to authorize M48-A (Bounded Caller-Authored Branching Sequence Runtime). M48 authorizes no implementation. All D3-D5, Echoes, Putrefaction, Omen of Light, Astrid/crafted-capacity, revealed-Fracture/PD-013, public numeric release, optimizer/economics/advice, and automation remain separately gated.
