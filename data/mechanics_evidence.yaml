@@ -218,3 +218,36 @@ omen_layer_m45a:
   - jawbone_reveal
   - fracture
   - essence_repeat_replacement_capacity
+fracture_core_m46a:
+  runtime_status: USER_AUTHORIZED_PROPOSED_RUNTIME_PENDING_AUDIT
+  evidence_level: project_model_source_open
+  server_truth_claimed: false
+  source_refs:
+  - official_patch_0_2_fracturing
+  - official_patch_0_2e_fractured_divine
+  - poe2db_fracturing_orb
+  clean_core:
+    item_class: quarterstaff
+    input_rarity: rare
+    minimum_installed_explicit_instances: 4
+    existing_fractured_modifier_count: 0
+    candidate_pool: combined_prefix_suffix_installed_instance_identities
+    selection: uniform_without_generation_weights
+    ordinary_instances_eligible: true
+    crafted_instances_eligible: true
+    selected_mutation: set_fractured_true_only
+    preserve_crafted_flag: true
+    preserve_all_unselected_instances: true
+    atomic: true
+    failure: no_transition_no_consumption_original_state_unchanged
+  disputed_states_fail_closed:
+    desecrated_modifier_present: true
+    unrevealed_desecrated_placeholder_present: true
+    pd013_closed: false
+  still_closed:
+  - revealed_desecrated_fracture_interaction
+  - unrevealed_desecrated_fracture_interaction
+  - multiple_fractures
+  - side_directed_fracture
+  - non_quarterstaff_classes
+  - corrupted_or_unique_cases

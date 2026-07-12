@@ -310,6 +310,7 @@ def test_m40a_real_catalog_admits_exactly_the_authorized_rows_plus_prior_runtime
         "greater_chaos",
         "perfect_chaos",
         "alchemy",
+        "fracturing_orb",
     }
 
 

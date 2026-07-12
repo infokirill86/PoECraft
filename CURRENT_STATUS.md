@@ -57,14 +57,14 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M45 Independent Omen Layer design: accepted after Claude GO audit and ChatGPT/User gate. It defines a single-operation modifier compiler, explicit Omen admission/availability metadata, a pinned ten-Omen clean core, and fail-closed compatibility; it does not itself accept runtime.
 - M45-A Independent Omen Layer runtime: accepted after Claude GO audit and ChatGPT/User gate for exactly the ten audited Omens. The accepted layer reuses canonical operation pools, keeps unsupported combinations fail-closed, includes the atomic Greater Exaltation two-add contract, and preserves direct/resolver/M43-A parity.
 - Whittling evidence: behavior is unchanged; lowest eligible modifier level is selected first and ties are uniform. The tie behavior is now user player-confirmed project-model evidence, not server truth.
-- M46 clean Fracture core mechanics/design verification: authorized and proposed for Claude audit only; Fracture runtime remains closed.
+- M46 clean Fracture core mechanics/design verification: accepted after Claude GO audit and ChatGPT/User gate. M46-A clean-core runtime implementation is authorized and proposed for Claude audit; it is not yet accepted.
 
 ## Live routing
 
 - Always use verified `work/active/ACTIVE_TASK.md` for the current actor and allowed action; this file is a snapshot, not routing.
-- M46 clean Fracture mechanics/design verification is routed to Claude audit. No Fracture runtime is admitted by this design wave.
+- M46-A clean Fracture runtime implementation is being prepared for Claude audit. Runtime admission remains proposed until Claude audit and a later ChatGPT/User acceptance gate.
 - Historical/drop-disabled Omens, Greater Annulment, Light/Desecrated, Jawbone/Reveal and PD-013 interactions, Essence capacity expansion, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
 
-Every Omen outside the accepted ten-row M45-A allowlist; Alchemy/Coronation/Greater Annulment Omens; Light/Desecrated/Jawbone/Reveal modifiers; Alchemy variants and fractured-input Alchemy; Perfect/Lesser/Corrupted Essence expansion; multiple-Essence stacking/replacement/capacity semantics; Fracture runtime before a later audit/gate; Desecrate/Jawbone/Reveal operations; conditional/retry route generation; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; broader MML closure; PD-013 closure; MC execution of unaccepted operations.
+Every Omen outside the accepted ten-row M45-A allowlist; Alchemy/Coronation/Greater Annulment Omens; Light/Desecrated/Jawbone/Reveal modifiers; Alchemy variants and fractured-input Alchemy; Perfect/Lesser/Corrupted Essence expansion; multiple-Essence stacking/replacement/capacity semantics; M46-A Fracture runtime before Claude audit and a later User gate; Desecrated/Revealed/Jawbone/Reveal Fracture interactions and PD-013; multiple/side-directed/non-quarterstaff Fracture; Desecrate/Jawbone/Reveal operations; conditional/retry route generation; optimizer/advice/ranking; economics/EV; public numeric release; server-truth claims; source/provenance closure; broader MML closure; PD-013 closure; MC execution of unaccepted operations.

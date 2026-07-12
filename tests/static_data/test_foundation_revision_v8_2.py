@@ -68,6 +68,7 @@ def test_runtime_admission_status_table_is_explicit_and_narrow():
         'greater_chaos',
         'perfect_chaos',
         'alchemy',
+        'fracturing_orb',
         'greater_essence_abrasion',
         'greater_essence_flames',
         'greater_essence_ice',
@@ -98,10 +99,11 @@ def test_missing_runtime_admission_status_fails(tmp_path):
 def test_inactive_operation_cannot_be_executable_admitted(tmp_path):
     clone(tmp_path); p=tmp_path/'data/operations.yaml'
     def change(d):
-        row=next(r for r in d['operations'] if r['operation_id']=='fracturing_orb')
+        row=next(r for r in d['operations'] if r['operation_id']=='install_astrid')
+        row['active_in_current_simulation']=False
         row['runtime_admission_status']='accepted_executable_runtime'
     mutate_yaml(p, change)
-    with pytest.raises(StaticDataDefect, match='executable-admitted'):
+    with pytest.raises(StaticDataDefect, match='active flag|executable-admitted'):
         build_static_game_data(tmp_path)
 
 def test_invalid_group_ids_fail(tmp_path):
@@ -120,7 +122,10 @@ def test_reference_only_content_change_only_changes_source_fingerprint(tmp_path)
     clone(tmp_path); baseline=build_static_game_data(tmp_path)
     p=tmp_path/'data/operations.yaml'
     def change(d):
-        row=next(r for r in d['operations'] if not r['active_in_current_simulation'])
+        row=next(
+            r for r in d['operations']
+            if r['runtime_admission_status'] != 'accepted_executable_runtime'
+        )
         row['audit_note']='reference-only wording changed'
     mutate_yaml(p, change)
     changed=build_static_game_data(tmp_path)

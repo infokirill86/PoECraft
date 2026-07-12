@@ -11,6 +11,7 @@ handler_declarations:
   greater_essence: greater_essence_handler
   perfect_essence: perfect_essence_handler
   alchemy: alchemy_handler
+  fracture: fracture_handler
   jawbone: jawbone_handler
   reveal: reveal_handler
 global_contracts:
@@ -502,8 +503,16 @@ operations:
     - type: fractured_modifier_count
       operator: ==
       value: 0
+    - type: desecrated_modifier_count
+      operator: ==
+      value: 0
+    - type: unrevealed_desecrated_count
+      operator: ==
+      value: 0
     target:
       kind: uniform_installed_instance
+      selection_scope: combined_prefix_suffix
+      weighting: uniform_instance_identity
       exclude_flags:
       - fractured
       exclude_instance_kinds:
@@ -519,9 +528,9 @@ operations:
       craft_of_exile_emulator_observation: eligible target
       external_documentation_claim: ineligible target
       in_game_verification: not performed
-      runtime_behavior_for_current_simulation: operation disabled; rule cannot affect active probabilities
-  active_in_current_simulation: false
-  runtime_admission_status: disputed_or_requires_user_resolution
+      runtime_behavior_for_current_simulation: clean-core runtime rejects every Desecrated or unrevealed-placeholder state before selection; disputed rule cannot affect execution
+  active_in_current_simulation: true
+  runtime_admission_status: accepted_executable_runtime
 - operation_id: install_astrid
   group: support_augment
   input_rarity:

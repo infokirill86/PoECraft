@@ -574,10 +574,10 @@ def test_missing_executor_and_nonadmitted_operation_fail_closed(static) -> None:
     with pytest.raises(M43ASequenceAdmissionError, match="not admitted"):
         BoundedAcceptedOperationSequenceHarness(static=static).run(
             initial_state=_state(rarity=Rarity.NORMAL),
-            request=_request("fracturing_orb"),
+            request=_request("install_astrid"),
             seed=43_001,
             sample_count=1,
-            run_id="m43a.fracturing_orb_blocked",
+            run_id="m43a.install_astrid_blocked",
         )
 
 

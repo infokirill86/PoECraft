@@ -69,6 +69,14 @@ from .greater_exaltation import (
     GreaterExaltationHarness,
     M45AGreaterExaltationCeilingExceeded,
 )
+from .fracture import (
+    FRACTURING_ORB_OPERATION_ID,
+    FractureHarness,
+    FractureOperation,
+    _fracture_modifier_instance,
+    _metadata_by_candidate_key as _fracture_metadata_by_candidate_key,
+    _assert_fracture_transition,
+)
 
 
 M43A_SCHEMA_VERSION = "p2c.m43a.bounded_accepted_operation_sequence.v1"
@@ -89,6 +97,7 @@ ExecutorId = Literal[
     "greater_essence",
     "perfect_essence",
     "alchemy",
+    "fracture",
 ]
 
 
@@ -449,6 +458,7 @@ class BoundedAcceptedOperationSequenceHarness:
         self.greater_exaltation = GreaterExaltationHarness(
             static=static, code_version=code_version
         )
+        self.fracture = FractureHarness(static=static, code_version=code_version)
         self.code_version = code_version
 
     def enumerate_exact(
@@ -839,6 +849,10 @@ class BoundedAcceptedOperationSequenceHarness:
                 decision_id,
                 max_candidates_per_pool,
             )
+        if executor_id == "fracture":
+            return self._fracture_exact(
+                state, step, step_index, plan, decision_id, max_candidates_per_pool
+            )
         raise M43ASequenceAdmissionError(f"unsupported executor id: {executor_id}")
 
     def _sample_transition(
@@ -894,6 +908,16 @@ class BoundedAcceptedOperationSequenceHarness:
                 sample_index,
                 run_id,
             )
+        if executor_id == "fracture":
+            return self._fracture_sample(
+                state,
+                step,
+                step_index,
+                plan,
+                decision_source,
+                sample_index,
+                run_id,
+            )
         raise M43ASequenceAdmissionError(f"unsupported executor id: {executor_id}")
 
     def _ordinary_exact(self, state, step, step_index, plan, decision_id, ceiling):
@@ -922,6 +946,49 @@ class BoundedAcceptedOperationSequenceHarness:
             post = _remove_modifier_instance(state, selected)
             _assert_annulment_runtime_invariants(pre_state=state, post_state=post, selected_metadata=selected, operation_id=operation.operation_id, modifier_index=self.static.modifier_index)
             output.append(self._transition(state, post, step, step_index, plan, "annulment", "applied", f"remove:{option.selected_key}", (option.decision_id,), (option.selected_key,), len(pool.candidates), option.candidate_digest, None, Fraction(option.probability_numerator, option.probability_denominator), False))
+        return tuple(output)
+
+    def _fracture_exact(self, state, step, step_index, plan, decision_id, ceiling):
+        operation = _expect_operation(plan, FractureOperation)
+        pool = self.fracture.build_pool(state, operation)
+        self._candidate_ceiling(pool.candidates, ceiling, step_index, step)
+        if not pool.candidates:
+            return (
+                self._no_transition(
+                    state,
+                    step,
+                    step_index,
+                    plan,
+                    "fracture",
+                    pool.empty_reason or "fracture_candidate_pool_exhausted",
+                    pool.result_fingerprint,
+                ),
+            )
+        metadata = _fracture_metadata_by_candidate_key(pool)
+        output = []
+        for option in branch_options(decision_id, pool.candidates):
+            selected = metadata[option.selected_key]
+            post = _fracture_modifier_instance(state, selected)
+            _assert_fracture_transition(state, post, selected, self.static)
+            output.append(
+                self._transition(
+                    state,
+                    post,
+                    step,
+                    step_index,
+                    plan,
+                    "fracture",
+                    "applied",
+                    f"fracture:{option.selected_key}",
+                    (option.decision_id,),
+                    (option.selected_key,),
+                    len(pool.candidates),
+                    option.candidate_digest,
+                    None,
+                    Fraction(option.probability_numerator, option.probability_denominator),
+                    False,
+                )
+            )
         return tuple(output)
 
     def _chaos_exact(self, state, step, step_index, plan, decision_id, ceiling):
@@ -1139,6 +1206,52 @@ class BoundedAcceptedOperationSequenceHarness:
         post = _remove_modifier_instance(state, selected)
         _assert_annulment_runtime_invariants(pre_state=state, post_state=post, selected_metadata=selected, operation_id=operation.operation_id, modifier_index=self.static.modifier_index)
         return self._transition(state, post, step, step_index, plan, "annulment", "applied", f"remove:{decision.selected.key}", (decision.record.decision_id,), (decision.selected.key,), decision.record.candidate_count, decision.record.candidate_digest, None, Fraction(1, 1), False)
+
+    def _fracture_sample(self, state, step, step_index, plan, source, sample_index, run_id):
+        operation = _expect_operation(plan, FractureOperation)
+        decision_id = self._sample_decision_id(
+            run_id, sample_index, step_index, step, operation.operation_id
+        )
+        trajectory = self.fracture.sample_once(
+            state=state,
+            operation=operation,
+            decision_source=source,
+            sample_index=sample_index,
+            run_id=run_id,
+            decision_id=decision_id,
+        )
+        if trajectory.outcome != "applied":
+            return self._no_transition(
+                state,
+                step,
+                step_index,
+                plan,
+                "fracture",
+                trajectory.no_transition_reason or "fracture_candidate_pool_exhausted",
+                trajectory.pool_fingerprint,
+            )
+        selected = _fracture_metadata_by_candidate_key(
+            self.fracture.build_pool(state, operation)
+        )[trajectory.selected_candidate_key]
+        post = _fracture_modifier_instance(state, selected)
+        _assert_fracture_transition(state, post, selected, self.static)
+        return self._transition(
+            state,
+            post,
+            step,
+            step_index,
+            plan,
+            "fracture",
+            "applied",
+            f"fracture:{trajectory.selected_candidate_key}",
+            (trajectory.decision_id,),
+            (trajectory.selected_candidate_key,),
+            trajectory.candidate_count,
+            trajectory.candidate_digest,
+            None,
+            Fraction(1, 1),
+            False,
+        )
 
     def _chaos_sample(self, state, step, step_index, plan, source, sample_index, run_id):
         operation = _expect_operation(plan, ChaosLikeOperation)
@@ -1361,7 +1474,7 @@ class BoundedAcceptedOperationSequenceHarness:
         return tuple(ExactExecutionTerminal(execution_terminal_key=key, terminal_state=representative[key].terminal_state, terminal_state_hash=representative[key].terminal_state_hash, outcome=representative[key].outcome, completed_step_count=representative[key].completed_step_count, terminal_step_index=representative[key].terminal_step_index, path_count=len(grouped_paths[key]), path_keys=tuple(sorted(grouped_paths[key])), probability_numerator=masses[key].numerator, probability_denominator=masses[key].denominator) for key in sorted(masses))
 
     def _assert_plan_executor(self, plan, executor_id):
-        expected = {"ordinary_add": OrdinaryAddOperation, "annulment": AnnulmentOperation, "chaos_like": ChaosLikeOperation, "catalog_single_add": CatalogSingleAddOperation, "greater_essence": GreaterEssenceOperation, "perfect_essence": PerfectEssenceOperation, "alchemy": AlchemyOperation}[executor_id]
+        expected = {"ordinary_add": OrdinaryAddOperation, "annulment": AnnulmentOperation, "chaos_like": ChaosLikeOperation, "catalog_single_add": CatalogSingleAddOperation, "greater_essence": GreaterEssenceOperation, "perfect_essence": PerfectEssenceOperation, "alchemy": AlchemyOperation, "fracture": FractureOperation}[executor_id]
         if not isinstance(plan.operation, expected):
             raise M43ASequenceAdmissionError(f"executor registry/plan mismatch for {plan.currency_id}: expected {executor_id}, got {type(plan.operation).__name__}")
 
@@ -1377,6 +1490,7 @@ def _default_executor_mapping() -> dict[str, ExecutorId]:
     mapping.update({operation_id: "greater_essence" for operation_id in M41A_OPERATION_IDS})
     mapping.update({operation_id: "perfect_essence" for operation_id in M42A_OPERATION_IDS})
     mapping[M44A_ALCHEMY_OPERATION_ID] = "alchemy"
+    mapping[FRACTURING_ORB_OPERATION_ID] = "fracture"
     return mapping
 
 

@@ -18,10 +18,10 @@ active_operation_groups:
 - greater_essence
 - perfect_essence
 - alchemy
+- fracture
 - jawbone
 - reveal
-reference_only_operation_groups:
-- fracture
+reference_only_operation_groups: []
 active_omen_system: true
 active_mechanics:
 - rarity_progression_currency_variants
@@ -35,8 +35,8 @@ active_mechanics:
 - desecrated_reveal
 - lich_omens
 - abyssal_echoes
+- fracture_core
 excluded_from_active_solver:
-- fracturing_route
 - alchemy_route
 - corrupted_crafting
 - bonded_augments

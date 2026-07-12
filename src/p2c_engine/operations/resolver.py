@@ -43,6 +43,11 @@ from p2c_engine.monte_carlo.alchemy import (
     M44A_SEMANTICS_VERSION,
     AlchemyOperation,
 )
+from p2c_engine.monte_carlo.fracture import (
+    FRACTURING_ORB_OPERATION_ID,
+    M46A_FRACTURE_SEMANTICS_VERSION,
+    FractureOperation,
+)
 from p2c_engine.static_data.game_data import StaticGameData
 from p2c_engine.operations.omen import (
     M45AOmenAdmissionError,
@@ -59,6 +64,7 @@ M41A_RESOLVER_SCHEMA_VERSION = "p2c.m41a.greater_essence_quarterstaff_runtime.v1
 M42A_RESOLVER_SCHEMA_VERSION = "p2c.m42a.perfect_essence_quarterstaff_runtime.v1"
 M44A_RESOLVER_SCHEMA_VERSION = "p2c.m44a.alchemy_runtime.v1"
 M45A_RESOLVER_SCHEMA_VERSION = "p2c.m45a.independent_omen_layer.v1"
+M46A_RESOLVER_SCHEMA_VERSION = "p2c.m46a.fracture_core_runtime.v1"
 ACCEPTED_RUNTIME_STATUS = "accepted_executable_runtime"
 BASE_VARIANT_IDS = frozenset({None, "", "base"})
 M39B_EXALTED_CURRENCY_IDS = frozenset({"greater_exalted", "perfect_exalted"})
@@ -73,6 +79,7 @@ AcceptedResolvedOperation = (
     | GreaterEssenceOperation
     | PerfectEssenceOperation
     | AlchemyOperation
+    | FractureOperation
 )
 OperationKind = Literal["engine_primitive", "catalog_operation"]
 
@@ -241,6 +248,19 @@ class OperationResolver:
         elif request.currency_id == M44A_ALCHEMY_OPERATION_ID:
             operation = _compile_m44a_alchemy(row, request)
             schema_version = M44A_RESOLVER_SCHEMA_VERSION
+        elif request.currency_id == FRACTURING_ORB_OPERATION_ID:
+            _validate_catalog_input_rarity(row, request.item_state)
+            if omen_effects.omen_ids:
+                raise M38AResolverAdmissionError(
+                    "Fracture modifier layers are not executable-admitted"
+                )
+            _validate_m46a_fracture_transition(row)
+            operation = FractureOperation(
+                mode_id=request.mode_id,
+                item_class=request.item_state.item_class,
+                semantics_version=M46A_FRACTURE_SEMANTICS_VERSION,
+            )
+            schema_version = M46A_RESOLVER_SCHEMA_VERSION
         elif request.currency_id == ANNULMENT_OPERATION_ID:
             _validate_catalog_input_rarity(row, request.item_state)
             if declared_mml is not None:
@@ -427,6 +447,39 @@ def _validate_m39b_exalted_transition(row: dict[str, Any]) -> None:
     ):
         raise M38AResolverAdmissionError(
             f"unsupported M39-B Exalted transition shape: {row.get('operation_id')}"
+        )
+
+
+def _validate_m46a_fracture_transition(row: dict[str, Any]) -> None:
+    transition = row.get("transition")
+    preconditions = transition.get("preconditions") if isinstance(transition, Mapping) else None
+    target = transition.get("target") if isinstance(transition, Mapping) else None
+    mutation = transition.get("mutation") if isinstance(transition, Mapping) else None
+    precondition_pairs = {
+        (entry.get("type"), entry.get("operator"), entry.get("value"))
+        for entry in preconditions or ()
+        if isinstance(entry, Mapping)
+    }
+    required = {
+        ("occupied_explicit_slots", ">=", 4),
+        ("fractured_modifier_count", "==", 0),
+        ("desecrated_modifier_count", "==", 0),
+        ("unrevealed_desecrated_count", "==", 0),
+    }
+    if (
+        not isinstance(transition, Mapping)
+        or transition.get("atomic") is not True
+        or transition.get("output_rarity") != "rare"
+        or not required <= precondition_pairs
+        or not isinstance(target, Mapping)
+        or target.get("kind") != "uniform_installed_instance"
+        or target.get("selection_scope") != "combined_prefix_suffix"
+        or target.get("weighting") != "uniform_instance_identity"
+        or not isinstance(mutation, Mapping)
+        or mutation.get("set_flag") != {"fractured": True}
+    ):
+        raise M38AResolverAdmissionError(
+            "unsupported M46-A Fracture transition shape"
         )
 
 
@@ -710,6 +763,7 @@ __all__ = [
     "M42A_RESOLVER_SCHEMA_VERSION",
     "M44A_RESOLVER_SCHEMA_VERSION",
     "M45A_RESOLVER_SCHEMA_VERSION",
+    "M46A_RESOLVER_SCHEMA_VERSION",
     "M38AResolverAdmissionError",
     "M38AResolverError",
     "OperationResolver",

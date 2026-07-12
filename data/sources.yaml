@@ -65,6 +65,27 @@ sources:
   - original Magic modifiers are not retained
   status: checked
   note: Primary wording for the M44 project-model input and replacement contour; it does not expose the server's internal four-modifier sampling algorithm.
+- source_id: official_patch_0_2_fracturing
+  type: official_patch_notes
+  url: https://www.pathofexile.com/forum/view-thread/3740562/page/1
+  use_for:
+  - base Fracturing Orb rarity, minimum modifier count, random target, and lock contour
+  status: checked
+  note: Primary source for the M46-A clean-core contour; it does not resolve Desecrated/PD-013 behavior or expose the server RNG implementation.
+- source_id: official_patch_0_2e_fractured_divine
+  type: official_patch_notes
+  url: https://www.pathofexile.com/forum/view-thread/3754474/page/1
+  use_for:
+  - fractured modifier numeric immutability
+  status: checked
+- source_id: poe2db_fracturing_orb
+  type: game_database
+  url: https://poe2db.tw/us/Fracturing_Orb
+  use_for:
+  - current Fracturing Orb wording
+  - cannot be used on already Fractured items
+  status: checked
+  note: Current database confirmation for the project model; not a server-truth claim.
 model_postulate: When PoE2DB and Craft of Exile agree, their pool, tier, modifier-level, family/group and weight data are
   accepted as model truth. RePoE is structural support, not the primary weight source.
 research_source_order:
