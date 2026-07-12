@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "92f025b9ef7284f4ff7252852e96e81300507ba4"
-updated_at_utc: "2026-07-12T09:18:51Z"
+repo_head_at_last_update: "988d006da2812c594a2026fcfae25ea2ec92e21d"
+updated_at_utc: "2026-07-12T11:00:00Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M47_MECHANICS_DECISION_CLOSURE"
 
-allowed_next_action: "claude_audit_m47_mechanics_decision_closure"
+allowed_next_action: "chatgpt_user_gate_decision_on_m47_mechanics_decision_closure"
 forbidden_next_actions:
   - "implement_or_admit_jawbone_reveal_desecrated_echoes_light_or_combined_fracture_runtime"
   - "promote_d1_d5_candidate_yaml_without_trusted_evidence_or_user_gate"
@@ -23,7 +23,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M47_Mechanics_Decision_Closure_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M47_Mechanics_Decision_Closure_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -69,6 +69,8 @@ stop_conditions:
 
 # P2C Active Task
 
-Audit the M47 D1-D5 mechanics-decision closure package. Verify the ratified-rule record, evidence strength, separation of candidate YAML from accepted truth, practical in-game protocols, smallest remaining User decision table, and conditional M47-A boundary.
+Claude audit of M47 Mechanics Decision Closure: verdict GO. Documentary only (mechanics_evidence.yaml +29/-3; no src/runtime; fingerprint unchanged 2e5e4454; 316 tests pass). Records EXACTLY Kirill's ratified Desecrated decisions as USER_RATIFIED_PROJECT_RULE / server_truth_claimed false / runtime NOT admitted: Reveal 3->1; single-desecrated max 1, no rune; unrevealed placeholder counts_toward_fracture_minimum but eligible_fracture_target false (1-of-3); revealed = valid Fracture target -> combined fractured+desecrated valid; Echoes separate currency, same mod may reappear, tier-level; Omen of Light separate gate. PD-013 correctly stays OPEN (pd013_blocker_closed false; runtime_extension_admitted false). The genuinely-open D1-D5 stay PENDING with recommendations-not-accepted; critically reveal.sampling_algorithm_closed=false so D4 (exact offer sampling) is NOT force-closed - matches my prior routing.
 
-M47 design is accepted. M47-A and every Jawbone/Reveal/Desecrated/Echoes/Light/combined-Fracture runtime remain closed pending Claude audit and later explicit ChatGPT/User decisions.
+Next: ChatGPT/User gate. Before M47-A, the gate must explicitly select D1-D5 (esp D4 sampling - candidate for Kirill in-game check). Omen of Light, Echoes, Lich, Fracture combined-state runtime, PD-013 stay gated. Review: reviews/P2C_M47_Mechanics_Decision_Closure_Audit_Claude_v1.md.
+
+This records project-model decisions only. It admits no runtime, closes no PD-013/MML/SOURCE-PROVENANCE/crafted-capacity, releases no public numbers, and decides no D1-D5 sampling model.
