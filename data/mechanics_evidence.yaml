@@ -106,12 +106,38 @@ lich_guarantee_one:
     persists_through_abyssal_echoes_reroll: true
   verification_todo: Re-check in game before exact probability treats the Lich model as final server truth.
 fracturing_revealed_desecrated:
-  runtime_status: DISPUTED_OUT_OF_ACTIVE_SCOPE
-  unrevealed_placeholder: confirmed ineligible
+  runtime_status: USER_RATIFIED_PROJECT_RULE_RUNTIME_NOT_ADMITTED
+  evidence_level: user_authority_over_source_conflict
+  server_truth_claimed: false
+  pd013_blocker_closed: false
+  unrevealed_placeholder:
+    counts_toward_fracture_minimum: true
+    eligible_fracture_target: false
   revealed_modifier:
     craft_of_exile_emulator: eligible
     external_documentation: ineligible
-    in_game: not tested
+    in_game: user_project_rule_ratified
+    eligible_fracture_target: true
+    combined_fractured_and_desecrated_flags_valid: true
+  runtime_extension_admitted: false
+m47_ratified_rules:
+  runtime_status: USER_RATIFIED_PROJECT_RULES_RUNTIME_NOT_ADMITTED
+  server_truth_claimed: false
+  reveal:
+    offer_count: 3
+    installed_choice_count: 1
+    sampling_algorithm_closed: false
+  desecrated_limit:
+    maximum_hidden_or_revealed_per_normal_item: 1
+    rune_bypass: false
+  echoes:
+    separate_currency: true
+    same_modifier_may_reappear: true
+    model_granularity: tier_not_value
+    runtime_admitted: false
+  omen_of_light:
+    separate_later_gate: true
+    runtime_admitted: false
 approved_contract_authority:
   rule: After user review and approval, runtime YAML is authoritative for the simulator until a later approved change.
 perfect_essence_m42a:
