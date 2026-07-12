@@ -1,13 +1,13 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "5122428d2e963a430a54bfd2878754dbfbee187a"
-updated_at_utc: "2026-07-12T14:51:46Z"
+repo_head_at_last_update: "8bc34b0561a9a6b545fe78eae4a5efa425d5c910"
+updated_at_utc: "2026-07-12T16:57:46Z"
 
-status: "ready_for_claude"
-next_actor: "claude"
+status: "audited_pending_user_gate"
+next_actor: "chatgpt_user"
 active_task_id: "M47A2V_REVEAL_SAMPLING_VERIFICATION"
 
-allowed_next_action: "claude_audit_m47a2v_reveal_sampling_verification"
+allowed_next_action: "chatgpt_user_gate_m47a2v_after_claude_go"
 forbidden_next_actions:
   - "accept_or_promote_d3_d5_from_observations_without_explicit_chatgpt_user_gate"
   - "implement_or_admit_reveal_or_echoes_runtime"
@@ -24,7 +24,7 @@ standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundari
 standing_boundaries_apply: true
 
 current_result_path: "packages/proposed/P2C_M47A2V_Reveal_Sampling_Verification_Codex_v1"
-current_review_path: ""
+current_review_path: "reviews/P2C_M47A2V_Reveal_Sampling_Verification_Audit_Claude_v1.md"
 
 acceptance_authority: "chatgpt_user"
 
@@ -76,4 +76,6 @@ M47-A2 Reveal Offer Generation Design Verification is accepted as design-only af
 
 Codex created the proposed M47-A2V offline evidence-support layer: an in-game capture protocol, canonical observation schema, fail-closed validator/analyzer, decision criteria, and focused tests. The analyzer reports contradictions and uncertainty but cannot update runtime or accepted truth. D4 remains inconclusive without homogeneous reproducible setups and eligible-pool/weight snapshots. Ancient+Echoes MML persistence remains a separate unresolved conflict.
 
-Next: Claude audits `packages/proposed/P2C_M47A2V_Reveal_Sampling_Verification_Codex_v1/`. D3-D5 acceptance, Reveal/Echoes runtime, named-Lich/Necromancy, Omen of Light, Putrefaction, revealed-Desecrated Fracture runtime, public numeric release, and PD-013 closure remain gated.
+Claude audited M47-A2V with verdict **GO (offline evidence tooling only)** (`reviews/P2C_M47A2V_Reveal_Sampling_Verification_Audit_Claude_v1.md`): tooling-only (no src/operations/mechanics-rule change; fingerprint unchanged), no accepted-truth promotion (D3-A/D4-A/D5-A stay proposed), analyzer is report-only/fail-closed/contradiction-first with numeric results quarantined, hardcoded ancient-jawbone MML=40 matches accepted operations.yaml, tests 5/5 clean.
+
+Next: ChatGPT/User gate. The tool only supports the D4 decision — D4-A can move to accepted only after real homogeneous in-game captures (with eligible-pool/weight snapshots) are recorded and a User gate names the model. D3-D5 acceptance, Reveal/Echoes runtime, named-Lich/Necromancy, Omen of Light, Putrefaction, revealed-Desecrated Fracture runtime, public numeric release, and PD-013 closure remain gated.
