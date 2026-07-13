@@ -1,6 +1,6 @@
 # P2C - CURRENT STATUS
 
-last_updated: 2026-07-12
+last_updated: 2026-07-13
 
 Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_Manifest_v4.md.
 
@@ -65,12 +65,12 @@ Keep this file tiny. Stable rules live in START_HERE.md and manifest/Operating_M
 - M47-A2 Reveal Offer Generation Design Verification: accepted as design-only after Claude GO audit. D3-A/D4-A/D5-A remain proposed; no Reveal/Echoes runtime is authorized.
 - M47-A2V Reveal Sampling Verification & Decision Support: accepted after Claude GO audit as internal quarantined evidence tooling only. It does not accept D3-D5 or Reveal/Echoes runtime; real observations and a later User gate remain required.
 - M48 Next Independent Project Wave Design: accepted after Claude GO audit and ChatGPT/User gate. The accepted direction is a bounded caller-authored branching-route evaluator over already accepted operations only.
-- M48-A Bounded Branching Runtime: implementation is authorized and proposed for Claude audit, not accepted. It evaluates finite caller-authored DAGs through the accepted resolver/executor path, uses only deterministic state predicates, exact ceilings and seeded replay, and contains no route generation, comparison, ranking, optimizer, economics, advice, or public numeric release.
+- M48-A Bounded Caller-Authored Branching Runtime: accepted after Claude GO audit and ChatGPT/User gate. P2C may evaluate finite caller-authored DAGs over accepted operations with deterministic categorical state predicates, exact rational mass, explicit ceilings and seeded replay. It may not generate, search, compare, rank, improve, or recommend routes.
 
 ## Live routing
 
 - Always use verified `work/active/ACTIVE_TASK.md` for the current actor and allowed action; this file is a snapshot, not routing.
-- M48-A implementation is ready for Claude audit. It remains proposed; no new mechanics, Reveal/Echoes runtime, planner/optimizer, or public numeric release are authorized.
+- M48-A is accepted. The next project wave requires an explicit ChatGPT/User gate; no new mechanics, Reveal/Echoes/Astrid runtime, planner/optimizer, economics/advice, public numeric release, automation, or boundary closure is authorized.
 - Historical/drop-disabled Omens, Greater Annulment, Light/Desecrated, Jawbone/Reveal and PD-013 interactions, Essence capacity expansion, public numeric release, optimizer/economics/advice, automation, and boundary closure remain closed until separate explicit ChatGPT/User gates.
 
 ## Not authorized / still open
