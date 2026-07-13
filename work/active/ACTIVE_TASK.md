@@ -1,23 +1,23 @@
 ---
 schema_version: "2.0"
-repo_head_at_last_update: "2d8f1f44ba9ad6955a65a6fb23fb1fe43dcc3a33"
-updated_at_utc: "2026-07-12T18:26:35Z"
+repo_head_at_last_update: "d63ce22dd1e394039b7b49ddf04cacf628a5744c"
+updated_at_utc: "2026-07-13T08:56:05Z"
 
-status: "audited_pending_user_gate"
-next_actor: "chatgpt_user"
-active_task_id: "M48_NEXT_INDEPENDENT_PROJECT_WAVE_DESIGN"
+status: "ready_for_claude"
+next_actor: "claude"
+active_task_id: "M48A_BOUNDED_BRANCHING_RUNTIME"
 
-allowed_next_action: "chatgpt_user_gate_m48_after_claude_go"
+allowed_next_action: "claude_audit_m48a_bounded_branching_runtime"
 forbidden_next_actions:
-  - "accept_or_promote_d3_d5_from_observations_without_explicit_chatgpt_user_gate"
-  - "implement_or_admit_reveal_or_echoes_runtime"
-  - "implement_omen_of_light_necromancy_lich_or_putrefaction"
-  - "admit_multiple_placeholders_or_revealed_desecrated_fracture_runtime"
-  - "implement_m48_or_add_branching_sequence_runtime"
-  - "add_route_generation_search_ranking_optimizer_economics_or_advice"
-  - "publish_captured_probability_results_or_crafting_advice"
-  - "add_conditional_retry_route_generation_planner_or_optimizer_behavior"
-  - "release_public_numeric_probabilities"
+  - "accept_m48a_without_explicit_chatgpt_user_gate"
+  - "generate_search_compare_rank_improve_or_recommend_routes"
+  - "add_predicate_score_probability_cost_ev_utility_desirability_or_ranking"
+  - "invent_or_modify_success_criteria"
+  - "truncate_renormalize_or_silently_replace_exact_results_with_monte_carlo"
+  - "implement_or_admit_reveal_echoes_omen_of_light_putrefaction_or_astrid"
+  - "promote_d3_d5_or_resolve_revealed_desecrated_fracture_pd013_or_crafted_capacity"
+  - "admit_new_operation_omen_modifier_predicate_mechanics_or_source_policy"
+  - "publish_numeric_probabilities_crafting_advice_economics_or_optimizer_output"
   - "close_source_provenance_mml_crafted_capacity_or_pd013"
   - "enable_automation_or_github_actions"
   - "agent_self_acceptance"
@@ -25,8 +25,8 @@ forbidden_next_actions:
 standing_boundaries_ref: "manifest/GitHub_Workflow_Protocol.md#standing-boundaries-for-active-task-dispatcher"
 standing_boundaries_apply: true
 
-current_result_path: "packages/proposed/P2C_M48_Next_Independent_Project_Wave_Design_Codex_v1"
-current_review_path: "reviews/P2C_M48_Next_Independent_Project_Wave_Design_Audit_Claude_v1.md"
+current_result_path: "packages/proposed/P2C_M48A_Bounded_Branching_Runtime_Result_Codex_v1"
+current_review_path: ""
 
 acceptance_authority: "chatgpt_user"
 
@@ -64,20 +64,14 @@ stop_conditions:
   - "Stop if ACTIVE_TASK.md frontmatter is invalid or missing mandatory fields."
   - "Stop if status and next_actor are inconsistent."
   - "Stop if accepted/proposed/current state is ambiguous."
-  - "Stop if a D3-D5 candidate or limited observation set is represented as accepted mechanics."
-  - "Stop if M48 design turns into implementation, route generation, planner, optimizer, economics, or advice."
-  - "Stop if a new operation, modifier, predicate rule, or mechanics policy would be admitted."
-  - "Stop if an external-source conflict is silently resolved."
-  - "Stop if revealed-Desecrated Fracture runtime or PD-013 closure enters scope."
-  - "Stop if planner/optimizer behavior, public numeric output, automation, or boundary closure enters scope."
+  - "Stop if audit needs a new mechanic, operation admission, predicate rule, or source-policy decision."
+  - "Stop if a predicate returns score, probability, cost, EV, utility, desirability, or ranking."
+  - "Stop if route generation, search, comparison, ranking, recommendation, economics, or advice enters scope."
+  - "Stop if exact mass is truncated, renormalized, or silently approximated."
+  - "Stop if success criteria are invented or changed."
+  - "Stop if Reveal, Astrid, D3-D5, PD-013, crafted-capacity, public numeric output, automation, or boundary closure enters scope."
 ---
 
 # P2C Active Task
 
-M47-A2V Reveal Sampling Verification & Decision Support is accepted after Claude GO audit as internal quarantined evidence tooling only. D3-D5 and Reveal/Echoes runtime remain unaccepted; real observations and a later User gate are still required.
-
-Codex created the proposed M48 independent next-wave design. It compares Omen of Light, Echoes, Putrefaction, revealed-Desecrated Fracture, Astrid/crafted capacity, more sequence infrastructure, and a bounded caller-authored branching evaluator. The recommendation is a finite acyclic branching-sequence evaluator over accepted operations: the caller supplies the complete graph, while P2C only evaluates it through accepted resolver/executor, exact/MC, replay, and named success predicates. It contains no route generation, ranking, costs, advice, optimizer, new mechanics, or runtime implementation.
-
-Claude audited M48 with verdict **GO (design/direction only)** (`reviews/P2C_M48_Next_Independent_Project_Wave_Design_Audit_Claude_v1.md`): design-only (no code; fingerprint unchanged); the selected boundary stays a true evaluator (caller supplies the whole DAG, deterministic state-based predicates, bounded acyclic, exact mass, no route generation/ranking/optimizer); Omen of Light is correctly dependency-blocked by unaccepted Reveal and Astrid is a separate mechanics wave, so the branching evaluator is correctly first. Elevated invariant for the M48-A gate: the success classifier/predicate registry must stay deterministic and state-based — no predicate may ever return a score, probability, cost, or ranking (the evaluator/optimizer firewall).
-
-Next: ChatGPT/User gate — decide whether to authorize M48-A (Bounded Caller-Authored Branching Sequence Runtime). M48 authorizes no implementation. All D3-D5, Echoes, Putrefaction, Omen of Light, Astrid/crafted-capacity, revealed-Fracture/PD-013, public numeric release, optimizer/economics/advice, and automation remain separately gated.
+M48 design is accepted. M48-A bounded caller-authored branching runtime is implemented and proposed, not accepted. Claude should audit the result package, runtime diff, evaluator/optimizer firewall, exact/seeded behavior, parity, and fail-closed controls. ChatGPT/User remains the only acceptance authority.

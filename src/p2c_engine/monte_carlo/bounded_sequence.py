@@ -122,6 +122,14 @@ class M43ASequenceInvariantViolation(M43ASequenceError, M32InvariantViolation):
     """Raised when accepted composition invariants fail."""
 
 
+class AcceptedStepCeilingExceeded(M43ASequenceError):
+    """Structured exact-step ceiling signal for accepted composition layers."""
+
+    def __init__(self, stop: "ExactCeilingStop") -> None:
+        super().__init__(stop.message)
+        self.stop = stop
+
+
 @dataclass(frozen=True, slots=True)
 class BoundedSequenceStep:
     step_id: str
@@ -399,7 +407,13 @@ class SequenceRunResult:
 
 
 @dataclass(frozen=True, slots=True)
-class _StepTransition:
+class AcceptedStepTransition:
+    """One accepted-operation transition exposed for truth-neutral composition.
+
+    M48-A uses this seam so branching evaluation cannot bypass the M43-A
+    resolver, executor registry, exact kernels, or seeded decision source.
+    """
+
     state: ItemState
     trace: SequenceStepTrace
     path_component: str
@@ -738,6 +752,68 @@ class BoundedAcceptedOperationSequenceHarness:
             )
         return replayed
 
+    def enumerate_accepted_step(
+        self,
+        *,
+        state: ItemState,
+        step: BoundedSequenceStep,
+        step_index: int,
+        decision_id_prefix: str,
+        max_candidates_per_pool: int = M43A_MAX_CANDIDATES_PER_POOL,
+    ) -> tuple[AcceptedStepTransition, ...]:
+        """Enumerate one step through the accepted M43-A execution seam."""
+
+        self.validate_composition_step(step, step_index)
+        self._validate_ceiling("max_candidates_per_pool", max_candidates_per_pool)
+        try:
+            return self._exact_transitions(
+                state=state,
+                step=step,
+                step_index=step_index,
+                decision_id_prefix=decision_id_prefix,
+                max_candidates_per_pool=max_candidates_per_pool,
+            )
+        except _ExactCeilingExceeded as exc:
+            raise AcceptedStepCeilingExceeded(exc.stop) from exc
+
+    def sample_accepted_step(
+        self,
+        *,
+        state: ItemState,
+        step: BoundedSequenceStep,
+        step_index: int,
+        decision_source: RecordingDecisionSource,
+        sample_index: int,
+        run_id: str,
+    ) -> AcceptedStepTransition:
+        """Sample one step through the accepted M43-A execution seam."""
+
+        self.validate_composition_step(step, step_index)
+        return self._sample_transition(
+            state=state,
+            step=step,
+            step_index=step_index,
+            decision_source=decision_source,
+            sample_index=sample_index,
+            run_id=run_id,
+        )
+
+    def validate_composition_step(
+        self, step: BoundedSequenceStep, step_index: int
+    ) -> None:
+        if isinstance(step_index, bool) or not isinstance(step_index, int) or not (
+            0 <= step_index < M43A_MAX_STEPS
+        ):
+            raise M43ASequenceAdmissionError(
+                f"composition step_index must be in 0..{M43A_MAX_STEPS - 1}"
+            )
+        self._validate_request(
+            BoundedSequenceRequest(
+                sequence_id="accepted_step_composition_validation",
+                steps=(step,),
+            )
+        )
+
     def _validate_request(self, request: BoundedSequenceRequest) -> None:
         if not isinstance(request.sequence_id, str) or not request.sequence_id.strip():
             raise M43ASequenceAdmissionError("sequence_id must be a non-empty string")
@@ -812,7 +888,7 @@ class BoundedAcceptedOperationSequenceHarness:
         step_index: int,
         decision_id_prefix: str,
         max_candidates_per_pool: int,
-    ) -> tuple[_StepTransition, ...]:
+    ) -> tuple[AcceptedStepTransition, ...]:
         executor_id = self.executor_registry.executor_for(step.currency_id, self.static)
         plan = self._resolve(state, step)
         if plan is None:
@@ -878,7 +954,7 @@ class BoundedAcceptedOperationSequenceHarness:
         decision_source: RecordingDecisionSource,
         sample_index: int,
         run_id: str,
-    ) -> _StepTransition:
+    ) -> AcceptedStepTransition:
         executor_id = self.executor_registry.executor_for(step.currency_id, self.static)
         plan = self._resolve(state, step)
         if plan is None:
@@ -1548,14 +1624,14 @@ class BoundedAcceptedOperationSequenceHarness:
     def _resolver_no_transition(self, *, state, step, step_index, executor_id):
         digest = sha256_canonical({"state_hash": state.state_hash(), "currency_id": step.currency_id, "mode_id": step.mode_id, "outcome": "resolver_rejected_current_state"}, schema_version=1)
         trace = SequenceStepTrace(step_index=step_index, step_id=step.step_id, currency_id=step.currency_id, operation_id=step.currency_id, mode_id=step.mode_id, executor_id=executor_id, outcome="no_transition_no_consumption", pre_state_hash=state.state_hash(), post_state_hash=state.state_hash(), resolver_plan_digest=digest, transition_key=f"{step.currency_id}:NO_TRANSITION:rarity", decision_ids=(), selected_keys=(), candidate_count=0, pool_digest=None, no_transition_reason="resolver_rejected_current_state", probability_numerator=1, probability_denominator=1)
-        return _StepTransition(state=state, trace=trace, path_component=trace.transition_key, probability=Fraction(1, 1), terminal=True)
+        return AcceptedStepTransition(state=state, trace=trace, path_component=trace.transition_key, probability=Fraction(1, 1), terminal=True)
 
     def _no_transition(self, state, step, step_index, plan, executor_id, reason, pool_digest):
         return self._transition(state, state, step, step_index, plan, executor_id, "no_transition_no_consumption", f"{step.currency_id}:NO_TRANSITION:{reason}", (), (), 0, pool_digest, reason, Fraction(1, 1), True)
 
     def _transition(self, pre, post, step, step_index, plan, executor_id, outcome, key, decision_ids, selected_keys, candidate_count, pool_digest, reason, probability, terminal):
         trace = SequenceStepTrace(step_index=step_index, step_id=step.step_id, currency_id=step.currency_id, operation_id=plan.operation_id, mode_id=step.mode_id, executor_id=executor_id, outcome=outcome, pre_state_hash=pre.state_hash(), post_state_hash=post.state_hash(), resolver_plan_digest=_plan_digest(plan, pre), transition_key=key, decision_ids=tuple(decision_ids), selected_keys=tuple(selected_keys), candidate_count=candidate_count, pool_digest=pool_digest, no_transition_reason=reason, probability_numerator=probability.numerator, probability_denominator=probability.denominator)
-        return _StepTransition(state=post, trace=trace, path_component=key, probability=probability, terminal=terminal)
+        return AcceptedStepTransition(state=post, trace=trace, path_component=key, probability=probability, terminal=terminal)
 
     def _candidate_ceiling(self, candidates, ceiling, step_index, step):
         if len(candidates) > ceiling:
